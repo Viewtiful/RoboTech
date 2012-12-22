@@ -1,5 +1,11 @@
 package jeu;
 
+import item_joueurs.Potion;
+import items.Baril;
+import items.Caisse;
+import items.Items;
+import items.Poutre;
+
 import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;

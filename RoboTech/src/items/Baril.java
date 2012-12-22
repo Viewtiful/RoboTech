@@ -1,4 +1,4 @@
-package jeu;
+package items;
 
 import net.phys2d.raw.Body;
 import net.phys2d.raw.shapes.Box;
@@ -7,8 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-
-public class Caisse extends Items {
+public class Baril extends Items {
 	/** The image to display for the crate */
 	private Image image;
 	/** The width of the crate */
@@ -16,11 +15,11 @@ public class Caisse extends Items {
 	/** The height of the crate */
 	private float height;
 
-	public Caisse(float x, float y, float width, float height, float mass) throws SlickException {
+	public Baril(float x, float y, float width, float height, float mass) throws SlickException {
 		this.width = width;
 		this.height = height;
 		
-		image = new Image("res/caisse.png");
+		image = new Image("res/baril.png");
 		body = new Body(new Box(width,height), mass);
 		body.setPosition(x,y);
 		body.setFriction(0.1f);

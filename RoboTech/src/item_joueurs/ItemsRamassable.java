@@ -1,4 +1,6 @@
-package jeu;
+package item_joueurs;
+
+import items.Items;
 
 public abstract class ItemsRamassable extends Items{
 

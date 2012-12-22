@@ -1,4 +1,4 @@
-package jeu;
+package items;
 
 import org.newdawn.slick.Graphics;
 

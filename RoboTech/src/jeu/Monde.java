@@ -1,5 +1,7 @@
 package jeu;
 
+import items.Items;
+
 import java.util.ArrayList;
 
 import net.phys2d.math.Vector2f;
