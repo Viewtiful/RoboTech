@@ -12,7 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 
-public class Robot extends Personnage {
+public class Robot extends Personnage implements Drawable{
 	//l'image qui contient le sprite du robot
 	private Image image;
 	
