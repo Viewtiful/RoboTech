@@ -1,8 +1,10 @@
 package jeu;
 
+import interfaces.Drawable;
 import items.Items;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
@@ -20,7 +22,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import personnages.Personnage;
 
 
-public class Monde {
+public class Monde implements Drawable{
 	
 	private World world;
 	private TiledMap map;
@@ -68,7 +70,7 @@ public class Monde {
 		
 		//affiche les personnages sur le niveau
 		for (int i=0;i<personnages.size();i++) {
-			personnages.get(i).render(g);
+			personnages.get(i).render(gc,sbg,g);
 		}
 		
 		for (int i=0;i<items.size();i++) {
@@ -151,7 +153,7 @@ public class Monde {
 		item.setWorld(world);
 		itemsRamassable.add(item);
 	}
-	
+	/*
 	public void update(int delta) {
 		boolean first = true;
 		
@@ -176,7 +178,7 @@ public class Monde {
 		}
 
 	}
-
+*/
 	public void addItems(Items caisse) {
 		world.add(caisse.getBody());
 		caisse.setWorld(world);
@@ -190,6 +192,49 @@ public class Monde {
 				itemsRamassable.remove(i);
 			}
 		}
+	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		Iterator<Personnage> it = personnages.iterator();
+		while(it.hasNext())
+			it.next().init(container, game);
+			
+	}
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {boolean first = true;
+			
+			//Temps total pour la mise a jour du monde physique
+			int tempsTotalMiseAjour = delta;
+			//Temps pour la mise a jour du monde physique
+			int tempsMiseAjour = 5;
+			Iterator<Personnage> it = personnages.iterator();
+			//fait entre 2 et 3 tours de boucle pour mettre a jour le monde physique, on fait en premier une preUpdate des personnages, puis une update de ceux-ci
+			
+			while (tempsTotalMiseAjour > tempsMiseAjour) {
+				world.step(tempsMiseAjour * 0.01f);  //mise a jour du monde physique
+				tempsTotalMiseAjour -= tempsMiseAjour;
+				if (first) {
+					first = false;
+					for (int i=0;i<personnages.size();i++) {
+						personnages.get(i).preUpdate(delta);
+					}
+				}
+				for (int i=0;i<personnages.size();i++) {
+					personnages.get(i).update(container,game,tempsMiseAjour);
+				}
+			}
+			System.out.println("Dans le update du monde");
+			int i = 0;
+			while(it.hasNext())
+			{
+				i++;
+				System.out.println("Iterator ");
+				it.next().update(container, game, delta);
+			}
 	}
 	
 	

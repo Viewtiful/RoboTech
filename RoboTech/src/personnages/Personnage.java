@@ -1,5 +1,6 @@
 package personnages;
 
+import interfaces.Drawable;
 import items.Items;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
@@ -7,9 +8,12 @@ import net.phys2d.raw.CollisionEvent;
 import net.phys2d.raw.World;
 import net.phys2d.raw.shapes.Box;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class Personnage {
+public abstract class Personnage implements Drawable{
 	
 	//le monde dans lequels le personnage est present
 	private World world;
@@ -184,7 +188,9 @@ public abstract class Personnage {
 		velx = getVelX();
 	}
 	
-	public void update(int delta) {
+	public void update(GameContainer container, StateBasedGame game, int delta) 
+			throws  SlickException
+			{
 		// update the flag for the actor being on the ground. The 
 		// physics engine will cause constant tiny bounces as the 
 		// the body tries to settle - so don't consider the body
@@ -215,9 +221,6 @@ public abstract class Personnage {
 		body.setGravityEffected(!vrai);
 	}
 	
-
-	public abstract void render(Graphics g);
-
 
 	public boolean auSol() {
 		return auSol;

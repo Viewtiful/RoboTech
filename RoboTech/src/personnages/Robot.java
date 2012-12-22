@@ -1,10 +1,14 @@
 package personnages;
 
+import interfaces.Drawable;
 import items.Items;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 
 
@@ -21,25 +25,14 @@ public class Robot extends Personnage {
 	 * @param size The size of the alien (collision size)
 	 * @throws SlickException Indicates a failure to load resources for this alien
 	 */
-	public Robot(float x, float y, float mass, float size) throws SlickException {
+	public Robot(float x, float y, float mass, float size)  {
 		super(x, y, mass, size);
 	
-		//charge l'image du robot
-		image = new Image("res/robotx.png");
 	}
 
 	/**
 	 * @see org.newdawn.penguin.Actor#render(org.newdawn.slick.Graphics)
 	 */
-	public void render(Graphics g) {
-		
-		//dessine l'image du robot en le centrant
-		image.drawCentered(getX(), getY());
-		
-		//texte de debug
-		g.drawString("sol?"+auSol()+"facingRight?"+ getDirectionDroite() + " " +getX()+","+getY()+" "+velx, getX(), getY()-50);
-		g.drawString("Vie : " + getVie() + ", Mana : " + getMana() + ", Energie : " + getEnergie(),getX(), getY()-70  );
-	}
 
 	@Override
 	public void pickupItem(Items item) {
@@ -70,4 +63,24 @@ public class Robot extends Personnage {
 	private void ajouterVie() {
 		setVie(getVie()+1);
 	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		image = new Image("res/robotx.png");
+		
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	throws SlickException {
+		//dessine l'image du robot en le centrant
+		image.drawCentered(getX(), getY());
+		
+		//texte de debug
+		g.drawString("sol?"+auSol()+"facingRight?"+ getDirectionDroite() + " " +getX()+","+getY()+" "+velx, getX(), getY()-50);
+		g.drawString("Vie : " + getVie() + ", Mana : " + getMana() + ", Energie : " + getEnergie(),getX(), getY()-70  );
+	}
+	
+	
 }

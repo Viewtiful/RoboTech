@@ -1,8 +1,12 @@
 package personnages;
 
 
+import interfaces.Drawable;
+
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 
 public abstract class Ennemis extends Personnage {
@@ -11,17 +15,15 @@ public abstract class Ennemis extends Personnage {
 	private boolean deplacementAutoDroite;
 	
 
-	public Ennemis(float x, float y, float masse, float tailleBlockPerso) throws SlickException {
+	public Ennemis(float x, float y, float masse, float tailleBlockPerso)  {
 		super(x, y, masse, tailleBlockPerso);
 		deplacementAuto = 0;
 		deplacementAutoDroite = true;
 	}
 
-	public abstract void render(Graphics g);
-	
 	//gere le deplacement automatique des ennemies (a revoir, juste un test)
-	public void update(int delta) {
-		super.update(delta);
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException{
+		super.update(container,game,delta);
 
 		if(deplacementAuto < 230 && deplacementAutoDroite) {
 			applyForce(100, getVelY());

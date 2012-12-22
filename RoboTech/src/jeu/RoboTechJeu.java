@@ -52,6 +52,7 @@ public class RoboTechJeu extends BasicGameState {
 			throws SlickException {
 		//demarre le niveau, en appuyant sur la touche 'R', possibilite de redemarrer le niveau
 		restart();
+		monde.init(container,game);
 	}
 
 	/**
@@ -82,6 +83,7 @@ public class RoboTechJeu extends BasicGameState {
 		for (int i=0;i<itemsRamassable.size();i++) {
 			monde.addItemsRamassable(itemsRamassable.get(i));
 		}
+		
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -103,39 +105,10 @@ public class RoboTechJeu extends BasicGameState {
 			return;
 		}
 
-		//moveForce : applique pour deplacer le personnage
-		float moveForce = 50;
-		//jumpForce applique pour faire sauter le personnage
-		float jumpForce = 50000;
 		
-		// setup the player's moving flag, this control the animation
-		player.setEnMouvement(false);
-			
-		if (input.isKeyDown(Input.KEY_LEFT)) {
-			player.setEnMouvement(true);
-			player.applyForce(-moveForce, 0);
-		}
-		if (input.isKeyDown(Input.KEY_RIGHT)) {
-			player.setEnMouvement(true);
-			player.applyForce(moveForce, 0);
-		}
-		if (player.auSol()) {
-			if ((input.isKeyPressed(Input.KEY_LCONTROL)) || 
-			   (input.isKeyPressed(Input.KEY_RCONTROL))) {
-				if (player.getDirectionDroite()) {
-					player.applyForce(0, -jumpForce);
-				} else {
-					player.applyForce(0, -jumpForce);
-				}
-			}
-		}
-		//si on n'appuye pas sur la touche saut et que le perso est en train de sauter, on le fait redescendre doucement
-		if (!input.isKeyDown(Input.KEY_LCONTROL)) {
-			if (player.getSaut()) {
-				player.setVelocity(player.getVelX(), player.getVelY() * 0.99f);
-			}
-		}
-		
+		//met a jour le monde
+		monde.update(container,game,delta);
+				
 		// Parcours la liste des items ramassable, si le joueur est en contact avec, il le ramasse
 		for (int i=0;i<itemsRamassable.size();i++) {
 			if(itemsRamassable.get(i) != null) {
@@ -154,9 +127,6 @@ public class RoboTechJeu extends BasicGameState {
 				}
 			}
 		}
-		
-		//met a jour le monde
-		monde.update(delta);
 		
 		// calcule la zone affichee par la camera
 		cameraX = player.getX() - 400;
