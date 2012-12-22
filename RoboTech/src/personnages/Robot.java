@@ -1,5 +1,6 @@
 package personnages;
 
+import listener.RobotHandlers;
 import interfaces.Drawable;
 import items.Items;
 
@@ -15,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Robot extends Personnage implements Drawable{
 	//l'image qui contient le sprite du robot
 	private Image image;
-	
+	RobotHandlers handlers;
 	/**
 	 * Create a new Alien actor read to add to the world
 	 * 
@@ -27,6 +28,7 @@ public class Robot extends Personnage implements Drawable{
 	 */
 	public Robot(float x, float y, float mass, float size)  {
 		super(x, y, mass, size);
+		handlers = new RobotHandlers();
 	
 	}
 
@@ -82,5 +84,12 @@ public class Robot extends Personnage implements Drawable{
 		g.drawString("Vie : " + getVie() + ", Mana : " + getMana() + ", Energie : " + getEnergie(),getX(), getY()-70  );
 	}
 	
+	@Override
+	public void update(GameContainer container, StateBasedGame game,int delta) throws SlickException
+	{
+		Input input = container.getInput();
+		super.update(container, game, delta);
+		handlers.handle(input, this);
+	}
 	
 }

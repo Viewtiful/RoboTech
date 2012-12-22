@@ -200,12 +200,12 @@ public class Monde implements Drawable{
 		Iterator<Personnage> it = personnages.iterator();
 		while(it.hasNext())
 			it.next().init(container, game);
-			
-	}
+		}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {boolean first = true;
+			throws SlickException {
+		boolean first = true;
 			
 			//Temps total pour la mise a jour du monde physique
 			int tempsTotalMiseAjour = delta;
