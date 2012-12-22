@@ -190,7 +190,6 @@ public abstract class Personnage implements Drawable{
 	public void update(GameContainer container, StateBasedGame game, int delta) 
 			throws  SlickException
 			{
-		System.out.println("update de personnage");
 		// update the flag for the actor being on the ground. The 
 		// physics engine will cause constant tiny bounces as the 
 		// the body tries to settle - so don't consider the body

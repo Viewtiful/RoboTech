@@ -80,6 +80,7 @@ public class Monde implements Drawable{
 		for (int i=0;i<itemsRamassable.size();i++) {
 			itemsRamassable.get(i).render(g);
 		}
+		
 	}
 	
 	public World getWorld() {
@@ -227,14 +228,9 @@ public class Monde implements Drawable{
 					personnages.get(i).update(container,game,tempsMiseAjour);
 				}
 			}
-			System.out.println("Dans le update du monde");
-			int i = 0;
 			while(it.hasNext())
-			{
-				i++;
-				System.out.println("Iterator ");
 				it.next().update(container, game, delta);
-			}
+			
 	}
 	
 	

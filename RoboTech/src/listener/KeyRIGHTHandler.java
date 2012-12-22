@@ -17,13 +17,13 @@ public class KeyRIGHTHandler extends KeyHandler{
 	{
 		float moveForce = 50;
 		//jumpForce applique pour faire sauter le personnage
-		if (input.isKeyDown(Input.KEY_RIGHT)) {
+		if (input.isKeyDown(get_key())) {
 			hero.setEnMouvement(true);
 			hero.applyForce(moveForce, 0);
 		}
 		
 		
-		if (!input.isKeyDown(Input.KEY_LCONTROL)) {
+		if (!input.isKeyDown(Input.KEY_W)) {
 			if (hero.getSaut()) {
 					hero.setVelocity(hero.getVelX(), hero.getVelY() * 0.99f);
 			}

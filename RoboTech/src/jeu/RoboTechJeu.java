@@ -7,6 +7,7 @@ import items.Items;
 import items.Poutre;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -19,6 +20,7 @@ import personnages.EnnemisRouge;
 import personnages.EnnemisVert;
 import personnages.Personnage;
 import personnages.Robot;
+import weapon.Balle;
 
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
@@ -34,7 +36,7 @@ public class RoboTechJeu extends BasicGameState {
 	private Items poutre;
 	//liste des items ramassable
 	protected ArrayList<Items> itemsRamassable;
-	
+	private ArrayList<Balle> balle;
 	//axe des x pour la camera
 	private float cameraX;
 	//axe des y pour la camera
@@ -66,7 +68,7 @@ public class RoboTechJeu extends BasicGameState {
 		itemsRamassable.add(new Potion(880,250, 10,14,0.8f, "potionVie"));
 		itemsRamassable.add(new Potion(305,250, 10,14,0.8f, "potionMana"));
 		itemsRamassable.add(new Potion(350,250, 13,20,0.8f, "potionEnergie"));
-
+		balle = new ArrayList<Balle>();
 		
 		player = new Robot(280,150,1f,32);
 		ennemi = new EnnemisRouge(400, 50, 2f, 64);
@@ -93,6 +95,9 @@ public class RoboTechJeu extends BasicGameState {
 	
 		   
 		monde.render(container, game, g);  //gere le rendu du monde complet
+		Iterator<Balle> it = balle.iterator();
+		while(it.hasNext())
+			it.next().render(container, game, g);
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -106,7 +111,15 @@ public class RoboTechJeu extends BasicGameState {
 		}
 
 		
+		if(input.isKeyPressed(Input.KEY_X))
+		{
+			System.out.println("Balle");
+			balle.add(new Balle(player.getX(),player.getY()));
+		}
+		Iterator<Balle> it = balle.iterator();
 		
+		while(it.hasNext())
+			it.next().update(container, game, delta);
 		//met a jour le monde
 		monde.update(container,game,delta);
 				

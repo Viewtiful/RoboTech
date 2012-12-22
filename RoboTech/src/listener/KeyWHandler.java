@@ -18,8 +18,8 @@ public class KeyWHandler extends KeyHandler{
 		float jumpForce = 50000;
 
 		if (hero.auSol()) {
-			if ((input.isKeyPressed(Input.KEY_LCONTROL)) ||
-					(input.isKeyPressed(Input.KEY_RCONTROL))) {
+			if ((input.isKeyPressed(get_key())) ||
+					(input.isKeyPressed(get_key()))) {
 				if (hero.getDirectionDroite()) {
 						hero.applyForce(0, -jumpForce);
 					} else {
@@ -28,7 +28,7 @@ public class KeyWHandler extends KeyHandler{
 			}
 		}
 		//si on n'appuye pas sur la touche saut et que le perso est en train de sauter, on le fait redescendre doucement
-		if (!input.isKeyDown(Input.KEY_LCONTROL)) {
+		if (!input.isKeyDown(Input.KEY_W)) {
 			if (hero.getSaut()) {
 					hero.setVelocity(hero.getVelX(), hero.getVelY() * 0.99f);
 			}

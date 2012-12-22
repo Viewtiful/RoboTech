@@ -90,6 +90,7 @@ public class Robot extends Personnage implements Drawable{
 		Input input = container.getInput();
 		super.update(container, game, delta);
 		handlers.handle(input, this);
+			
 	}
 	
 }
