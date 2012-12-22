@@ -1,8 +1,11 @@
-package jeu;
+package personnages;
+
+import jeu.Items;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
 
 
 public class Robot extends Personnage {

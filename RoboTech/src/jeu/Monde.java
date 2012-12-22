@@ -15,6 +15,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import personnages.Personnage;
+
 
 public class Monde {
 	

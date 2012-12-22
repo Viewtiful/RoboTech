@@ -1,5 +1,6 @@
-package jeu;
+package personnages;
 
+import jeu.Items;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.CollisionEvent;

@@ -9,6 +9,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import personnages.EnnemisRouge;
+import personnages.EnnemisVert;
+import personnages.Personnage;
+import personnages.Robot;
+
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private static final int ID = 1;
@@ -39,7 +44,7 @@ public class RoboTechJeu extends BasicGameState {
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		//demarre le niveau, en appuyant sur la touchr 'R', possibilite de redemarrer le niveau
+		//demarre le niveau, en appuyant sur la touche 'R', possibilite de redemarrer le niveau
 		restart();
 	}
 

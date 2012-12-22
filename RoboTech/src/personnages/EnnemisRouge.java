@@ -1,19 +1,22 @@
-package jeu;
+package personnages;
+
+import jeu.Items;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 
-public class EnnemisVert extends Ennemis {
+
+public class EnnemisRouge extends Ennemis {
 	//l'image qui contient le sprite du robot
 	private Image image;
 	
-	public EnnemisVert(float x, float y, float masse, float tailleBlockPerso) throws SlickException {
+	public EnnemisRouge(float x, float y, float masse, float tailleBlockPerso) throws SlickException {
 		super(x, y, masse, tailleBlockPerso);
 	
 		//charge l'image du robot
-		image = new Image("res/ennemiVert.png");
+		image = new Image("res/ennemiRouge.png");
 	}
 
 	public void render(Graphics g) {
