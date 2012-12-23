@@ -34,14 +34,14 @@ public class Balle implements Drawable{
 	{
 		this.directionDroite = directionDroite;
 		if(this.directionDroite)
-			this.x = x + 30;
+			this.x = x + 16;
 		else 
-			this.x = x - 30;		
+			this.x = x - 16;		
 		this.y = y;
 		System.out.println("y" + this.y);
 		skin = new Image("res/bullet.png");
 		this.masse = masse;
-		//cree le corps du personnage pour le monde physique
+		//cree la balle pour le monde physique
 		this.body = new Body(new Box(10, 10), masse);
 		this.body.setUserData(this);
 		this.body.setRestitution(0);
@@ -106,13 +106,13 @@ public class Balle implements Drawable{
 			return false;
 		}
 		
-		// collision avec le perso est apparu?
+		// collision avec l'environnement est apparu?
 		CollisionEvent[] events = world.getContacts(body);
 		for (int i=0;i<events.length;i++) {
 
 			//regarde qu'elle corps est rentre en collision avec quelque chose
 			if (events[i].getNormal().getX() < -0.5) {
-				// corps B est rentre en collision, est ce notre perso? si oui, retourne on est au sol
+				// corps B est rentre en collision, est ce la balle ? si oui, collision, si touche un ennemi, appelle la fonction toucher de cet ennemi pour lui enlever 1 pt de vie
 				if (events[i].getBodyB() == body) {
 //					System.out.println("1" + events[i].getPoint()+","+events[i].getNormal());
 					System.out.println("Collision");
@@ -125,8 +125,9 @@ public class Balle implements Drawable{
 					return true;
 				}
 			}
-			// corps B est rentre en collision, est ce notre perso? si oui, retourne on est au sol
+			//regarde qu'elle corps est rentre en collision avec quelque chose
 			if (events[i].getNormal().getX() > 0.5) {
+				// corps B est rentre en collision, est ce la balle ? si oui, collision, si touche un ennemi, appelle la fonction toucher de cet ennemi pour lui enlever 1 pt de vie
 				if (events[i].getBodyB() == body) {
 					System.out.println("Collision2");
 					for (int e=0;e<personnages.size();e++) {
