@@ -75,15 +75,9 @@ public class RoboTechJeu extends BasicGameState {
 		personnages.add(new EnnemisRouge(400, 50, 2f, 64));
 		personnages.add(new EnnemisVert(600, 50, 2f, 64));
 		
-//		player = 
-//		ennemi = 
-//		ennemi2 = new EnnemisVert(600, 50, 2f, 64);
 		caisse = new Caisse(700,10, 40,40,4.f);
 		baril = new Baril(1170,200, 28,40,3.5f);
 		poutre = new Poutre(880,60, 25,130,3.5f);
-//		monde.addPersonnages(player);
-//		monde.addPersonnages(ennemi);
-//		monde.addPersonnages(ennemi2);
 		monde.addItems(caisse);
 		monde.addItems(baril);
 		monde.addItems(poutre);
@@ -112,7 +106,7 @@ public class RoboTechJeu extends BasicGameState {
 		
 		// redemarrer le jeu
 		if (input.isKeyPressed(Input.KEY_R)) {
-			restart();
+			init(container,game);
 			return;
 		}
 

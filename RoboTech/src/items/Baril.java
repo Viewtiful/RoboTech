@@ -3,9 +3,11 @@ package items;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.shapes.Box;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Baril extends Items {
 	/** The image to display for the crate */
@@ -19,7 +21,6 @@ public class Baril extends Items {
 		this.width = width;
 		this.height = height;
 		
-		image = new Image("res/baril.png");
 		body = new Body(new Box(width,height), mass);
 		body.setPosition(x,y);
 		body.setFriction(0.1f);
@@ -32,14 +33,7 @@ public class Baril extends Items {
 	public void preUpdate(int delta) {
 	}
 
-	public void render(Graphics g) {
-		g.translate(getX(), getY());
-		g.rotate(0,0,(float) Math.toDegrees(body.getRotation()));
-		image.draw(-width/2,-height/2,width,height);
-		g.rotate(0,0,(float) -Math.toDegrees(body.getRotation()));
-		g.translate(-getX(), -getY());
-	}
-
+	
 	@Override
 	public float getWidth() {
 		// TODO Auto-generated method stub
@@ -62,5 +56,29 @@ public class Baril extends Items {
 	public String getNom() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		image = new Image("res/baril.png");
+		
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		g.translate(getX(), getY());
+		g.rotate(0,0,(float) Math.toDegrees(body.getRotation()));
+		image.draw(-width/2,-height/2,width,height);
+		g.rotate(0,0,(float) -Math.toDegrees(body.getRotation()));
+		g.translate(-getX(), -getY());	
+	}
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		// TODO Auto-generated method stub
+		
 	}
 }

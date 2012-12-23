@@ -77,11 +77,11 @@ public class Monde implements Drawable{
 		}
 		
 		for (int i=0;i<items.size();i++) {
-			items.get(i).render(g);
+			items.get(i).render(gc,sbg,g);
 		}
 		
 		for (int i=0;i<itemsRamassable.size();i++) {
-			itemsRamassable.get(i).render(g);
+			itemsRamassable.get(i).render(gc,sbg,g);
 		}
 		
 		Iterator<Balle> it = balles.iterator();
@@ -167,32 +167,7 @@ public class Monde implements Drawable{
 		balle.setWorld(world);
 		balles.add(balle);
 	}
-	/*
-	public void update(int delta) {
-		boolean first = true;
-		
-		//Temps total pour la mise a jour du monde physique
-		int tempsTotalMiseAjour = delta;
-		//Temps pour la mise a jour du monde physique
-		int tempsMiseAjour = 5;
-
-		//fait entre 2 et 3 tours de boucle pour mettre a jour le monde physique, on fait en premier une preUpdate des personnages, puis une update de ceux-ci
-		while (tempsTotalMiseAjour > tempsMiseAjour) {
-			world.step(tempsMiseAjour * 0.01f);  //mise a jour du monde physique
-			tempsTotalMiseAjour -= tempsMiseAjour;
-			if (first) {
-				first = false;
-				for (int i=0;i<personnages.size();i++) {
-					personnages.get(i).preUpdate(delta);
-				}
-			}
-			for (int i=0;i<personnages.size();i++) {
-				personnages.get(i).update(tempsMiseAjour);
-			}
-		}
-
-	}
-*/
+	
 	public void addItems(Items caisse) {
 		world.add(caisse.getBody());
 		caisse.setWorld(world);
@@ -214,6 +189,14 @@ public class Monde implements Drawable{
 		Iterator<Personnage> it = personnages.iterator();
 		while(it.hasNext())
 			it.next().init(container, game);
+		
+		Iterator<Items> it2 = items.iterator();
+		while(it2.hasNext())
+			it2.next().init(container, game);
+		
+		Iterator<Items> it3 = itemsRamassable.iterator();
+		while(it3.hasNext())
+			it3.next().init(container, game);
 	}
 
 	@Override

@@ -3,9 +3,11 @@ package items;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.shapes.Box;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Poutre extends Items {
 	/** The image to display for the crate */
@@ -21,7 +23,6 @@ public class Poutre extends Items {
 		this.width = width;
 		this.height = height;
 		
-		image = new Image("res/poutre.png");
 		body = new Body(new Box(width,height), mass);
 		body.setPosition(x,y);
 		body.setFriction(0.1f);
@@ -70,5 +71,29 @@ public class Poutre extends Items {
 	public String getNom() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		image = new Image("res/poutre.png");
+			
+	}
+
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		render(g);
+		
+	}
+
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		// TODO Auto-generated method stub
+		
 	}
 }

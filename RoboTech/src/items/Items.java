@@ -1,5 +1,7 @@
 package items;
 
+import interfaces.Drawable;
+
 import org.newdawn.slick.Graphics;
 
 import net.phys2d.math.Vector2f;
@@ -7,7 +9,7 @@ import net.phys2d.raw.Body;
 import net.phys2d.raw.World;
 
 
-public abstract class Items {
+public abstract class Items implements Drawable{
 
 	protected Body body;
 	private World world;
@@ -55,8 +57,6 @@ public abstract class Items {
 		this.world = world;
 		
 	}
-
-	public abstract void render(Graphics g);
 
 	public abstract float getWidth();
 
