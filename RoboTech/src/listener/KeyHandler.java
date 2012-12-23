@@ -4,13 +4,13 @@ import org.newdawn.slick.Input;
 
 import personnages.Robot;
 
-/* Cette classe permet de gérer les évenements liées aux clavier
- * Elle permet de rendre le code moins lourd en dédiant un handler par touche 
+/* Cette classe permet de gï¿½rer les ï¿½venements liï¿½es aux clavier
+ * Elle permet de rendre le code moins lourd en dï¿½diant un handler par touche 
  */
 abstract public class KeyHandler {
 
 		int key;
-		abstract public void handle(Input input,Robot hero);
+		abstract public void handle(Input input,Robot robot);
 		KeyHandler(int key)
 		{
 				this.key = key;

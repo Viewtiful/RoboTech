@@ -15,11 +15,11 @@ public class EnnemisRouge extends Ennemis {
 	//l'image qui contient le sprite du robot
 	private Image image;
 	
-	public EnnemisRouge(float x, float y, float masse, float tailleBlockPerso){
+	public EnnemisRouge(float x, float y, float masse, float tailleBlockPerso) throws SlickException{
 		super(x, y, masse, tailleBlockPerso);
 	
 		//charge l'image du robot
-		//image = new Image("res/ennemiRouge.png");
+		image = new Image("res/ennemiRouge.png");
 	}
 
 	
@@ -33,7 +33,7 @@ public class EnnemisRouge extends Ennemis {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		image = new Image("res/ennemiRouge.png");
+
 		
 	}
 
@@ -46,12 +46,19 @@ public class EnnemisRouge extends Ennemis {
 		
 		//texte de debug
 		g.drawString("sol?"+auSol()+" "+getX()+","+getY()+" "+velx, getX(), getY()-50);
+		g.drawString("Vie : " + getVie(),getX(), getY()-70  );
 		
 	}
 
 	public void update(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		System.out.println("Update Ennemis rouge");
+	}
+	
+	@Override
+	public void toucher() {
+		setVie(getVie() - 1);
+		
 	}
 
 }

@@ -26,8 +26,9 @@ public class Robot extends Personnage implements Drawable{
 	 * @param size The size of the alien (collision size)
 	 * @throws SlickException Indicates a failure to load resources for this alien
 	 */
-	public Robot(float x, float y, float mass, float size)  {
+	public Robot(float x, float y, float mass, float size) throws SlickException  {
 		super(x, y, mass, size);
+		image = new Image("res/robotx.png");
 		handlers = new RobotHandlers();
 	
 	}
@@ -69,7 +70,7 @@ public class Robot extends Personnage implements Drawable{
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		image = new Image("res/robotx.png");
+
 		
 	}
 
@@ -91,6 +92,12 @@ public class Robot extends Personnage implements Drawable{
 		super.update(container, game, delta);
 		handlers.handle(input, this);
 			
+	}
+	
+	@Override
+	public void toucher() {
+		setVie(getVie() - 1);
+		
 	}
 	
 }

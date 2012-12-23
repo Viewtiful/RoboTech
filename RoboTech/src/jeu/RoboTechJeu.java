@@ -28,15 +28,16 @@ public class RoboTechJeu extends BasicGameState {
 	
 
 	//le robot
-	private Personnage player;
-	private Personnage ennemi;
-	private Personnage ennemi2;
+//	private Personnage player;
+//	private Personnage ennemi;
+//	private Personnage ennemi2;
 	private Items caisse;
 	private Items baril;
 	private Items poutre;
 	//liste des items ramassable
-	protected ArrayList<Items> itemsRamassable;
-	private ArrayList<Balle> balle;
+	private ArrayList<Items> itemsRamassable;
+	private ArrayList<Personnage> personnages;
+	private Balle balle;
 	//axe des x pour la camera
 	private float cameraX;
 	//axe des y pour la camera
@@ -68,22 +69,30 @@ public class RoboTechJeu extends BasicGameState {
 		itemsRamassable.add(new Potion(880,250, 10,14,0.8f, "potionVie"));
 		itemsRamassable.add(new Potion(305,250, 10,14,0.8f, "potionMana"));
 		itemsRamassable.add(new Potion(350,250, 13,20,0.8f, "potionEnergie"));
-		balle = new ArrayList<Balle>();
 		
-		player = new Robot(280,150,1f,32);
-		ennemi = new EnnemisRouge(400, 50, 2f, 64);
-		ennemi2 = new EnnemisVert(600, 50, 2f, 64);
+		personnages = new ArrayList<Personnage>();
+		personnages.add(new Robot(280,150,1f,32));
+		personnages.add(new EnnemisRouge(400, 50, 2f, 64));
+		personnages.add(new EnnemisVert(600, 50, 2f, 64));
+		
+//		player = 
+//		ennemi = 
+//		ennemi2 = new EnnemisVert(600, 50, 2f, 64);
 		caisse = new Caisse(700,10, 40,40,4.f);
 		baril = new Baril(1170,200, 28,40,3.5f);
 		poutre = new Poutre(880,60, 25,130,3.5f);
-		monde.addPersonnages(player);
-		monde.addPersonnages(ennemi);
-		monde.addPersonnages(ennemi2);
+//		monde.addPersonnages(player);
+//		monde.addPersonnages(ennemi);
+//		monde.addPersonnages(ennemi2);
 		monde.addItems(caisse);
 		monde.addItems(baril);
 		monde.addItems(poutre);
 		for (int i=0;i<itemsRamassable.size();i++) {
 			monde.addItemsRamassable(itemsRamassable.get(i));
+		}
+		
+		for (int i=0;i<personnages.size();i++) {
+			monde.addPersonnages(personnages.get(i));
 		}
 		
 	}
@@ -95,9 +104,6 @@ public class RoboTechJeu extends BasicGameState {
 	
 		   
 		monde.render(container, game, g);  //gere le rendu du monde complet
-		Iterator<Balle> it = balle.iterator();
-		while(it.hasNext())
-			it.next().render(container, game, g);
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -114,12 +120,11 @@ public class RoboTechJeu extends BasicGameState {
 		if(input.isKeyPressed(Input.KEY_X))
 		{
 			System.out.println("Balle");
-			balle.add(new Balle(player.getX(),player.getY()));
+			balle = new Balle(personnages.get(0).getX(),personnages.get(0).getY(),personnages.get(0).getDirectionDroite(), 0.1f);
+			monde.addBalles(balle);
+			balle.applyForce(10000, 0);
 		}
-		Iterator<Balle> it = balle.iterator();
 		
-		while(it.hasNext())
-			it.next().update(container, game, delta);
 		//met a jour le monde
 		monde.update(container,game,delta);
 				
@@ -130,21 +135,30 @@ public class RoboTechJeu extends BasicGameState {
 				int tileY = (int)(itemsRamassable.get(i).getY() / 32);
 				float pickupWidth = itemsRamassable.get(i).getWidth() / 32;
 				float pickupHeight = itemsRamassable.get(i).getHeight() / 32;
-				int playerPosX = (int)(player.getX() / 32);
-				int playerPosY = (int)(player.getY() / 32);
+				int playerPosX = (int)(personnages.get(0).getX() / 32);
+				int playerPosY = (int)(personnages.get(0).getY() / 32);
 				
 				if (playerPosX >= tileX && playerPosX < (tileX+pickupWidth) &&
 						playerPosY >= tileY && playerPosY < (tileY+pickupHeight)) {
-					player.pickupItem( itemsRamassable.get(i));
+					personnages.get(0).pickupItem( itemsRamassable.get(i));
 					monde.supprimer(itemsRamassable.get(i));
 					itemsRamassable.remove(i);
 				}
 			}
 		}
 		
+		for (int i=0;i<personnages.size();i++) {
+			if(personnages.get(i).getVie() == 0) {
+				monde.supprimer(personnages.get(i));
+				personnages.remove(i);
+			}
+		}
+		
+		
+		
 		// calcule la zone affichee par la camera
-		cameraX = player.getX() - 400;
-		cameraY = player.getY() - 300;
+		cameraX = personnages.get(0).getX() - 400;
+		cameraY = personnages.get(0).getY() - 300;
 	}
 
 }

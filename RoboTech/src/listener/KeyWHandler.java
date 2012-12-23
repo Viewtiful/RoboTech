@@ -11,26 +11,26 @@ public class KeyWHandler extends KeyHandler{
 		super(Input.KEY_W);
 	}
 	
-	public void handle(Input input,Robot hero)
+	public void handle(Input input,Robot robot)
 	{
 		float moveForce = 50;
 		//jumpForce applique pour faire sauter le personnage
 		float jumpForce = 50000;
 
-		if (hero.auSol()) {
+		if (robot.auSol()) {
 			if ((input.isKeyPressed(get_key())) ||
 					(input.isKeyPressed(get_key()))) {
-				if (hero.getDirectionDroite()) {
-						hero.applyForce(0, -jumpForce);
+				if (robot.getDirectionDroite()) {
+					robot.applyForce(0, -jumpForce);
 					} else {
-							hero.applyForce(0, -jumpForce);
+						robot.applyForce(0, -jumpForce);
 					}
 			}
 		}
 		//si on n'appuye pas sur la touche saut et que le perso est en train de sauter, on le fait redescendre doucement
 		if (!input.isKeyDown(Input.KEY_W)) {
-			if (hero.getSaut()) {
-					hero.setVelocity(hero.getVelX(), hero.getVelY() * 0.99f);
+			if (robot.getSaut()) {
+				robot.setVelocity(robot.getVelX(), robot.getVelY() * 0.99f);
 			}
 		}
 	}

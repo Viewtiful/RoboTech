@@ -20,6 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import personnages.Personnage;
+import weapon.Balle;
 
 
 public class Monde implements Drawable{
@@ -27,6 +28,7 @@ public class Monde implements Drawable{
 	private World world;
 	private TiledMap map;
 	private ArrayList<Rectangle> obstacles;
+	protected ArrayList<Balle> balles;
 	
 	//liste des personnages
 	protected ArrayList<Personnage> personnages;
@@ -44,6 +46,7 @@ public class Monde implements Drawable{
 		obstacles = new ArrayList<Rectangle>();
 		personnages = new ArrayList<Personnage>();
 		itemsRamassable = new ArrayList<Items>();
+		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 	}
 	
@@ -80,6 +83,10 @@ public class Monde implements Drawable{
 		for (int i=0;i<itemsRamassable.size();i++) {
 			itemsRamassable.get(i).render(g);
 		}
+		
+		Iterator<Balle> it = balles.iterator();
+		while(it.hasNext())
+			it.next().render(gc, sbg, g);
 		
 	}
 	
@@ -154,6 +161,12 @@ public class Monde implements Drawable{
 		item.setWorld(world);
 		itemsRamassable.add(item);
 	}
+	
+	public void addBalles(Balle balle) {
+		world.add(balle.getBody());
+		balle.setWorld(world);
+		balles.add(balle);
+	}
 	/*
 	public void update(int delta) {
 		boolean first = true;
@@ -201,7 +214,7 @@ public class Monde implements Drawable{
 		Iterator<Personnage> it = personnages.iterator();
 		while(it.hasNext())
 			it.next().init(container, game);
-		}
+	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -228,10 +241,31 @@ public class Monde implements Drawable{
 					personnages.get(i).update(container,game,tempsMiseAjour);
 				}
 			}
-			while(it.hasNext())
-				it.next().update(container, game, delta);
+			for (int i=0;i<balles.size();i++) {
+			{
+				balles.get(i).update(container, game, delta);
+				if(balles.get(i).collision(personnages)) {
+					world.remove(balles.get(i).getBody());
+					balles.remove(i);
+				}
+			}
+
 			
 	}
 	
 	
+	}
+
+	public void supprimer(Personnage personnage) {
+			world.remove(personnage.getBody());
+			for (int i=0;i<personnages.size();i++) 
+			{
+				if(personnages.get(i).getBody() == personnage.getBody()) {
+					personnages.remove(i);
+				}
+			}
+//			personnages.remove(i);
+		
+	}
+		
 }

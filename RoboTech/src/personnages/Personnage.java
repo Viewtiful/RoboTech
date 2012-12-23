@@ -259,4 +259,5 @@ public abstract class Personnage implements Drawable{
 	}
 
 	public abstract void pickupItem(Items potionVie);
+	public abstract void toucher();
 }

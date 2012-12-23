@@ -13,19 +13,19 @@ public class KeyRIGHTHandler extends KeyHandler{
 		super(Input.KEY_RIGHT);
 	}
 
-	public void handle(Input input,Robot hero)
+	public void handle(Input input,Robot robot)
 	{
 		float moveForce = 50;
 		//jumpForce applique pour faire sauter le personnage
 		if (input.isKeyDown(get_key())) {
-			hero.setEnMouvement(true);
-			hero.applyForce(moveForce, 0);
+			robot.setEnMouvement(true);
+			robot.applyForce(moveForce, 0);
 		}
 		
 		
 		if (!input.isKeyDown(Input.KEY_W)) {
-			if (hero.getSaut()) {
-					hero.setVelocity(hero.getVelX(), hero.getVelY() * 0.99f);
+			if (robot.getSaut()) {
+				robot.setVelocity(robot.getVelX(), robot.getVelY() * 0.99f);
 			}
 		}
 	}

@@ -40,6 +40,14 @@ public class EnnemisVert extends Ennemis {
 		
 		//texte de debug
 		g.drawString("sol?"+auSol()+" "+getX()+","+getY()+" "+velx, getX(), getY()-50);
+		g.drawString("Vie : " + getVie(),getX(), getY()-70  );
+	}
+
+
+	@Override
+	public void toucher() {
+		setVie(getVie() - 1);
+		
 	}
 
 }
