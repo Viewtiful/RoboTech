@@ -76,7 +76,9 @@ public class Potion extends Items {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		// Voir si le robot est à coté de moi 
+		// si oui 
+		// alors régénerer santé
 
 	}
 }
