@@ -20,6 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import personnages.Personnage;
+import personnages.Robot;
 import weapon.Balle;
 
 
@@ -76,22 +77,22 @@ public class Monde implements Drawable{
 		for (Rectangle obstacle : obstacles)
             g.draw(obstacle); 
 		
+		Iterator<Personnage> it = personnages.iterator();
 		//affiche les personnages sur le niveau
-		for (int i=0;i<personnages.size();i++) {
-			personnages.get(i).render(gc,sbg,g);
-		}
-		
-		for (int i=0;i<items.size();i++) {
-			items.get(i).render(gc,sbg,g);
-		}
-		
-		for (int i=0;i<itemsRamassable.size();i++) {
-			itemsRamassable.get(i).render(gc,sbg,g);
-		}
-		
-		Iterator<Balle> it = balles.iterator();
 		while(it.hasNext())
-			it.next().render(gc, sbg, g);
+			it.next().render(gc,sbg,g);
+		
+		Iterator<Items> it2 = items.iterator();
+		while(it.hasNext())
+			it.next().render(gc,sbg,g);
+		
+		it2 = itemsRamassable.iterator();
+		while(it2.hasNext())
+			it2.next().render(gc,sbg,g);
+		
+		Iterator<Balle> it3 = balles.iterator();
+		while(it3.hasNext())
+			it3.next().render(gc, sbg, g);
 		
 	}
 	
@@ -179,14 +180,7 @@ public class Monde implements Drawable{
 		items.add(caisse);
 	}
 
-	public void supprimer(Items potionVie) {
-		for (int i=0;i<itemsRamassable.size();i++) {
-			if(itemsRamassable.get(i).getNom().equals(potionVie.getNom())) {
-				world.remove(itemsRamassable.get(i).getBody());
-				itemsRamassable.remove(i);
-			}
-		}
-	}
+	
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -204,29 +198,27 @@ public class Monde implements Drawable{
 			it3.next().init(container, game);
 	}
 
-	/*
-	 * Code assez deroutant peut-être plus simple avec des itérateurs
-	 * Mais pose des problèmes si itérateurs
-	 * création d'un boolean supplémentaire envisagé
-	 */
 	public void update_item(GameContainer container, StateBasedGame game,int delta)
 	{
 		Items current;
-		for (int i=0;i<itemsRamassable.size();i++) {
-			if(itemsRamassable.get(i) != null) {
-				current = itemsRamassable.get(i);
-				int tileX = (int)(current.getX() / 32);
-				int tileY = (int)(current.getY() / 32);
-				float pickupWidth = current.getWidth() / 32;
-				float pickupHeight = current.getHeight() / 32;
-				int playerPosX = (int)(player.getX() / 32);
-				int playerPosY = (int)(player.getY() / 32);
+		Iterator<Items> it = itemsRamassable.iterator();
+		
+		while(it.hasNext())
+		{
+			current = it.next();
+			int tileX = (int)(current.getX() / 32);
+			int tileY = (int)(current.getY() / 32);
+			float pickupWidth = current.getWidth() / 32;
+			float pickupHeight = current.getHeight() / 32;
+			int playerPosX = (int)(player.getX() / 32);
+			int playerPosY = (int)(player.getY() / 32);
+			
+			if (playerPosX >= tileX && playerPosX < (tileX+pickupWidth) &&
+					playerPosY >= tileY && playerPosY < (tileY+pickupHeight)) {
+				player.pickupItem(current);
+				world.remove(current.getBody());
+				it.remove();
 				
-				if (playerPosX >= tileX && playerPosX < (tileX+pickupWidth) &&
-						playerPosY >= tileY && playerPosY < (tileY+pickupHeight)) {
-					player.pickupItem(current);
-					supprimer(current);
-				}
 			}
 		}
 	}
@@ -234,26 +226,30 @@ public class Monde implements Drawable{
 	public void update_personnage(GameContainer container,StateBasedGame game, int delta)
 	{
 		Personnage current;
-		for (int i=0;i<personnages.size();i++)
+		Iterator<Personnage> it = personnages.iterator();
+		while(it.hasNext())
 		{
-			current = personnages.get(i);
+			current = it.next();
 			if(current.getVie() == 0) 
-				supprimer(current);
+			{
+				world.remove(current.getBody());
+				it.remove();
+			}
 		}
-	
 	}
 	
 	public void update_balle(GameContainer container,StateBasedGame game, int delta)
 	throws SlickException
 	{
 		Balle current;
-		for (int i=0;i<balles.size();i++) 
+		Iterator<Balle> it = balles.iterator();
+		while(it.hasNext())
 		{
-			current = balles.get(i);
+			current = it.next();
 			current.update(container, game, delta);
 			if(current.collision(personnages)) {
 				world.remove(current.getBody());
-				balles.remove(i);
+				it.remove();
 			}
 		}
 
@@ -264,54 +260,43 @@ public class Monde implements Drawable{
 	 * @see interfaces.Drawable#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
+	throws SlickException {
 		boolean first = true;
 			
-			//Temps total pour la mise a jour du monde physique
-			int tempsTotalMiseAjour = delta;
-			//Temps pour la mise a jour du monde physique
-			int tempsMiseAjour = 5;
-			Iterator<Personnage> it = personnages.iterator();
-			
-			//fait entre 2 et 3 tours de boucle pour mettre a jour le monde physique, on fait en premier une preUpdate des personnages, puis une update de ceux-ci
-			
-			while (tempsTotalMiseAjour > tempsMiseAjour) {
-				world.step(tempsMiseAjour * 0.01f);  //mise a jour du monde physique
-				tempsTotalMiseAjour -= tempsMiseAjour;
-				if (first) {
-					first = false;
-					while(it.hasNext())
-						it.next().preUpdate(delta);
-				}
-				it = personnages.iterator();
-				while(it.hasNext())
-					it.next().update(container,game,tempsMiseAjour);
-			}
-			/*
-			 * Suppression des personnages qui sont dead
-			 */
-			update_personnage(container,game,delta);
-			try
-			{
-				update_balle(container,game,delta);
-			}
-			catch(SlickException e)
-			{
-				System.out.println("SlickException");
-			}
-			update_item(container,game,delta);
-			
-			
-	}
-	
-	
-
-	public void supprimer(Personnage personnage) 
-	{
-			world.remove(personnage.getBody());
-			for (int i=0;i<personnages.size();i++) 
-				if(personnages.get(i).getBody() == personnage.getBody()) 
-					personnages.remove(i);
-	}
+		//Temps total pour la mise a jour du monde physique
+		int tempsTotalMiseAjour = delta;
+		//Temps pour la mise a jour du monde physique
+		int tempsMiseAjour = 5;
+		Iterator<Personnage> it = personnages.iterator();
 		
+		//fait entre 2 et 3 tours de boucle pour mettre a jour le monde physique, on fait en premier une preUpdate des personnages, puis une update de ceux-ci
+		
+		while (tempsTotalMiseAjour > tempsMiseAjour) {
+			world.step(tempsMiseAjour * 0.01f);  //mise a jour du monde physique
+			tempsTotalMiseAjour -= tempsMiseAjour;
+			if (first) {
+				first = false;
+				while(it.hasNext())
+					it.next().preUpdate(delta);
+			}
+			it = personnages.iterator();
+			while(it.hasNext())
+				it.next().update(container,game,tempsMiseAjour);
+		}
+		/*
+		 * Suppression des personnages qui sont dead
+		 */
+		update_personnage(container,game,delta);
+		try
+		{
+			update_balle(container,game,delta);
+		}
+		catch(SlickException e)
+		{
+			System.out.println("SlickException");
+		}
+		update_item(container,game,delta);
+			
+			
+	}			
 }
