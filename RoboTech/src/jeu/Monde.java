@@ -20,7 +20,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import personnages.Personnage;
-import personnages.Robot;
 import weapon.Balle;
 
 

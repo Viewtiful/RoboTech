@@ -6,9 +6,6 @@ import items.Caisse;
 import items.Items;
 import items.Poutre;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -65,18 +62,6 @@ public class RoboTechJeu extends BasicGameState {
 		monde.addItemsRamassable(new Potion(880,250, 10,14,0.8f, "potionVie"));
 		monde.addItemsRamassable(new Potion(305,250, 10,14,0.8f, "potionMana"));
 		monde.addItemsRamassable(new Potion(350,250, 13,20,0.8f, "potionEnergie"));
-		/*
-		itemsRamassable = new ArrayList<Items>();
-		itemsRamassable.add(new Potion(880,250, 10,14,0.8f, "potionVie"));
-		itemsRamassable.add(new Potion(305,250, 10,14,0.8f, "potionMana"));
-		itemsRamassable.add(new Potion(350,250, 13,20,0.8f, "potionEnergie"));
-		*/
-		/*
-		personnages = new ArrayList<Personnage>();
-		personnages.add(new Robot(280,150,1f,32));
-		personnages.add(new EnnemisRouge(400, 50, 2f, 64));
-		personnages.add(new EnnemisVert(600, 50, 2f, 64));
-		*/
 		player = new Robot(280,150,1f,32);
 		monde.setplayer(player);
 		monde.addPersonnages(player);
@@ -124,8 +109,6 @@ public class RoboTechJeu extends BasicGameState {
 		//met a jour le monde
 		monde.update(container,game,delta);
 				
-		// Parcours la liste des items ramassable, si le joueur est en contact avec, il le ramasse
-		
 		// calcule la zone affichee par la camera
 		cameraX = player.getX() - 400;
 		cameraY = player.getY() - 300;

@@ -13,7 +13,6 @@ public class KeyWHandler extends KeyHandler{
 	
 	public void handle(Input input,Robot robot)
 	{
-		float moveForce = 50;
 		//jumpForce applique pour faire sauter le personnage
 		float jumpForce = 50000;
 
