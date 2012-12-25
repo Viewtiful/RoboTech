@@ -9,13 +9,14 @@ import personnages.Robot;
  */
 abstract public class KeyHandler {
 
-		int key;
-		abstract public void handle(Input input,Robot robot);
-		KeyHandler(int key)
-		{
-				this.key = key;
-		}
-		
-		abstract public int get_key();
-		
+	int key;
+
+	abstract public void handle(Input input, Robot robot);
+
+	KeyHandler(int key) {
+		this.key = key;
+	}
+
+	abstract public int get_key();
+
 }

@@ -8,21 +8,18 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-
-
 public class EnnemisVert extends Ennemis {
-	//l'image qui contient le sprite du robot
+	// l'image qui contient le sprite du robot
 	private Image image;
-	
-	public EnnemisVert(float x, float y, float masse, float tailleBlockPerso)  {
+
+	public EnnemisVert(float x, float y, float masse, float tailleBlockPerso) {
 		super(x, y, masse, tailleBlockPerso);
 	}
 
-	
 	@Override
 	public void pickupItem(Items potionVie) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -35,19 +32,19 @@ public class EnnemisVert extends Ennemis {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		//dessine l'image de l'ennemi en le centrant
+		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
-		
-		//texte de debug
-		g.drawString("sol?"+auSol()+" "+getX()+","+getY()+" "+velx, getX(), getY()-50);
-		g.drawString("Vie : " + getVie(),getX(), getY()-70  );
-	}
 
+		// texte de debug
+		g.drawString("sol?" + auSol() + " " + getX() + "," + getY() + " "
+				+ velx, getX(), getY() - 50);
+		g.drawString("Vie : " + getVie(), getX(), getY() - 70);
+	}
 
 	@Override
 	public void toucher() {
 		setVie(getVie() - 1);
-		
+
 	}
 
 }

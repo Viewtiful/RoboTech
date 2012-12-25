@@ -10,24 +10,30 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import personnages.Personnage;
+import personnages.Robot;
 
-public class Potion extends Items {
+public abstract class Potion extends ItemsRamassable {
 	/** The image to display for the crate */
-	private Image image;
+	protected Image image;
 	/** The width of the crate */
 	private float width;
 	/** The height of the crate */
 	private float height;
-	private String nom;
 
-	public Potion(float x, float y, float width, float height, float mass, String nom) throws SlickException {
+	protected int value;
+
+	public Potion(float x, float y, float width, float height, float mass,
+			Robot player, int value) {
 		this.width = width;
 		this.height = height;
-		this.nom = nom;
-		
-		body = new Body(new Box(width,height), mass);
-		body.setPosition(x,y);
+
+		body = new Body(new Box(width, height), mass);
+		body.setPosition(x, y);
 		body.setFriction(0.1f);
+		set_used(false);
+		set_player(player);
+		this.value = value;
 	}
 
 	public Body getBody() {
@@ -37,8 +43,6 @@ public class Potion extends Items {
 	public void preUpdate(int delta) {
 	}
 
-	
-	
 	public void setPickedUp(boolean beingPickedUp) {
 		if (beingPickedUp) {
 			float opacity = 0f;
@@ -53,32 +57,25 @@ public class Potion extends Items {
 	public float getHeight() {
 		return height;
 	}
-	
-	@Override
-	public String getNom() {
-		return nom;
-	}
-
-	@Override
-	public void init(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		image = new Image("res/" +  this.nom + ".png");
-		
-	}
-
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		image.draw(getX()-5,getY()-7);
-	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		// Voir si le robot est à coté de moi 
-		// si oui 
-		// alors régénerer santé
+		int tileX = (int) (getX() / 32);
+		int tileY = (int) (getY() / 32);
+		float pickupWidth = getWidth() / 32;
+		float pickupHeight = getHeight() / 32;
+		int playerPosX = (int) (player.getX() / 32);
+		int playerPosY = (int) (player.getY() / 32);
 
+		if (playerPosX >= tileX && playerPosX < (tileX + pickupWidth)
+				&& playerPosY >= tileY && playerPosY < (tileY + pickupHeight)) {
+			used = true;
+			effect(player);
+			world.remove(getBody());
+
+		}
 	}
+
+	public abstract void effect(Robot player);
 }
