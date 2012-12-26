@@ -54,7 +54,7 @@ public class Caisse extends Items {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		image = new Image("res/caisse.png");
+		image = new Image("res/caisse.jpg");
 
 	}
 
