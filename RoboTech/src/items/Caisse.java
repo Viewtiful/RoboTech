@@ -17,8 +17,7 @@ public class Caisse extends Items {
 	/** The height of the crate */
 	private float height;
 
-	public Caisse(float x, float y, float width, float height, float mass)
-			throws SlickException {
+	public Caisse(float x, float y, float width, float height, float mass) {
 		this.width = width;
 		this.height = height;
 

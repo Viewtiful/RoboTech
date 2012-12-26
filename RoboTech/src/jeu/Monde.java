@@ -14,11 +14,13 @@ import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import particules.Emetteur;
 import personnages.Personnage;
 import weapon.Balle;
 
@@ -30,7 +32,8 @@ public class Monde implements Drawable {
 	private Personnage player;
 	private ArrayList<Rectangle> obstacles;
 	protected ArrayList<Balle> balles;
-
+	Emetteur e = new Emetteur(this);
+	int cpt = 0;
 	// liste des personnages
 	protected ArrayList<Personnage> personnages;
 
@@ -73,7 +76,6 @@ public class Monde implements Drawable {
 			throws SlickException {
 		// affiche la map
 		map.render(0, 0);
-
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
@@ -84,8 +86,8 @@ public class Monde implements Drawable {
 			it.next().render(gc, sbg, g);
 
 		Iterator<Items> it2 = items.iterator();
-		while (it.hasNext())
-			it.next().render(gc, sbg, g);
+		while (it2.hasNext())
+			it2.next().render(gc, sbg, g);
 
 		it2 = itemsRamassable.iterator();
 		while (it2.hasNext())
@@ -217,6 +219,8 @@ public class Monde implements Drawable {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		
+		
 		Iterator<Personnage> it = personnages.iterator();
 		while (it.hasNext())
 			it.next().init(container, game);
@@ -309,6 +313,13 @@ public class Monde implements Drawable {
 			System.out.println("SlickException");
 		}
 		update_item(container, game, delta);
-
+		
+		if(container.getInput().isKeyPressed(Input.KEY_M))
+		{
+			e.emettre(1);
+			init(container,game);
+			cpt++;
+			System.out.println("Cpt = "+cpt);
+		}
 	}
 }

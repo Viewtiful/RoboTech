@@ -34,6 +34,7 @@ public class PotionVie extends Potion {
 		image.draw(getX() - 5, getY() - 7);
 	}
 
+
 	@Override
 	public void effect(Robot player) {
 		player.ajouterVie(value);

@@ -33,6 +33,8 @@ public class PotionEnergie extends Potion {
 			throws SlickException {
 		image.draw(getX() - 5, getY() - 7);
 	}
+	
+	
 
 	@Override
 	public void effect(Robot player) {
