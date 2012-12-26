@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tile.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="9" name="wall" tilewidth="32" tileheight="32">
+  <image source="wall.jpg" width="32" height="32"/>
+ </tileset>
  <layer name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2UywoAIQhF9f9/erYhk/gu6B4IWlgeTSIC4B14WVrMCXiz1+JOsvOY8mPS3/O0nwWPtzdmjbXMvTVXtV8WWVfET/ao0/+2/sm83fPnrS1ydvoPipz7u6dy/jJ3TPQvm6PbscKvewEAAAAv8gHRr22dwBIAAA==
+   H4sIAAAAAAAAA+2USwpAIQhFnbr/Db9pyEv8F3QPBA0sjyYRAfAOvCwt5gS82WtxJ9l5TPkx6e952s+Cx9sbs8Za5t6aq9ovi6wr4id71Ol/W/9k3u7589YWOTv9B0XO/d1TOX+ZOyb6l83R7Vjh170AAACAF/kAqMeGVMASAAA=
   </data>
  </layer>
 </map>
