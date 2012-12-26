@@ -63,7 +63,7 @@ public class RoboTechJeu extends BasicGameState {
 	private void restart() throws SlickException {
 		monde = new Monde();
 		monde.initialisationMonde();
-		player = new Robot(280, 150, 1f, 32);
+		player = new Robot(280, 150, 1.f, 32);
 		monde.setplayer(player);
 		monde.addPersonnages(player);
 		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 64));
@@ -76,7 +76,7 @@ public class RoboTechJeu extends BasicGameState {
 		monde.addItemsRamassable(new PotionEnergie(350, 250, 13, 20, 0.8f,
 				player, 10));
 
-		caisse = new Caisse(700, 10, 40, 40, 4.f);
+		caisse = new Caisse(700, 10, 40, 40, 8.f);
 		baril = new Baril(1170, 200, 28, 40, 3.5f);
 		poutre = new Poutre(880, 60, 25, 130, 3.5f);
 		monde.addItems(caisse);
