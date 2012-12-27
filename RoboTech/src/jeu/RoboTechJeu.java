@@ -69,11 +69,11 @@ public class RoboTechJeu extends BasicGameState {
 		monde.addPersonnages(new EnnemisVert(600, 50, 2f, 64));
 
 		monde.addItemsRamassable(new PotionVie(880, 250, 10, 14, 0.8f, player,
-				10));
+				1));
 		monde.addItemsRamassable(new PotionMana(305, 250, 10, 14, 0.8f, player,
-				10));
+				1));
 		monde.addItemsRamassable(new PotionEnergie(350, 250, 13, 20, 0.8f,
-				player, 10));
+				player, 1));
 
 		caisse = new Caisse(700, 10, 40, 40, 8.f);
 		baril = new Baril(1170, 200, 28, 40, 3.5f);
