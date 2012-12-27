@@ -90,8 +90,13 @@ public class Robot extends Personnage implements Drawable {
 
 	}
 
-	public void modifierVitesse(int valeurModVitesse) {
-		setVitesseX(valeurModVitesse);
+	public void modifierVitesseX(int valeurModVitesseX) {
+		setVitesseX(valeurModVitesseX);
+		
+	}
+
+	public void modifierVitesseY(int valeurModVitesseY) {
+		setVitesseY(valeurModVitesseY);
 		
 	}
 

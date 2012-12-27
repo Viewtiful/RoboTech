@@ -36,6 +36,9 @@ public abstract class Personnage implements Drawable {
 	private int mana;
 	private int energie;
 	private float vitesseX;
+	private float vitesseY;
+	private float maxVelX;
+	private float maxVelY;
 
 	// taille du block du personnage pour les collisions
 	private float tailleBlockPerso;
@@ -54,13 +57,16 @@ public abstract class Personnage implements Drawable {
 		this.mana = 5;
 		this.energie = 5;
 		this.vitesseX = 1;
+		this.vitesseY = 1;
+		this.maxVelX = 20;
+		this.maxVelY = 50;
 
 		// cree le corps du personnage pour le monde physique
 		this.body = new Body(new Box(tailleBlockPerso, tailleBlockPerso), masse);
 		this.body.setUserData(this);
 		this.body.setRestitution(0);
 		this.body.setFriction(0f);
-		this.body.setMaxVelocity(20, 50);
+		this.body.setMaxVelocity(maxVelX, maxVelY);
 		this.body.setRotatable(false);
 		this.setPosition(x, y);
 	}
@@ -271,7 +277,18 @@ public abstract class Personnage implements Drawable {
 
 	public void setVitesseX(float vitesseX) {
 		this.vitesseX = vitesseX;
-		body.setMaxVelocity(getVelX()*this.vitesseX, 50);
+		maxVelX *= vitesseX;
+		body.setMaxVelocity(maxVelX, maxVelY);
+	}
+	
+	public float getVitesseY() {
+		return vitesseY;
+	}
+
+	public void setVitesseY(float vitesseY) {
+		this.vitesseY = vitesseY;
+		maxVelY *= this.vitesseY;
+		body.setMaxVelocity(maxVelX, maxVelY);
 	}
 
 	public abstract void toucher();
