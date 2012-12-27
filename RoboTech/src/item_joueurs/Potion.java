@@ -25,7 +25,7 @@ public abstract class Potion extends ItemsRamassable {
 	private float masse;
 
 	/** La valeur que regénère la potion */
-	protected int valeurRegeneration;
+	protected int valeur;
 
 	/**
 	 * Constructeur de la classe Potion
@@ -35,10 +35,10 @@ public abstract class Potion extends ItemsRamassable {
 	 * @param height : hauteur de la potion
 	 * @param mass : masse de la potion
 	 * @param player : passe en parametre le joueur pour savoir quand il a ramasser la potion ....
-	 * @param valeurRegen : la valeur que regénère la potion
+	 * @param valeur : la valeur que modifie la potion
 	 */
 	public Potion(float x, float y, float width, float height, float mass,
-			Robot player, int valeurRegen) {
+			Robot player, int valeur) {
 		this.width = width;
 		this.height = height;
 		this.masse = mass;
@@ -49,7 +49,7 @@ public abstract class Potion extends ItemsRamassable {
 		body.setFriction(0.1f);
 		set_used(false);
 		set_player(player);
-		this.valeurRegeneration = valeurRegen;
+		this.valeur = valeur;
 	}
 
 	/**

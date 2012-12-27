@@ -64,7 +64,7 @@ public class PotionEnergie extends Potion {
 	 */
 	@Override
 	public void effect(Robot player) {
-		player.ajouterEnergie(valeurRegeneration);
+		player.ajouterEnergie(valeur);
 
 	}
 

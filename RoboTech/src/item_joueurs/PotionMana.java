@@ -27,7 +27,7 @@ public class PotionMana extends Potion {
 	}
 
 	/**
-	 * Constructeur de la classe PotionEnergie avec valeur de regen à 1 par défaut
+	 * Constructeur de la classe PotionMana avec valeur de regen à 1 par défaut
 	 * @param x : position en x de la potion
 	 * @param y : position en y de la potion
 	 * @param width : largeur de la potion
@@ -64,7 +64,7 @@ public class PotionMana extends Potion {
 	 */
 	@Override
 	public void effect(Robot player) {
-		player.ajouterMana(valeurRegeneration);
+		player.ajouterMana(valeur);
 
 	}
 

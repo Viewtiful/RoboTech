@@ -4,6 +4,7 @@ import item_joueurs.Potion;
 import item_joueurs.PotionEnergie;
 import item_joueurs.PotionMana;
 import item_joueurs.PotionVie;
+import item_joueurs.PotionVitesse;
 import items.Baril;
 import items.Caisse;
 import items.Items;
@@ -74,6 +75,8 @@ public class RoboTechJeu extends BasicGameState {
 				1));
 		monde.addItemsRamassable(new PotionEnergie(350, 250, 13, 20, 0.8f,
 				player, 1));
+		monde.addItemsRamassable(new PotionVitesse(750, 250, 10, 14, 0.8f,
+				player, 2));
 
 		caisse = new Caisse(700, 10, 40, 40, 8.f);
 		baril = new Baril(1170, 200, 28, 40, 3.5f);
