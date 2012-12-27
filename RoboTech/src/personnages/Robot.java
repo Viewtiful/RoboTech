@@ -103,10 +103,14 @@ public class Robot extends Personnage implements Drawable {
 	}
 
 	public Balle tirer() throws SlickException {
-		Balle balle = new Balle(getX(), getY(),
-				getDirectionDroite(), 0.01f);
-		balle.applyForce(10000, 0);
-		return balle;
+		if(getMana() > 0) {
+			setMana(getMana() - 1);
+			Balle balle = new Balle(getX(), getY(),
+					getDirectionDroite(), 0.01f);
+			balle.applyForce(10000, 0);
+			return balle;		
+		}
+		return null;
 	}
 
 }
