@@ -35,6 +35,7 @@ public abstract class Personnage implements Drawable {
 	private int vie;
 	private int mana;
 	private int energie;
+	private float vitesseX;
 
 	// taille du block du personnage pour les collisions
 	private float tailleBlockPerso;
@@ -52,6 +53,7 @@ public abstract class Personnage implements Drawable {
 		this.vie = 5;
 		this.mana = 5;
 		this.energie = 5;
+		this.vitesseX = 1;
 
 		// cree le corps du personnage pour le monde physique
 		this.body = new Body(new Box(tailleBlockPerso, tailleBlockPerso), masse);
@@ -68,7 +70,7 @@ public abstract class Personnage implements Drawable {
 	}
 
 	public void applyForce(float x, float y) {
-		body.addForce(new Vector2f(x, y));
+		body.addForce(new Vector2f(x * vitesseX, y));
 
 		// if the force applied is up into the air the actor is
 		// considered to be jumping
@@ -263,7 +265,14 @@ public abstract class Personnage implements Drawable {
 		return false;
 	}
 
-	public abstract void pickupItem(Items potionVie);
+	public float getVitesseX() {
+		return vitesseX;
+	}
+
+	public void setVitesseX(float vitesseX) {
+		this.vitesseX = vitesseX;
+		body.setMaxVelocity(getVelX()*this.vitesseX, 50);
+	}
 
 	public abstract void toucher();
 }

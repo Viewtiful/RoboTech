@@ -90,10 +90,9 @@ public class Robot extends Personnage implements Drawable {
 
 	}
 
-	@Override
-	public void pickupItem(Items potionVie) {
-		// TODO Auto-generated method stub
-
+	public void modifierVitesse(int valeurModVitesse) {
+		setVitesseX(valeurModVitesse);
+		
 	}
 
 }

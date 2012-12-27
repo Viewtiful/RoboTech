@@ -17,12 +17,6 @@ public class EnnemisVert extends Ennemis {
 	}
 
 	@Override
-	public void pickupItem(Items potionVie) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		// TODO Auto-generated method stub
