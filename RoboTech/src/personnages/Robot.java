@@ -11,6 +11,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import weapon.Balle;
+
 public class Robot extends Personnage implements Drawable {
 	// l'image qui contient le sprite du robot
 	private Image image;
@@ -98,6 +100,13 @@ public class Robot extends Personnage implements Drawable {
 	public void modifierVitesseY(int valeurModVitesseY) {
 		setVitesseY(valeurModVitesseY);
 		
+	}
+
+	public Balle tirer() throws SlickException {
+		Balle balle = new Balle(getX(), getY(),
+				getDirectionDroite(), 0.01f);
+		balle.applyForce(10000, 0);
+		return balle;
 	}
 
 }

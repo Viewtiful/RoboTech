@@ -111,10 +111,8 @@ public class RoboTechJeu extends BasicGameState {
 
 		if (input.isKeyPressed(Input.KEY_X)) {
 			System.out.println("Balle");
-			balle = new Balle(player.getX(), player.getY(),
-					player.getDirectionDroite(), 0.01f);
+			balle = player.tirer();
 			monde.addBalles(balle);
-			balle.applyForce(10000, 0);
 		}
 
 		// met a jour le monde
