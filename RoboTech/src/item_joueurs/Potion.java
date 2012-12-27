@@ -14,28 +14,47 @@ import personnages.Personnage;
 import personnages.Robot;
 
 public abstract class Potion extends ItemsRamassable {
-	/** The image to display for the crate */
+	/** L'image de la potion */
 	protected Image image;
-	/** The width of the crate */
+	/** La largeur de la potion */
 	private float width;
-	/** The height of the crate */
+	/** La hauteur de la potion */
 	private float height;
+	
+	/** La masse de la potion */
+	private float masse;
 
-	protected int value;
+	/** La valeur que regénère la potion */
+	protected int valeurRegeneration;
 
+	/**
+	 * Constructeur de la classe Potion
+	 * @param x : position en x de la potion
+	 * @param y : position en y de la potion
+	 * @param width : largeur de la potion
+	 * @param height : hauteur de la potion
+	 * @param mass : masse de la potion
+	 * @param player : passe en parametre le joueur pour savoir quand il a ramasser la potion ....
+	 * @param valeurRegen : la valeur que regénère la potion
+	 */
 	public Potion(float x, float y, float width, float height, float mass,
-			Robot player, int value) {
+			Robot player, int valeurRegen) {
 		this.width = width;
 		this.height = height;
+		this.masse = mass;
 
+		//Le corps physique de la potion
 		body = new Body(new Box(width, height), mass);
 		body.setPosition(x, y);
 		body.setFriction(0.1f);
 		set_used(false);
 		set_player(player);
-		this.value = value;
+		this.valeurRegeneration = valeurRegen;
 	}
 
+	/**
+	 * Retourne le corps physique de la potion
+	 */
 	public Body getBody() {
 		return body;
 	}
@@ -43,6 +62,9 @@ public abstract class Potion extends ItemsRamassable {
 	public void preUpdate(int delta) {
 	}
 
+	/**
+	 * Si la potion a ete ramasse, on la fait disparaitre
+	 */
 	public void setPickedUp(boolean beingPickedUp) {
 		if (beingPickedUp) {
 			float opacity = 0f;
@@ -50,14 +72,23 @@ public abstract class Potion extends ItemsRamassable {
 		}
 	}
 
+	/**
+	 * Récupére la largeur de la potion
+	 */
 	public float getWidth() {
 		return width;
 	}
 
+	/**
+	 * Récupére la hauteur de la potion
+	 */
 	public float getHeight() {
 		return height;
 	}
 
+	/**
+	 * Intervale régulière, on vérifie que la potion n'a pas été ramassé, si c'est le cas, on la donne au joueur et on l'a fait disparaître du monde
+	 */
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
@@ -77,5 +108,9 @@ public abstract class Potion extends ItemsRamassable {
 		}
 	}
 
+	/**
+	 * Effet de la potion sur le robot
+	 * @param player
+	 */
 	public abstract void effect(Robot player);
 }
