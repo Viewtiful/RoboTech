@@ -53,11 +53,6 @@ public class PotionEnergie extends Potion {
 	/**
 	 * Affichage de la potion énergie
 	 */
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		image.draw(getX() - 5, getY() - 7);
-	}
 	
 	/**
 	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de régéneration de la potion énergie

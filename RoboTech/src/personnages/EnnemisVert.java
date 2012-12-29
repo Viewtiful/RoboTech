@@ -23,9 +23,8 @@ public class EnnemisVert extends Ennemis {
 		image = new Image("res/ennemiVert.png");
 	}
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
+	public void render(Graphics g)
+	{
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 
@@ -33,6 +32,11 @@ public class EnnemisVert extends Ennemis {
 		g.drawString("sol?" + auSol() + " " + getX() + "," + getY() + " "
 				+ velx, getX(), getY() - 50);
 		g.drawString("Vie : " + getVie(), getX(), getY() - 70);
+	}
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		render(g);
 	}
 
 	@Override

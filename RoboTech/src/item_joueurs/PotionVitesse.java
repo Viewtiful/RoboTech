@@ -51,15 +51,6 @@ public class PotionVitesse extends Potion {
 	}
 
 	/**
-	 * Affichage de la potion vitesse
-	 */
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		image.draw(getX() - 5, getY() - 7);
-	}
-	
-	/**
 	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de la vitesse de déplacement de la potion vitesse
 	 */
 	@Override

@@ -58,15 +58,19 @@ public class Caisse extends Items {
 
 	}
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
+	public void render(Graphics g)
+	{
 		g.translate(getX(), getY());
 		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
 		image.draw(-width / 2, -height / 2, width, height);
 		g.rotate(0, 0, (float) -Math.toDegrees(body.getRotation()));
 		g.translate(-getX(), -getY());
 
+	}
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+	
 	}
 
 	@Override

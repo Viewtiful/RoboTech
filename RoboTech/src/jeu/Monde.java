@@ -1,6 +1,7 @@
 package jeu;
 
 import interfaces.Drawable;
+import interfaces.SlickAdapter;
 import items.Items;
 
 import java.util.ArrayList;
@@ -20,11 +21,10 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-import particules.Emetteur;
 import personnages.Personnage;
 import weapon.Balle;
 
-public class Monde implements Drawable {
+public class Monde implements SlickAdapter {
 
 	//represente le monde physique
 	private World world;
@@ -37,7 +37,6 @@ public class Monde implements Drawable {
 	
 	//liste des balles tirees par le personnage
 	protected ArrayList<Balle> balles;
-	Emetteur e = new Emetteur(this);
 	int cpt = 0;
 	// liste des personnages
 	protected ArrayList<Personnage> personnages;
@@ -351,12 +350,5 @@ public class Monde implements Drawable {
 		}
 		update_item(container, game, delta);
 		
-		if(container.getInput().isKeyPressed(Input.KEY_M))
-		{
-			e.emettre(1);
-			init(container,game);
-			cpt++;
-			System.out.println("Cpt = "+cpt);
-		}
 	}
 }

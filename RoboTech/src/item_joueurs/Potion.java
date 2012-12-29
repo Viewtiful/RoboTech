@@ -1,6 +1,6 @@
 package item_joueurs;
 
-import items.Items;
+
 import net.phys2d.raw.Body;
 import net.phys2d.raw.shapes.Box;
 
@@ -10,10 +10,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import personnages.Personnage;
 import personnages.Robot;
 
-public abstract class Potion extends ItemsRamassable {
+public abstract class Potion extends ItemsRamassable{
 	/** L'image de la potion */
 	protected Image image;
 	/** La largeur de la potion */
@@ -89,9 +88,9 @@ public abstract class Potion extends ItemsRamassable {
 	/**
 	 * Intervale régulière, on vérifie que la potion n'a pas été ramassé, si c'est le cas, on la donne au joueur et on l'a fait disparaître du monde
 	 */
-	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
+
+	public void PickUpItem()
+	{
 		int tileX = (int) (getX() / 32);
 		int tileY = (int) (getY() / 32);
 		float pickupWidth = getWidth() / 32;
@@ -104,8 +103,22 @@ public abstract class Potion extends ItemsRamassable {
 			used = true;
 			effect(player);
 			world.remove(getBody());
+		}
+	}
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		PickUpItem();
 
 		}
+	
+	public void render(Graphics g){
+		image.draw(getX() - 5, getY() - 7);
+	}
+	
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+		throws SlickException{
+		render(g);
 	}
 
 	/**

@@ -27,10 +27,8 @@ public class EnnemisRouge extends Ennemis {
 
 	}
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-
+	public void render(Graphics g)
+	{
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 
@@ -40,10 +38,15 @@ public class EnnemisRouge extends Ennemis {
 		g.drawString("Vie : " + getVie(), getX(), getY() - 70);
 
 	}
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+
+		render(g);
+	}
 
 	public void update(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		System.out.println("Update Ennemis rouge");
 	}
 
 	@Override

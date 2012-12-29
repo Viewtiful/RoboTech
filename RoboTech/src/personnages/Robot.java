@@ -13,7 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import weapon.Balle;
 
-public class Robot extends Personnage implements Drawable {
+public class Robot extends Personnage {
 	// l'image qui contient le sprite du robot
 	private Image image;
 	RobotHandlers handlers;
@@ -64,9 +64,8 @@ public class Robot extends Personnage implements Drawable {
 
 	}
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
+	public void render(Graphics g)
+	{
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
 
@@ -75,6 +74,13 @@ public class Robot extends Personnage implements Drawable {
 				+ " " + getX() + "," + getY() + " " + velx, getX(), getY() - 50);
 		g.drawString("Vie : " + getVie() + ", Mana : " + getMana()
 				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
+
+	}
+	
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		render(g);
 	}
 
 	@Override

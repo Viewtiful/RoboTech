@@ -50,15 +50,7 @@ public class PotionMana extends Potion {
 
 	}
 
-	/**
-	 * Affichage de la potion mana
-	 */
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		image.draw(getX() - 5, getY() - 7);
-	}
-
+	
 	/**
 	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de régéneration de la potion mana
 	 */

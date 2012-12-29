@@ -1,6 +1,7 @@
 package personnages;
 
 import interfaces.Drawable;
+import interfaces.SlickAdapter;
 import items.Items;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
@@ -13,7 +14,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class Personnage implements Drawable {
+public abstract class Personnage implements Drawable, SlickAdapter{
 
 	// le monde dans lequels le personnage est present
 	private World world;

@@ -17,8 +17,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import personnages.Personnage;
 
 import interfaces.Drawable;
+import interfaces.SlickAdapter;
 
-public class Balle implements Drawable {
+public class Balle implements Drawable, SlickAdapter {
 
 	//position x et y de la balle
 	private float x;
@@ -89,8 +90,7 @@ public class Balle implements Drawable {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		imageBalle.drawCentered(getX(), getY());
-
+		render(g);
 	}
 
 	/**
@@ -261,6 +261,12 @@ public class Balle implements Drawable {
 	 */
 	public void setPosition(float x, float y) {
 		body.setPosition(x, y);
+	}
+
+	@Override
+	public void render(Graphics g) {
+		imageBalle.drawCentered(getX(), getY());
+
 	}
 
 }
