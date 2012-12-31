@@ -2,11 +2,6 @@ package items;
 
 import interfaces.Drawable;
 import interfaces.SlickAdapter;
-
-import org.newdawn.slick.Graphics;
-
-import personnages.Personnage;
-
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.World;

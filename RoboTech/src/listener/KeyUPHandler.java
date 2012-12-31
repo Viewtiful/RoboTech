@@ -4,9 +4,9 @@ import org.newdawn.slick.Input;
 
 import personnages.Robot;
 
-public class KeyWHandler extends KeyHandler {
-	public KeyWHandler() {
-		super(Input.KEY_W);
+public class KeyUPHandler extends KeyHandler {
+	public KeyUPHandler() {
+		super(Input.KEY_UP);
 	}
 
 	public void handle(Input input, Robot robot) {
@@ -25,7 +25,7 @@ public class KeyWHandler extends KeyHandler {
 		}
 		// si on n'appuye pas sur la touche saut et que le perso est en train de
 		// sauter, on le fait redescendre doucement
-		if (!input.isKeyDown(Input.KEY_W)) {
+		if (!input.isKeyDown(get_key())) {
 			if (robot.getSaut()) {
 				robot.setVelocity(robot.getVelX(), robot.getVelY() * 0.99f);
 			}

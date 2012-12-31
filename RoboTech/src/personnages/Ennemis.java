@@ -1,19 +1,23 @@
 package personnages;
 
-import interfaces.Drawable;
+import jeu.Monde;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import weapon.Balle;
+import weapon.BalleEnnemiVert;
 
 public abstract class Ennemis extends Personnage {
 	// l'image qui contient le sprite du robot
 	private int deplacementAuto;
 	private boolean deplacementAutoDroite;
 
-	public Ennemis(float x, float y, float masse, float tailleBlockPerso) {
-		super(x, y, masse, tailleBlockPerso);
+	public Ennemis(float x, float y, float masse, float tailleBlockPerso,
+			Monde monde) {
+		super(x, y, masse, tailleBlockPerso, monde);
 		deplacementAuto = 0;
 		deplacementAutoDroite = true;
 	}
@@ -22,7 +26,7 @@ public abstract class Ennemis extends Personnage {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);
-
+		Balle balle;
 		if (deplacementAuto < 230 && deplacementAutoDroite) {
 			applyForce(100, getVelY());
 			deplacementAuto++;
@@ -31,7 +35,13 @@ public abstract class Ennemis extends Personnage {
 			applyForce(-100, getVelY());
 			deplacementAuto--;
 			if (deplacementAuto == 0) {
+				System.out.println("Ennemis tire");
 				deplacementAutoDroite = true;
+				balle = new BalleEnnemiVert(getX(), getY(),
+						getDirectionDroite(), 0.01f, 2);
+				balle.applyForce(10000, 0);
+				monde.addBalles(balle);
+
 			}
 		}
 	}

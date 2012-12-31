@@ -1,6 +1,5 @@
 package jeu;
 
-import item_joueurs.Potion;
 import item_joueurs.PotionEnergie;
 import item_joueurs.PotionMana;
 import item_joueurs.PotionVie;
@@ -20,9 +19,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.EnnemisRouge;
 import personnages.EnnemisVert;
-import personnages.Personnage;
 import personnages.Robot;
-import weapon.Balle;
 
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
@@ -34,7 +31,6 @@ public class RoboTechJeu extends BasicGameState {
 	// liste des items ramassable
 	// private ArrayList<Items> itemsRamassable;
 	// private ArrayList<Personnage> personnages;
-	private Balle balle;
 	// axe des x pour la camera
 	private float cameraX;
 	// axe des y pour la camera
@@ -65,10 +61,10 @@ public class RoboTechJeu extends BasicGameState {
 	private void restart() throws SlickException {
 		monde = new Monde();
 		monde.initialisationMonde();
-		player = new Robot(280, 150, 1.f, 32);
+		player = new Robot(280, 150, 1.f, 32, monde);
 		monde.addPersonnages(player);
-		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 64));
-		monde.addPersonnages(new EnnemisVert(600, 50, 2f, 64));
+		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 64, monde));
+		monde.addPersonnages(new EnnemisVert(600, 50, 2f, 64, monde));
 
 		monde.addItemsRamassable(new PotionVie(880, 250, 10, 14, 0.8f, player,
 				1));
@@ -78,8 +74,8 @@ public class RoboTechJeu extends BasicGameState {
 				player, 1));
 		monde.addItemsRamassable(new PotionVitesse(750, 250, 10, 14, 0.8f,
 				player, 2));
-		monde.addItemsRamassable(new PotionSaut(650, 450, 10, 14, 0.8f,
-				player, 2));
+		monde.addItemsRamassable(new PotionSaut(650, 450, 10, 14, 0.8f, player,
+				2));
 
 		caisse = new Caisse(700, 10, 40, 40, 8.f);
 		baril = new Baril(1170, 200, 28, 40, 3.5f);
@@ -94,8 +90,12 @@ public class RoboTechJeu extends BasicGameState {
 			throws SlickException {
 
 		g.translate(-(int) cameraX, -(int) cameraY); // gere le rendu de la
-														// camera
+		// camera
 
+		if (player.getVie() <= 0) {
+			System.out.println("Fin du jeu");
+			init(container, game);
+		}
 		monde.render(container, game, g); // gere le rendu du monde complet
 	}
 
@@ -107,12 +107,6 @@ public class RoboTechJeu extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_R)) {
 			init(container, game);
 			return;
-		}
-
-		if (input.isKeyPressed(Input.KEY_X)) {
-			balle = player.tirer();
-			if(balle != null)
-				monde.addBalles(balle);
 		}
 
 		// met a jour le monde

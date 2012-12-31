@@ -15,7 +15,10 @@ public class RobotHandlers {
 		List_Handler = new ArrayList<KeyHandler>();
 		List_Handler.add(new KeyLEFTHandler());
 		List_Handler.add(new KeyRIGHTHandler());
-		List_Handler.add(new KeyWHandler());
+		List_Handler.add(new KeyUPHandler());
+		List_Handler.add(new KeyQHandler());
+		List_Handler.add(new KeyZHandler());
+		List_Handler.add(new KeyDHandler());
 	}
 
 	public ArrayList<KeyHandler> get_ListHandler() {

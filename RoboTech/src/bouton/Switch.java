@@ -21,10 +21,10 @@ public abstract class Switch implements Drawable {
 		effet = new ArrayList<Receiver>();
 	}
 
-	public void add(Receiver r)
-	{
+	public void add(Receiver r) {
 		effet.add(r);
 	}
+
 	/*
 	 * Fonction qui détermine si le bouton est actionné ou pas
 	 */

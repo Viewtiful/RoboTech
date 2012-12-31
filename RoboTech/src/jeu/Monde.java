@@ -1,10 +1,10 @@
 package jeu;
 
-import interfaces.Drawable;
 import interfaces.SlickAdapter;
 import items.Items;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import net.phys2d.math.Vector2f;
@@ -15,7 +15,6 @@ import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -26,20 +25,21 @@ import weapon.Balle;
 
 public class Monde implements SlickAdapter {
 
-	//represente le monde physique
+	// represente le monde physique
 	private World world;
-	
-	//represente le niveau
+
+	// represente le niveau
 	private TiledMap niveau;
 
-	//liste des obstables
+	// liste des obstables
 	private ArrayList<Rectangle> obstacles;
-	
-	//liste des balles tirees par le personnage
+
+	// liste des balles tirees par le personnage
 	protected ArrayList<Balle> balles;
 	int cpt = 0;
 	// liste des personnages
-	protected ArrayList<Personnage> personnages;
+	// protected ArrayList<Personnage> personnages;
+	protected HashMap<Body, Personnage> personnages;
 
 	// liste des items
 	protected ArrayList<Items> items;
@@ -47,7 +47,7 @@ public class Monde implements SlickAdapter {
 	// liste des items ramassable
 	protected ArrayList<Items> itemsRamassable;
 
-	
+	//
 	/**
 	 * Constructeur de la classe Monde
 	 */
@@ -56,7 +56,7 @@ public class Monde implements SlickAdapter {
 		world = null;
 		niveau = null;
 		obstacles = new ArrayList<Rectangle>();
-		personnages = new ArrayList<Personnage>();
+		personnages = new HashMap<Body, Personnage>();
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
@@ -77,33 +77,34 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Fonction qui permet d'afficher le niveau et les elements du niveau (personnages/items/balles)
+	 * Fonction qui permet d'afficher le niveau et les elements du niveau
+	 * (personnages/items/balles)
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// affiche la map
 		niveau.render(0, 0);
-		
+
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
 
 		// affiche les personnages sur le niveau
-		Iterator<Personnage> it = personnages.iterator();
+		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
 			it.next().render(gc, sbg, g);
 
-		//affiche les items non ramassable sur le niveau
+		// affiche les items non ramassable sur le niveau
 		Iterator<Items> it2 = items.iterator();
 		while (it2.hasNext())
 			it2.next().render(gc, sbg, g);
 
-		//affiche les items ramassables sur le niveau
+		// affiche les items ramassables sur le niveau
 		it2 = itemsRamassable.iterator();
 		while (it2.hasNext())
 			it2.next().render(gc, sbg, g);
 
-		//affiche les balles tirees sur le niveau
+		// affiche les balles tirees sur le niveau
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
@@ -112,6 +113,7 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Retourne le monde physique du niveau
+	 * 
 	 * @return
 	 */
 	public World getWorld() {
@@ -125,31 +127,55 @@ public class Monde implements SlickAdapter {
 
 		int largeurMap = niveau.getWidth(); // recupere la largeur de la map
 		int hauteurMap = niveau.getHeight(); // recupere la hauteur de la map
-		int largeurTile = niveau.getTileWidth(); // recupere la largeur d'un tile
-												// (block de la map)
-		int hauteurTile = niveau.getTileHeight(); // recupere la hauteur d'un tile
-												// (block de la map)
+		int largeurTile = niveau.getTileWidth(); // recupere la largeur d'un
+													// tile
+													// (block de la map)
+		int hauteurTile = niveau.getTileHeight(); // recupere la hauteur d'un
+													// tile
+													// (block de la map)
 
 		// on parcours ligne par ligne
 		for (int y = 0; y < hauteurMap; y++) {
 
 			for (int x = 0; x < largeurMap; x++) {
 
-				int largeurPlateformeDessine = 0; // contient la largeur de la plateforme sur la ligne a dessiner
-				int XdepartPlateformeDessine = 0; // contient le debut de la plateforme sur la ligne
+				int largeurPlateformeDessine = 0; // contient la largeur de la
+													// plateforme sur la ligne a
+													// dessiner
+				int XdepartPlateformeDessine = 0; // contient le debut de la
+													// plateforme sur la ligne
 
 				// si c'est un bloc qui represente une plateforme
-				if (niveau.getTileImage(x, y, niveau.getLayerIndex("tiles")) != null) {
+				if (niveau.getTileImage(x, y,
+						niveau.getLayerIndex("BlocsStatiques")) != null) {
 					XdepartPlateformeDessine = x; // conserve la coordonnee X du
 													// debut de la plateforme
-					largeurPlateformeDessine += largeurTile; // rajoute la taille du tile, a la longueur de la plateforme
+					largeurPlateformeDessine += largeurTile; // rajoute la
+																// taille du
+																// tile, a la
+																// longueur de
+																// la plateforme
 
 					// on teste les prochains tile sur la ligne x, pour savoir
 					// s'il appartienne a la meme plateforme a construire
 					while ((x + 1) < largeurMap
 							&& niveau.getTileImage(x + 1, y,
-									niveau.getLayerIndex("tiles")) != null) {
-						largeurPlateformeDessine += largeurTile; // a chaque tile rajouter pour construire la plateforme, on rajoute sa taille a la longueur de la plateforme totale
+									niveau.getLayerIndex("BlocsStatiques")) != null) {
+						largeurPlateformeDessine += largeurTile; // a chaque
+																	// tile
+																	// rajouter
+																	// pour
+																	// construire
+																	// la
+																	// plateforme,
+																	// on
+																	// rajoute
+																	// sa taille
+																	// a la
+																	// longueur
+																	// de la
+																	// plateforme
+																	// totale
 						x++;
 					}
 
@@ -184,17 +210,21 @@ public class Monde implements SlickAdapter {
 	/**
 	 * Fonction qui permet d'ajouter de nouveau personnage au niveau physique
 	 * 
-	 * @param pers à ajouter au niveau physique
+	 * @param pers
+	 *            à ajouter au niveau physique
 	 */
 	public void addPersonnages(Personnage pers) {
 		world.add(pers.getBody());
 		pers.setWorld(world);
-		personnages.add(pers);
+		personnages.put(pers.getBody(), pers);
 	}
 
 	/**
-	 * Fonction qui permet d'ajouter de nouveau items ramassable au niveau physique
-	 * @param item ramassable à ajouter au niveau
+	 * Fonction qui permet d'ajouter de nouveau items ramassable au niveau
+	 * physique
+	 * 
+	 * @param item
+	 *            ramassable à ajouter au niveau
 	 */
 	public void addItemsRamassable(Items item) {
 		world.add(item.getBody());
@@ -204,7 +234,9 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Fonction qui permet d'ajouter de nouvelle balles au niveau physique
-	 * @param balle à ajouter au niveau
+	 * 
+	 * @param balle
+	 *            à ajouter au niveau
 	 */
 	public void addBalles(Balle balle) {
 		world.add(balle.getBody());
@@ -213,8 +245,11 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Fonction qui permet d'ajouter de nouveau items non ramassable au niveau physique
-	 * @param item à ajouter au niveau
+	 * Fonction qui permet d'ajouter de nouveau items non ramassable au niveau
+	 * physique
+	 * 
+	 * @param item
+	 *            à ajouter au niveau
 	 */
 	public void addItems(Items item) {
 		world.add(item.getBody());
@@ -225,6 +260,7 @@ public class Monde implements SlickAdapter {
 	/**
 	 * 
 	 * Initialise les différents élements du niveau
+	 * 
 	 * @param container
 	 * @param game
 	 * @param delta
@@ -233,9 +269,8 @@ public class Monde implements SlickAdapter {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		
-		
-		Iterator<Personnage> it = personnages.iterator();
+
+		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
 			it.next().init(container, game);
 
@@ -250,6 +285,7 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Met à jour les items ramassés du niveau, vérification à chaque tour
+	 * 
 	 * @param container
 	 * @param game
 	 * @param delta
@@ -270,7 +306,9 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les personnages du niveau qui sont mort, vérification à chaque tour
+	 * Met à jour les personnages du niveau qui sont mort, vérification à
+	 * chaque tour
+	 * 
 	 * @param container
 	 * @param game
 	 * @param delta
@@ -278,7 +316,7 @@ public class Monde implements SlickAdapter {
 	public void update_personnage(GameContainer container, StateBasedGame game,
 			int delta) {
 		Personnage current;
-		Iterator<Personnage> it = personnages.iterator();
+		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext()) {
 			current = it.next();
 			if (current.getVie() == 0) {
@@ -289,7 +327,9 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les balles du niveau qui ont touchés un element du niveau pour les détruires, vérification à chaque tour
+	 * Met à jour les balles du niveau qui ont touchés un element du niveau
+	 * pour les détruires, vérification à chaque tour
+	 * 
 	 * @param container
 	 * @param game
 	 * @param delta
@@ -322,7 +362,7 @@ public class Monde implements SlickAdapter {
 		int tempsTotalMiseAjour = delta;
 		// Temps pour la mise a jour du monde physique
 		int tempsMiseAjour = 5;
-		Iterator<Personnage> it = personnages.iterator();
+		Iterator<Personnage> it = personnages.values().iterator();
 
 		// fait entre 2 et 3 tours de boucle pour mettre a jour le monde
 		// physique, on fait en premier une preUpdate des personnages, puis une
@@ -336,11 +376,11 @@ public class Monde implements SlickAdapter {
 				while (it.hasNext())
 					it.next().preUpdate(delta);
 			}
-			it = personnages.iterator();
+			it = personnages.values().iterator();
 			while (it.hasNext())
 				it.next().update(container, game, tempsMiseAjour);
 		}
-		
+
 		// Suppression des personnages qui sont dead
 		update_personnage(container, game, delta);
 		try {
@@ -349,6 +389,6 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		update_item(container, game, delta);
-		
+
 	}
 }

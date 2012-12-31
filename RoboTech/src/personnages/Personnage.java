@@ -1,8 +1,9 @@
 package personnages;
 
+import jeu.Monde;
+
 import interfaces.Drawable;
 import interfaces.SlickAdapter;
-import items.Items;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.CollisionEvent;
@@ -10,15 +11,15 @@ import net.phys2d.raw.World;
 import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class Personnage implements Drawable, SlickAdapter{
+public abstract class Personnage implements Drawable, SlickAdapter {
 
 	// le monde dans lequels le personnage est present
 	private World world;
 
+	public Monde monde;
 	private boolean directionDroite;
 	// retourne true, si le personnage est en train de se deplacer
 	private boolean enMouvement;
@@ -46,7 +47,9 @@ public abstract class Personnage implements Drawable, SlickAdapter{
 	// la velocite sur l'axe des X
 	protected float velx;
 
-	public Personnage(float x, float y, float masse, float tailleBlockPerso) {
+	// Tableau des balles
+	public Personnage(float x, float y, float masse, float tailleBlockPerso,
+			Monde monde) {
 		this.tailleBlockPerso = tailleBlockPerso;
 		this.auSol = false;
 		this.directionDroite = true;
@@ -70,6 +73,7 @@ public abstract class Personnage implements Drawable, SlickAdapter{
 		this.body.setMaxVelocity(maxVelX, maxVelY);
 		this.body.setRotatable(false);
 		this.setPosition(x, y);
+		this.monde = monde;
 	}
 
 	public void setWorld(World world) {
@@ -281,7 +285,7 @@ public abstract class Personnage implements Drawable, SlickAdapter{
 		maxVelX *= vitesseX;
 		body.setMaxVelocity(maxVelX, maxVelY);
 	}
-	
+
 	public float getVitesseY() {
 		return vitesseY;
 	}
@@ -292,5 +296,6 @@ public abstract class Personnage implements Drawable, SlickAdapter{
 		body.setMaxVelocity(maxVelX, maxVelY);
 	}
 
-	public abstract void toucher();
+	public abstract void toucher(int value);
+
 }

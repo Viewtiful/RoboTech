@@ -1,9 +1,8 @@
 package personnages;
 
-import listener.RobotHandlers;
-import interfaces.Drawable;
-import items.Items;
+import jeu.Monde;
 
+import listener.RobotHandlers;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import weapon.Balle;
+import weapon.BalleRobot;
 
 public class Robot extends Personnage {
 	// l'image qui contient le sprite du robot
@@ -31,13 +31,17 @@ public class Robot extends Personnage {
 	 *            The size of the alien (collision size)
 	 * @throws SlickException
 	 *             Indicates a failure to load resources for this alien
-	 */
-	public Robot(float x, float y, float mass, float size)
+	 **/
+	public Robot(float x, float y, float mass, float size, Monde monde)
 			throws SlickException {
-		super(x, y, mass, size);
+		super(x, y, mass, size, monde);
 		image = new Image("res/robotx.png");
 		handlers = new RobotHandlers();
 
+	}
+
+	public void set_monde(Monde monde) {
+		this.monde = monde;
 	}
 
 	/**
@@ -64,8 +68,7 @@ public class Robot extends Personnage {
 
 	}
 
-	public void render(Graphics g)
-	{
+	public void render(Graphics g) {
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
 
@@ -76,7 +79,7 @@ public class Robot extends Personnage {
 				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
 
 	}
-	
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
@@ -93,28 +96,28 @@ public class Robot extends Personnage {
 	}
 
 	@Override
-	public void toucher() {
-		setVie(getVie() - 1);
+	public void toucher(int value) {
+		setVie(getVie() - value);
 
 	}
 
 	public void modifierVitesseX(int valeurModVitesseX) {
 		setVitesseX(valeurModVitesseX);
-		
+
 	}
 
 	public void modifierVitesseY(int valeurModVitesseY) {
 		setVitesseY(valeurModVitesseY);
-		
+
 	}
 
 	public Balle tirer() throws SlickException {
-		if(getMana() > 0) {
+		if (getMana() > 0) {
 			setMana(getMana() - 1);
-			Balle balle = new Balle(getX(), getY(),
-					getDirectionDroite(), 0.01f);
+			Balle balle = new BalleRobot(getX(), getY(), getDirectionDroite(),
+					0.01f, 1);
 			balle.applyForce(10000, 0);
-			return balle;		
+			return balle;
 		}
 		return null;
 	}

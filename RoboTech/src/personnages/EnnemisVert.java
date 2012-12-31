@@ -1,6 +1,6 @@
 package personnages;
 
-import items.Items;
+import jeu.Monde;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,8 +12,9 @@ public class EnnemisVert extends Ennemis {
 	// l'image qui contient le sprite du robot
 	private Image image;
 
-	public EnnemisVert(float x, float y, float masse, float tailleBlockPerso) {
-		super(x, y, masse, tailleBlockPerso);
+	public EnnemisVert(float x, float y, float masse, float tailleBlockPerso,
+			Monde monde) {
+		super(x, y, masse, tailleBlockPerso, monde);
 	}
 
 	@Override
@@ -23,16 +24,15 @@ public class EnnemisVert extends Ennemis {
 		image = new Image("res/ennemiVert.png");
 	}
 
-	public void render(Graphics g)
-	{
+	public void render(Graphics g) {
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
-
 		// texte de debug
 		g.drawString("sol?" + auSol() + " " + getX() + "," + getY() + " "
 				+ velx, getX(), getY() - 50);
 		g.drawString("Vie : " + getVie(), getX(), getY() - 70);
 	}
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
@@ -40,8 +40,8 @@ public class EnnemisVert extends Ennemis {
 	}
 
 	@Override
-	public void toucher() {
-		setVie(getVie() - 1);
+	public void toucher(int value) {
+		setVie(getVie() - value);
 
 	}
 
