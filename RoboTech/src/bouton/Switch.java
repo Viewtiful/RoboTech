@@ -14,14 +14,14 @@ public abstract class Switch implements Drawable {
 	Image Switch_off;
 	Image Switch_on;
 	boolean on;
-	ArrayList<Receiver> effet;
+	ArrayList<Signal> effet;
 
 	public Switch(String Switch_off, String Switch_on) {
 		this.on = false;
-		effet = new ArrayList<Receiver>();
+		effet = new ArrayList<Signal>();
 	}
 
-	public void add(Receiver r) {
+	public void add(Signal r) {
 		effet.add(r);
 	}
 
