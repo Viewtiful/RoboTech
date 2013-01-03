@@ -35,7 +35,6 @@ public abstract class Ennemis extends Personnage {
 			applyForce(-100, getVelY());
 			deplacementAuto--;
 			if (deplacementAuto == 0) {
-				System.out.println("Ennemis tire");
 				deplacementAutoDroite = true;
 				balle = new BalleEnnemiVert(getX(), getY(),
 						getDirectionDroite(), 0.01f, 2);

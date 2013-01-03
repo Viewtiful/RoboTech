@@ -64,7 +64,6 @@ public abstract class Balle implements Drawable, SlickAdapter {
 		else
 			this.x = x - 16;
 		this.y = y;
-		System.out.println("y" + this.y);
 		imageBalle = new Image("res/bullet.png");
 		this.masse = masse;
 

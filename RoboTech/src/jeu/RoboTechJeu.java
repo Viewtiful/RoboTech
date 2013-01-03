@@ -63,6 +63,7 @@ public class RoboTechJeu extends BasicGameState {
 		monde.initialisationMonde();
 		player = new Robot(280, 150, 1.f, 32, monde);
 		monde.addPersonnages(player);
+		monde.setPlayer(player);
 		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 64, monde));
 		monde.addPersonnages(new EnnemisVert(600, 50, 2f, 64, monde));
 

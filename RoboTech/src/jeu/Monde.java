@@ -15,12 +15,16 @@ import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import blocs.Plateforme;
+
 import personnages.Personnage;
+import personnages.Robot;
 import weapon.Balle;
 
 public class Monde implements SlickAdapter {
@@ -47,6 +51,11 @@ public class Monde implements SlickAdapter {
 	// liste des items ramassable
 	protected ArrayList<Items> itemsRamassable;
 
+	// Plateforme test
+	public Plateforme p;
+	
+	//Player
+	Robot player;
 	//
 	/**
 	 * Constructeur de la classe Monde
@@ -60,8 +69,23 @@ public class Monde implements SlickAdapter {
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
+		float [] Point_x = {500f,600f};
+		float [] Point_y = {500f,500f};
+		Image i = null;
+		try{
+		i = new Image("res/caisse2.png");
+		}
+		catch(SlickException e){
+			System.out.println("SlickException");
+		}
+		p = new Plateforme(Point_x,Point_y,i,i.getHeight(),i.getWidth(),500f,500f);
+		
 	}
 
+	public void setPlayer(Robot player)
+	{
+		this.player = player;
+	}
 	/**
 	 * Fonction qui permet d'initialiser le niveau
 	 * 
@@ -74,6 +98,7 @@ public class Monde implements SlickAdapter {
 		niveau = new TiledMap("res/map.tmx");
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
+		world.add(p.getBody());
 	}
 
 	/**
@@ -108,7 +133,7 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
-
+		p.render(g);
 	}
 
 	/**
@@ -281,6 +306,7 @@ public class Monde implements SlickAdapter {
 		Iterator<Items> it3 = itemsRamassable.iterator();
 		while (it3.hasNext())
 			it3.next().init(container, game);
+		
 	}
 
 	/**
@@ -389,6 +415,26 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		update_item(container, game, delta);
-
+		p.update(container, game, delta);
+		boolean sur_plateforme = false;
+		float eps = (float)1e-01;
+		if(Math.abs((player.getY()+16)-(p.get_y()-p.getHeight()/2)) < eps)
+		{
+			float x_gauche = player.getX()-16;
+			float x_droite = player.getX()+16;
+		
+			float p_gauche = p.get_x()-p.getWidth()/2;
+			float p_droite = p.get_x()+p.getWidth()/2;
+			
+			if((x_droite<=p_droite && x_droite >=p_gauche) || (x_gauche<=p_droite && x_gauche >=p_gauche))
+			{
+				sur_plateforme = true;
+			}
+		}
+		if(sur_plateforme == true && player.getEnMouvement()==false)
+		{
+			player.set_coor(player.getX()+p.get_epsilon_x(),player.getY()+p.get_epsilon_y());
+		}
 	}
+	
 }

@@ -120,6 +120,10 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		body.setPosition(getX(), y);
 	}
 
+	public void set_coor(float x,float y)
+	{
+		body.setPosition(x, y);
+	}
 	public void setPosition(float x, float y) {
 		body.setPosition(x, y);
 	}

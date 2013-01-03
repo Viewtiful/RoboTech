@@ -1,6 +1,8 @@
 package blocs;
 
 import net.phys2d.raw.Body;
+import net.phys2d.raw.StaticBody;
+import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.Image;
 
@@ -55,13 +57,19 @@ public abstract class Blocs implements Drawable {
 	{
 		return y;
 	}
-	public Blocs(Image box_image,float Width,float Height,Body Body,float x,float y)
+	
+	public Image get_image()
+	{
+		return box_image;
+	}
+	public Blocs(Image box_image,float Width,float Height,float x,float y)
 	{
 		this.box_image = box_image;
 		this.Width = Width;
 		this.Height = Height;
-		this.Body = Body;
+		this.Body = new StaticBody("StaticBody_" + x + "_" + y,new Box(Width,Height));
 		this.x = x;
 		this.y = y;
 	}
+	
 }

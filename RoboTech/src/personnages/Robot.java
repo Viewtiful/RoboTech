@@ -3,12 +3,16 @@ package personnages;
 import jeu.Monde;
 
 import listener.RobotHandlers;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import blocs.Plateforme;
 
 import weapon.Balle;
 import weapon.BalleRobot;
@@ -92,8 +96,10 @@ public class Robot extends Personnage {
 		Input input = container.getInput();
 		super.update(container, game, delta);
 		handlers.handle(input, this);
-
+	
 	}
+
+
 
 	@Override
 	public void toucher(int value) {

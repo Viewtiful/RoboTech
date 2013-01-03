@@ -1,7 +1,6 @@
 package blocs;
 
 import interfaces.SlickAdapter;
-import net.phys2d.raw.Body;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,12 +20,11 @@ public abstract class BlocsDynamiques extends Blocs implements Signal,
 	// sera actionné.
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-
+		get_image().drawCentered(get_x(), get_y());
 	}
 
-	public BlocsDynamiques(Image box_image, float Width, float Height, Body Body,float x,float y) {
-		super(box_image, Width, Height, Body,x,y);
+	public BlocsDynamiques(Image box_image, float Width, float Height,float x,float y) {
+		super(box_image, Width, Height, x, y);
 		signal = false;
 	}
 
