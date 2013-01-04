@@ -63,7 +63,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		this.vitesseX = 1;
 		this.vitesseY = 1;
 		this.maxVelX = 20;
-		this.maxVelY = 50;
+		this.maxVelY = 70;
 
 		// cree le corps du personnage pour le monde physique
 		this.body = new Body(new Box(tailleBlockPerso, tailleBlockPerso), masse);

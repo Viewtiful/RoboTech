@@ -6,6 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class RoboTech extends StateBasedGame {
+	public static final int MENUETAT = 0;
+	public static final int OPTIONETAT = 1;
+	public static final int JEUETAT = 2;
 
 	// Cree le jeu
 	public RoboTech() {
@@ -18,8 +21,12 @@ public class RoboTech extends StateBasedGame {
 		container.setTargetFrameRate(60);
 		container.setVSync(true);
 
+		//lance le menu
+		addState(new Menu(MENUETAT));
+		//lance les options
+		addState(new Options(OPTIONETAT));		
 		// lance le niveau du jeu
-		addState(new RoboTechJeu());
+		addState(new RoboTechJeu(JEUETAT));
 	}
 
 	/**

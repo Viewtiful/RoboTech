@@ -39,9 +39,14 @@ public class Robot extends Personnage {
 	public Robot(float x, float y, float mass, float size, Monde monde)
 			throws SlickException {
 		super(x, y, mass, size, monde);
-		image = new Image("res/robotx.png");
+		
+		image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
 
+	}
+	
+	public void setImage(String robot) throws SlickException {
+		image = new Image("res/"+ robot + ".png");
 	}
 
 	public void set_monde(Monde monde) {

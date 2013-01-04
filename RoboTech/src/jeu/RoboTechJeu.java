@@ -23,8 +23,8 @@ import personnages.Robot;
 
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
-	private static final int ID = 1;
-
+	private int ID = -1;
+	
 	private Items caisse;
 	private Items baril;
 	private Items poutre;
@@ -39,10 +39,14 @@ public class RoboTechJeu extends BasicGameState {
 	// le niveau
 	private Monde monde;
 
-	private Robot player;
+	private static Robot player;
 
 	public int getID() {
 		return ID;
+	}
+	
+	public RoboTechJeu(int ID) {
+		this.ID = ID;
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
@@ -51,6 +55,10 @@ public class RoboTechJeu extends BasicGameState {
 		// redemarrer le niveau
 		restart();
 		monde.init(container, game);
+	}
+	
+	public static void setImageRobot(String robot) throws SlickException {
+		player.setImage(robot);
 	}
 
 	/**
