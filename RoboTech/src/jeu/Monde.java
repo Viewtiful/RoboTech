@@ -69,8 +69,8 @@ public class Monde implements SlickAdapter {
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
-		float [] Point_x = {500f,600f};
-		float [] Point_y = {500f,500f};
+		float [] Point_x = {500f,800f,800f};
+		float [] Point_y = {500f,500f,400f};
 		Image i = null;
 		try{
 		i = new Image("res/caisse2.png");
@@ -418,10 +418,10 @@ public class Monde implements SlickAdapter {
 		p.update(container, game, delta);
 		boolean sur_plateforme = false;
 		float eps = (float)1e-01;
-		if(Math.abs((player.getY()+16)-(p.get_y()-p.getHeight()/2)) < eps)
+		if(Math.abs((player.getY()+player.getImage().getHeight()/2)-(p.get_y()-p.getHeight()/2)) < eps)
 		{
-			float x_gauche = player.getX()-16;
-			float x_droite = player.getX()+16;
+			float x_gauche = player.getX()-player.getImage().getWidth()/2;
+			float x_droite = player.getX()+player.getImage().getWidth()/2;
 		
 			float p_gauche = p.get_x()-p.getWidth()/2;
 			float p_droite = p.get_x()+p.getWidth()/2;

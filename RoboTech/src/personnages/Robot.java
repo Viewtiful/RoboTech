@@ -49,6 +49,10 @@ public class Robot extends Personnage {
 		image = new Image("res/"+ robot + ".png");
 	}
 
+	public Image getImage()
+	{
+		return image;
+	}
 	public void set_monde(Monde monde) {
 		this.monde = monde;
 	}
