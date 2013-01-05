@@ -53,9 +53,10 @@ public class Monde implements SlickAdapter {
 
 	// Plateforme test
 	public Plateforme p;
-	
-	//Player
+
+	// Player
 	Robot player;
+
 	//
 	/**
 	 * Constructeur de la classe Monde
@@ -69,23 +70,23 @@ public class Monde implements SlickAdapter {
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
-		float [] Point_x = {500f,800f,800f};
-		float [] Point_y = {500f,500f,400f};
+		float[] Point_x = { 500f, 800f, 800f };
+		float[] Point_y = { 500f, 500f, 400f };
 		Image i = null;
-		try{
-		i = new Image("res/caisse2.png");
-		}
-		catch(SlickException e){
+		try {
+			i = new Image("res/caisse2.png");
+		} catch (SlickException e) {
 			System.out.println("SlickException");
 		}
-		p = new Plateforme(Point_x,Point_y,i,i.getHeight(),i.getWidth(),500f,500f);
-		
+		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth(),
+				500f, 500f);
+
 	}
 
-	public void setPlayer(Robot player)
-	{
+	public void setPlayer(Robot player) {
 		this.player = player;
 	}
+
 	/**
 	 * Fonction qui permet d'initialiser le niveau
 	 * 
@@ -306,7 +307,7 @@ public class Monde implements SlickAdapter {
 		Iterator<Items> it3 = itemsRamassable.iterator();
 		while (it3.hasNext())
 			it3.next().init(container, game);
-		
+
 	}
 
 	/**
@@ -417,24 +418,24 @@ public class Monde implements SlickAdapter {
 		update_item(container, game, delta);
 		p.update(container, game, delta);
 		boolean sur_plateforme = false;
-		float eps = (float)1e-01;
-		if(Math.abs((player.getY()+player.getImage().getHeight()/2)-(p.get_y()-p.getHeight()/2)) < eps)
-		{
-			float x_gauche = player.getX()-player.getImage().getWidth()/2;
-			float x_droite = player.getX()+player.getImage().getWidth()/2;
-		
-			float p_gauche = p.get_x()-p.getWidth()/2;
-			float p_droite = p.get_x()+p.getWidth()/2;
-			
-			if((x_droite<=p_droite && x_droite >=p_gauche) || (x_gauche<=p_droite && x_gauche >=p_gauche))
-			{
+		float eps = (float) 1e-01;
+		if (Math.abs((player.getY() + player.getImage().getHeight() / 2)
+				- (p.get_y() - p.getHeight() / 2)) < eps) {
+			float x_gauche = player.getX() - player.getImage().getWidth() / 2;
+			float x_droite = player.getX() + player.getImage().getWidth() / 2;
+
+			float p_gauche = p.get_x() - p.getWidth() / 2;
+			float p_droite = p.get_x() + p.getWidth() / 2;
+
+			if ((x_droite <= p_droite && x_droite >= p_gauche)
+					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
 				sur_plateforme = true;
 			}
 		}
-		if(sur_plateforme == true && player.getEnMouvement()==false)
-		{
-			player.set_coor(player.getX()+p.get_epsilon_x(),player.getY()+p.get_epsilon_y());
+		if (sur_plateforme == true && player.getEnMouvement() == false) {
+			player.set_coor(player.getX() + p.get_epsilon_x(), player.getY()
+					+ p.get_epsilon_y());
 		}
 	}
-	
+
 }

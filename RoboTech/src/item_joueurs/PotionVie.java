@@ -11,13 +11,22 @@ public class PotionVie extends Potion {
 
 	/**
 	 * Constructeur de la classe potionVie
-	 * @param x : position en x de la potion
-	 * @param y : position en y de la potion
-	 * @param width : largeur de la potion
-	 * @param height : hauteur de la potion
-	 * @param mass : masse de la potion
-	 * @param player : passe en parametre le joueur pour savoir quand il a ramasser la potion ....
-	 * @param valeurRegen : la valeur que regénère la potion
+	 * 
+	 * @param x
+	 *            : position en x de la potion
+	 * @param y
+	 *            : position en y de la potion
+	 * @param width
+	 *            : largeur de la potion
+	 * @param height
+	 *            : hauteur de la potion
+	 * @param mass
+	 *            : masse de la potion
+	 * @param player
+	 *            : passe en parametre le joueur pour savoir quand il a ramasser
+	 *            la potion ....
+	 * @param valeurRegen
+	 *            : la valeur que regénère la potion
 	 */
 	public PotionVie(float x, float y, float width, float height, float mass,
 			Robot player, int valeurRegen) {
@@ -26,12 +35,20 @@ public class PotionVie extends Potion {
 
 	/**
 	 * Constructeur de la classe PotionVie avec valeur de regen à 1 par défaut
-	 * @param x : position en x de la potion
-	 * @param y : position en y de la potion
-	 * @param width : largeur de la potion
-	 * @param height : hauteur de la potion
-	 * @param mass : masse de la potion
-	 * @param player : passe en parametre le joueur pour savoir quand il a ramasser la potion ....
+	 * 
+	 * @param x
+	 *            : position en x de la potion
+	 * @param y
+	 *            : position en y de la potion
+	 * @param width
+	 *            : largeur de la potion
+	 * @param height
+	 *            : hauteur de la potion
+	 * @param mass
+	 *            : masse de la potion
+	 * @param player
+	 *            : passe en parametre le joueur pour savoir quand il a ramasser
+	 *            la potion ....
 	 */
 	public PotionVie(float x, float y, float width, float height, float mass,
 			Robot player) {
@@ -48,9 +65,9 @@ public class PotionVie extends Potion {
 
 	}
 
-	
 	/**
-	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de régéneration de la potion vie
+	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de
+	 * régéneration de la potion vie
 	 */
 	@Override
 	public void effect(Robot player) {

@@ -21,10 +21,10 @@ public class RoboTech extends StateBasedGame {
 		container.setTargetFrameRate(60);
 		container.setVSync(true);
 
-		//lance le menu
+		// lance le menu
 		addState(new Menu(MENUETAT));
-		//lance les options
-		addState(new Options(OPTIONETAT));		
+		// lance les options
+		addState(new Options(OPTIONETAT));
 		// lance le niveau du jeu
 		addState(new RoboTechJeu(JEUETAT));
 	}

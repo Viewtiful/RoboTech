@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Menu extends BasicGameState{
+public class Menu extends BasicGameState {
 	private int ID = -1;
 	private Image itemMenu[];
 	private Image imageFond;
@@ -23,35 +23,36 @@ public class Menu extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		imageFond = new Image("res/backgroundMenu.png");	
-		
+		imageFond = new Image("res/backgroundMenu.png");
+
 		itemMenu = new Image[3];
-		itemMenu[0] = new Image("res/jeuMenu.png");	
-		itemMenu[1] = new Image("res/optionMenu.png");	
-		itemMenu[2] = new Image("res/quitterMenu.png");	
-		
+		itemMenu[0] = new Image("res/jeuMenu.png");
+		itemMenu[1] = new Image("res/optionMenu.png");
+		itemMenu[2] = new Image("res/quitterMenu.png");
+
 		interieurBouton = new boolean[itemMenu.length];
-		//premier dimension nombre item du menu, deuxieme dimension position x et y de cet item du menu
+		// premier dimension nombre item du menu, deuxieme dimension position x
+		// et y de cet item du menu
 		positionItemMenu = new int[itemMenu.length][2];
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		//image de fond du menu
-		imageFond.draw(0,0);
-		
-		//item pour demarrer le jeu
+		// image de fond du menu
+		imageFond.draw(0, 0);
+
+		// item pour demarrer le jeu
 		positionItemMenu[0][0] = 50;
 		positionItemMenu[0][1] = 220;
 		itemMenu[0].draw(positionItemMenu[0][0], positionItemMenu[0][1]);
-		
-		//item pour acceder au option
+
+		// item pour acceder au option
 		positionItemMenu[1][0] = 70;
 		positionItemMenu[1][1] = 290;
 		itemMenu[1].draw(positionItemMenu[1][0], positionItemMenu[1][1]);
-		
-		//item pour quitter le jeu
+
+		// item pour quitter le jeu
 		positionItemMenu[2][0] = 75;
 		positionItemMenu[2][1] = 360;
 		itemMenu[2].draw(positionItemMenu[2][0], positionItemMenu[2][1]);
@@ -64,14 +65,15 @@ public class Menu extends BasicGameState{
 
 		sourisX = input.getMouseX();
 		sourisY = input.getMouseY();
-		
 
-		//parcours les items du menu, pour voir si on est dessus
+		// parcours les items du menu, pour voir si on est dessus
 		for (int i = 0; i < itemMenu.length; i++) {
 			interieurBouton[i] = false;
 
-			if ((sourisX >= positionItemMenu[i][0] && sourisX <= positionItemMenu[i][0] + itemMenu[i].getWidth())
-					&& (sourisY >= positionItemMenu[i][0] && sourisY <= positionItemMenu[i][1] + itemMenu[i].getHeight())) {
+			if ((sourisX >= positionItemMenu[i][0] && sourisX <= positionItemMenu[i][0]
+					+ itemMenu[i].getWidth())
+					&& (sourisY >= positionItemMenu[i][0] && sourisY <= positionItemMenu[i][1]
+							+ itemMenu[i].getHeight())) {
 				interieurBouton[i] = true;
 			}
 		}
@@ -90,15 +92,15 @@ public class Menu extends BasicGameState{
 		if (interieurBouton[2] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			gc.exit();
 		}
-		
+
 	}
-	
-	//lance le jeu
+
+	// lance le jeu
 	public void lancerJeu(StateBasedGame sbg) {
 		sbg.enterState(RoboTech.JEUETAT);
 	}
-	
-	//lance le menu des options
+
+	// lance le menu des options
 	public void lancerOption(StateBasedGame sbg) {
 		sbg.enterState(RoboTech.OPTIONETAT);
 	}

@@ -59,8 +59,7 @@ public class Baril extends Items {
 
 	}
 
-	public void render(Graphics g)
-	{
+	public void render(Graphics g) {
 		g.translate(getX(), getY());
 		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
 		image.draw(-width / 2, -height / 2, width, height);
@@ -68,11 +67,12 @@ public class Baril extends Items {
 		g.translate(-getX(), -getY());
 
 	}
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		render(g);
-			}
+	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)

@@ -4,7 +4,6 @@ import jeu.Monde;
 
 import listener.RobotHandlers;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,7 +11,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import blocs.Plateforme;
 
 import weapon.Balle;
 import weapon.BalleRobot;
@@ -39,20 +37,20 @@ public class Robot extends Personnage {
 	public Robot(float x, float y, float mass, float size, Monde monde)
 			throws SlickException {
 		super(x, y, mass, size, monde);
-		
+
 		image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
 
 	}
-	
+
 	public void setImage(String robot) throws SlickException {
-		image = new Image("res/"+ robot + ".png");
+		image = new Image("res/" + robot + ".png");
 	}
 
-	public Image getImage()
-	{
+	public Image getImage() {
 		return image;
 	}
+
 	public void set_monde(Monde monde) {
 		this.monde = monde;
 	}
@@ -105,10 +103,8 @@ public class Robot extends Personnage {
 		Input input = container.getInput();
 		super.update(container, game, delta);
 		handlers.handle(input, this);
-	
+
 	}
-
-
 
 	@Override
 	public void toucher(int value) {

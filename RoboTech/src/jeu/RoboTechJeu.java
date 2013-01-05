@@ -24,7 +24,7 @@ import personnages.Robot;
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private int ID = -1;
-	
+
 	private Items caisse;
 	private Items baril;
 	private Items poutre;
@@ -44,7 +44,7 @@ public class RoboTechJeu extends BasicGameState {
 	public int getID() {
 		return ID;
 	}
-	
+
 	public RoboTechJeu(int ID) {
 		this.ID = ID;
 	}
@@ -56,7 +56,7 @@ public class RoboTechJeu extends BasicGameState {
 		restart();
 		monde.init(container, game);
 	}
-	
+
 	public static void setImageRobot(String robot) throws SlickException {
 		player.setImage(robot);
 	}

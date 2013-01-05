@@ -1,6 +1,5 @@
 package item_joueurs;
 
-
 import net.phys2d.raw.Body;
 import net.phys2d.raw.shapes.Box;
 
@@ -12,14 +11,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
-public abstract class Potion extends ItemsRamassable{
+public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */
 	protected Image image;
 	/** La largeur de la potion */
 	private float width;
 	/** La hauteur de la potion */
 	private float height;
-	
+
 	/** La masse de la potion */
 	private float masse;
 
@@ -28,13 +27,22 @@ public abstract class Potion extends ItemsRamassable{
 
 	/**
 	 * Constructeur de la classe Potion
-	 * @param x : position en x de la potion
-	 * @param y : position en y de la potion
-	 * @param width : largeur de la potion
-	 * @param height : hauteur de la potion
-	 * @param mass : masse de la potion
-	 * @param player : passe en parametre le joueur pour savoir quand il a ramasser la potion ....
-	 * @param valeur : la valeur que modifie la potion
+	 * 
+	 * @param x
+	 *            : position en x de la potion
+	 * @param y
+	 *            : position en y de la potion
+	 * @param width
+	 *            : largeur de la potion
+	 * @param height
+	 *            : hauteur de la potion
+	 * @param mass
+	 *            : masse de la potion
+	 * @param player
+	 *            : passe en parametre le joueur pour savoir quand il a ramasser
+	 *            la potion ....
+	 * @param valeur
+	 *            : la valeur que modifie la potion
 	 */
 	public Potion(float x, float y, float width, float height, float mass,
 			Robot player, int valeur) {
@@ -42,7 +50,7 @@ public abstract class Potion extends ItemsRamassable{
 		this.height = height;
 		this.masse = mass;
 
-		//Le corps physique de la potion
+		// Le corps physique de la potion
 		body = new Body(new Box(width, height), mass);
 		body.setPosition(x, y);
 		body.setFriction(0.1f);
@@ -86,11 +94,12 @@ public abstract class Potion extends ItemsRamassable{
 	}
 
 	/**
-	 * Intervale régulière, on vérifie que la potion n'a pas été ramassé, si c'est le cas, on la donne au joueur et on l'a fait disparaître du monde
+	 * Intervale régulière, on vérifie que la potion n'a pas été ramassé,
+	 * si c'est le cas, on la donne au joueur et on l'a fait disparaître du
+	 * monde
 	 */
 
-	public void PickUpItem()
-	{
+	public void PickUpItem() {
 		int tileX = (int) (getX() / 32);
 		int tileY = (int) (getY() / 32);
 		float pickupWidth = getWidth() / 32;
@@ -105,24 +114,26 @@ public abstract class Potion extends ItemsRamassable{
 			world.remove(getBody());
 		}
 	}
+
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		PickUpItem();
 
-		}
-	
-	public void render(Graphics g){
+	}
+
+	public void render(Graphics g) {
 		image.draw(getX() - 5, getY() - 7);
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
-		throws SlickException{
+			throws SlickException {
 		render(g);
 	}
 
 	/**
 	 * Effet de la potion sur le robot
+	 * 
 	 * @param player
 	 */
 	public abstract void effect(Robot player);
