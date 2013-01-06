@@ -6,8 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * <i>Cette classe permet d'adapter le code du moteur du jeu, avec un
- *         moteur graphique</i>
+ * <i>Cette classe permet d'adapter le code du moteur du jeu, avec un moteur
+ * graphique</i>
  */
 public interface SlickAdapter {
 
@@ -15,11 +15,11 @@ public interface SlickAdapter {
 	 * Permet d'initialiser un composant graphique
 	 * 
 	 * @param container
-	 *           Conteneur du jeu
+	 *            Conteneur du jeu
 	 * @see org.newdawn.Slick.GameContainer
 	 * @param game
-	 *           état du jeu
-	 *@see org.newdawn.Slick.StateBasedGame
+	 *            état du jeu
+	 * @see org.newdawn.Slick.StateBasedGame
 	 * 
 	 * @param g
 	 *            Objet Graphique
@@ -39,10 +39,10 @@ public interface SlickAdapter {
 	 *            Conteneur du jeu
 	 * @see org.newdawn.Slick.GameContainer
 	 * @param game
-	 *             état du jeu
+	 *            état du jeu
 	 * @see org.newdawn.Slick.StateBasedGame
 	 * @param g
-	 *             Objet Graphique
+	 *            Objet Graphique
 	 * @see org.newdawn.Slick.Graphics
 	 */
 	public abstract void render(GameContainer container, StateBasedGame game,
@@ -51,13 +51,16 @@ public interface SlickAdapter {
 	/**
 	 * Permet de mettre à jour un composant graphique
 	 * 
-	 * @param container Conteneur du jeu
+	 * @param container
+	 *            Conteneur du jeu
 	 * @see org.newdawn.Slick.GameContainer
-	 * @param game état du jeu
+	 * @param game
+	 *            état du jeu
 	 * @see org.newdawn.Slick.StateBasedGame
-	 * @param delta Entier
+	 * @param delta
+	 *            Entier
 	 * 
-	 * @throws SlickException 
+	 * @throws SlickException
 	 * @see org.newdawn.Slick.SlickException
 	 */
 	public abstract void update(GameContainer container, StateBasedGame game,

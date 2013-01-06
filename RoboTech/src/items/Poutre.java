@@ -8,10 +8,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
 /**
  * 
- * @author Antoine
- *	Représente une poutre
+ * @author Antoine Représente une poutre
  */
 public class Poutre extends Items {
 	/** The image to display for the crate */
@@ -20,13 +20,19 @@ public class Poutre extends Items {
 	private float width;
 	/** The height of the crate */
 	private float height;
+
 	/**
 	 * 
-	 * @param x Position horizontale de la caisse
-	 * @param y Position verictale de la caisse
-	 * @param width Largeur de la caisse
-	 * @param height Hauteur de la caisse
-	 * @param mass Masse de la caisse
+	 * @param x
+	 *            Position horizontale de la caisse
+	 * @param y
+	 *            Position verictale de la caisse
+	 * @param width
+	 *            Largeur de la caisse
+	 * @param height
+	 *            Hauteur de la caisse
+	 * @param mass
+	 *            Masse de la caisse
 	 * @throws SlickException
 	 * @see org.newdawn.slick.SlickException
 	 */

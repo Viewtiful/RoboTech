@@ -11,7 +11,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 import weapon.Balle;
 import weapon.BalleRobot;
 
@@ -64,7 +63,7 @@ public class Robot extends Personnage {
 		setMana(getMana() + value);
 
 	}
-	
+
 	public void ajouterVie(int value) {
 		setVie(getVie() + value);
 	}

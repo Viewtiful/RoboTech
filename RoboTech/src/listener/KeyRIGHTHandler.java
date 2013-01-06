@@ -6,8 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine
- * Permet de gérer la touche Flèche Droite
+ * @author Antoine Permet de gérer la touche Flèche Droite
  */
 public class KeyRIGHTHandler extends KeyHandler {
 
@@ -33,5 +32,4 @@ public class KeyRIGHTHandler extends KeyHandler {
 		}
 	}
 
-	
 }

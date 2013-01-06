@@ -6,8 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine
- * Permet de gérer la touche Flèche Haut
+ * @author Antoine Permet de gérer la touche Flèche Haut
  */
 public class KeyUPHandler extends KeyHandler {
 	public KeyUPHandler() {
@@ -40,5 +39,4 @@ public class KeyUPHandler extends KeyHandler {
 		}
 	}
 
-	
 }

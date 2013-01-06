@@ -16,7 +16,6 @@ import interfaces.Drawable;
  **/
 public abstract class Blocs implements Drawable {
 
-
 	/**
 	 * Image du Blocs
 	 */
@@ -85,15 +84,15 @@ public abstract class Blocs implements Drawable {
 
 	/**
 	 * @param box_image
-	 * Image du rendu du blocs
+	 *            Image du rendu du blocs
 	 * @param Width
-	 * Largeur du Bloc
+	 *            Largeur du Bloc
 	 * @param Height
-	 * Hauteur du Bloc
+	 *            Hauteur du Bloc
 	 * @param x
-	 * Abscisse du Bloc
+	 *            Abscisse du Bloc
 	 * @param y
-	 *Ordonnée du Bloc
+	 *            Ordonnée du Bloc
 	 */
 	public Blocs(Image box_image, float Width, float Height, float x, float y) {
 		this.box_image = box_image;

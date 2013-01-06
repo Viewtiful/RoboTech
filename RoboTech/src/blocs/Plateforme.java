@@ -9,8 +9,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * <i>Represente une plateforme mouvante
+ * 
  * @author Antoine
- *
+ * 
  */
 public class Plateforme extends BlocsDynamiques {
 
@@ -34,13 +35,13 @@ public class Plateforme extends BlocsDynamiques {
 	 * Le pas de translation horizontal élémentaire pour animer la plateforme
 	 */
 	float epsilon_x;
-	
+
 	/**
 	 * Le pas de translation vertical élémentaire pour animer la plateforme
 	 */
 	float epsilon_y;
 	/**
-	 * La plateforme peut faire un déplacement aller-retour ou boucle 
+	 * La plateforme peut faire un déplacement aller-retour ou boucle
 	 */
 	boolean on_reverse = false;
 	/**
@@ -50,13 +51,18 @@ public class Plateforme extends BlocsDynamiques {
 
 	/**
 	 * 
-	 * @param Point_x Abscisses des points à suivre
-	 * @param Point_y Ordonnée des points à suivre
-	 * @param box_image Image du rendu de la plateforme
-	 * @param width Largeur de la plateforme
-	 * @param height hauteur de la plateforme
+	 * @param Point_x
+	 *            Abscisses des points à suivre
+	 * @param Point_y
+	 *            Ordonnée des points à suivre
+	 * @param box_image
+	 *            Image du rendu de la plateforme
+	 * @param width
+	 *            Largeur de la plateforme
+	 * @param height
+	 *            hauteur de la plateforme
 	 */
-	
+
 	public Plateforme(float Point_x[], float Point_y[], Image box_image,
 			float width, float height) {
 		super(box_image, height, width, Point_x[0], Point_y[0]);
@@ -67,7 +73,6 @@ public class Plateforme extends BlocsDynamiques {
 		initialise(0, 1);
 	}
 
-	
 	public float get_epsilon_x() {
 		return epsilon_x;
 	}
@@ -78,8 +83,11 @@ public class Plateforme extends BlocsDynamiques {
 
 	/**
 	 * Calcule le pas élémentaire de translation horizontal et vertical
-	 * @param point_current point origine
-	 * @param next_point point destination
+	 * 
+	 * @param point_current
+	 *            point origine
+	 * @param next_point
+	 *            point destination
 	 */
 	public void initialise(int point_current, int next_point) {
 		assert (point_current > -1 && point_current < taille);
@@ -89,10 +97,14 @@ public class Plateforme extends BlocsDynamiques {
 		epsilon_y = (Point_y[next_point] - Point_y[point_current]) / 100;
 
 	}
+
 	/**
 	 * Permet de calculer la distance entre deux valeur
-	 * @param x1 Valeur x1
-	 * @param x2 valeur x2
+	 * 
+	 * @param x1
+	 *            Valeur x1
+	 * @param x2
+	 *            valeur x2
 	 * @return Valeur absolue de la différence
 	 */
 	public float distance(float x1, float x2) {
@@ -120,6 +132,7 @@ public class Plateforme extends BlocsDynamiques {
 			getBody().setPosition(get_x(), get_y());
 		}
 	}
+
 	/**
 	 * Réalise le chemin retour de la plateforme
 	 */
@@ -137,6 +150,7 @@ public class Plateforme extends BlocsDynamiques {
 		getBody().setPosition(get_x(), get_y());
 
 	}
+
 	/**
 	 * Réalise le déplacement complet de la plateforme
 	 */
@@ -175,13 +189,14 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-			deplacement();
+		deplacement();
 	}
+
 	/**
-	 * {@inheritDoc}
-	 * <br/>
+	 * {@inheritDoc} <br/>
 	 * <b>Comportement :</b><br />
-	 * Ici on ne rajoute que le dessin de la  trajectoire que la plateforme va suivre.
+	 * Ici on ne rajoute que le dessin de la trajectoire que la plateforme va
+	 * suivre.
 	 */
 	public void render_spec(Graphics g) {
 		g.setColor(Color.gray);

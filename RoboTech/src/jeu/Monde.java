@@ -26,6 +26,7 @@ import blocs.Plateforme;
 import personnages.Personnage;
 import personnages.Robot;
 import weapon.Balle;
+
 /*
  * Représente le niveau où le Robot évolue
  */
@@ -42,10 +43,10 @@ public class Monde implements SlickAdapter {
 
 	// Les Balles présentes dans le niveau
 	protected ArrayList<Balle> balles;
-	
+
 	/*
-	 * Les personnages évoluant dans le niveau
-	 * La structure nous permet un gain de performance dans la recherche de donnée
+	 * Les personnages évoluant dans le niveau La structure nous permet un gain
+	 * de performance dans la recherche de donnée
 	 */
 	protected HashMap<Body, Personnage> personnages;
 
@@ -57,7 +58,7 @@ public class Monde implements SlickAdapter {
 
 	// Plateforme test
 	public Plateforme p;
-	
+
 	// Le robot contrôlé par le Joueur
 	Robot player;
 
@@ -74,8 +75,8 @@ public class Monde implements SlickAdapter {
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
-		float[] Point_x = { 500f, 800f, 800f,500f,500f};
-		float[] Point_y = { 500f, 500f, 550f,550f,500f};
+		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
+		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
 		Image i = null;
 		try {
 			i = new Image("res/caisse2.png");
@@ -83,7 +84,7 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-		
+
 	}
 
 	public void setPlayer(Robot player) {
@@ -105,7 +106,6 @@ public class Monde implements SlickAdapter {
 		world.add(p.getBody());
 	}
 
-	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// affiche la map
@@ -135,6 +135,7 @@ public class Monde implements SlickAdapter {
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
 	}
+
 	/**
 	 * Retourne le monde physique du niveau
 	 * 
@@ -375,8 +376,8 @@ public class Monde implements SlickAdapter {
 
 	}
 
-	public void update_plateforme(GameContainer container, StateBasedGame game, int delta)
-	{
+	public void update_plateforme(GameContainer container, StateBasedGame game,
+			int delta) {
 		boolean sur_plateforme = false;
 		float eps = (float) 1e-01;
 		if (Math.abs((player.getY() + player.getImage().getHeight() / 2)
@@ -396,8 +397,9 @@ public class Monde implements SlickAdapter {
 			player.set_coor(player.getX() + p.get_epsilon_x(), player.getY()
 					+ p.get_epsilon_y());
 		}
-	
+
 	}
+
 	/**
 	 * Met Ã  jour le niveau Ã  chaque tour
 	 */
@@ -438,7 +440,7 @@ public class Monde implements SlickAdapter {
 		}
 		update_item(container, game, delta);
 		p.update(container, game, delta);
-		update_plateforme(container,game,delta);
+		update_plateforme(container, game, delta);
 	}
 
 }

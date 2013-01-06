@@ -21,17 +21,18 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 		render_spec(g);
 		get_image().drawCentered(get_x(), get_y());
 	}
+
 	/**
 	 * @param box_image
-	 * Image du rendu du blocs
+	 *            Image du rendu du blocs
 	 * @param Width
-	 * Largeur du Bloc
+	 *            Largeur du Bloc
 	 * @param Height
-	 * Hauteur du Bloc
+	 *            Hauteur du Bloc
 	 * @param x
-	 * Abscisse du Bloc
+	 *            Abscisse du Bloc
 	 * @param y
-	 *Ordonnée du Bloc
+	 *            Ordonnée du Bloc
 	 */
 	public BlocsDynamiques(Image box_image, float Width, float Height, float x,
 			float y) {
@@ -47,10 +48,13 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 		render(g);
 
 	}
+
 	/**
-	 * Permet la possibilité au classe fille
-	 * d'intégrer d'autre élement à dessiner
-	 * @param g Objet Graphique
+	 * Permet la possibilité au classe fille d'intégrer d'autre élement à
+	 * dessiner
+	 * 
+	 * @param g
+	 *            Objet Graphique
 	 * @see org.newdawn.slick.Graphics
 	 */
 	public abstract void render_spec(Graphics g);

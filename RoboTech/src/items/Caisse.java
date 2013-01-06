@@ -8,10 +8,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
 /**
  * 
- * @author Antoine
- * Une caisse 
+ * @author Antoine Une caisse
  */
 public class Caisse extends Items {
 	/** The image to display for the crate */
@@ -20,13 +20,19 @@ public class Caisse extends Items {
 	private float width;
 	/** The height of the crate */
 	private float height;
+
 	/**
 	 * 
-	 * @param x Position horizontale de la caisse
-	 * @param y Position verictale de la caisse
-	 * @param width Largeur de la caisse
-	 * @param height Hauteur de la caisse
-	 * @param mass Masse de la caisse
+	 * @param x
+	 *            Position horizontale de la caisse
+	 * @param y
+	 *            Position verictale de la caisse
+	 * @param width
+	 *            Largeur de la caisse
+	 * @param height
+	 *            Hauteur de la caisse
+	 * @param mass
+	 *            Masse de la caisse
 	 */
 	public Caisse(float x, float y, float width, float height, float mass) {
 		this.width = width;
@@ -62,15 +68,16 @@ public class Caisse extends Items {
 	@Override
 	/**
 	{@inheritDoc}
-	*/
+	 */
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		image = new Image("res/caisse.jpg");
 
 	}
+
 	/**
-	{@inheritDoc}
-	*/
+	 * {@inheritDoc}
+	 */
 	public void render(Graphics g) {
 		g.translate(getX(), getY());
 		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
@@ -83,7 +90,7 @@ public class Caisse extends Items {
 	@Override
 	/**
 	{@inheritDoc}
-	*/
+	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		render(g);
@@ -92,7 +99,7 @@ public class Caisse extends Items {
 	@Override
 	/**
 	{@inheritDoc}
-	*/
+	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 

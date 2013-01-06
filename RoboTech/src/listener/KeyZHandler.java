@@ -6,8 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine
- * Permet de gérer la touche Z
+ * @author Antoine Permet de gérer la touche Z
  */
 public class KeyZHandler extends KeyHandler {
 
@@ -19,8 +18,7 @@ public class KeyZHandler extends KeyHandler {
 	 * {@inheritDoc}
 	 */
 	public void handle(Input input, Robot robot) {
-	
-	}
 
+	}
 
 }

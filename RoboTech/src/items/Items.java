@@ -5,10 +5,10 @@ import interfaces.SlickAdapter;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.World;
+
 /**
  * 
- * @author Antoine
- * Représente les Items(Objet) disponible dans le jeu
+ * @author Antoine Représente les Items(Objet) disponible dans le jeu
  */
 public abstract class Items implements SlickAdapter, Drawable {
 
@@ -19,19 +19,24 @@ public abstract class Items implements SlickAdapter, Drawable {
 
 	/**
 	 * Corps Physique de l'objet
+	 * 
 	 * @see net.phys2d.raw.Body
 	 */
 	protected Body body;
 	/**
 	 * Monde physique où est rattaché l'item
+	 * 
 	 * @see net.phys2d.raw.World
 	 */
 	protected World world;
 
 	/**
 	 * Permet d'affecter une vitesse à un corps Physique
-	 * @param x coordonnée horizontale de la vitesse
-	 * @param y coordonnée verticale tale de la vitesse
+	 * 
+	 * @param x
+	 *            coordonnée horizontale de la vitesse
+	 * @param y
+	 *            coordonnée verticale tale de la vitesse
 	 * @see net.phys2d.raw.Body
 	 */
 	public void setVelocity(float x, float y) {

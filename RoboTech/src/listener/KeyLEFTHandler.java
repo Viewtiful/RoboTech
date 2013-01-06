@@ -3,16 +3,17 @@ package listener;
 import org.newdawn.slick.Input;
 
 import personnages.Robot;
+
 /**
  * 
- * @author Antoine
- * Permet de gérer la touche Flèche Gauche
+ * @author Antoine Permet de gérer la touche Flèche Gauche
  */
 public class KeyLEFTHandler extends KeyHandler {
 
 	public KeyLEFTHandler() {
 		super(Input.KEY_LEFT);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

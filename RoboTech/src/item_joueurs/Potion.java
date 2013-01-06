@@ -121,6 +121,7 @@ public abstract class Potion extends ItemsRamassable {
 		PickUpItem();
 
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -128,6 +129,7 @@ public abstract class Potion extends ItemsRamassable {
 	public void render(Graphics g) {
 		image.draw(getX() - 5, getY() - 7);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
