@@ -26,35 +26,39 @@ import blocs.Plateforme;
 import personnages.Personnage;
 import personnages.Robot;
 import weapon.Balle;
-
+/*
+ * Représente le niveau où le Robot évolue
+ */
 public class Monde implements SlickAdapter {
 
-	// represente le monde physique
+	// Représente le monde physique
 	private World world;
 
-	// represente le niveau
+	// Représente le niveau
 	private TiledMap niveau;
 
-	// liste des obstables
+	// Les Obstacles
 	private ArrayList<Rectangle> obstacles;
 
-	// liste des balles tirees par le personnage
+	// Les Balles présentes dans le niveau
 	protected ArrayList<Balle> balles;
-	int cpt = 0;
-	// liste des personnages
-	// protected ArrayList<Personnage> personnages;
+	
+	/*
+	 * Les personnages évoluant dans le niveau
+	 * La structure nous permet un gain de performance dans la recherche de donnée
+	 */
 	protected HashMap<Body, Personnage> personnages;
 
-	// liste des items
+	// Les Items
 	protected ArrayList<Items> items;
 
-	// liste des items ramassable
+	// Les Items qui peuvent être rammaser
 	protected ArrayList<Items> itemsRamassable;
 
 	// Plateforme test
 	public Plateforme p;
 	
-	// Player
+	// Le robot contrôlé par le Joueur
 	Robot player;
 
 	//
@@ -101,10 +105,7 @@ public class Monde implements SlickAdapter {
 		world.add(p.getBody());
 	}
 
-	/**
-	 * Fonction qui permet d'afficher le niveau et les elements du niveau
-	 * (personnages/items/balles)
-	 */
+	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// affiche la map

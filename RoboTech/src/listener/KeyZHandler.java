@@ -4,22 +4,23 @@ import org.newdawn.slick.Input;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine
+ * Permet de gérer la touche Z
+ */
 public class KeyZHandler extends KeyHandler {
 
 	public KeyZHandler() {
 		super(Input.KEY_Z);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void handle(Input input, Robot robot) {
-		// TODO Auto-generated method stub
-
+	
 	}
 
-	@Override
-	public int get_key() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

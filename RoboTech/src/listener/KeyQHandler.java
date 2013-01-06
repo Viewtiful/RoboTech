@@ -6,6 +6,11 @@ import org.newdawn.slick.SlickException;
 import personnages.Robot;
 import weapon.Balle;
 
+/**
+ * 
+ * @author Antoine
+ * Permet de gérer la touche Q
+ */
 public class KeyQHandler extends KeyHandler {
 
 	public KeyQHandler() {
@@ -13,6 +18,9 @@ public class KeyQHandler extends KeyHandler {
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void handle(Input input, Robot robot) {
 		if (input.isKeyPressed(Input.KEY_Q)) {
 			Balle balle = null;
@@ -25,11 +33,4 @@ public class KeyQHandler extends KeyHandler {
 				robot.monde.addBalles(balle);
 		}
 	}
-
-	@Override
-	public int get_key() {
-		// TODO Auto-generated method stub
-		return key;
-	}
-
 }

@@ -121,11 +121,16 @@ public abstract class Potion extends ItemsRamassable {
 		PickUpItem();
 
 	}
-
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public void render(Graphics g) {
 		image.draw(getX() - 5, getY() - 7);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		render(g);

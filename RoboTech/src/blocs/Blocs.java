@@ -8,36 +8,37 @@ import org.newdawn.slick.Image;
 
 import interfaces.Drawable;
 
+/**
+ * <i> Elle synthétise l'aspect visuel et physique d'un bloc</i>
+ * 
+ * 
+ * 
+ **/
 public abstract class Blocs implements Drawable {
 
-	/*
-	 * Cette class représente la notion de blocs élementaire
-	 * Elle regroupe la partie physique du blocs gérée par Phys2D
-	 * Et aussi la partie interface de Slick2d
-	 */
-	
-	/*
+
+	/**
 	 * Image du Blocs
 	 */
 	Image box_image;
-	/*
+	/**
 	 * Largeur du Bloc
 	 */
 	private float Width;
-	/*
+	/**
 	 * Hauteur du Bloc
 	 */
 	private float Height;
-	/*
+	/**
 	 * Corps Physique du Bloc
 	 */
 	Body Body;
 
-	/*
+	/**
 	 * Abscisse du centre Bloc
 	 */
 	private float x;
-	/*
+	/**
 	 * Ordonnée du centre du Bloc
 	 */
 	private float y;
@@ -82,10 +83,17 @@ public abstract class Blocs implements Drawable {
 		return box_image;
 	}
 
-	/*
+	/**
 	 * @param box_image
-	 * @param
-	 * @param
+	 * Image du rendu du blocs
+	 * @param Width
+	 * Largeur du Bloc
+	 * @param Height
+	 * Hauteur du Bloc
+	 * @param x
+	 * Abscisse du Bloc
+	 * @param y
+	 *Ordonnée du Bloc
 	 */
 	public Blocs(Image box_image, float Width, float Height, float x, float y) {
 		this.box_image = box_image;

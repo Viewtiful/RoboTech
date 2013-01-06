@@ -4,11 +4,19 @@ import org.newdawn.slick.Input;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine
+ * Permet de gérer la touche Flèche Haut
+ */
 public class KeyUPHandler extends KeyHandler {
 	public KeyUPHandler() {
 		super(Input.KEY_UP);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void handle(Input input, Robot robot) {
 		// jumpForce applique pour faire sauter le personnage
 		float jumpForce = 50000;
@@ -32,7 +40,5 @@ public class KeyUPHandler extends KeyHandler {
 		}
 	}
 
-	public int get_key() {
-		return key;
-	}
+	
 }
