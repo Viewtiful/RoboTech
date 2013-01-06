@@ -7,6 +7,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
+/**
+ * 
+ * 
+ * @author Antoine Potion augmentant la vitesse du personnage
+ */
 public class PotionVitesse extends Potion {
 
 	/**
@@ -57,7 +62,7 @@ public class PotionVitesse extends Potion {
 	}
 
 	/**
-	 * Initialisation : charge l'image de la potion vitesse
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -67,10 +72,10 @@ public class PotionVitesse extends Potion {
 	}
 
 	/**
-	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de
-	 * la vitesse de déplacement de la potion vitesse
+	 * {@inheritDoc} <br/>
+	 * <b>Comportement :</b><br />
+	 * Ici on restaure la vitesse du Robot
 	 */
-	@Override
 	public void effect(Robot player) {
 		player.modifierVitesseX(valeur);
 

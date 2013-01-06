@@ -14,40 +14,102 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * 
+ * @author Antoine Les personnages du jeu
+ */
 public abstract class Personnage implements Drawable, SlickAdapter {
 
-	// le monde dans lequels le personnage est present
+	/**
+	 * le monde dans lequels le personnage est present
+	 * 
+	 * @see net.phys2d.raw.World
+	 */
 	private World world;
-
+	/**
+	 * Le monde
+	 */
 	public Monde monde;
+	/**
+	 * ¨Permet de savoir la direction du personnage
+	 */
 	private boolean directionDroite;
-	// retourne true, si le personnage est en train de se deplacer
+	/**
+	 * Vaut true, si le personnage est en train de se deplacer
+	 */
 	private boolean enMouvement;
-	// retourne true, si le personnage est en train de tomber dans le vide
+	/**
+	 * Vaut true, si le personnage est en train de tomber dans le vide
+	 */
 	private boolean tombe;
-	// retourne true, si l'acteur est au sol
+	/**
+	 * Vaut true, si l'acteur est au sol
+	 */
 	private boolean auSol;
-	// le corps physique qui represente le personnage
+	/**
+	 * le corps physique qui represente le personnage
+	 */
 	private Body body;
-	// le temps durant lequels le personnage a ete considere comme non sur le
-	// sol
+	/**
+	 * le temps durant lequels le personnage a ete considere comme non sur le
+	 * sol
+	 */
 	private int tempsEnLair;
-	// retourne true, si le personnage est en train de sauter
+	/**
+	 * Vaut true, si le personnage est en train de sauter
+	 */
 	private boolean saut;
+	/**
+	 * Représente la jauge de vie
+	 */
 	private int vie;
+	/**
+	 * Représente la jauge de mana
+	 */
 	private int mana;
+	/**
+	 * Représente la jauge d'énergie
+	 */
 	private int energie;
+	/**
+	 * Valeur Horizontale de la Vitesse
+	 */
 	private float vitesseX;
+	/**
+	 * Valeur Verticale de la Vitesse
+	 */
 	private float vitesseY;
+	/**
+	 * Valeur Horizontale Maximale de la Vitesse
+	 */
 	private float maxVelX;
+	/**
+	 * Valeur Verticale Maximale de la Vitesse
+	 */
 	private float maxVelY;
 
-	// taille du block du personnage pour les collisions
+	/**
+	 * taille du block du personnage pour les collisions
+	 */
 	private float tailleBlockPerso;
-	// la velocite sur l'axe des X
+	/**
+	 * la velocite sur l'axe des X
+	 */
 	protected float velx;
 
-	// Tableau des balles
+	/**
+	 * 
+	 * @param x
+	 *            Position horizontale
+	 * @param y
+	 *            Position Verticale
+	 * @param masse
+	 *            masse
+	 * @param tailleBlockPerso
+	 *            taille du bloc
+	 * @param monde
+	 *            le monde
+	 */
 	public Personnage(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) {
 		this.tailleBlockPerso = tailleBlockPerso;
@@ -80,6 +142,15 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		this.world = world;
 	}
 
+	/**
+	 * 
+	 * Applique une force au personnage
+	 * 
+	 * @param x
+	 *            Force Horizontale
+	 * @param y
+	 *            Force Verticale
+	 */
 	public void applyForce(float x, float y) {
 		body.addForce(new Vector2f(x * vitesseX, y));
 
@@ -205,6 +276,9 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		velx = getVelX();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// update the flag for the actor being on the ground. The
@@ -242,6 +316,12 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		return auSol;
 	}
 
+	/**
+	 * Determine si le personnage est sur le sol
+	 * 
+	 * @param body
+	 * @return true si le personnage est sur le sol, false sinon
+	 */
 	public boolean surLeSol(Body body) {
 		if (world == null) {
 			return false;
@@ -293,6 +373,11 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		body.setMaxVelocity(maxVelX, maxVelY);
 	}
 
+	/**
+	 * Détermine l'effet d'un impact de balle sur un personnages
+	 * 
+	 * @param value
+	 */
 	public abstract void toucher(int value);
 
 }

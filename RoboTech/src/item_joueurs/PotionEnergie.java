@@ -7,6 +7,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine Potion restaurant l'energie
+ */
 public class PotionEnergie extends Potion {
 
 	/**
@@ -57,7 +61,7 @@ public class PotionEnergie extends Potion {
 	}
 
 	/**
-	 * Initialisation : charge l'image de la potion énergie
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -67,12 +71,9 @@ public class PotionEnergie extends Potion {
 	}
 
 	/**
-	 * Affichage de la potion énergie
-	 */
-
-	/**
-	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de
-	 * régéneration de la potion énergie
+	 * {@inheritDoc} <br/>
+	 * <b>Comportement :</b><br />
+	 * Ici on restore l'enegie du Robot
 	 */
 	@Override
 	public void effect(Robot player) {

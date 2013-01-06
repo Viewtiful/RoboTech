@@ -7,6 +7,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine Potion restaurant de la Mana
+ */
 public class PotionMana extends Potion {
 
 	/**
@@ -57,7 +61,7 @@ public class PotionMana extends Potion {
 	}
 
 	/**
-	 * Initialisation : charge l'image de la potion mana
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -67,8 +71,9 @@ public class PotionMana extends Potion {
 	}
 
 	/**
-	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de
-	 * régéneration de la potion mana
+	 * {@inheritDoc} <br/>
+	 * <b>Comportement :</b><br />
+	 * Ici on restaure le mana du Robot
 	 */
 	@Override
 	public void effect(Robot player) {

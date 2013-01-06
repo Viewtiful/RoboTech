@@ -11,6 +11,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine Toutes les potions de manière générale
+ */
 public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */
 	protected Image image;

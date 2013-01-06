@@ -7,6 +7,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
 
+/**
+ * 
+ * @author Antoine Potion augmentant la hauteur du Saut
+ */
 public class PotionSaut extends Potion {
 
 	/**
@@ -57,7 +61,7 @@ public class PotionSaut extends Potion {
 	}
 
 	/**
-	 * Initialisation : charge l'image de la potion saut
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -67,8 +71,9 @@ public class PotionSaut extends Potion {
 	}
 
 	/**
-	 * Si la potion a été ramassé par le joueur, on lui ajoute la valeur de
-	 * la vitesse de déplacement de la potion saut
+	 * {@inheritDoc} <br/>
+	 * <b>Comportement :</b><br />
+	 * Ici on restaure la hauteur du saut du Robot
 	 */
 	@Override
 	public void effect(Robot player) {
