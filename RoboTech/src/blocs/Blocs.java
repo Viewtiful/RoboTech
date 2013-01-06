@@ -10,12 +10,36 @@ import interfaces.Drawable;
 
 public abstract class Blocs implements Drawable {
 
+	/*
+	 * Cette class représente la notion de blocs élementaire
+	 * Elle regroupe la partie physique du blocs gérée par Phys2D
+	 * Et aussi la partie interface de Slick2d
+	 */
+	
+	/*
+	 * Image du Blocs
+	 */
 	Image box_image;
+	/*
+	 * Largeur du Bloc
+	 */
 	private float Width;
+	/*
+	 * Hauteur du Bloc
+	 */
 	private float Height;
+	/*
+	 * Corps Physique du Bloc
+	 */
 	Body Body;
 
+	/*
+	 * Abscisse du centre Bloc
+	 */
 	private float x;
+	/*
+	 * Ordonnée du centre du Bloc
+	 */
 	private float y;
 
 	public void setWidth(float Width) {
@@ -58,6 +82,11 @@ public abstract class Blocs implements Drawable {
 		return box_image;
 	}
 
+	/*
+	 * @param box_image
+	 * @param
+	 * @param
+	 */
 	public Blocs(Image box_image, float Width, float Height, float x, float y) {
 		this.box_image = box_image;
 		this.Width = Width;
@@ -66,6 +95,7 @@ public abstract class Blocs implements Drawable {
 				Height));
 		this.x = x;
 		this.y = y;
+		Body.setPosition(x, y);
 	}
 
 }

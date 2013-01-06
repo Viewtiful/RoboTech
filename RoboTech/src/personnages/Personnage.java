@@ -259,21 +259,14 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 				if (events[i].getNormal().getY() < -0.5) {
 					// corps B est rentre en collision, est ce notre perso? si
 					// oui, retourne on est au sol
-					if (events[i].getBodyB() == body) {
-						// System.out.println("1" +
-						// events[i].getPoint()+","+events[i].getNormal());
+					if (events[i].getBodyB() == body)
 						return true;
-					}
 				}
 				// corps B est rentre en collision, est ce notre perso? si oui,
 				// retourne on est au sol
-				if (events[i].getNormal().getY() > 0.5) {
-					if (events[i].getBodyA() == body) {
-						// System.out.println("2" +
-						// events[i].getPoint()+","+events[i].getNormal());
+				if (events[i].getNormal().getY() > 0.5)
+					if (events[i].getBodyA() == body)
 						return true;
-					}
-				}
 			}
 		}
 

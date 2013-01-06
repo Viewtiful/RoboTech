@@ -55,10 +55,6 @@ public class Robot extends Personnage {
 		this.monde = monde;
 	}
 
-	/**
-	 * @see org.newdawn.penguin.Actor#render(org.newdawn.slick.Graphics)
-	 */
-
 	public void ajouterEnergie(int value) {
 		setEnergie(getEnergie() + value);
 
@@ -68,7 +64,7 @@ public class Robot extends Personnage {
 		setMana(getMana() + value);
 
 	}
-
+	
 	public void ajouterVie(int value) {
 		setVie(getVie() + value);
 	}
