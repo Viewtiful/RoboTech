@@ -53,7 +53,7 @@ public class RoboTechJeu extends BasicGameState {
 			throws SlickException {
 		// demarre le niveau, en appuyant sur la touche 'R', possibilite de
 		// redemarrer le niveau
-		restart();
+		restart(game);
 		monde.init(container, game);
 	}
 
@@ -66,7 +66,7 @@ public class RoboTechJeu extends BasicGameState {
 	 * 
 	 * @throws SlickException
 	 */
-	private void restart() throws SlickException {
+	private void restart(StateBasedGame game) throws SlickException {
 		monde = new Monde();
 		monde.initialisationMonde();
 		player = new Robot(280, 150, 1.f, 32, monde);
@@ -100,11 +100,6 @@ public class RoboTechJeu extends BasicGameState {
 
 		g.translate(-(int) cameraX, -(int) cameraY); // gere le rendu de la
 		// camera
-
-		if (player.getVie() <= 0) {
-			System.out.println("Fin du jeu");
-			init(container, game);
-		}
 		monde.render(container, game, g); // gere le rendu du monde complet
 	}
 
@@ -120,7 +115,13 @@ public class RoboTechJeu extends BasicGameState {
 
 		// met a jour le monde
 		monde.update(container, game, delta);
+		
+		if (player.getVie() <= 0) {
+//			System.out.println("Fin du jeu");
 
+			game.enterState(RoboTech.MORTETAT);
+			init(container, game);
+		}
 		// calcule la zone affichee par la camera
 		cameraX = player.getX() - 400;
 		cameraY = player.getY() - 300;

@@ -9,6 +9,7 @@ public class RoboTech extends StateBasedGame {
 	public static final int MENUETAT = 0;
 	public static final int OPTIONETAT = 1;
 	public static final int JEUETAT = 2;
+	public static final int MORTETAT = 3;
 
 	// Cree le jeu
 	public RoboTech() {
@@ -27,6 +28,8 @@ public class RoboTech extends StateBasedGame {
 		addState(new Options(OPTIONETAT));
 		// lance le niveau du jeu
 		addState(new RoboTechJeu(JEUETAT));
+		
+		addState(new RobotMort(MORTETAT));
 	}
 
 	/**
