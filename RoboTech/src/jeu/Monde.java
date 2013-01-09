@@ -375,7 +375,6 @@ public class Monde implements SlickAdapter {
 		}
 
 	}
-
 	public void update_plateforme(GameContainer container, StateBasedGame game,
 			int delta) {
 		boolean sur_plateforme = false;

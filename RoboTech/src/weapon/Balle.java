@@ -182,6 +182,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 				// de cet ennemi pour lui enlever 1 pt de vie
 				if (events[i].getBodyB() == body) {
 					current = personnages.get(events[i].getBodyA());
+					assert(personnages.get(events[i].getBodyA().hashCode())==current);
 					/*
 					 * Current vaut null si le body mis en cause n'est pas un
 					 * body de personnages
