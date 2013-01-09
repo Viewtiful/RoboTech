@@ -31,7 +31,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	public Monde monde;
 	/**
-	 * ¨Permet de savoir la direction du personnage
+	 * ï¿½Permet de savoir la direction du personnage
 	 */
 	private boolean directionDroite;
 	/**
@@ -60,15 +60,15 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	private boolean saut;
 	/**
-	 * Représente la jauge de vie
+	 * Reprï¿½sente la jauge de vie
 	 */
 	private int vie;
 	/**
-	 * Représente la jauge de mana
+	 * Reprï¿½sente la jauge de mana
 	 */
 	private int mana;
 	/**
-	 * Représente la jauge d'énergie
+	 * Reprï¿½sente la jauge d'ï¿½nergie
 	 */
 	private int energie;
 	/**
@@ -374,7 +374,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	}
 
 	/**
-	 * Détermine l'effet d'un impact de balle sur un personnages
+	 * Dï¿½termine l'effet d'un impact de balle sur un personnages
 	 * 
 	 * @param value
 	 */

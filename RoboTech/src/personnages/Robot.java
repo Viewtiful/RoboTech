@@ -9,6 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.state.StateBasedGame;
 
 import weapon.Balle;
@@ -18,7 +19,9 @@ public class Robot extends Personnage {
 	// l'image qui contient le sprite du robot
 	private Image image;
 	RobotHandlers handlers;
-
+	private XMLPackedSheet sheet;
+	private int animationStep;
+	private int i;
 	/**
 	 * Create a new Alien actor read to add to the world
 	 * 
@@ -39,7 +42,8 @@ public class Robot extends Personnage {
 
 		image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
-
+		sheet = new XMLPackedSheet("res/robot.png",
+				"res/robot.xml");
 	}
 
 	public void setImage(String robot) throws SlickException {
@@ -75,6 +79,30 @@ public class Robot extends Personnage {
 	}
 
 	public void render(Graphics g) {
+		i++;
+		if (getEnMouvement() && auSol() && i >= 4) {
+			animationStep++;
+			animationStep %= 15;
+			if(animationStep == 0) {
+				image = sheet.getSprite("robot_01.png");
+			}
+			else {
+				image = sheet.getSprite("robot_0" + animationStep + ".png");			
+			}
+			if (!getDirectionDroite()) {
+				image = image.getFlippedCopy(true, false);
+			}
+
+			i = 0;
+		}
+		else {
+			if (!getEnMouvement()) {
+				image = sheet.getSprite("robot_00.png");
+			}
+		}
+		
+
+		
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
 
