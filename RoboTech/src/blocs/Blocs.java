@@ -6,7 +6,10 @@ import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.Image;
 
+import personnages.Robot;
+
 import interfaces.Drawable;
+import interfaces.SlickAdapter;
 
 /**
  * <i> Elle synthétise l'aspect visuel et physique d'un bloc</i>
@@ -14,7 +17,7 @@ import interfaces.Drawable;
  * 
  * 
  **/
-public abstract class Blocs implements Drawable {
+public abstract class Blocs implements Drawable,SlickAdapter {
 
 	/**
 	 * Image du Blocs
@@ -82,6 +85,8 @@ public abstract class Blocs implements Drawable {
 		return box_image;
 	}
 
+	private boolean on_bloc = false;
+	
 	/**
 	 * @param box_image
 	 *            Image du rendu du blocs
@@ -104,5 +109,42 @@ public abstract class Blocs implements Drawable {
 		this.y = y;
 		Body.setPosition(x, y);
 	}
+	
+	public void set_on_bloc(boolean value)
+	{
+		on_bloc = value;
+	}
+	
+	public boolean get_on_bloc()
+	{
+		return on_bloc;
+	}
+	/**
+	 * Permet de déterminer si il y a contact avec le robot et le blocs
+	 * @param player le Robot contrôlé par le joueur
+	 */
+	public void collision(Robot player)
+	{
+		float eps = (float) 1e-01;
+		if (Math.abs((player.getY() + player.getImage().getHeight() / 2)
+				- (get_y() - getHeight() / 2)) < eps) {
+			float x_gauche = player.getX() - player.getImage().getWidth() / 2;
+			float x_droite = player.getX() + player.getImage().getWidth() / 2;
+
+			float p_gauche = get_x() - getWidth() / 2;
+			float p_droite = get_x() + getWidth() / 2;
+
+			if ((x_droite <= p_droite && x_droite >= p_gauche)
+					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
+				on_bloc = true;
+			}
+			collision_action(player);
+		}
+	}
+	/**
+	 * Permet que les classes filles ont un comportement différents lors d'une collision
+	 * @param player le Robot contrôlé par le joueur
+	 */
+	public abstract void collision_action(Robot player);
 
 }

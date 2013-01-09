@@ -1,13 +1,16 @@
 package blocs;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
  * @author Antoine Représente les Blocs Statiques, qui ne bouge pas
  */
-public class BlocsStatiques extends Blocs {
+public abstract class BlocsStatiques extends Blocs {
 
 	/**
 	 * @param box_image
@@ -31,8 +34,33 @@ public class BlocsStatiques extends Blocs {
 	 * {@inheritDoc}
 	 */
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		get_image().drawCentered(get_x(), get_y());
 
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

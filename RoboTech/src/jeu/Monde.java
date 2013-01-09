@@ -21,6 +21,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import blocs.Blocs;
+import blocs.BlocsBlessant;
 import blocs.Plateforme;
 
 import personnages.Personnage;
@@ -56,12 +58,14 @@ public class Monde implements SlickAdapter {
 	// Les Items qui peuvent être rammaser
 	protected ArrayList<Items> itemsRamassable;
 
+	protected ArrayList<Blocs> interaction;
 	// Plateforme test
 	public Plateforme p;
 
 	// Le robot contrôlé par le Joueur
 	Robot player;
 
+	private BlocsBlessant bb;
 	//
 	/**
 	 * Constructeur de la classe Monde
@@ -75,6 +79,7 @@ public class Monde implements SlickAdapter {
 		itemsRamassable = new ArrayList<Items>();
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
+		interaction = new ArrayList<Blocs>();
 		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
 		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
 		Image i = null;
@@ -84,7 +89,16 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-
+		try{
+			i = new Image("res/pics.png");
+		}
+		catch(SlickException e)
+		{
+			System.out.println("SlickException");
+		}
+		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570,20);
+		interaction.add(p);
+		interaction.add(bb);
 	}
 
 	public void setPlayer(Robot player) {
@@ -104,6 +118,9 @@ public class Monde implements SlickAdapter {
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
 		world.add(p.getBody());
+		world.add(bb.getBody());
+		StaticBody body;
+		
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -114,7 +131,9 @@ public class Monde implements SlickAdapter {
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
-		p.render(g);
+		Iterator<Blocs> it4 = interaction.iterator();
+		while(it4.hasNext())
+			it4.next().render(g);
 		// affiche les personnages sur le niveau
 		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
@@ -375,6 +394,7 @@ public class Monde implements SlickAdapter {
 		}
 
 	}
+	
 	public void update_plateforme(GameContainer container, StateBasedGame game,
 			int delta) {
 		boolean sur_plateforme = false;
@@ -392,13 +412,27 @@ public class Monde implements SlickAdapter {
 				sur_plateforme = true;
 			}
 		}
-		if (sur_plateforme == true && player.getEnMouvement() == false) {
-			player.set_coor(player.getX() + p.get_epsilon_x(), player.getY()
-					+ p.get_epsilon_y());
-		}
-
 	}
 
+	
+
+	public void update_Blocs(GameContainer container, StateBasedGame game, int delta)
+	{
+		Iterator<Blocs> it = interaction.iterator();
+		Blocs current;
+		while(it.hasNext())
+		{
+			current = it.next();
+			current.collision(player);
+			try{
+			current.update(container, game, delta);
+			}
+			catch(SlickException e)
+			{
+				System.out.println("SlickException");
+			}
+		}
+	}
 	/**
 	 * Met Ã  jour le niveau Ã  chaque tour
 	 */
@@ -438,8 +472,7 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		update_item(container, game, delta);
-		p.update(container, game, delta);
-		update_plateforme(container, game, delta);
+		update_Blocs(container, game, delta);
 	}
 
 }

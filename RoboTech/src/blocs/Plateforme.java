@@ -7,6 +7,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import personnages.Robot;
+
 /**
  * <i>Represente une plateforme mouvante
  * 
@@ -48,7 +50,10 @@ public class Plateforme extends BlocsDynamiques {
 	 * En marche arrière
 	 */
 	boolean reverse = false;
-
+	/**
+	 * la vitesse de dépacement de la plateforme
+	 */
+	private float vitesse;
 	/**
 	 * 
 	 * @param Point_x
@@ -70,6 +75,7 @@ public class Plateforme extends BlocsDynamiques {
 		this.Point_y = Point_y;
 		pointd = 0;
 		taille = Point_x.length;
+		vitesse = 50;
 		initialise(0, 1);
 	}
 
@@ -81,6 +87,16 @@ public class Plateforme extends BlocsDynamiques {
 		return epsilon_y;
 	}
 
+	public float get_vitesse()
+	{
+		return vitesse;
+	}
+	
+	public void set_vitesse(float vitesse)
+	{
+		this.vitesse = vitesse;
+	}
+	
 	/**
 	 * Calcule le pas élémentaire de translation horizontal et vertical
 	 * 
@@ -90,11 +106,11 @@ public class Plateforme extends BlocsDynamiques {
 	 *            point destination
 	 */
 	public void initialise(int point_current, int next_point) {
-		assert (point_current > -1 && point_current < taille);
-		assert (next_point > -1 && next_point < taille);
-		assert (((point_current + 1) == next_point) || ((point_current - 1) == next_point));
-		epsilon_x = (Point_x[next_point] - Point_x[point_current]) / 100;
-		epsilon_y = (Point_y[next_point] - Point_y[point_current]) / 100;
+		float n = 100;
+		//float n = (Point_x[next_point] - Point_x[point_current])/vitesse;
+		//System.out.println("n="+n);
+		epsilon_x = (Point_x[next_point] - Point_x[point_current]) / n;
+		epsilon_y = (Point_y[next_point] - Point_y[point_current]) / n;
 
 	}
 
@@ -203,5 +219,17 @@ public class Plateforme extends BlocsDynamiques {
 		for (int i = 0; i < taille - 1; i++)
 			g.drawLine(Point_x[i], Point_y[i], Point_x[i + 1], Point_y[i + 1]);
 		g.setColor(Color.white);
+	}
+
+	/**
+	 * {@inheritDoc} <br/>
+	 * <b>Comportement :</b><br />
+	 * Ici on ne rajoute que le personnage suit le mouvement du blocs
+	 */
+	public void collision_action(Robot player) {
+		if (get_on_bloc() == true && player.getEnMouvement() == false) {
+			player.set_coor(player.getX() + epsilon_x, player.getY()
+					+ epsilon_y);
+		}
 	}
 }
