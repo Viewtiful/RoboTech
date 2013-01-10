@@ -6,7 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine Permet de gérer la touche Flèche Haut
+ * @author Antoine Permet de gï¿½rer la touche Flï¿½che Haut
  */
 public class KeyUPHandler extends KeyHandler {
 	public KeyUPHandler() {
@@ -21,7 +21,7 @@ public class KeyUPHandler extends KeyHandler {
 		float jumpForce = 50000;
 
 		if (robot.auSol()) {
-			if ((input.isKeyPressed(get_key()))
+			if ((input.isKeyPressed(get_key())  && robot.getEnergie() > 0 && !robot.getPlusEnergie())
 					|| (input.isKeyPressed(get_key()))) {
 				if (robot.getDirectionDroite()) {
 					robot.applyForce(0, -jumpForce);
