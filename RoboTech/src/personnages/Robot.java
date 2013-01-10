@@ -28,6 +28,8 @@ public class Robot extends Personnage {
 	private boolean plusEnergie = false;
 	private int pertePointEnergie;
 	private int gainPointEnergie;
+	private int gestionPotionVitesseSaut;
+	private int estomperEffetPotion;
 	/**
 	 * Create a new Alien actor read to add to the world
 	 * 
@@ -88,6 +90,7 @@ public class Robot extends Personnage {
 		i++;
 		gestionPerteEnergie++;
 		gestionGainEnergie++;
+		gestionPotionVitesseSaut++;
 		if (getEnMouvement() && auSol() && i >= 4) {
 			animationStep++;
 			animationStep %= 15;
@@ -123,9 +126,9 @@ public class Robot extends Personnage {
 			else {
 				plusEnergie = true;
 			}
-
 			gestionPerteEnergie = 0;
 		}
+		
 		//Si, une seconde viens de s'écouler
 		if(gestionGainEnergie >= 60) {
 			gainPointEnergie++;
@@ -135,12 +138,25 @@ public class Robot extends Personnage {
 					setEnergie(getEnergie()+1);
 					gainPointEnergie = 0;
 					if(getEnergie() == 5) {
-					plusEnergie = false;
+						plusEnergie = false;
 					}
 				}
 			}
 			gestionGainEnergie = 0;
 		}
+		
+		//Si, une seconde viens de s'écouler
+		if(gestionPotionVitesseSaut >= 60) {
+			estomperEffetPotion++;
+			if(estomperEffetPotion >= 10) {
+				System.out.println("lol");
+				modifierVitesseX(1);
+				modifierVitesseY(1);
+				estomperEffetPotion = 0;
+			}
+			gestionPotionVitesseSaut = 0;
+		}
+
 		
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
@@ -151,6 +167,10 @@ public class Robot extends Personnage {
 		g.drawString("Vie : " + getVie() + ", Mana : " + getMana()
 				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
 
+	}
+	
+	public void setEstomperEffetPotion(int valeur) {
+		estomperEffetPotion = valeur;
 	}
 	
 	public boolean getPlusEnergie() {

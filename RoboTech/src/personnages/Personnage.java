@@ -96,6 +96,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 * la velocite sur l'axe des X
 	 */
 	protected float velx;
+	private float NouvelleMaxvelY;
+	private float NouvelleMaxvelX;
 
 	/**
 	 * 
@@ -359,8 +361,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public void setVitesseX(float vitesseX) {
 		this.vitesseX = vitesseX;
-		maxVelX *= vitesseX;
-		body.setMaxVelocity(maxVelX, maxVelY);
+		this.NouvelleMaxvelX = maxVelX * this.vitesseX;
+		body.setMaxVelocity(NouvelleMaxvelX * vitesseX, NouvelleMaxvelY);
 	}
 
 	public float getVitesseY() {
@@ -369,8 +371,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public void setVitesseY(float vitesseY) {
 		this.vitesseY = vitesseY;
-		maxVelY *= this.vitesseY;
-		body.setMaxVelocity(maxVelX, maxVelY);
+		this.NouvelleMaxvelY = maxVelY * this.vitesseY;
+		body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);
 	}
 
 	/**
