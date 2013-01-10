@@ -22,6 +22,12 @@ public class Robot extends Personnage {
 	private XMLPackedSheet sheet;
 	private int animationStep;
 	private int i;
+	private int gestionPerteEnergie;
+	private int z;
+	private int gestionGainEnergie;
+	private boolean plusEnergie = false;
+	private int pertePointEnergie;
+	private int gainPointEnergie;
 	/**
 	 * Create a new Alien actor read to add to the world
 	 * 
@@ -80,6 +86,8 @@ public class Robot extends Personnage {
 
 	public void render(Graphics g) {
 		i++;
+		gestionPerteEnergie++;
+		gestionGainEnergie++;
 		if (getEnMouvement() && auSol() && i >= 4) {
 			animationStep++;
 			animationStep %= 15;
@@ -101,7 +109,38 @@ public class Robot extends Personnage {
 			}
 		}
 		
+		//Si, une seconde viens de s'écouler et que le robot a encore de l'energie, on peut le deplacer
+		if(gestionPerteEnergie >= 60) {
+			//toutes les 10s perds un point d'énergie
+			pertePointEnergie++;
+			if(getEnergie() > 0 && !plusEnergie) {
+				if(pertePointEnergie >= 10) {
+					setEnergie(getEnergie()-1);
+					pertePointEnergie = 0;	
+				}
 
+			}
+			else {
+				plusEnergie = true;
+			}
+
+			gestionPerteEnergie = 0;
+		}
+		//Si, une seconde viens de s'écouler
+		if(gestionGainEnergie >= 60) {
+			gainPointEnergie++;
+			if(plusEnergie)
+			{
+				if(gainPointEnergie >= 2) {
+					setEnergie(getEnergie()+1);
+					gainPointEnergie = 0;
+					if(getEnergie() == 5) {
+					plusEnergie = false;
+					}
+				}
+			}
+			gestionGainEnergie = 0;
+		}
 		
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
@@ -112,6 +151,10 @@ public class Robot extends Personnage {
 		g.drawString("Vie : " + getVie() + ", Mana : " + getMana()
 				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
 
+	}
+	
+	public boolean getPlusEnergie() {
+		return plusEnergie;
 	}
 
 	@Override
