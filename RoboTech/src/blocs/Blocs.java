@@ -126,10 +126,11 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 	public void collision(Robot player)
 	{
 		float eps = (float) 1e-01;
-		if (Math.abs((player.getY() + player.getImage().getHeight() / 2)
+		float n = player.get_taille();
+		if (Math.abs((player.getY() + n / 2)
 				- (get_y() - getHeight() / 2)) < eps) {
-			float x_gauche = player.getX() - player.getImage().getWidth() / 2;
-			float x_droite = player.getX() + player.getImage().getWidth() / 2;
+			float x_gauche = player.getX() - n / 2;
+			float x_droite = player.getX() + n / 2;
 
 			float p_gauche = get_x() - getWidth() / 2;
 			float p_droite = get_x() + getWidth() / 2;
@@ -146,5 +147,6 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 	 * @param player le Robot contrôlé par le joueur
 	 */
 	public abstract void collision_action(Robot player);
+	
 
 }

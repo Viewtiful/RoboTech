@@ -119,7 +119,6 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		world.add(p.getBody());
 		world.add(bb.getBody());
-		StaticBody body;
 		
 	}
 
@@ -395,27 +394,12 @@ public class Monde implements SlickAdapter {
 
 	}
 	
-	public void update_plateforme(GameContainer container, StateBasedGame game,
-			int delta) {
-		boolean sur_plateforme = false;
-		float eps = (float) 1e-01;
-		if (Math.abs((player.getY() + player.getImage().getHeight() / 2)
-				- (p.get_y() - p.getHeight() / 2)) < eps) {
-			float x_gauche = player.getX() - player.getImage().getWidth() / 2;
-			float x_droite = player.getX() + player.getImage().getWidth() / 2;
-
-			float p_gauche = p.get_x() - p.getWidth() / 2;
-			float p_droite = p.get_x() + p.getWidth() / 2;
-
-			if ((x_droite <= p_droite && x_droite >= p_gauche)
-					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
-				sur_plateforme = true;
-			}
-		}
-	}
-
-	
-
+	/**
+	 * Met à jour les blocs interagissant avec le player
+	 * @param container 
+	 * @param game
+	 * @param delta
+	 */
 	public void update_Blocs(GameContainer container, StateBasedGame game, int delta)
 	{
 		Iterator<Blocs> it = interaction.iterator();
@@ -462,15 +446,11 @@ public class Monde implements SlickAdapter {
 			it = personnages.values().iterator();
 			while (it.hasNext())
 				it.next().update(container, game, tempsMiseAjour);
+			
 		}
 
-		// Suppression des personnages qui sont dead
 		update_personnage(container, game, delta);
-		try {
-			update_balle(container, game, delta);
-		} catch (SlickException e) {
-			System.out.println("SlickException");
-		}
+		update_balle(container, game, delta);
 		update_item(container, game, delta);
 		update_Blocs(container, game, delta);
 	}

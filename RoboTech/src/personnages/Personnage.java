@@ -382,4 +382,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	public abstract void toucher(int value);
 
+	public float get_taille()
+	{
+		return tailleBlockPerso;
+	}
 }

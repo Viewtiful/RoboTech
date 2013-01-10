@@ -75,7 +75,7 @@ public class Plateforme extends BlocsDynamiques {
 		this.Point_y = Point_y;
 		pointd = 0;
 		taille = Point_x.length;
-		vitesse = 50;
+		vitesse = 1;
 		initialise(0, 1);
 	}
 
@@ -106,11 +106,9 @@ public class Plateforme extends BlocsDynamiques {
 	 *            point destination
 	 */
 	public void initialise(int point_current, int next_point) {
-		float n = 100;
-		//float n = (Point_x[next_point] - Point_x[point_current])/vitesse;
-		//System.out.println("n="+n);
-		epsilon_x = (Point_x[next_point] - Point_x[point_current]) / n;
-		epsilon_y = (Point_y[next_point] - Point_y[point_current]) / n;
+		float n =vitesse;
+		epsilon_x = (Point_x[next_point] - Point_x[point_current])*(n / 100);
+		epsilon_y = (Point_y[next_point] - Point_y[point_current])*(n / 100);
 
 	}
 
