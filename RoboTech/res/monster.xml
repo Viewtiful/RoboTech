@@ -1,0 +1,11 @@
+<sheet>
+	<sprite name="monster_00.png" x="0" y="0" width="49" height="49" />
+	<sprite name="monster_01.png" x="49" y="0" width="49" height="49" />
+	<sprite name="monster_02.png" x="98" y="0" width="49" height="49" />
+	<sprite name="monster_03.png" x="147" y="0" width="49" height="49" />
+	<sprite name="monster_04.png" x="196" y="0" width="49" height="49" />
+	<sprite name="monster_05.png" x="245" y="0" width="49" height="49" />
+	<sprite name="monster_06.png" x="294" y="0" width="49" height="49" />
+	<sprite name="monster_07.png" x="343" y="0" width="49" height="49" />
+	<sprite name="monster_08.png" x="392" y="0" width="49" height="49" />
+</sheet>

@@ -362,7 +362,13 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	public void setVitesseX(float vitesseX) {
 		this.vitesseX = vitesseX;
 		this.NouvelleMaxvelX = maxVelX * this.vitesseX;
-		body.setMaxVelocity(NouvelleMaxvelX * vitesseX, NouvelleMaxvelY);
+		if(NouvelleMaxvelY == 0) {
+			body.setMaxVelocity(NouvelleMaxvelX, maxVelY);		
+		}
+		else {
+			body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);	
+		}
+
 	}
 
 	public float getVitesseY() {
@@ -372,7 +378,12 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	public void setVitesseY(float vitesseY) {
 		this.vitesseY = vitesseY;
 		this.NouvelleMaxvelY = maxVelY * this.vitesseY;
-		body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);
+		if(NouvelleMaxvelX == 0) {
+			body.setMaxVelocity(maxVelX, NouvelleMaxvelY);		
+		}
+		else {
+			body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);	
+		}
 	}
 
 	/**

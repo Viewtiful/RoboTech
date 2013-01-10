@@ -34,7 +34,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	// represente le monde physique
 	private World world;
 
-	// valeur des dégâts
+	// valeur des dï¿½gï¿½ts
 	int value;
 
 	// image de la balle
@@ -132,8 +132,11 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	 * @param y
 	 */
 	public void applyForce(float x, float y) {
-		if (directionDroite)
+		if (directionDroite) {
+			imageBalle = imageBalle.getFlippedCopy(true, false);
 			body.addForce(new Vector2f(x, 0));
+		}
+
 		else
 			body.addForce(new Vector2f(-x, 0));
 	}
