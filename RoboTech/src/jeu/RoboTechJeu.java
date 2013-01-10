@@ -18,7 +18,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.EnnemisRouge;
-import personnages.EnnemisVert;
+import personnages.ChauveSouris;
 import personnages.Robot;
 
 public class RoboTechJeu extends BasicGameState {
@@ -73,7 +73,7 @@ public class RoboTechJeu extends BasicGameState {
 		monde.addPersonnages(player);
 		monde.setPlayer(player);
 		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 64, monde));
-		monde.addPersonnages(new EnnemisVert(600, 50, 2f, 64, monde));
+		monde.addPersonnages(new ChauveSouris(600, 50, 2f, 64, monde));
 
 		monde.addItemsRamassable(new PotionVie(880, 250, 10, 14, 0.8f, player,
 				1));
