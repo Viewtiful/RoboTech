@@ -1,0 +1,5 @@
+<sheet>
+	<sprite name="bat_00.png" x="0" y="0" width="32" height="32" />
+	<sprite name="bat_01.png" x="32" y="0" width="32" height="32" />
+	<sprite name="bat_02.png" x="64" y="0" width="32" height="32" />
+</sheet>
