@@ -108,7 +108,9 @@ public class Robot extends Personnage {
 		}
 		else {
 			if (!getEnMouvement()) {
-				image = sheet.getSprite("robot_00.png");
+					image = sheet.getSprite("robot_00.png");
+					if (!getDirectionDroite())
+						image = image.getFlippedCopy(true, false);
 			}
 		}
 		
