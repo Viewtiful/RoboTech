@@ -20,6 +20,10 @@ import interfaces.SlickAdapter;
 public abstract class Blocs implements Drawable,SlickAdapter {
 
 	/**
+	 * Signal émis par un Bouton
+	 */
+	boolean signal = false;
+	/**
 	 * Image du Blocs
 	 */
 	Image box_image;
@@ -85,6 +89,10 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 		return box_image;
 	}
 
+	public void set_signal(boolean signal)
+	{
+		this.signal = signal;
+	}
 	private boolean on_bloc = false;
 	
 	/**

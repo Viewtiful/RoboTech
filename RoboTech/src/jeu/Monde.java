@@ -13,10 +13,12 @@ import net.phys2d.raw.StaticBody;
 import net.phys2d.raw.World;
 import net.phys2d.raw.shapes.Box;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -65,6 +67,8 @@ public class Monde implements SlickAdapter {
 	// Le robot contrôlé par le Joueur
 	Robot player;
 
+	Animation courir;
+	
 	private BlocsBlessant bb;
 	//
 	/**
@@ -99,6 +103,8 @@ public class Monde implements SlickAdapter {
 		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570,20);
 		interaction.add(p);
 		interaction.add(bb);
+		SpriteSheet hero = null;
+		
 	}
 
 	public void setPlayer(Robot player) {
@@ -152,6 +158,8 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
+		
+		courir.draw(800,800);
 	}
 
 	/**
