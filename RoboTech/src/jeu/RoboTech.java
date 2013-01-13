@@ -28,7 +28,7 @@ public class RoboTech extends StateBasedGame {
 		addState(new Options(OPTIONETAT));
 		// lance le niveau du jeu
 		addState(new RoboTechJeu(JEUETAT));
-		
+
 		addState(new RobotMort(MORTETAT));
 	}
 

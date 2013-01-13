@@ -20,8 +20,7 @@ public class EnnemisRouge extends Ennemis {
 			Monde monde) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde);
 
-		sheet = new XMLPackedSheet("res/monster.png",
-				"res/monster.xml");
+		sheet = new XMLPackedSheet("res/monster.png", "res/monster.xml");
 	}
 
 	@Override
@@ -35,13 +34,13 @@ public class EnnemisRouge extends Ennemis {
 		if (i >= 8) {
 			animationStep++;
 			animationStep %= 9;
-			image = sheet.getSprite("monster_0" + animationStep + ".png");			
+			image = sheet.getSprite("monster_0" + animationStep + ".png");
 			if (getDirectionDroite()) {
 				image = image.getFlippedCopy(true, false);
 			}
 			i = 0;
 		}
-		
+
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 

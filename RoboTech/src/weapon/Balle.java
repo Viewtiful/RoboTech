@@ -184,10 +184,17 @@ public abstract class Balle implements Drawable, SlickAdapter {
 				// collision, si touche un ennemi, appelle la fonction toucher
 				// de cet ennemi pour lui enlever 1 pt de vie
 				if (events[i].getBodyB() == body) {
-					current = personnages.get(events[i].getBodyA());	/*
-					 * Current vaut null si le body mis en cause n'est pas un
-					 * body de personnages
-					 */
+					current = personnages.get(events[i].getBodyA()); /*
+																	 * Current
+																	 * vaut null
+																	 * si le
+																	 * body mis
+																	 * en cause
+																	 * n'est pas
+																	 * un body
+																	 * de
+																	 * personnages
+																	 */
 					if (current != null && cible(current))
 						current.toucher(value);
 

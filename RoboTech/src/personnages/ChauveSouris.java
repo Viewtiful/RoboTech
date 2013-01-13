@@ -19,14 +19,13 @@ public class ChauveSouris extends Ennemis {
 	public ChauveSouris(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde);
-		sheet = new XMLPackedSheet("res/bat.png",
-				"res/bat.xml");
+		sheet = new XMLPackedSheet("res/bat.png", "res/bat.xml");
 	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		image = sheet.getSprite("bat_00.png");		
+		image = sheet.getSprite("bat_00.png");
 	}
 
 	public void render(Graphics g) {
@@ -34,13 +33,13 @@ public class ChauveSouris extends Ennemis {
 		if (i >= 6) {
 			animationStep++;
 			animationStep %= 3;
-			image = sheet.getSprite("bat_0" + animationStep + ".png");			
+			image = sheet.getSprite("bat_0" + animationStep + ".png");
 			if (getDirectionDroite()) {
 				image = image.getFlippedCopy(true, false);
 			}
 			i = 0;
 		}
-		
+
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 		// texte de debug

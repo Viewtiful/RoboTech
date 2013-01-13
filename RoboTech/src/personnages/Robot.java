@@ -30,6 +30,7 @@ public class Robot extends Personnage {
 	private int gainPointEnergie;
 	private int gestionPotionVitesseSaut;
 	private int estomperEffetPotion;
+
 	/**
 	 * Create a new Alien actor read to add to the world
 	 * 
@@ -50,8 +51,7 @@ public class Robot extends Personnage {
 
 		image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
-		sheet = new XMLPackedSheet("res/robot.png",
-				"res/robot.xml");
+		sheet = new XMLPackedSheet("res/robot.png", "res/robot.xml");
 	}
 
 	public void setImage(String robot) throws SlickException {
@@ -94,63 +94,60 @@ public class Robot extends Personnage {
 		if (getEnMouvement() && auSol() && i >= 4) {
 			animationStep++;
 			animationStep %= 15;
-			if(animationStep == 0) {
+			if (animationStep == 0) {
 				image = sheet.getSprite("robot_01.png");
-			}
-			else {
-				image = sheet.getSprite("robot_0" + animationStep + ".png");			
+			} else {
+				image = sheet.getSprite("robot_0" + animationStep + ".png");
 			}
 			if (!getDirectionDroite()) {
 				image = image.getFlippedCopy(true, false);
 			}
 
 			i = 0;
-		}
-		else {
+		} else {
 			if (!getEnMouvement()) {
-					image = sheet.getSprite("robot_00.png");
-					if (!getDirectionDroite())
-						image = image.getFlippedCopy(true, false);
+				image = sheet.getSprite("robot_00.png");
+				if (!getDirectionDroite())
+					image = image.getFlippedCopy(true, false);
 			}
 		}
-		
-		//Si, une seconde viens de s'écouler et que le robot a encore de l'energie, on peut le deplacer
-		if(gestionPerteEnergie >= 60) {
-			//toutes les 10s perds un point d'énergie
+
+		// Si, une seconde viens de s'écouler et que le robot a encore de
+		// l'energie, on peut le deplacer
+		if (gestionPerteEnergie >= 60) {
+			// toutes les 10s perds un point d'énergie
 			pertePointEnergie++;
-			if(getEnergie() > 0 && !plusEnergie) {
-				if(pertePointEnergie >= 10) {
-					setEnergie(getEnergie()-1);
-					pertePointEnergie = 0;	
+			if (getEnergie() > 0 && !plusEnergie) {
+				if (pertePointEnergie >= 10) {
+					setEnergie(getEnergie() - 1);
+					pertePointEnergie = 0;
 				}
 
-			}
-			else {
+			} else {
 				plusEnergie = true;
 			}
 			gestionPerteEnergie = 0;
 		}
-		
-		//Si, une seconde viens de s'écouler
-		if(gestionGainEnergie >= 60) {
+
+		// Si, une seconde viens de s'écouler
+		if (gestionGainEnergie >= 60) {
 			gainPointEnergie++;
-			if(plusEnergie)
-			{
-				if(gainPointEnergie >= 2) {
-					setEnergie(getEnergie()+1);
+			if (plusEnergie) {
+				if (gainPointEnergie >= 2) {
+					setEnergie(getEnergie() + 1);
 					gainPointEnergie = 0;
-					if(getEnergie() == 5) {
+					if (getEnergie() == 5) {
 						plusEnergie = false;
 					}
 				}
 			}
 			gestionGainEnergie = 0;
 		}
-		
-		//Si, une seconde viens de s'écouler
-		if(gestionPotionVitesseSaut >= 60) {
+
+		// Si, une seconde viens de s'écouler
+		if (gestionPotionVitesseSaut >= 60) {
 			estomperEffetPotion++;
-			if(estomperEffetPotion >= 10) {
+			if (estomperEffetPotion >= 10) {
 				System.out.println("lol");
 				modifierVitesseX(1);
 				modifierVitesseY(1);
@@ -159,7 +156,6 @@ public class Robot extends Personnage {
 			gestionPotionVitesseSaut = 0;
 		}
 
-		
 		// dessine l'image du robot en le centrant
 		image.drawCentered(getX(), getY());
 
@@ -170,11 +166,11 @@ public class Robot extends Personnage {
 				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
 
 	}
-	
+
 	public void setEstomperEffetPotion(int valeur) {
 		estomperEffetPotion = valeur;
 	}
-	
+
 	public boolean getPlusEnergie() {
 		return plusEnergie;
 	}

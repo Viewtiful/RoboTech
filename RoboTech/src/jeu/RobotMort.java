@@ -15,7 +15,7 @@ public class RobotMort extends BasicGameState {
 	private int[][] positionItemOption;
 	private int sourisX;
 	private int sourisY;
-	
+
 	public RobotMort(int ID) {
 		this.ID = ID;
 	}
@@ -30,14 +30,14 @@ public class RobotMort extends BasicGameState {
 			throws SlickException {
 		itemMort = new Image[1];
 		itemMort[0] = new Image("res/retourOption.png");
-		
+
 		interieurBouton = new boolean[itemMort.length];
 		positionItemOption = new int[itemMort.length][2];
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {	
+			throws SlickException {
 		// retour menu principal
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;

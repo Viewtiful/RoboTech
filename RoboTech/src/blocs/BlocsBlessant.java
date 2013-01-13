@@ -18,40 +18,44 @@ public class BlocsBlessant extends BlocsStatiques {
 	 * la valeur des dégâts infligé par le contact du blocs avec le Robot
 	 */
 	private int valeur;
+
 	/**
 	 * 
-	 * @param box_image Image du bloc
-	 * @param Width Largeur du bloc
-	 * @param Height hauteur du bloc
-	 * @param x position horizontale
-	 * @param y position vertciale
-	 * @param valeur valeur des dégâts
+	 * @param box_image
+	 *            Image du bloc
+	 * @param Width
+	 *            Largeur du bloc
+	 * @param Height
+	 *            hauteur du bloc
+	 * @param x
+	 *            position horizontale
+	 * @param y
+	 *            position vertciale
+	 * @param valeur
+	 *            valeur des dégâts
 	 */
-	public BlocsBlessant(Image box_image, float Width, float Height, float x, float y,int valeur)
-	{
+	public BlocsBlessant(Image box_image, float Width, float Height, float x,
+			float y, int valeur) {
 		super(box_image, Width, Height, x, y);
 		this.valeur = valeur;
 	}
-	
-	public int get_valeur()
-	{
+
+	public int get_valeur() {
 		return valeur;
 	}
-	
-	public void set_valeur(int valeur)
-	{
+
+	public void set_valeur(int valeur) {
 		this.valeur = valeur;
 	}
 
 	/**
 	 * {@inheritDoc} <br/>
 	 * <b>Comportement :</b><br />
-	 * Ici on ne rajoute que le Robot perd de la vie si il est en contact avec ce Blocs
+	 * Ici on ne rajoute que le Robot perd de la vie si il est en contact avec
+	 * ce Blocs
 	 */
 	public void collision_action(Robot player) {
-		player.setVie(player.getVie()-valeur);
-		}
+		player.setVie(player.getVie() - valeur);
+	}
 
-	
-	
 }

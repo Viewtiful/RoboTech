@@ -37,14 +37,14 @@ public abstract class BlocsStatiques extends Blocs {
 		get_image().drawCentered(get_x(), get_y());
 
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -53,14 +53,14 @@ public abstract class BlocsStatiques extends Blocs {
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -54,6 +54,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * la vitesse de dépacement de la plateforme
 	 */
 	private float vitesse;
+
 	/**
 	 * 
 	 * @param Point_x
@@ -87,16 +88,14 @@ public class Plateforme extends BlocsDynamiques {
 		return epsilon_y;
 	}
 
-	public float get_vitesse()
-	{
+	public float get_vitesse() {
 		return vitesse;
 	}
-	
-	public void set_vitesse(float vitesse)
-	{
+
+	public void set_vitesse(float vitesse) {
 		this.vitesse = vitesse;
 	}
-	
+
 	/**
 	 * Calcule le pas élémentaire de translation horizontal et vertical
 	 * 
@@ -106,9 +105,9 @@ public class Plateforme extends BlocsDynamiques {
 	 *            point destination
 	 */
 	public void initialise(int point_current, int next_point) {
-		float n =vitesse;
-		epsilon_x = (Point_x[next_point] - Point_x[point_current])*(n / 100);
-		epsilon_y = (Point_y[next_point] - Point_y[point_current])*(n / 100);
+		float n = vitesse;
+		epsilon_x = (Point_x[next_point] - Point_x[point_current]) * (n / 100);
+		epsilon_y = (Point_y[next_point] - Point_y[point_current]) * (n / 100);
 
 	}
 

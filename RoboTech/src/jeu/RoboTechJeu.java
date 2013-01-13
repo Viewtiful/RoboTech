@@ -115,9 +115,9 @@ public class RoboTechJeu extends BasicGameState {
 
 		// met a jour le monde
 		monde.update(container, game, delta);
-		
+
 		if (player.getVie() <= 0) {
-//			System.out.println("Fin du jeu");
+			// System.out.println("Fin du jeu");
 
 			game.enterState(RoboTech.MORTETAT);
 			init(container, game);

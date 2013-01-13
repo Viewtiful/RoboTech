@@ -68,8 +68,9 @@ public class Monde implements SlickAdapter {
 	Robot player;
 
 	Animation courir;
-	
+
 	private BlocsBlessant bb;
+
 	//
 	/**
 	 * Constructeur de la classe Monde
@@ -93,18 +94,16 @@ public class Monde implements SlickAdapter {
 			System.out.println("SlickException");
 		}
 		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-		try{
+		try {
 			i = new Image("res/pics.png");
-		}
-		catch(SlickException e)
-		{
+		} catch (SlickException e) {
 			System.out.println("SlickException");
 		}
-		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570,20);
+		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
 		interaction.add(p);
 		interaction.add(bb);
 		SpriteSheet hero = null;
-		
+
 	}
 
 	public void setPlayer(Robot player) {
@@ -125,7 +124,7 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		world.add(p.getBody());
 		world.add(bb.getBody());
-		
+
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -137,7 +136,7 @@ public class Monde implements SlickAdapter {
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
 		Iterator<Blocs> it4 = interaction.iterator();
-		while(it4.hasNext())
+		while (it4.hasNext())
 			it4.next().render(g);
 		// affiche les personnages sur le niveau
 		Iterator<Personnage> it = personnages.values().iterator();
@@ -158,8 +157,8 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
-		
-		courir.draw(800,800);
+
+		courir.draw(800, 800);
 	}
 
 	/**
@@ -401,30 +400,29 @@ public class Monde implements SlickAdapter {
 		}
 
 	}
-	
+
 	/**
 	 * Met � jour les blocs interagissant avec le player
-	 * @param container 
+	 * 
+	 * @param container
 	 * @param game
 	 * @param delta
 	 */
-	public void update_Blocs(GameContainer container, StateBasedGame game, int delta)
-	{
+	public void update_Blocs(GameContainer container, StateBasedGame game,
+			int delta) {
 		Iterator<Blocs> it = interaction.iterator();
 		Blocs current;
-		while(it.hasNext())
-		{
+		while (it.hasNext()) {
 			current = it.next();
 			current.collision(player);
-			try{
-			current.update(container, game, delta);
-			}
-			catch(SlickException e)
-			{
+			try {
+				current.update(container, game, delta);
+			} catch (SlickException e) {
 				System.out.println("SlickException");
 			}
 		}
 	}
+
 	/**
 	 * Met à jour le niveau à chaque tour
 	 */
@@ -454,7 +452,7 @@ public class Monde implements SlickAdapter {
 			it = personnages.values().iterator();
 			while (it.hasNext())
 				it.next().update(container, game, tempsMiseAjour);
-			
+
 		}
 
 		update_personnage(container, game, delta);

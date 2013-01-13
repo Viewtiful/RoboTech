@@ -17,7 +17,7 @@ import interfaces.SlickAdapter;
  * 
  * 
  **/
-public abstract class Blocs implements Drawable,SlickAdapter {
+public abstract class Blocs implements Drawable, SlickAdapter {
 
 	/**
 	 * Signal émis par un Bouton
@@ -89,12 +89,16 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 		return box_image;
 	}
 
-	public void set_signal(boolean signal)
-	{
+	public void set_signal(boolean signal) {
 		this.signal = signal;
 	}
+
+	public boolean get_signal() {
+		return signal;
+	}
+
 	private boolean on_bloc = false;
-	
+
 	/**
 	 * @param box_image
 	 *            Image du rendu du blocs
@@ -117,26 +121,25 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 		this.y = y;
 		Body.setPosition(x, y);
 	}
-	
-	public void set_on_bloc(boolean value)
-	{
+
+	public void set_on_bloc(boolean value) {
 		on_bloc = value;
 	}
-	
-	public boolean get_on_bloc()
-	{
+
+	public boolean get_on_bloc() {
 		return on_bloc;
 	}
+
 	/**
 	 * Permet de déterminer si il y a contact avec le robot et le blocs
-	 * @param player le Robot contrôlé par le joueur
+	 * 
+	 * @param player
+	 *            le Robot contrôlé par le joueur
 	 */
-	public void collision(Robot player)
-	{
+	public void collision(Robot player) {
 		float eps = (float) 1e-01;
 		float n = player.get_taille();
-		if (Math.abs((player.getY() + n / 2)
-				- (get_y() - getHeight() / 2)) < eps) {
+		if (Math.abs((player.getY() + n / 2) - (get_y() - getHeight() / 2)) < eps) {
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 
@@ -150,11 +153,14 @@ public abstract class Blocs implements Drawable,SlickAdapter {
 			collision_action(player);
 		}
 	}
+
 	/**
-	 * Permet que les classes filles ont un comportement différents lors d'une collision
-	 * @param player le Robot contrôlé par le joueur
+	 * Permet que les classes filles ont un comportement différents lors d'une
+	 * collision
+	 * 
+	 * @param player
+	 *            le Robot contrôlé par le joueur
 	 */
 	public abstract void collision_action(Robot player);
-	
 
 }

@@ -21,8 +21,8 @@ public class KeyUPHandler extends KeyHandler {
 		float jumpForce = 50000;
 
 		if (robot.auSol()) {
-			if ((input.isKeyPressed(get_key())  && robot.getEnergie() > 0 && !robot.getPlusEnergie())
-					|| (input.isKeyPressed(get_key()))) {
+			if ((input.isKeyPressed(get_key()) && robot.getEnergie() > 0 && !robot
+					.getPlusEnergie()) || (input.isKeyPressed(get_key()))) {
 				if (robot.getDirectionDroite()) {
 					robot.applyForce(0, -jumpForce);
 				} else {
