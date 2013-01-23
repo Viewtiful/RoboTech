@@ -25,6 +25,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import blocs.Blocs;
 import blocs.BlocsBlessant;
+import blocs.BlocsTest;
 import blocs.Plateforme;
 
 import personnages.Personnage;
@@ -74,8 +75,10 @@ public class Monde implements SlickAdapter {
 	//
 	/**
 	 * Constructeur de la classe Monde
+	 * @throws SlickException 
 	 */
-	public Monde() {
+	BlocsTest t;
+	public Monde() throws SlickException {
 		// initialise les variables de la classe
 		world = null;
 		niveau = null;
@@ -102,8 +105,9 @@ public class Monde implements SlickAdapter {
 		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
 		interaction.add(p);
 		interaction.add(bb);
-		SpriteSheet hero = null;
-
+		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
+				415,new Image("res/blocsvisible.png"));
+		interaction.add(t);
 	}
 
 	public void setPlayer(Robot player) {
@@ -124,7 +128,7 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		world.add(p.getBody());
 		world.add(bb.getBody());
-
+		world.add(t.getBody());
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -157,8 +161,6 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
-
-		courir.draw(800, 800);
 	}
 
 	/**

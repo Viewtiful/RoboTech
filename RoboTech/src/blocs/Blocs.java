@@ -89,6 +89,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		return box_image;
 	}
 
+	public void set_image(Image box_image) {
+		this.box_image = box_image;
+	}
+
 	public void set_signal(boolean signal) {
 		this.signal = signal;
 	}
