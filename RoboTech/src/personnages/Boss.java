@@ -1,6 +1,7 @@
 package personnages;
 
 import jeu.Monde;
+import jeu.RoboTech;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -57,6 +58,11 @@ public class Boss extends Ennemis {
 			throws SlickException {
 
 		render(g);
+		
+		if(getVie() == 0) {
+			game.enterState(RoboTech.VICTOIRETAT);	
+			container.reinit();
+		}
 	}
 
 	public void update(GameContainer container, StateBasedGame game, Graphics g)
@@ -66,7 +72,6 @@ public class Boss extends Ennemis {
 	@Override
 	public void toucher(int value) {
 		setVie(getVie() - value);
-
 	}
 
 }
