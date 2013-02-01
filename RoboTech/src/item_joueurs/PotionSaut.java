@@ -79,7 +79,6 @@ public class PotionSaut extends Potion {
 	public boolean effect(Robot player) {
 		player.modifierVitesseY(valeur);
 		player.setEstomperEffetPotion(0);
-		System.out.println("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
 		return true;	
 	}
 

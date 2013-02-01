@@ -148,7 +148,6 @@ public class Robot extends Personnage {
 		if (gestionPotionVitesseSaut >= 60) {
 			estomperEffetPotion++;
 			if (estomperEffetPotion >= 10) {
-				System.out.println("lol");
 				modifierVitesseX(1);
 				modifierVitesseY(1);
 				estomperEffetPotion = 0;
