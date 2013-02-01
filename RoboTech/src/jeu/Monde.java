@@ -37,6 +37,7 @@ import blocs.BlocsBlessant;
 import blocs.BlocsTest;
 import blocs.Plateforme;
 
+import personnages.Boss;
 import personnages.ChauveSouris;
 import personnages.Serpent;
 import personnages.Personnage;
@@ -99,26 +100,26 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
-		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
-		Image i = null;
-		try {
-			i = new Image("res/caisse2.png");
-		} catch (SlickException e) {
-			System.out.println("SlickException");
-		}
-		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-		try {
-			i = new Image("res/caisse2.png");
-		} catch (SlickException e) {
-			System.out.println("SlickException");
-		}
-		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
-		interaction.add(p);
-		interaction.add(bb);
-		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
-				415,new Image("res/blocsvisible.png"));
-		interaction.add(t);
+//		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
+//		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
+//		Image i = null;
+//		try {
+//			i = new Image("res/caisse2.png");
+//		} catch (SlickException e) {
+//			System.out.println("SlickException");
+//		}
+//		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
+//		try {
+//			i = new Image("res/caisse2.png");
+//		} catch (SlickException e) {
+//			System.out.println("SlickException");
+//		}
+//		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
+//		interaction.add(p);
+//		interaction.add(bb);
+//		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
+//				415,new Image("res/blocsvisible.png"));
+//		interaction.add(t);
 	}
 
 	public void setPlayer(Robot player) {
@@ -147,9 +148,9 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
-		world.add(p.getBody());
-		world.add(bb.getBody());
-		world.add(t.getBody());
+//		world.add(p.getBody());
+//		world.add(bb.getBody());
+//		world.add(t.getBody());
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -294,6 +295,10 @@ public class Monde implements SlickAdapter {
 						Personnage chauveSouris = new Serpent(map.getObjectX(i, j)+(49/2), map.getObjectY(i, j), 2f, 49, this);
 						addPersonnages(chauveSouris);
 					}
+					if (map.getObjectName(i, j).equals("boss")) {
+						Personnage boss = new Boss(map.getObjectX(i, j)+(80/2), map.getObjectY(i, j), 2f, 80, this);
+						addPersonnages(boss);
+					}
 					
 				}
 				else if (map.getObjectType(i, j).equals("ramassable")) {
@@ -326,7 +331,7 @@ public class Monde implements SlickAdapter {
 				else if (map.getObjectType(i, j).equals("objet")) {
 					if (map.getObjectName(i, j).equals("poutre")) {
 					
-						Items poutre = new Poutre(map.getObjectX(i, j)+(25/2), map.getObjectY(i, j), 25, 130, 3.5f);
+						Items poutre = new Poutre(map.getObjectX(i, j)+(25/2), map.getObjectY(i, j), 25, 150, 6.5f);
 						addItems(poutre);
 					}
 					else if (map.getObjectName(i, j).equals("caisse")) {
