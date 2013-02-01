@@ -1,7 +1,16 @@
 package jeu;
 
 import interfaces.SlickAdapter;
+import item_joueurs.ItemsRamassable;
+import item_joueurs.PotionEnergie;
+import item_joueurs.PotionMana;
+import item_joueurs.PotionSaut;
+import item_joueurs.PotionVie;
+import item_joueurs.PotionVitesse;
+import items.Baril;
+import items.Caisse;
 import items.Items;
+import items.Poutre;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,44 +37,46 @@ import blocs.BlocsBlessant;
 import blocs.BlocsTest;
 import blocs.Plateforme;
 
+import personnages.ChauveSouris;
+import personnages.Serpent;
 import personnages.Personnage;
 import personnages.Robot;
 import weapon.Balle;
 
 /*
- * Représente le niveau où le Robot évolue
+ * Reprï¿½sente le niveau oï¿½ le Robot ï¿½volue
  */
 public class Monde implements SlickAdapter {
 
-	// Représente le monde physique
+	// Reprï¿½sente le monde physique
 	private World world;
 
-	// Représente le niveau
+	// Reprï¿½sente le niveau
 	private TiledMap niveau;
 
 	// Les Obstacles
 	private ArrayList<Rectangle> obstacles;
 
-	// Les Balles présentes dans le niveau
+	// Les Balles prï¿½sentes dans le niveau
 	protected ArrayList<Balle> balles;
 
 	/*
-	 * Les personnages évoluant dans le niveau La structure nous permet un gain
-	 * de performance dans la recherche de donnée
+	 * Les personnages ï¿½voluant dans le niveau La structure nous permet un gain
+	 * de performance dans la recherche de donnï¿½e
 	 */
 	protected HashMap<Body, Personnage> personnages;
 
 	// Les Items
 	protected ArrayList<Items> items;
 
-	// Les Items qui peuvent être rammaser
+	// Les Items qui peuvent ï¿½tre rammaser
 	protected ArrayList<Items> itemsRamassable;
 
 	protected ArrayList<Blocs> interaction;
 	// Plateforme test
 	public Plateforme p;
 
-	// Le robot contrôlé par le Joueur
+	// Le robot contrï¿½lï¿½ par le Joueur
 	Robot player;
 
 	Animation courir;
@@ -98,7 +109,7 @@ public class Monde implements SlickAdapter {
 		}
 		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
 		try {
-			i = new Image("res/pics.png");
+			i = new Image("res/caisse2.png");
 		} catch (SlickException e) {
 			System.out.println("SlickException");
 		}
@@ -113,6 +124,10 @@ public class Monde implements SlickAdapter {
 	public void setPlayer(Robot player) {
 		this.player = player;
 	}
+	
+	public Robot getPlayer() {
+		return player;
+	}
 
 	/**
 	 * Fonction qui permet d'initialiser le niveau
@@ -124,8 +139,14 @@ public class Monde implements SlickAdapter {
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
 		niveau = new TiledMap("res/map.tmx");
+		
+		// initialise robot sur le niveau
+		initialiserRobot(niveau);
+		
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
+		// genere les objets/personnages du niveau
+		initialiserObjets(niveau);
 		world.add(p.getBody());
 		world.add(bb.getBody());
 		world.add(t.getBody());
@@ -257,6 +278,85 @@ public class Monde implements SlickAdapter {
 			}
 		}
 
+	}
+	
+	public void initialiserObjets(TiledMap map) throws SlickException {
+		for (int i = 0; i < map.getObjectGroupCount(); i++) {
+			for (int j = 0; j < map.getObjectCount(i); j++) {
+				
+				if (map.getObjectType(i, j).equals("personnage")) {
+					if (map.getObjectName(i, j).equals("chauveSouris")) {
+						Personnage chauveSouris = new ChauveSouris(map.getObjectX(i, j)+(49/2), map.getObjectY(i, j), 2f, 49, this);
+						addPersonnages(chauveSouris);
+					}
+					
+					if (map.getObjectName(i, j).equals("serpent")) {
+						Personnage chauveSouris = new Serpent(map.getObjectX(i, j)+(49/2), map.getObjectY(i, j), 2f, 49, this);
+						addPersonnages(chauveSouris);
+					}
+					
+				}
+				else if (map.getObjectType(i, j).equals("ramassable")) {
+					if (map.getObjectName(i, j).equals("potionVie")) {
+					
+					ItemsRamassable potionV = new PotionVie( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+					addItemsRamassable(potionV);
+					}
+					else if (map.getObjectName(i, j).equals("potionMana")) {
+						
+						ItemsRamassable potionM = new PotionMana(map.getObjectX(i, j)+(10/2), map.getObjectY(i, j), 10, 14, 0.8f, player,1);
+						addItemsRamassable(potionM);
+						}
+					else if (map.getObjectName(i, j).equals("potionEnergie")) {
+						
+						ItemsRamassable potionE = new PotionEnergie( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						addItemsRamassable(potionE);
+						}
+					else if (map.getObjectName(i, j).equals("potionVitesse")) {
+						
+						ItemsRamassable potionV = new PotionVitesse( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						addItemsRamassable(potionV);
+						}
+					else if (map.getObjectName(i, j).equals("potionSaut")) {
+						
+						ItemsRamassable potionS = new PotionSaut( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						addItemsRamassable(potionS);
+						}
+				}
+				else if (map.getObjectType(i, j).equals("objet")) {
+					if (map.getObjectName(i, j).equals("poutre")) {
+					
+						Items poutre = new Poutre(map.getObjectX(i, j)+(25/2), map.getObjectY(i, j), 25, 130, 3.5f);
+						addItems(poutre);
+					}
+					else if (map.getObjectName(i, j).equals("caisse")) {
+						
+						Items caisse = new Caisse(map.getObjectX(i, j)+(40/2), map.getObjectY(i, j), 40, 40, 8.f);
+						addItems(caisse);
+					}
+					else if (map.getObjectName(i, j).equals("baril")) {
+						
+						Items baril = new Baril(map.getObjectX(i, j)+(28/2), map.getObjectY(i, j), 28, 40, 3.5f);
+						addItems(baril);
+					}
+				}
+			}
+		}
+	}
+	
+	public void initialiserRobot(TiledMap map) throws SlickException {
+		for (int i = 0; i < map.getObjectGroupCount(); i++) {
+			for (int j = 0; j < map.getObjectCount(i); j++) {
+				
+				if (map.getObjectType(i, j).equals("personnage")) {
+					if (map.getObjectName(i, j).equals("robot")) {
+						Robot robot = new Robot(map.getObjectX(i, j)+(22/2), map.getObjectY(i, j), 1.f, 45, this);
+						player = robot;
+						addPersonnages(robot);
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -404,7 +504,7 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les blocs interagissant avec le player
+	 * Met ï¿½ jour les blocs interagissant avec le player
 	 * 
 	 * @param container
 	 * @param game

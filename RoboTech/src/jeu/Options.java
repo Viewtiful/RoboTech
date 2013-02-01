@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -16,6 +17,9 @@ public class Options extends BasicGameState {
 	private int[][] positionItemOption;
 	private int sourisX;
 	private int sourisY;
+	private XMLPackedSheet sheetRouge;
+	private XMLPackedSheet sheetJaune;
+	private XMLPackedSheet sheetVert;
 
 	public Options(int ID) {
 		this.ID = ID;
@@ -25,11 +29,14 @@ public class Options extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		imageFond = new Image("res/backgroundOption.png");
+		sheetRouge = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
+		sheetJaune = new XMLPackedSheet("res/robotJaune.png", "res/robot.xml");
+		sheetVert = new XMLPackedSheet("res/robotVert.png", "res/robot.xml");
 
 		itemOption = new Image[4];
-		itemOption[0] = new Image("res/robotBleu.png");
-		itemOption[1] = new Image("res/robotVert.png");
-		itemOption[2] = new Image("res/robotJaune.png");
+		itemOption[0] = sheetRouge.getSprite("robot_01.png");
+		itemOption[1] = sheetJaune.getSprite("robot_01.png");
+		itemOption[2] = sheetVert.getSprite("robot_01.png");
 		itemOption[3] = new Image("res/retourOption.png");
 
 		interieurBouton = new boolean[itemOption.length];
@@ -87,20 +94,20 @@ public class Options extends BasicGameState {
 
 		// Choix personnage bleu
 		if (interieurBouton[0] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			System.out.println("BLEUUUU");
-			this.choixPersonnage(sbg, "robotBleu");
+			System.out.println("ROUGEEE");
+			this.choixPersonnage(sbg, "robotRouge");
 		}
 
 		// Choix personnage vert
 		if (interieurBouton[1] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			System.out.println("VERTTETTE");
-			this.choixPersonnage(sbg, "robotVert");
+			this.choixPersonnage(sbg, "robotJaune");
 		}
 
 		// Choix personnage jaune
 		if (interieurBouton[2] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			System.out.println("JAUNNNEEE");
-			this.choixPersonnage(sbg, "robotJaune");
+			this.choixPersonnage(sbg, "robotVert");
 		}
 
 		// Retour menu principal

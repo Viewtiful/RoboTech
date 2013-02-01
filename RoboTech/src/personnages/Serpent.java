@@ -9,14 +9,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class EnnemisRouge extends Ennemis {
+public class Serpent extends Ennemis {
 	// l'image qui contient le sprite du robot
 	private Image image;
 	private XMLPackedSheet sheet;
 	private int i;
 	private int animationStep;
 
-	public EnnemisRouge(float x, float y, float masse, float tailleBlockPerso,
+	public Serpent(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde);
 

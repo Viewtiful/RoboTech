@@ -17,7 +17,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import personnages.EnnemisRouge;
+import personnages.Serpent;
 import personnages.ChauveSouris;
 import personnages.Robot;
 
@@ -68,31 +68,10 @@ public class RoboTechJeu extends BasicGameState {
 	 */
 	private void restart(StateBasedGame game) throws SlickException {
 		monde = new Monde();
+//		monde.setPlayer(player);
 		monde.initialisationMonde();
-		player = new Robot(280, 150, 1.f, 45, monde);
-		monde.addPersonnages(player);
-		monde.setPlayer(player);
-		monde.addPersonnages(new EnnemisRouge(400, 50, 2f, 49, monde));
-		monde.addPersonnages(new ChauveSouris(600, 50, 2f, 32, monde));
-
-		monde.addItemsRamassable(new PotionVie(880, 250, 10, 14, 0.8f, player,
-				1));
-		monde.addItemsRamassable(new PotionMana(305, 250, 10, 14, 0.8f, player,
-				1));
-		monde.addItemsRamassable(new PotionEnergie(350, 250, 13, 20, 0.8f,
-				player, 1));
-		monde.addItemsRamassable(new PotionVitesse(750, 250, 10, 14, 0.8f,
-				player, 2));
-		monde.addItemsRamassable(new PotionSaut(650, 450, 10, 14, 0.8f, player,
-				2));
-
-		caisse = new Caisse(700, 10, 40, 40, 8.f);
-		baril = new Baril(1170, 200, 28, 40, 3.5f);
-		poutre = new Poutre(880, 60, 25, 130, 3.5f);
-		monde.addItems(caisse);
-		monde.addItems(baril);
-		monde.addItems(poutre);
-
+		player = monde.getPlayer();
+//		monde.addPersonnages(player);
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
