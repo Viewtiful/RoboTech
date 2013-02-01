@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="150" height="50" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="150" height="55" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tile.png" width="128" height="64"/>
  </tileset>
@@ -12,86 +12,101 @@
  <tileset firstgid="11" name="webSpider" tilewidth="51" tileheight="67">
   <image source="webSpider.png" width="51" height="67"/>
  </tileset>
- <layer name="BlocsStatiques" width="150" height="50">
+ <tileset firstgid="12" name="grate" tilewidth="32" tileheight="32">
+  <image source="grate.jpg" width="64" height="35"/>
+ </tileset>
+ <tileset firstgid="14" name="ventilo" tilewidth="32" tileheight="32">
+  <image source="ventilo.jpg" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="18" name="wall2" tilewidth="32" tileheight="32">
+  <image source="wall2.jpg" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="22" name="Wall_with_hole" tilewidth="32" tileheight="32">
+  <image source="Wall_with_hole.jpg" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="26" name="caution" tilewidth="32" tileheight="32">
+  <image source="caution.jpg" width="64" height="45"/>
+ </tileset>
+ <layer name="BlocsStatiques" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aQQ6DIBAFULd6/wM33RkDClrAMu8lJN0VZn6EUtdlWdZO4w3eMo/ZRatztPWOEq3O0dY7SrQ6R1vvKL3rvO3GcR495iJXffSqcypLKVF+P8xuPXwuqf1ZPkqyc0Xv/98be/jGOVFndA9Tz7fRc+K5nueQ3Jk9dYZnTj17K1dxfHu7ZUaJJ+d3uZrXqN66C5hbTW/vPtP23+V+KYZe/ZWlWPynQgtyRSut+y5XMbU+S8sVxwzU3s97t4CU3HsPVxmRHc7czRWcKdnnoJZc0UJuz7MP8kuyBAAAAAAAAAAAAAAAAAAQywecnG9FMHUAAA==
+   H4sIAAAAAAAAA+3aSQ6EIBAFULd6/wN3emcMODNIvZeQ9M6S+gFCO00AwNvmjgff1HP/eq1rNNHWhJ5rG0m0eY72vq1Em+do79tKtHmO9r6t1J7nZTW2ddSoRa7qqDXPqSyluGcYw7z5fWbu9/JxJjtH9P77euxhjzVxTesepta31jXxXM1zSO7MnjrDM6aavZWrOP69XTLjjCfnd7kaV6veugsY25Xe3l3T1s9yvxRDrf7KUiz+U6EEuaKU0n2Xq5hKn6Xlim0Grt7P+7aAlNx3D0cZkR323M0V7Dmzz8FVckUJuT3PPsibZAkAAAAAAAAAAAAAAAAAIJYfDllOqOiAAAA=
   </data>
  </layer>
- <objectgroup name="Personnages" width="150" height="50">
-  <object name="poutre" type="objet" x="928" y="64" width="32" height="32">
+ <objectgroup name="Personnages" width="150" height="55">
+  <object name="poutre" type="objet" x="928" y="224" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="caisse" type="objet" x="416" y="736" width="32" height="32">
+  <object name="caisse" type="objet" x="416" y="896" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="baril" type="objet" x="1152" y="352" width="32" height="32">
+  <object name="baril" type="objet" x="1152" y="512" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionSaut" type="ramassable" x="512" y="736" width="32" height="32">
+  <object name="potionSaut" type="ramassable" x="512" y="896" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="robot" type="personnage" x="286" y="541" width="32" height="32">
+  <object name="robot" type="personnage" x="286" y="701" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="caisse" type="objet" x="608" y="384" width="32" height="32">
+  <object name="caisse" type="objet" x="608" y="544" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="serpent" type="personnage" x="320" y="320" width="32" height="32">
+  <object name="serpent" type="personnage" x="320" y="480" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="256" y="320" width="32" height="32">
+  <object name="potionMana" type="ramassable" x="256" y="480" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionSaut" type="ramassable" x="64" y="256" width="32" height="32">
+  <object name="potionSaut" type="ramassable" x="64" y="416" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionVitesse" type="ramassable" x="96" y="256" width="32" height="32">
+  <object name="potionVitesse" type="ramassable" x="96" y="416" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="boss" type="personnage" x="1664" y="128" width="32" height="32">
+  <object name="boss" type="personnage" x="1664" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="1280" y="128" width="32" height="32">
+  <object name="potionMana" type="ramassable" x="1280" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="1312" y="128" width="32" height="32">
+  <object name="potionMana" type="ramassable" x="1312" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="1248" y="128" width="32" height="32">
+  <object name="potionMana" type="ramassable" x="1248" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="decors" width="150" height="50">
+ <layer name="decors" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OMQEAAAgDoP3272uK6QMJSAAAAAAAAADuzHcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqFoVVF18MHUAAA==
+   H4sIAAAAAAAAA+3a2YqDMBgGUO8Ls9nO8v4vOslFQMQltUajngM/kRasoPmaxaYBAOAovkK1lbUc2z3Uo8KW7dSQI/32LdR7gXOzndSX073cO1Ni+xHqs8C52U7qy+lelsyh71A/Bc9vfFWPfp9+NOVyaOx3x65lqk3PqLyq01w/b2e+fyYn5Ml1DPXluT4/lUfGQEQ1zP/M2c4n5sSt06bjrdaTpsZgnE/JHOp/Lq+uY6/M4ppy1xOM2xmyxnpnTt06x5xff3+nbfLzZelaKef3yv6ONQXGvDIel1OMyc2c7v/kM3nFdeXk09A7LfKKHPFZWHt8BdFc1sgmljCHowTr4ZQw9d4fLNWd56V9GxnGmn5D/e19EQAAAAAAAAAAAAAAAAAAwKH9A4sDDtnogAAA
   </data>
  </layer>
 </map>
