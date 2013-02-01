@@ -1,0 +1,5 @@
+<sheet>
+	<sprite name="boss_00.png" x="0" y="0" width="96" height="92" />
+	<sprite name="boss_01.png" x="96" y="0" width="96" height="92" />
+	<sprite name="boss_02.png" x="192" y="0" width="96" height="92" />
+</sheet>
