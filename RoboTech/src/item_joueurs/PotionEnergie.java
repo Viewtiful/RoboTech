@@ -76,9 +76,13 @@ public class PotionEnergie extends Potion {
 	 * Ici on restore l'enegie du Robot
 	 */
 	@Override
-	public void effect(Robot player) {
-		player.ajouterEnergie(valeur);
-
+	public boolean effect(Robot player) {
+		if(player.getEnergie() < 5) {
+			player.ajouterEnergie(valeur);
+			return true;	
+		}
+		else
+			return false;
 	}
 
 }

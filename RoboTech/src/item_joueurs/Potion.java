@@ -13,7 +13,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine Toutes les potions de manière générale
+ * @author Antoine Toutes les potions de maniï¿½re gï¿½nï¿½rale
  */
 public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */
@@ -113,9 +113,9 @@ public abstract class Potion extends ItemsRamassable {
 
 		if (playerPosX >= tileX && playerPosX < (tileX + pickupWidth)
 				&& playerPosY >= tileY && playerPosY < (tileY + pickupHeight)) {
-			used = true;
-			effect(player);
-			world.remove(getBody());
+			 used = effect(player);
+			 if(used)
+				 world.remove(getBody());
 		}
 	}
 
@@ -147,5 +147,5 @@ public abstract class Potion extends ItemsRamassable {
 	 * 
 	 * @param player
 	 */
-	public abstract void effect(Robot player);
+	public abstract boolean effect(Robot player);
 }

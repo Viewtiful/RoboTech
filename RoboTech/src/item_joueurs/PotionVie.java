@@ -75,9 +75,13 @@ public class PotionVie extends Potion {
 	 * Ici on restaure la vie du Robot
 	 */
 	@Override
-	public void effect(Robot player) {
-		player.ajouterVie(valeur);
-
+	public boolean effect(Robot player) {
+		if(player.getVie() < 5) {
+			player.ajouterVie(valeur);
+			return true;	
+		}
+		else
+			return false;
 	}
 
 }

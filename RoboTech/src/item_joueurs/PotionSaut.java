@@ -76,10 +76,10 @@ public class PotionSaut extends Potion {
 	 * Ici on restaure la hauteur du saut du Robot
 	 */
 	@Override
-	public void effect(Robot player) {
+	public boolean effect(Robot player) {
 		player.modifierVitesseY(valeur);
 		player.setEstomperEffetPotion(0);
-
+		return true;	
 	}
 
 }

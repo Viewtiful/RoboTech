@@ -76,8 +76,13 @@ public class PotionMana extends Potion {
 	 * Ici on restaure le mana du Robot
 	 */
 	@Override
-	public void effect(Robot player) {
-		player.ajouterMana(valeur);
+	public boolean effect(Robot player) {
+		if(player.getMana() < 5) {
+			player.ajouterMana(valeur);
+			return true;	
+		}
+		else
+			return false;
 
 	}
 
