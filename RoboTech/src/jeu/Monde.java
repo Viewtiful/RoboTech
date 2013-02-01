@@ -314,12 +314,12 @@ public class Monde implements SlickAdapter {
 						}
 					else if (map.getObjectName(i, j).equals("potionVitesse")) {
 						
-						ItemsRamassable potionV = new PotionVitesse( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						ItemsRamassable potionV = new PotionVitesse( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
 						addItemsRamassable(potionV);
 						}
 					else if (map.getObjectName(i, j).equals("potionSaut")) {
 						
-						ItemsRamassable potionS = new PotionSaut( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						ItemsRamassable potionS = new PotionSaut( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
 						addItemsRamassable(potionS);
 						}
 				}
