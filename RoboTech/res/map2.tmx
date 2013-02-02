@@ -103,4 +103,13 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Switch" width="40" height="30">
+  <object name="Switch1" type="Switch" x="450" y="445" width="32" height="32">
+   <properties>
+    <property name="Image_Off" value="res/switch_off.png"/>
+    <property name="Image_On" value="res/switch_on.png"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

@@ -32,9 +32,9 @@ public abstract class AbstractFactory {
 		return new Point(map.getObjectX(i, j),map.getObjectY(i, j));
 	}
 	
-	public Image getImage(int i,int j)
+	public Image getImage(int i,int j,String Tag)
 	{
-		String Image = recuperer_Propriete(i,j,"Image");
+		String Image = recuperer_Propriete(i,j,Tag);
 		assert(!Image.equals("NOT_FOUND"));
 		Image image_box = null;
 		try {

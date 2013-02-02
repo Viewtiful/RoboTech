@@ -1,6 +1,7 @@
 package jeu;
 
 import factory.PlateformeFactory;
+import factory.SwitchFactory;
 import interfaces.SlickAdapter;
 import item_joueurs.ItemsRamassable;
 import item_joueurs.PotionEnergie;
@@ -62,6 +63,8 @@ public class Monde implements SlickAdapter {
 
 	private PlateformeFactory f;
 
+	private SwitchFactory s;
+	
 	// Les Balles prï¿½sentes dans le niveau
 	protected ArrayList<Balle> balles;
 
@@ -130,12 +133,14 @@ public class Monde implements SlickAdapter {
 
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
-		f = new PlateformeFactory(world, niveau);
+		s = new SwitchFactory(world,niveau);
+		f = new PlateformeFactory(world, niveau,s);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
 		System.out.println("Init Monde");
 		// Ici tout a été construit il suffit de récupérer les objets crées
 		interaction.addAll(f.get_produit());
+		interaction.addAll(s.get_produit());
 		object.addAll(interaction);
 		object.addAll(personnages.values());
 		object.addAll(items);
@@ -261,12 +266,17 @@ public class Monde implements SlickAdapter {
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-
+				/*
+				if(map.getObjectType(i, j).equals("Switch"))
+					s.CreateSwitch(i, j);
+				*/
 				if (map.getObjectType(i, j).equals("Plateforme_Base"))
 					f.CreatePlateforme(i, j);
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.AddPosition(i, j);
 
+				
+				
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(

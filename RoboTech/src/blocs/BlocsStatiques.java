@@ -34,6 +34,7 @@ public abstract class BlocsStatiques extends Blocs {
 	 */
 	public void render(Graphics g) {
 		get_image().drawCentered(center.get_x(), center.get_y());
+		
 
 	}
 
@@ -51,7 +52,7 @@ public abstract class BlocsStatiques extends Blocs {
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		render(g);
 
 	}
 

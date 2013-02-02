@@ -34,6 +34,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Taille de la plateforme
 	 */
 	int taille;
+	
 	/**
 	 * Le pas de translation horizontal élémentaire pour animer la plateforme
 	 */
@@ -57,6 +58,11 @@ public class Plateforme extends BlocsDynamiques {
 	private float vitesse;
 
 	/**
+	 * marge d'erreur
+	 */
+	Point eps;
+	
+	/**
 	 * 
 	 * @param Point_x
 	 *            Abscisses des points à suivre
@@ -78,6 +84,7 @@ public class Plateforme extends BlocsDynamiques {
 		pointd = 0;
 		taille = Trajectoire.size();
 		vitesse = 1;
+		eps = new Point((float)1e-01,(float)1e-01);
 		initialise(0, 1);
 	}
 
@@ -87,6 +94,7 @@ public class Plateforme extends BlocsDynamiques {
 		Trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
+		eps = new Point((float)1e-01,(float)1e-01);
 		}
 
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
@@ -136,32 +144,18 @@ public class Plateforme extends BlocsDynamiques {
 
 	}
 
-	/**
-	 * Permet de calculer la distance entre deux valeur
-	 * 
-	 * @param x1
-	 *            Valeur x1
-	 * @param x2
-	 *            valeur x2
-	 * @return Valeur absolue de la différence
-	 */
-	public float distance(float x1, float x2) {
-		return Math.abs(x2 - x1);
-	}
-
+	
 	/**
 	 * Réalise le chemin aller de la plateforme
 	 */
 	public void aller() {
-		float eps = (float) 1e-01;
 		/*
 		 * On s'est rendu compte que on devait utilise un epsilon pour tester
 		 */
 		if(signal)
 		{
 			Point next = Trajectoire.get((pointd + 1) % taille);
-			if (distance(center.get_x(), next.get_x()) < eps
-					&& distance(center.get_y(), next.get_y()) < eps) {
+			if (center.near(next, eps)) {
 				pointd = (pointd + 1) % taille;
 				if (pointd == taille - 1)
 					return;
@@ -181,10 +175,8 @@ public class Plateforme extends BlocsDynamiques {
 		
 		if(signal)
 		{
-			float eps = (float) 1e-01;
 			Point previous = Trajectoire.get((pointd - 1) % taille);
-			if (distance(center.get_x(), previous.get_x()) < eps
-					&& distance(center.get_y(), previous.get_y()) < eps) {
+			if (center.near(previous, eps)) {
 				pointd = (pointd - 1) % taille;
 				if (pointd == 0)
 					return;
@@ -224,8 +216,6 @@ public class Plateforme extends BlocsDynamiques {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		taille = Trajectoire.size();
-		System.out.println("Size = "+taille);
-		System.out.println("Signal = "+signal);
 		initialise(0, 1);
 
 	}

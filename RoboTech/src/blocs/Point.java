@@ -35,9 +35,9 @@ public class Point{
 	public boolean near(Point o1,Point eps)
 	{
 		Point distance = distance(o1);
+		assert(distance!=eps);
 		boolean b1 = distance.get_x() < eps.get_x();
 		boolean b2 = distance.get_y() < eps.get_y();
-		System.out.println(b1 && b2);
 		return (b1 && b2);
 	}
 	
