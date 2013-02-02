@@ -1,5 +1,7 @@
 package blocs;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -7,24 +9,24 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import factory.Point;
+
 import personnages.Robot;
 
 /**
- * <i>Represente une plateforme mouvante
+ * <i>Represente une plateforme mouvante</i>
  * 
  * @author Antoine
  * 
  */
 public class Plateforme extends BlocsDynamiques {
 
+	
+
 	/**
-	 * Les abscisses des points de sa trajectoire
+	 * Les points de sa trajectoire
 	 */
-	float Point_x[];
-	/**
-	 * Les ordonnées des points de sa trajectoire
-	 */
-	float Point_y[];
+	ArrayList<Point> Trajectoire;
 	/**
 	 * Le dernier point atteint (initialisé à 0 par le constructeur
 	 */
@@ -72,12 +74,30 @@ public class Plateforme extends BlocsDynamiques {
 	public Plateforme(float Point_x[], float Point_y[], Image box_image,
 			float width, float height) {
 		super(box_image, height, width, Point_x[0], Point_y[0]);
-		this.Point_x = Point_x;
-		this.Point_y = Point_y;
+		Trajectoire = new ArrayList<Point>();
+		setTrajectoire(Point_x, Point_y);
 		pointd = 0;
-		taille = Point_x.length;
+		taille = Trajectoire.size();
 		vitesse = 1;
 		initialise(0, 1);
+	}
+
+	public Plateforme(float x, float y, Image box_image, float width,
+			float height) {
+		super(box_image, height, width, x, y);
+		Trajectoire = new ArrayList<Point>();
+		pointd = 0;
+		vitesse = 1;
+		}
+
+	public void setTrajectoire(float Point_x[], float Point_y[]) {
+		for (int i = 0; i < Point_x.length; i++)
+			Trajectoire.add(new Point(Point_x[i], Point_y[i]));
+	}
+	
+	public void addPoint(float x, float y)
+	{
+		Trajectoire.add(new Point(x,y));
 	}
 
 	public float get_epsilon_x() {
@@ -96,6 +116,10 @@ public class Plateforme extends BlocsDynamiques {
 		this.vitesse = vitesse;
 	}
 
+	public void set_reverse(boolean reverse)
+	{
+		on_reverse = reverse;
+	}
 	/**
 	 * Calcule le pas élémentaire de translation horizontal et vertical
 	 * 
@@ -106,8 +130,10 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void initialise(int point_current, int next_point) {
 		float n = vitesse;
-		epsilon_x = (Point_x[next_point] - Point_x[point_current]) * (n / 100);
-		epsilon_y = (Point_y[next_point] - Point_y[point_current]) * (n / 100);
+		Point current = Trajectoire.get(point_current);
+		Point next = Trajectoire.get(next_point);
+		epsilon_x = (next.get_x() - current.get_x()) * (n / 100);
+		epsilon_y = (next.get_y() - current.get_y()) * (n / 100);
 
 	}
 
@@ -132,17 +158,21 @@ public class Plateforme extends BlocsDynamiques {
 		/*
 		 * On s'est rendu compte que on devait utilise un epsilon pour tester
 		 */
-		if (distance(get_x(), Point_x[(pointd + 1) % taille]) < eps
-				&& distance(get_y(), Point_y[(pointd + 1) % taille]) < eps) {
-			pointd = (pointd + 1) % taille;
-			if (pointd == taille - 1)
-				return;
-			initialise(pointd, (pointd + 1) % taille);
-		}
-		if (pointd < taille - 1) {
-			set_x(get_x() + epsilon_x);
-			set_y(get_y() + epsilon_y);
-			getBody().setPosition(get_x(), get_y());
+		if(signal)
+		{
+			Point next = Trajectoire.get((pointd + 1) % taille);
+			if (distance(get_x(), next.get_x()) < eps
+					&& distance(get_y(), next.get_y()) < eps) {
+				pointd = (pointd + 1) % taille;
+				if (pointd == taille - 1)
+					return;
+				initialise(pointd, (pointd + 1) % taille);
+			}
+			if (pointd < taille - 1) {
+				set_x(get_x() + epsilon_x);
+				set_y(get_y() + epsilon_y);
+				getBody().setPosition(get_x(), get_y());
+			}
 		}
 	}
 
@@ -150,18 +180,22 @@ public class Plateforme extends BlocsDynamiques {
 	 * Réalise le chemin retour de la plateforme
 	 */
 	public void retour() {
-		float eps = (float) 1e-01;
-		if (distance(get_x(), Point_x[(pointd - 1) % taille]) < eps
-				&& distance(get_y(), Point_y[(pointd - 1) % taille]) < eps) {
-			pointd = (pointd - 1) % taille;
-			if (pointd == 0)
-				return;
-			initialise(pointd, (pointd - 1) % taille);
+		
+		if(signal)
+		{
+			float eps = (float) 1e-01;
+			Point previous = Trajectoire.get((pointd - 1) % taille);
+			if (distance(get_x(), previous.get_x()) < eps
+					&& distance(get_y(), previous.get_y()) < eps) {
+				pointd = (pointd - 1) % taille;
+				if (pointd == 0)
+					return;
+				initialise(pointd, (pointd - 1) % taille);
+			}
+			set_x(get_x() + epsilon_x);
+			set_y(get_y() + epsilon_y);
+			getBody().setPosition(get_x(), get_y());
 		}
-		set_x(get_x() + epsilon_x);
-		set_y(get_y() + epsilon_y);
-		getBody().setPosition(get_x(), get_y());
-
 	}
 
 	/**
@@ -192,7 +226,10 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		taille = Trajectoire.size();
+		System.out.println("Size = "+taille);
+		System.out.println("Signal = "+signal);
+		initialise(0, 1);
 
 	}
 
@@ -213,8 +250,14 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void render_spec(Graphics g) {
 		g.setColor(Color.gray);
-		for (int i = 0; i < taille - 1; i++)
-			g.drawLine(Point_x[i], Point_y[i], Point_x[i + 1], Point_y[i + 1]);
+		Point current;
+		Point next;
+		for (int i = 0; i < taille - 1; i++) {
+			current = Trajectoire.get(i);
+			next = Trajectoire.get(i + 1);
+			g.drawLine(current.get_x(), current.get_y(), next.get_x(),
+					next.get_y());
+		}
 		g.setColor(Color.white);
 	}
 

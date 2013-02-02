@@ -1,4 +1,7 @@
 package factory;
+
+import personnages.Personnage;
+
 /**
  * 
  * @author Antoine
@@ -6,4 +9,8 @@ package factory;
  */
 public class PersonnagesFactory {
 
+	public Personnage create(String Build)
+	{
+		return null;
+	}
 }

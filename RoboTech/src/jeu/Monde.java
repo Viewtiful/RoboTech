@@ -1,5 +1,6 @@
 package jeu;
 
+import factory.Point;
 import interfaces.SlickAdapter;
 import item_joueurs.ItemsRamassable;
 import item_joueurs.PotionEnergie;
@@ -74,22 +75,19 @@ public class Monde implements SlickAdapter {
 	protected ArrayList<Items> itemsRamassable;
 
 	protected ArrayList<Blocs> interaction;
-	// Plateforme test
-	public Plateforme p;
 
+	private HashMap<String,Plateforme> test;
 	// Le robot contr�l� par le Joueur
 	Robot player;
 
 	Animation courir;
 
-	private BlocsBlessant bb;
-
+	
 	//
 	/**
 	 * Constructeur de la classe Monde
 	 * @throws SlickException 
 	 */
-	BlocsTest t;
 	public Monde() throws SlickException {
 		// initialise les variables de la classe
 		world = null;
@@ -100,26 +98,7 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
-		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
-		Image i = null;
-		try {
-			i = new Image("res/caisse2.png");
-		} catch (SlickException e) {
-			System.out.println("SlickException");
-		}
-		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-		try {
-			i = new Image("res/caisse2.png");
-		} catch (SlickException e) {
-			System.out.println("SlickException");
-		}
-		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
-		interaction.add(p);
-		interaction.add(bb);
-		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
-				415,new Image("res/blocsvisible.png"));
-		interaction.add(t);
+		test = new HashMap<String,Plateforme>();
 	}
 
 	public void setPlayer(Robot player) {
@@ -148,9 +127,6 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
-		world.add(p.getBody());
-		world.add(bb.getBody());
-		world.add(t.getBody());
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -183,6 +159,11 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
+		
+		Iterator<Plateforme> it5 = test.values().iterator();
+		
+		while(it5.hasNext())
+			it5.next().render(g);
 	}
 
 	/**
@@ -280,10 +261,72 @@ public class Monde implements SlickAdapter {
 		}
 
 	}
+
+	public String recuperer_Propriete(int i,int j, TiledMap map, String Tag)
+	{
+		return map.getObjectProperty(i, j, Tag, "NOT_FOUND"); 	
+	}
+	
+	public Point get_Position(TiledMap map, int i,int j)
+	{
+		return new Point(map.getObjectX(i, j),map.getObjectY(i, j));
+	}
+	
+	public Image getImage(int i,int j, TiledMap map)
+	{
+		String Image = recuperer_Propriete(i,j,map,"Image");
+		assert(!Image.equals("NOT_FOUND"));
+		Image image_box = null;
+		try {
+			image_box = new Image(Image);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		return image_box;
+	}
+	
+	public void AddPosition(TiledMap map, int i,int j)
+	{
+		String name = map.getObjectName(i, j);
+		System.out.println("Name = "+name);
+		Plateforme p = test.get(name);
+		Point position = get_Position(map,i,j);
+		int width = map.getObjectWidth(i, j);
+		int height = map.getObjectHeight(i, j);
+		p.addPoint(position.get_x()+width/2, position.get_y()+height/2);
+	}
+	
+	public void CreatePlateforme(TiledMap map, int i, int j)
+	{
+		Point position = get_Position(map,i,j);
+		int width = map.getObjectWidth(i, j);
+		int height = map.getObjectHeight(i, j);
+		Image image_box = getImage(i,j,map);
+		boolean signal = Boolean.parseBoolean(recuperer_Propriete(i,j,map,"Signal"));
+		boolean reverse = Boolean.parseBoolean(recuperer_Propriete(i,j,map,"Reverse"));
+		String name = map.getObjectName(i, j);
+		String cste = "Merde";
+		System.out.println("x = "+position.get_x()+"y ="+position.get_y());
+		Plateforme p = new Plateforme(position.get_x()+width/2,position.get_y()+height/2,image_box,width,height);
+		p.addPoint(position.get_x()+width/2, position.get_y()+height/2);
+		p.set_signal(signal);
+		p.set_reverse(reverse);
+		world.add(p.getBody());
+		
+		test.put(name,p);
+		//interaction.add(p);
+		System.out.println("Signal = "+signal);
+		System.out.println("reverse = "+reverse);
+	}
 	
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
+				
+				if(map.getObjectType(i, j).equals("Plateforme_Base"))
+					CreatePlateforme(map, i, j);
+				if(map.getObjectType(i, j).equals("Plateforme_Point"))
+					AddPosition(map,i,j);
 				
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
@@ -439,7 +482,10 @@ public class Monde implements SlickAdapter {
 		while (it3.hasNext())
 			it3.next().init(container, game);
 
-	}
+		Iterator<Plateforme> it4 = test.values().iterator();
+		while(it4.hasNext())
+			it4.next().init(container, game);
+		}
 
 	/**
 	 * Met à jour les items ramassés du niveau, vérification à chaque tour
@@ -528,6 +574,15 @@ public class Monde implements SlickAdapter {
 				System.out.println("SlickException");
 			}
 		}
+		
+		Iterator<Plateforme> it4 = test.values().iterator();
+		while(it4.hasNext())
+			try {
+				it4.next().update(container, game, delta);
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	/**

@@ -1,4 +1,7 @@
 package factory;
+
+import blocs.Blocs;
+
 /**
  * 
  * @author Antoine
@@ -6,4 +9,8 @@ package factory;
  */
 public class BlocsFactory {
 
+	public Blocs create(String build)
+	{
+		return null;
+	}
 }
