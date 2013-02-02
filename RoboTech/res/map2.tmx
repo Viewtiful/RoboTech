@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tile.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="wall" tilewidth="32" tileheight="32">
+  <image source="wall.jpg" width="32" height="32"/>
+ </tileset>
+ <layer name="BlocsStatiques" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2USwpAIQhFnbr/Db9pyEv8F3QPBA0sjyYRAfAOvCwt5gS82WtxJ9l5TPkx6e952s+Cx9sbs8Za5t6aq9ovi6wr4id71Ol/W/9k3u7589YWOTv9B0XO/d1TOX+ZOyb6l83R7Vjh170AAACAF/kAqMeGVMASAAA=
+  </data>
+ </layer>
+ <objectgroup name="Personnages" width="40" height="30">
+  <object name="potionVie" type="ramassable" x="544" y="384" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="chauveSouris" type="personnage" x="576" y="256" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="serpent" type="personnage" x="386" y="320" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="poutre" type="objet" x="857" y="124" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="caisse" type="objet" x="640" y="384" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="baril" type="objet" x="1152" y="352" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="384" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionSaut" type="ramassable" x="736" y="192" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionVitesse" type="ramassable" x="960" y="96" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="robot" type="personnage" x="271" y="536" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -100,26 +100,26 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-//		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
-//		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
-//		Image i = null;
-//		try {
-//			i = new Image("res/caisse2.png");
-//		} catch (SlickException e) {
-//			System.out.println("SlickException");
-//		}
-//		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
-//		try {
-//			i = new Image("res/caisse2.png");
-//		} catch (SlickException e) {
-//			System.out.println("SlickException");
-//		}
-//		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
-//		interaction.add(p);
-//		interaction.add(bb);
-//		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
-//				415,new Image("res/blocsvisible.png"));
-//		interaction.add(t);
+		float[] Point_x = { 500f, 800f, 800f, 500f, 500f };
+		float[] Point_y = { 500f, 500f, 550f, 550f, 500f };
+		Image i = null;
+		try {
+			i = new Image("res/caisse2.png");
+		} catch (SlickException e) {
+			System.out.println("SlickException");
+		}
+		p = new Plateforme(Point_x, Point_y, i, i.getHeight(), i.getWidth());
+		try {
+			i = new Image("res/caisse2.png");
+		} catch (SlickException e) {
+			System.out.println("SlickException");
+		}
+		bb = new BlocsBlessant(i, i.getWidth(), i.getHeight(), 800, 570, 20);
+		interaction.add(p);
+		interaction.add(bb);
+		t = new BlocsTest(new Image("res/bloctransparent.png"), 32, 10, 730,
+				415,new Image("res/blocsvisible.png"));
+		interaction.add(t);
 	}
 
 	public void setPlayer(Robot player) {
@@ -139,7 +139,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map.tmx");
+		niveau = new TiledMap("res/map2.tmx");
 		
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -148,9 +148,9 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
-//		world.add(p.getBody());
-//		world.add(bb.getBody());
-//		world.add(t.getBody());
+		world.add(p.getBody());
+		world.add(bb.getBody());
+		world.add(t.getBody());
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)

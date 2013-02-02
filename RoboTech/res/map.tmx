@@ -24,9 +24,6 @@
  <tileset firstgid="22" name="Wall_with_hole" tilewidth="32" tileheight="32">
   <image source="Wall_with_hole.jpg" width="64" height="64"/>
  </tileset>
- <tileset firstgid="26" name="caution" tilewidth="32" tileheight="32">
-  <image source="caution.jpg" width="64" height="45"/>
- </tileset>
  <layer name="BlocsStatiques" width="150" height="55">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3aSQ6EIBAFULd6/wN3emcMODNIvZeQ9M6S+gFCO00AwNvmjgff1HP/eq1rNNHWhJ5rG0m0eY72vq1Em+do79tKtHmO9r6t1J7nZTW2ddSoRa7qqDXPqSyluGcYw7z5fWbu9/JxJjtH9P77euxhjzVxTesepta31jXxXM1zSO7MnjrDM6aavZWrOP69XTLjjCfnd7kaV6veugsY25Xe3l3T1s9yvxRDrf7KUiz+U6EEuaKU0n2Xq5hKn6Xlim0Grt7P+7aAlNx3D0cZkR323M0V7Dmzz8FVckUJuT3PPsibZAkAAAAAAAAAAAAAAAAAIJYfDllOqOiAAAA=
