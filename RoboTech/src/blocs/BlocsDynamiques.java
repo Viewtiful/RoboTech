@@ -19,7 +19,7 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 */
 	public void render(Graphics g) {
 		render_spec(g);
-		get_image().drawCentered(get_x(), get_y());
+		get_image().drawCentered(center.get_x(), center.get_y());
 	}
 
 	/**
@@ -34,9 +34,8 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 * @param y
 	 *            Ordonnée du Bloc
 	 */
-	public BlocsDynamiques(Image box_image, float Width, float Height, float x,
-			float y) {
-		super(box_image, Width, Height, x, y);
+	public BlocsDynamiques(Image box_image, float Width, float Height, Point center) {
+		super(box_image, Width, Height, center);
 	}
 
 	/**

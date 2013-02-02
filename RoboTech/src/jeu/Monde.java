@@ -1,6 +1,6 @@
 package jeu;
 
-import factory.Point;
+import factory.PlateformeFactory;
 import interfaces.SlickAdapter;
 import item_joueurs.ItemsRamassable;
 import item_joueurs.PotionEnergie;
@@ -37,6 +37,7 @@ import blocs.Blocs;
 import blocs.BlocsBlessant;
 import blocs.BlocsTest;
 import blocs.Plateforme;
+import blocs.Point;
 
 import personnages.Boss;
 import personnages.ChauveSouris;
@@ -59,12 +60,14 @@ public class Monde implements SlickAdapter {
 	// Les Obstacles
 	private ArrayList<Rectangle> obstacles;
 
+	private PlateformeFactory f;
+
 	// Les Balles prï¿½sentes dans le niveau
 	protected ArrayList<Balle> balles;
 
 	/*
-	 * Les personnages ï¿½voluant dans le niveau La structure nous permet un gain
-	 * de performance dans la recherche de donnï¿½e
+	 * Les personnages ï¿½voluant dans le niveau La structure nous permet un
+	 * gain de performance dans la recherche de donnï¿½e
 	 */
 	protected HashMap<Body, Personnage> personnages;
 
@@ -76,17 +79,19 @@ public class Monde implements SlickAdapter {
 
 	protected ArrayList<Blocs> interaction;
 
-	private HashMap<String,Plateforme> test;
 	// Le robot contrï¿½lï¿½ par le Joueur
 	Robot player;
 
+	// Tout les objets
+	private ArrayList<SlickAdapter> object;
+
 	Animation courir;
 
-	
 	//
 	/**
 	 * Constructeur de la classe Monde
-	 * @throws SlickException 
+	 * 
+	 * @throws SlickException
 	 */
 	public Monde() throws SlickException {
 		// initialise les variables de la classe
@@ -98,13 +103,13 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		test = new HashMap<String,Plateforme>();
+		object = new ArrayList<SlickAdapter>();
 	}
 
 	public void setPlayer(Robot player) {
 		this.player = player;
 	}
-	
+
 	public Robot getPlayer() {
 		return player;
 	}
@@ -119,14 +124,23 @@ public class Monde implements SlickAdapter {
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
 		niveau = new TiledMap("res/map2.tmx");
-		
+
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
-		
+
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
+		f = new PlateformeFactory(world, niveau);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
+		System.out.println("Init Monde");
+		// Ici tout a été construit il suffit de récupérer les objets crées
+		interaction.addAll(f.get_produit());
+		object.addAll(interaction);
+		object.addAll(personnages.values());
+		object.addAll(items);
+		object.addAll(balles);
+		object.addAll(itemsRamassable);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -137,33 +151,29 @@ public class Monde implements SlickAdapter {
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
-		Iterator<Blocs> it4 = interaction.iterator();
-		while (it4.hasNext())
-			it4.next().render(g);
-		// affiche les personnages sur le niveau
-		Iterator<Personnage> it = personnages.values().iterator();
+		/*
+		 * Iterator<Blocs> it4 = interaction.iterator(); while (it4.hasNext())
+		 * it4.next().render(g); // affiche les personnages sur le niveau
+		 * Iterator<Personnage> it = personnages.values().iterator(); while
+		 * (it.hasNext()) it.next().render(gc, sbg, g);
+		 * 
+		 * // affiche les items non ramassable sur le niveau Iterator<Items> it2
+		 * = items.iterator(); while (it2.hasNext()) it2.next().render(gc, sbg,
+		 * g);
+		 * 
+		 * // affiche les items ramassables sur le niveau it2 =
+		 * itemsRamassable.iterator(); while (it2.hasNext())
+		 * it2.next().render(gc, sbg, g);
+		 * 
+		 * // affiche les balles tirees sur le niveau Iterator<Balle> it3 =
+		 * balles.iterator(); while (it3.hasNext()) it3.next().render(gc, sbg,
+		 * g);
+		 */
+
+		Iterator<SlickAdapter> it = object.iterator();
 		while (it.hasNext())
 			it.next().render(gc, sbg, g);
 
-		// affiche les items non ramassable sur le niveau
-		Iterator<Items> it2 = items.iterator();
-		while (it2.hasNext())
-			it2.next().render(gc, sbg, g);
-
-		// affiche les items ramassables sur le niveau
-		it2 = itemsRamassable.iterator();
-		while (it2.hasNext())
-			it2.next().render(gc, sbg, g);
-
-		// affiche les balles tirees sur le niveau
-		Iterator<Balle> it3 = balles.iterator();
-		while (it3.hasNext())
-			it3.next().render(gc, sbg, g);
-		
-		Iterator<Plateforme> it5 = test.values().iterator();
-		
-		while(it5.hasNext())
-			it5.next().render(g);
 	}
 
 	/**
@@ -205,32 +215,18 @@ public class Monde implements SlickAdapter {
 						niveau.getLayerIndex("BlocsStatiques")) != null) {
 					XdepartPlateformeDessine = x; // conserve la coordonnee X du
 													// debut de la plateforme
-					largeurPlateformeDessine += largeurTile; // rajoute la
-																// taille du
-																// tile, a la
-																// longueur de
-																// la plateforme
+					// rajoute la taille du tile, a la longueur de la plateforme
+					largeurPlateformeDessine += largeurTile;
 
 					// on teste les prochains tile sur la ligne x, pour savoir
 					// s'il appartienne a la meme plateforme a construire
 					while ((x + 1) < largeurMap
 							&& niveau.getTileImage(x + 1, y,
 									niveau.getLayerIndex("BlocsStatiques")) != null) {
-						largeurPlateformeDessine += largeurTile; // a chaque
-																	// tile
-																	// rajouter
-																	// pour
-																	// construire
-																	// la
-																	// plateforme,
-																	// on
-																	// rajoute
-																	// sa taille
-																	// a la
-																	// longueur
-																	// de la
-																	// plateforme
-																	// totale
+						// a chaque tile rajouter pour construire la plateforme,
+						// on rajoute sa taille a la longueur de la plateforme
+						// totale
+						largeurPlateformeDessine += largeurTile;
 						x++;
 					}
 
@@ -262,143 +258,99 @@ public class Monde implements SlickAdapter {
 
 	}
 
-	public String recuperer_Propriete(int i,int j, TiledMap map, String Tag)
-	{
-		return map.getObjectProperty(i, j, Tag, "NOT_FOUND"); 	
-	}
-	
-	public Point get_Position(TiledMap map, int i,int j)
-	{
-		return new Point(map.getObjectX(i, j),map.getObjectY(i, j));
-	}
-	
-	public Image getImage(int i,int j, TiledMap map)
-	{
-		String Image = recuperer_Propriete(i,j,map,"Image");
-		assert(!Image.equals("NOT_FOUND"));
-		Image image_box = null;
-		try {
-			image_box = new Image(Image);
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-		return image_box;
-	}
-	
-	public void AddPosition(TiledMap map, int i,int j)
-	{
-		String name = map.getObjectName(i, j);
-		System.out.println("Name = "+name);
-		Plateforme p = test.get(name);
-		Point position = get_Position(map,i,j);
-		int width = map.getObjectWidth(i, j);
-		int height = map.getObjectHeight(i, j);
-		p.addPoint(position.get_x()+width/2, position.get_y()+height/2);
-	}
-	
-	public void CreatePlateforme(TiledMap map, int i, int j)
-	{
-		Point position = get_Position(map,i,j);
-		int width = map.getObjectWidth(i, j);
-		int height = map.getObjectHeight(i, j);
-		Image image_box = getImage(i,j,map);
-		boolean signal = Boolean.parseBoolean(recuperer_Propriete(i,j,map,"Signal"));
-		boolean reverse = Boolean.parseBoolean(recuperer_Propriete(i,j,map,"Reverse"));
-		String name = map.getObjectName(i, j);
-		String cste = "Merde";
-		System.out.println("x = "+position.get_x()+"y ="+position.get_y());
-		Plateforme p = new Plateforme(position.get_x()+width/2,position.get_y()+height/2,image_box,width,height);
-		p.addPoint(position.get_x()+width/2, position.get_y()+height/2);
-		p.set_signal(signal);
-		p.set_reverse(reverse);
-		world.add(p.getBody());
-		
-		test.put(name,p);
-		//interaction.add(p);
-		System.out.println("Signal = "+signal);
-		System.out.println("reverse = "+reverse);
-	}
-	
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-				
-				if(map.getObjectType(i, j).equals("Plateforme_Base"))
-					CreatePlateforme(map, i, j);
-				if(map.getObjectType(i, j).equals("Plateforme_Point"))
-					AddPosition(map,i,j);
-				
+
+				if (map.getObjectType(i, j).equals("Plateforme_Base"))
+					f.CreatePlateforme(i, j);
+				if (map.getObjectType(i, j).equals("Plateforme_Point"))
+					f.AddPosition(i, j);
+
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
-						Personnage chauveSouris = new ChauveSouris(map.getObjectX(i, j)+(49/2), map.getObjectY(i, j), 2f, 49, this);
+						Personnage chauveSouris = new ChauveSouris(
+								map.getObjectX(i, j) + (49 / 2),
+								map.getObjectY(i, j), 2f, 49, this);
 						addPersonnages(chauveSouris);
 					}
-					
+
 					if (map.getObjectName(i, j).equals("serpent")) {
-						Personnage chauveSouris = new Serpent(map.getObjectX(i, j)+(49/2), map.getObjectY(i, j), 2f, 49, this);
+						Personnage chauveSouris = new Serpent(map.getObjectX(i,
+								j) + (49 / 2), map.getObjectY(i, j), 2f, 49,
+								this);
 						addPersonnages(chauveSouris);
 					}
 					if (map.getObjectName(i, j).equals("boss")) {
-						Personnage boss = new Boss(map.getObjectX(i, j)+(80/2), map.getObjectY(i, j), 2f, 80, this);
+						Personnage boss = new Boss(map.getObjectX(i, j)
+								+ (80 / 2), map.getObjectY(i, j), 2f, 80, this);
 						addPersonnages(boss);
 					}
-					
-				}
-				else if (map.getObjectType(i, j).equals("ramassable")) {
+
+				} else if (map.getObjectType(i, j).equals("ramassable")) {
 					if (map.getObjectName(i, j).equals("potionVie")) {
-					
-					ItemsRamassable potionV = new PotionVie( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
-					addItemsRamassable(potionV);
-					}
-					else if (map.getObjectName(i, j).equals("potionMana")) {
-						
-						ItemsRamassable potionM = new PotionMana(map.getObjectX(i, j)+(10/2), map.getObjectY(i, j), 10, 14, 0.8f, player,1);
-						addItemsRamassable(potionM);
-						}
-					else if (map.getObjectName(i, j).equals("potionEnergie")) {
-						
-						ItemsRamassable potionE = new PotionEnergie( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
-						addItemsRamassable(potionE);
-						}
-					else if (map.getObjectName(i, j).equals("potionVitesse")) {
-						
-						ItemsRamassable potionV = new PotionVitesse( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
+
+						ItemsRamassable potionV = new PotionVie(map.getObjectX(
+								i, j) + (10 / 2), map.getObjectY(i, j), 10, 14,
+								0.8f, player, 1);
 						addItemsRamassable(potionV);
-						}
-					else if (map.getObjectName(i, j).equals("potionSaut")) {
-						
-						ItemsRamassable potionS = new PotionSaut( map.getObjectX(i, j)+(10/2),  map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
+					} else if (map.getObjectName(i, j).equals("potionMana")) {
+
+						ItemsRamassable potionM = new PotionMana(
+								map.getObjectX(i, j) + (10 / 2),
+								map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						addItemsRamassable(potionM);
+					} else if (map.getObjectName(i, j).equals("potionEnergie")) {
+
+						ItemsRamassable potionE = new PotionEnergie(
+								map.getObjectX(i, j) + (10 / 2),
+								map.getObjectY(i, j), 10, 14, 0.8f, player, 1);
+						addItemsRamassable(potionE);
+					} else if (map.getObjectName(i, j).equals("potionVitesse")) {
+
+						ItemsRamassable potionV = new PotionVitesse(
+								map.getObjectX(i, j) + (10 / 2),
+								map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
+						addItemsRamassable(potionV);
+					} else if (map.getObjectName(i, j).equals("potionSaut")) {
+
+						ItemsRamassable potionS = new PotionSaut(
+								map.getObjectX(i, j) + (10 / 2),
+								map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
 						addItemsRamassable(potionS);
-						}
-				}
-				else if (map.getObjectType(i, j).equals("objet")) {
+					}
+				} else if (map.getObjectType(i, j).equals("objet")) {
 					if (map.getObjectName(i, j).equals("poutre")) {
-					
-						Items poutre = new Poutre(map.getObjectX(i, j)+(25/2), map.getObjectY(i, j), 25, 150, 6.5f);
+
+						Items poutre = new Poutre(map.getObjectX(i, j)
+								+ (25 / 2), map.getObjectY(i, j), 25, 150, 6.5f);
 						addItems(poutre);
-					}
-					else if (map.getObjectName(i, j).equals("caisse")) {
-						
-						Items caisse = new Caisse(map.getObjectX(i, j)+(40/2), map.getObjectY(i, j), 40, 40, 8.f);
+					} else if (map.getObjectName(i, j).equals("caisse")) {
+
+						Items caisse = new Caisse(map.getObjectX(i, j)
+								+ (40 / 2), map.getObjectY(i, j), 40, 40, 8.f);
 						addItems(caisse);
-					}
-					else if (map.getObjectName(i, j).equals("baril")) {
-						
-						Items baril = new Baril(map.getObjectX(i, j)+(28/2), map.getObjectY(i, j), 28, 40, 3.5f);
+					} else if (map.getObjectName(i, j).equals("baril")) {
+
+						Items baril = new Baril(
+								map.getObjectX(i, j) + (28 / 2),
+								map.getObjectY(i, j), 28, 40, 3.5f);
 						addItems(baril);
 					}
 				}
 			}
 		}
 	}
-	
+
 	public void initialiserRobot(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-				
+
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("robot")) {
-						Robot robot = new Robot(map.getObjectX(i, j)+(22/2), map.getObjectY(i, j), 1.f, 45, this);
+						Robot robot = new Robot(
+								map.getObjectX(i, j) + (22 / 2),
+								map.getObjectY(i, j), 1.f, 45, this);
 						player = robot;
 						addPersonnages(robot);
 					}
@@ -469,23 +421,24 @@ public class Monde implements SlickAdapter {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		/*
+		 * Iterator<Personnage> it = personnages.values().iterator(); while
+		 * (it.hasNext()) it.next().init(container, game);
+		 * 
+		 * Iterator<Items> it2 = items.iterator(); while (it2.hasNext())
+		 * it2.next().init(container, game);
+		 * 
+		 * Iterator<Items> it3 = itemsRamassable.iterator(); while
+		 * (it3.hasNext()) it3.next().init(container, game);
+		 * 
+		 * Iterator<Blocs> it4 = interaction.iterator(); while(it4.hasNext())
+		 * it4.next().init(container, game);
+		 */
 
-		Iterator<Personnage> it = personnages.values().iterator();
+		Iterator<SlickAdapter> it = object.iterator();
 		while (it.hasNext())
 			it.next().init(container, game);
-
-		Iterator<Items> it2 = items.iterator();
-		while (it2.hasNext())
-			it2.next().init(container, game);
-
-		Iterator<Items> it3 = itemsRamassable.iterator();
-		while (it3.hasNext())
-			it3.next().init(container, game);
-
-		Iterator<Plateforme> it4 = test.values().iterator();
-		while(it4.hasNext())
-			it4.next().init(container, game);
-		}
+	}
 
 	/**
 	 * Met Ã  jour les items ramassÃ©s du niveau, vÃ©rification Ã  chaque tour
@@ -574,15 +527,7 @@ public class Monde implements SlickAdapter {
 				System.out.println("SlickException");
 			}
 		}
-		
-		Iterator<Plateforme> it4 = test.values().iterator();
-		while(it4.hasNext())
-			try {
-				it4.next().update(container, game, delta);
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 	}
 
 	/**

@@ -30,9 +30,8 @@ public class BlocsBlessant extends BlocsStatiques {
 	 * @param valeur
 	 *            valeur des dégâts
 	 */
-	public BlocsBlessant(Image box_image, float Width, float Height, float x,
-			float y, int valeur) {
-		super(box_image, Width, Height, x, y);
+	public BlocsBlessant(Image box_image, float Width, float Height, Point org, int valeur) {
+		super(box_image, Width, Height, org);
 		this.valeur = valeur;
 	}
 

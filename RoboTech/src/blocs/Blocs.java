@@ -41,13 +41,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	Body Body;
 
 	/**
-	 * Abscisse du centre Bloc
+	 * Coordonnée du centre du blocs
 	 */
-	private float x;
-	/**
-	 * Ordonnée du centre du Bloc
-	 */
-	private float y;
+	
+	Point center;
 
 	public void setWidth(float Width) {
 		this.Width = Width;
@@ -69,22 +66,8 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		return Body;
 	}
 
-	public void set_x(float x) {
-		this.x = x;
-	}
-
-	public float get_x() {
-		return x;
-	}
-
-	public void set_y(float y) {
-		this.y = y;
-	}
-
-	public float get_y() {
-		return y;
-	}
-
+	
+	
 	public Image get_image() {
 		return box_image;
 	}
@@ -115,15 +98,14 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 * @param y
 	 *            Ordonnée du Bloc
 	 */
-	public Blocs(Image box_image, float Width, float Height, float x, float y) {
+	public Blocs(Image box_image, float Width, float Height, Point org) {
 		this.box_image = box_image;
 		this.Width = Width;
 		this.Height = Height;
-		this.Body = new StaticBody("StaticBody_" + x + "_" + y, new Box(Width,
+		this.Body = new StaticBody("StaticBody_" + org.get_x() + "_" + org.get_y(), new Box(Width,
 				Height));
-		this.x = x;
-		this.y = y;
-		Body.setPosition(x, y);
+		center = org;
+		Body.setPosition(org.get_x(), org.get_y());
 	}
 
 	public void set_on_bloc(boolean value) {
@@ -143,12 +125,12 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
 		float n = player.get_taille();
-		if (Math.abs((player.getY() + n / 2) - (get_y() - getHeight() / 2)) < eps) {
+		if (Math.abs((player.getY() + n / 2) - (center.get_y() - getHeight() / 2)) < eps) {
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 
-			float p_gauche = get_x() - getWidth() / 2;
-			float p_droite = get_x() + getWidth() / 2;
+			float p_gauche = center.get_x() - getWidth() / 2;
+			float p_droite = center.get_x() + getWidth() / 2;
 
 			if ((x_droite <= p_droite && x_droite >= p_gauche)
 					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {

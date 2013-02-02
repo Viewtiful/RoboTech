@@ -11,8 +11,8 @@ public class Switch extends BlocsStatiques {
 
 	private ArrayList<Blocs> receiver;
 
-	public Switch(Image box_image, float Width, float Height, float x, float y) {
-		super(box_image, Width, Height, x, y);
+	public Switch(Image box_image, float Width, float Height, Point org) {
+		super(box_image, Width, Height, org);
 		receiver = new ArrayList<Blocs>();
 	}
 

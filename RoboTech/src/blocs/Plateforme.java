@@ -9,7 +9,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import factory.Point;
 
 import personnages.Robot;
 
@@ -73,7 +72,7 @@ public class Plateforme extends BlocsDynamiques {
 
 	public Plateforme(float Point_x[], float Point_y[], Image box_image,
 			float width, float height) {
-		super(box_image, height, width, Point_x[0], Point_y[0]);
+		super(box_image, height, width, new Point(Point_x[0],Point_y[0]));
 		Trajectoire = new ArrayList<Point>();
 		setTrajectoire(Point_x, Point_y);
 		pointd = 0;
@@ -82,9 +81,9 @@ public class Plateforme extends BlocsDynamiques {
 		initialise(0, 1);
 	}
 
-	public Plateforme(float x, float y, Image box_image, float width,
+	public Plateforme(Point org, Image box_image, float width,
 			float height) {
-		super(box_image, height, width, x, y);
+		super(box_image, height, width, org);
 		Trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
@@ -161,17 +160,16 @@ public class Plateforme extends BlocsDynamiques {
 		if(signal)
 		{
 			Point next = Trajectoire.get((pointd + 1) % taille);
-			if (distance(get_x(), next.get_x()) < eps
-					&& distance(get_y(), next.get_y()) < eps) {
+			if (distance(center.get_x(), next.get_x()) < eps
+					&& distance(center.get_y(), next.get_y()) < eps) {
 				pointd = (pointd + 1) % taille;
 				if (pointd == taille - 1)
 					return;
 				initialise(pointd, (pointd + 1) % taille);
 			}
 			if (pointd < taille - 1) {
-				set_x(get_x() + epsilon_x);
-				set_y(get_y() + epsilon_y);
-				getBody().setPosition(get_x(), get_y());
+				center.add(epsilon_x, epsilon_y);
+				getBody().setPosition(center.get_x(), center.get_y());
 			}
 		}
 	}
@@ -185,16 +183,15 @@ public class Plateforme extends BlocsDynamiques {
 		{
 			float eps = (float) 1e-01;
 			Point previous = Trajectoire.get((pointd - 1) % taille);
-			if (distance(get_x(), previous.get_x()) < eps
-					&& distance(get_y(), previous.get_y()) < eps) {
+			if (distance(center.get_x(), previous.get_x()) < eps
+					&& distance(center.get_y(), previous.get_y()) < eps) {
 				pointd = (pointd - 1) % taille;
 				if (pointd == 0)
 					return;
 				initialise(pointd, (pointd - 1) % taille);
 			}
-			set_x(get_x() + epsilon_x);
-			set_y(get_y() + epsilon_y);
-			getBody().setPosition(get_x(), get_y());
+			center.add(epsilon_x, epsilon_y);
+			getBody().setPosition(center.get_x(), center.get_y());
 		}
 	}
 

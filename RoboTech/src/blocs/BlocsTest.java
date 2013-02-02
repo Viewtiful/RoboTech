@@ -13,9 +13,8 @@ public class BlocsTest extends BlocsDynamiques {
 	private boolean showed = false;
 	private Image image_showed;
 	private Image image_base;
-	public BlocsTest(Image box_image, float Width, float Height, float x,
-			float y,Image showed) {
-		super(box_image, Width, Height, x, y);
+	public BlocsTest(Image box_image, float Width, float Height, Point org, Image showed) {
+		super(box_image, Width, Height, org);
 		this.image_showed = showed;
 		this.image_base = box_image;
 	}

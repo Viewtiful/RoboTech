@@ -24,9 +24,8 @@ public abstract class BlocsStatiques extends Blocs {
 	 * @param y
 	 *            Ordonnée du Bloc
 	 */
-	public BlocsStatiques(Image box_image, float width, float height, float x,
-			float y) {
-		super(box_image, width, height, x, y);
+	public BlocsStatiques(Image box_image, float width, float height, Point org) {
+		super(box_image, width, height, org);
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public abstract class BlocsStatiques extends Blocs {
 	 * {@inheritDoc}
 	 */
 	public void render(Graphics g) {
-		get_image().drawCentered(get_x(), get_y());
+		get_image().drawCentered(center.get_x(), center.get_y());
 
 	}
 
