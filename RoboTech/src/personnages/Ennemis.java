@@ -2,11 +2,15 @@ package personnages;
 
 import jeu.Monde;
 
+import net.phys2d.raw.Collide;
 
 import org.newdawn.slick.GameContainer;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import weapon.Balle;
+import weapon.BalleEnnemiVert;
 
 public abstract class Ennemis extends Personnage {
 	// l'image qui contient le sprite du robot
@@ -42,17 +46,17 @@ public abstract class Ennemis extends Personnage {
 //			}
 //		}
 		
-		if (deplacementAutoDroite && monde.estSolPosition((int)(this.getX()+16), (int)(this.getY()+32))) {
+		if (deplacementAutoDroite && monde.estSolPosition((int)(this.getX()), (int)(this.getY()+32), this)) {
 			applyForce(100, getVelY());
 			deplacementAutoDroite = true;
-			if(!monde.estSolPosition((int)(this.getX()+32), (int)(this.getY()+32))) {
+			if(!monde.estSolPosition((int)(this.getX()+10), (int)(this.getY()+32), this)) {
 				deplacementAutoDroite = false;
 			}
 		}
-		else if (!deplacementAutoDroite && monde.estSolPosition((int)(this.getX()-16), (int)(this.getY()+32))) {
+		else if (!deplacementAutoDroite && monde.estSolPosition((int)(this.getX()), (int)(this.getY()+32), this)) {
 			applyForce(-100, getVelY());
 			deplacementAutoDroite = false;
-			if(!monde.estSolPosition((int)(this.getX()-32), (int)(this.getY()+32))) {
+			if(!monde.estSolPosition((int)(this.getX()-10), (int)(this.getY()+32), this)) {
 				deplacementAutoDroite = true;
 			}
 		}

@@ -36,6 +36,7 @@ import blocs.Blocs;
 
 import personnages.Boss;
 import personnages.ChauveSouris;
+import personnages.Ennemis;
 import personnages.Serpent;
 import personnages.Personnage;
 import personnages.Robot;
@@ -117,7 +118,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map2.tmx");
+		niveau = new TiledMap("res/map.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -256,11 +257,16 @@ public class Monde implements SlickAdapter {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 				
 				if(map.getObjectType(i, j).equals("Switch"))
+				{
+					System.out.println("Switch = ["+i+"|"+j+"]");
 					s.CreateSwitch(i, j);
+				}
 				 
 				if (map.getObjectType(i, j).equals("Plateforme_Base"))
+				{
+					System.out.println("Plateforme = ["+i+"|"+j+"]");	
 					f.CreatePlateforme(i, j);
-				
+				}
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.AddPosition(i, j);
 
@@ -280,7 +286,7 @@ public class Monde implements SlickAdapter {
 					}
 					if (map.getObjectName(i, j).equals("boss")) {
 						Personnage boss = new Boss(map.getObjectX(i, j)
-								+ (80 / 2), map.getObjectY(i, j), 2f, 80, this);
+								+ (64 / 2), map.getObjectY(i, j), 2f, 64, this);
 						addPersonnages(boss);
 					}
 
@@ -565,16 +571,41 @@ public class Monde implements SlickAdapter {
 		update_Blocs(container, game, delta);
 	}
 	
-	public boolean estSolPosition(int x, int y) {
+	public boolean estSolPosition(int x, int y, Ennemis ennemis) {
 		boolean result = false;
 		try {
+			int e = x;
 			x = x / niveau.getTileWidth();
 			y = y / niveau.getTileHeight();
-			result = (niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) ? false : true;
+
+
+			
+			if((niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) ) 
+			{
+				result = false;
+			}
+			else
+				result = true;
+			
+			
+			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
+				for (int j = 0; j < niveau.getObjectCount(i); j++) {
+					if(niveau.getObjectType(i,j).equals("ramassable"))
+						if(niveau.getObjectX(
+								i, j)+16 == e && !ennemis.getDirectionDroite()) {
+							result = false;
+						}
+						else if(niveau.getObjectX(
+								i, j)-16 == e && ennemis.getDirectionDroite()) {	
+							result = false;
+						}
+				}
+			}
+
 		} catch (Exception e) {
 
 		}
 		return result;
 	}
 
-}
+}///
