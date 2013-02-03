@@ -8,7 +8,7 @@ import weapon.Balle;
 
 /**
  * 
- * @author Antoine Permet de gérer la touche Q
+ * @author Equipe RoboTech  Permet de gerer la touche Q
  */
 public class KeyQHandler extends KeyHandler {
 

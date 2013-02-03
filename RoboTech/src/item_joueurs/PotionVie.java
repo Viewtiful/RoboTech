@@ -9,7 +9,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine Potion restaurant la Vie
+ * @author Equipe RoboTech  Potion restaurant la Vie
  */
 public class PotionVie extends Potion {
 

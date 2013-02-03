@@ -5,24 +5,24 @@ import org.newdawn.slick.Input;
 import personnages.Robot;
 
 /**
- * Permet de gérer les commandes au clavier Un handler est affecté à une touche
+ * Equipe RoboTech  Permet de gerer les commandes au clavier Un handler est affecte a une touche
  */
 abstract public class KeyHandler {
 
 	/**
-	 * Code de la Clé
+	 * Code de la Clï¿½
 	 * 
 	 * @see org.newdawn.slick.Input
 	 */
 	int key;
 
 	/**
-	 * Gestion de l'évènement et action à réaliser
+	 * Gestion de l'ï¿½vï¿½nement et action ï¿½ rï¿½aliser
 	 * 
 	 * @param input
-	 *            Les évènements du clavier
+	 *            Les ï¿½vï¿½nements du clavier
 	 * @param robot
-	 *            Le robot, personnage controlé par le joueur
+	 *            Le robot, personnage controlï¿½ par le joueur
 	 */
 	abstract public void handle(Input input, Robot robot);
 

@@ -9,7 +9,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Antoine Potion augmentant la hauteur du Saut
+ * @author Equipe RoboTech  Potion augmentant la hauteur du Saut
  */
 public class PotionSaut extends Potion {
 

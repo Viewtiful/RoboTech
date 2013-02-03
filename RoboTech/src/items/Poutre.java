@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
- * @author Antoine Représente une poutre
+ * @author Equipe RoboTech  Represente une poutre
  */
 public class Poutre extends Items {
 	/** The image to display for the crate */

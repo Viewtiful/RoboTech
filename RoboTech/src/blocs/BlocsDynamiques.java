@@ -9,7 +9,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * <i>Elle caractérise les Blocs dynamique comme les plateforme</i>
+ * <i>Elle caracterise les Blocs dynamique comme les plateforme</i>
+ * @author Equipe RoboTech 
  */
 public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 
@@ -32,7 +33,7 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 * @param x
 	 *            Abscisse du Bloc
 	 * @param y
-	 *            Ordonnée du Bloc
+	 *            Ordonnï¿½e du Bloc
 	 */
 	public BlocsDynamiques(Image box_image, float Width, float Height,
 			Point center) {
@@ -50,7 +51,7 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	}
 
 	/**
-	 * Permet la possibilité au classe fille d'intégrer d'autre élement à
+	 * Permet la possibilitï¿½ au classe fille d'intï¿½grer d'autre ï¿½lement ï¿½
 	 * dessiner
 	 * 
 	 * @param g

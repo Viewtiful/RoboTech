@@ -43,7 +43,7 @@ import personnages.Robot;
 import weapon.Balle;
 
 /*
- * Repr�sente le niveau o� le Robot �volue
+ * Equipe RoboTech  Repr�sente le niveau o� le Robot �volue
  */
 public class Monde implements SlickAdapter {
 

@@ -4,7 +4,7 @@ import personnages.Personnage;
 
 /**
  * 
- * @author Antoine Créateur des personnages
+ * @author Equipe RoboTech  Createur des personnages
  */
 public class PersonnagesFactory {
 

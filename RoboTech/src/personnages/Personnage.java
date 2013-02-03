@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
- * @author Antoine Les personnages du jeu
+ * @author Equipe RoboTech Les personnages du jeu
  */
 public abstract class Personnage implements Drawable, SlickAdapter {
 

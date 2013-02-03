@@ -7,11 +7,12 @@ import personnages.Robot;
 /**
  * 
  * Blocs qui blessent un joueur, comme les Pics ou la lave
+ * @author Equipe RoboTech 
  */
 public class BlocsBlessant extends BlocsStatiques {
 
 	/**
-	 * la valeur des dégâts infligé par le contact du blocs avec le Robot
+	 * la valeur des dï¿½gï¿½ts infligï¿½ par le contact du blocs avec le Robot
 	 */
 	private int valeur;
 
@@ -28,7 +29,7 @@ public class BlocsBlessant extends BlocsStatiques {
 	 * @param y
 	 *            position vertciale
 	 * @param valeur
-	 *            valeur des dégâts
+	 *            valeur des dï¿½gï¿½ts
 	 */
 	public BlocsBlessant(Image box_image, float Width, float Height, Point org,
 			int valeur) {
