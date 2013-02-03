@@ -246,7 +246,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Ici on ne rajoute que le personnage suit le mouvement du blocs
 	 */
 	public void collision_action(Robot player) {
-		if (get_on_bloc() == true && player.getEnMouvement() == false) {
+		if (get_on_bloc() == true && player.getEnMouvement() == false && signal) {
 			player.set_coor(player.getX() + epsilon_x, player.getY()
 					+ epsilon_y);
 		}
