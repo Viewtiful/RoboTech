@@ -117,7 +117,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map.tmx");
+		niveau = new TiledMap("res/map2.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -256,16 +256,11 @@ public class Monde implements SlickAdapter {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 				
 				if(map.getObjectType(i, j).equals("Switch"))
-				{
-					System.out.println("Switch = ["+i+"|"+j+"]");
 					s.CreateSwitch(i, j);
-				}
 				 
 				if (map.getObjectType(i, j).equals("Plateforme_Base"))
-				{
-					System.out.println("Plateforme = ["+i+"|"+j+"]");	
 					f.CreatePlateforme(i, j);
-				}
+				
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.AddPosition(i, j);
 
