@@ -582,7 +582,6 @@ public class Monde implements SlickAdapter {
 			
 			if((niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) ) 
 			{
-//				System.out.println("here");
 				result = false;
 			}
 			else
@@ -594,12 +593,10 @@ public class Monde implements SlickAdapter {
 					if(niveau.getObjectType(i,j).equals("ramassable"))
 						if(niveau.getObjectX(
 								i, j)+16 == e && !ennemis.getDirectionDroite()) {
-							System.out.println("aaaaaaaaaaaaaaaaa");
 							result = false;
 						}
 						else if(niveau.getObjectX(
 								i, j)-16 == e && ennemis.getDirectionDroite()) {	
-							System.out.println("fezofhboezuhf");
 							result = false;
 						}
 				}
