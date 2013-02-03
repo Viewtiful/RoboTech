@@ -72,10 +72,13 @@ public class Menu extends BasicGameState {
 
 			if ((sourisX >= positionItemMenu[i][0] && sourisX <= positionItemMenu[i][0]
 					+ itemMenu[i].getWidth())
-					&& (sourisY >= positionItemMenu[i][0] && sourisY <= positionItemMenu[i][1]
+					&& (sourisY >= positionItemMenu[i][1] && sourisY <= positionItemMenu[i][1]
 							+ itemMenu[i].getHeight())) {
+				itemMenu[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			}
+			else 
+				itemMenu[i].setAlpha(1.f);
 		}
 
 		// Lancer le jeu

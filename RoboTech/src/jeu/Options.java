@@ -88,7 +88,11 @@ public class Options extends BasicGameState {
 					+ itemOption[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
 							+ itemOption[i].getHeight())) {
+				itemOption[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
+			}
+			else {
+				itemOption[i].setAlpha(1.f);
 			}
 		}
 

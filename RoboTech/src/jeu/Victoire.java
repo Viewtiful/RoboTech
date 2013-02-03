@@ -63,8 +63,11 @@ public class Victoire extends BasicGameState {
 					+ itemVictoire[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
 							+ itemVictoire[i].getHeight())) {
+				itemVictoire[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			}
+			else
+				itemVictoire[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal
