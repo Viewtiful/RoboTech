@@ -117,7 +117,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map2.tmx");
+		niveau = new TiledMap("res/map.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -129,7 +129,7 @@ public class Monde implements SlickAdapter {
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
 		System.out.println("Init Monde");
-		// Ici tout a été construit il suffit de récupérer les objets crées
+		// Ici tout a ï¿½tï¿½ construit il suffit de rï¿½cupï¿½rer les objets crï¿½es
 		interaction.addAll(f.get_produit());
 		interaction.addAll(s.get_produit());
 
@@ -568,6 +568,18 @@ public class Monde implements SlickAdapter {
 		update_balle(container, game, delta);
 		update_item(container, game, delta);
 		update_Blocs(container, game, delta);
+	}
+	
+	public boolean estSolPosition(int x, int y) {
+		boolean result = false;
+		try {
+			x = x / niveau.getTileWidth();
+			y = y / niveau.getTileHeight();
+			result = (niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) ? false : true;
+		} catch (Exception e) {
+
+		}
+		return result;
 	}
 
 }
