@@ -575,30 +575,54 @@ public class Monde implements SlickAdapter {
 		boolean result = false;
 		try {
 			int e = x;
+			int f = y;
 			x = x / niveau.getTileWidth();
 			y = y / niveau.getTileHeight();
 
 
 			
-			if((niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) ) 
+			if((niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) 
+					|| (niveau.getTileImage(x-1, y-1, niveau.getLayerIndex("BlocsStatiques")) != null)
+					|| (niveau.getTileImage(x+1, y-1, niveau.getLayerIndex("BlocsStatiques")) != null))
 			{
 				result = false;
 			}
 			else
 				result = true;
 			
-			
 			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
 				for (int j = 0; j < niveau.getObjectCount(i); j++) {
 					if(niveau.getObjectType(i,j).equals("ramassable"))
+
 						if(niveau.getObjectX(
-								i, j)+16 == e && !ennemis.getDirectionDroite()) {
+								i, j)+24== e && (niveau.getObjectY(
+										i, j)/ niveau.getTileWidth())+1 == y && !ennemis.getDirectionDroite()) {
 							result = false;
 						}
 						else if(niveau.getObjectX(
-								i, j)-16 == e && ennemis.getDirectionDroite()) {	
+								i, j)-16 == e && (niveau.getObjectY(
+										i, j)/ niveau.getTileWidth())+1 == y && ennemis.getDirectionDroite()) {	
 							result = false;
 						}
+				}
+			}
+			
+			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
+				for (int j = 0; j < niveau.getObjectCount(i); j++) {
+					if(niveau.getObjectType(i,j).equals("objet")) {
+						if(niveau.getObjectX(
+								i, j)  +42== e && (niveau.getObjectY(
+										i, j)/ niveau.getTileWidth())+1 == y && !ennemis.getDirectionDroite()) {
+							result = false;
+						}
+						else if(niveau.getObjectX(
+								i, j)-15 ==  e && (niveau.getObjectY(
+										i, j)/ niveau.getTileWidth())+1 == y && ennemis.getDirectionDroite()) {	
+							
+							result = false;
+						}
+
+					}
 				}
 			}
 
