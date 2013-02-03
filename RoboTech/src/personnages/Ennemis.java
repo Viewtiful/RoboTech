@@ -53,10 +53,10 @@ public abstract class Ennemis extends Personnage {
 				deplacementAutoDroite = false;
 			}
 		}
-		else if (!deplacementAutoDroite && monde.estSolPosition((int)(this.getX()-32), (int)(this.getY()+32))) {
+		else if (!deplacementAutoDroite && monde.estSolPosition((int)(this.getX()-16), (int)(this.getY()+32))) {
 			applyForce(-100, getVelY());
 			deplacementAutoDroite = false;
-			if(monde.estSolPosition((int)(this.getX()-32), (int)(this.getY()-32))) {
+			if(!monde.estSolPosition((int)(this.getX()-32), (int)(this.getY()+32))) {
 				deplacementAutoDroite = true;
 			}
 		}
