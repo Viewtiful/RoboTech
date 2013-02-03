@@ -79,7 +79,7 @@ public class PotionVitesse extends Potion {
 	public boolean effect(Robot player) {
 		player.modifierVitesseX(valeur);
 		player.setEstomperEffetPotion(0);
-		return true;	
+		return true;
 	}
 
 }

@@ -49,13 +49,14 @@ public class Robot extends Personnage {
 			throws SlickException {
 		super(x, y, mass, size, monde);
 
-//		image = new Image("res/robotBleu.png");
+		// image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
 		sheet = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
 	}
 
 	public void setImage(String robotCouleur) throws SlickException {
-		sheet = new XMLPackedSheet("res/"+ robotCouleur +".png", "res/robot.xml");
+		sheet = new XMLPackedSheet("res/" + robotCouleur + ".png",
+				"res/robot.xml");
 	}
 
 	public Image getImage() {

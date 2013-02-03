@@ -13,7 +13,9 @@ public class BlocsTest extends BlocsDynamiques {
 	private boolean showed = false;
 	private Image image_showed;
 	private Image image_base;
-	public BlocsTest(Image box_image, float Width, float Height, Point org, Image showed) {
+
+	public BlocsTest(Image box_image, float Width, float Height, Point org,
+			Image showed) {
 		super(box_image, Width, Height, org);
 		this.image_showed = showed;
 		this.image_base = box_image;
@@ -33,14 +35,11 @@ public class BlocsTest extends BlocsDynamiques {
 
 	}
 
-	
 	public void render_spec(Graphics g) {
-		if(showed==true)
-		{
+		if (showed == true) {
 			set_image(image_showed);
 			showed = false;
-		}
-		else if(showed == false)
+		} else if (showed == false)
 			set_image(image_base);
 	}
 

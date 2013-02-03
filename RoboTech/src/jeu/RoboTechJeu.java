@@ -1,14 +1,5 @@
 package jeu;
 
-import item_joueurs.PotionEnergie;
-import item_joueurs.PotionMana;
-import item_joueurs.PotionVie;
-import item_joueurs.PotionVitesse;
-import item_joueurs.PotionSaut;
-import items.Baril;
-import items.Caisse;
-import items.Items;
-import items.Poutre;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,17 +8,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import personnages.Serpent;
-import personnages.ChauveSouris;
 import personnages.Robot;
 
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private int ID = -1;
 
-	private Items caisse;
-	private Items baril;
-	private Items poutre;
 	// liste des items ramassable
 	// private ArrayList<Items> itemsRamassable;
 	// private ArrayList<Personnage> personnages;
@@ -68,10 +54,10 @@ public class RoboTechJeu extends BasicGameState {
 	 */
 	private void restart(StateBasedGame game) throws SlickException {
 		monde = new Monde();
-//		monde.setPlayer(player);
+		// monde.setPlayer(player);
 		monde.initialisationMonde();
 		player = monde.getPlayer();
-//		monde.addPersonnages(player);
+		// monde.addPersonnages(player);
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

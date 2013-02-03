@@ -43,7 +43,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	/**
 	 * Coordonnée du centre du blocs
 	 */
-	
+
 	Point center;
 
 	public void setWidth(float Width) {
@@ -66,8 +66,6 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		return Body;
 	}
 
-	
-	
 	public Image get_image() {
 		return box_image;
 	}
@@ -102,8 +100,8 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		this.box_image = box_image;
 		this.Width = Width;
 		this.Height = Height;
-		this.Body = new StaticBody("StaticBody_" + org.get_x() + "_" + org.get_y(), new Box(Width,
-				Height));
+		this.Body = new StaticBody("StaticBody_" + org.get_x() + "_"
+				+ org.get_y(), new Box(Width, Height));
 		center = org;
 		Body.setPosition(org.get_x(), org.get_y());
 	}
@@ -125,7 +123,8 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
 		float n = player.get_taille();
-		if (Math.abs((player.getY() + n / 2) - (center.get_y() - getHeight() / 2)) < eps) {
+		if (Math.abs((player.getY() + n / 2)
+				- (center.get_y() - getHeight() / 2)) < eps) {
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 

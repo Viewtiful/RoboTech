@@ -4,13 +4,11 @@ import personnages.Personnage;
 
 /**
  * 
- * @author Antoine
- * Créateur des personnages
+ * @author Antoine Créateur des personnages
  */
 public class PersonnagesFactory {
 
-	public Personnage create(String Build)
-	{
+	public Personnage create(String Build) {
 		return null;
 	}
 }

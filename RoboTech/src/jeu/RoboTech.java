@@ -31,7 +31,7 @@ public class RoboTech extends StateBasedGame {
 		addState(new RoboTechJeu(JEUETAT));
 
 		addState(new RobotMort(MORTETAT));
-		
+
 		addState(new Victoire(VICTOIRETAT));
 	}
 

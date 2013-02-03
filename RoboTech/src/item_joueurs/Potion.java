@@ -113,9 +113,9 @@ public abstract class Potion extends ItemsRamassable {
 
 		if (playerPosX >= tileX && playerPosX < (tileX + pickupWidth)
 				&& playerPosY >= tileY && playerPosY < (tileY + pickupHeight)) {
-			 used = effect(player);
-			 if(used)
-				 world.remove(getBody());
+			used = effect(player);
+			if (used)
+				world.remove(getBody());
 		}
 	}
 

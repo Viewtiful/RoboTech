@@ -76,11 +76,10 @@ public class PotionVie extends Potion {
 	 */
 	@Override
 	public boolean effect(Robot player) {
-		if(player.getVie() < 5) {
+		if (player.getVie() < 5) {
 			player.ajouterVie(valeur);
-			return true;	
-		}
-		else
+			return true;
+		} else
 			return false;
 	}
 

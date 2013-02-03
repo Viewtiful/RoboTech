@@ -58,9 +58,9 @@ public class Boss extends Ennemis {
 			throws SlickException {
 
 		render(g);
-		
-		if(getVie() == 0) {
-			game.enterState(RoboTech.VICTOIRETAT);	
+
+		if (getVie() == 0) {
+			game.enterState(RoboTech.VICTOIRETAT);
 			container.reinit();
 		}
 	}

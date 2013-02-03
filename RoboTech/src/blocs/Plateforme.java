@@ -9,7 +9,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 import personnages.Robot;
 
 /**
@@ -19,8 +18,6 @@ import personnages.Robot;
  * 
  */
 public class Plateforme extends BlocsDynamiques {
-
-	
 
 	/**
 	 * Les points de sa trajectoire
@@ -34,7 +31,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Taille de la plateforme
 	 */
 	int taille;
-	
+
 	/**
 	 * Le pas de translation horizontal élémentaire pour animer la plateforme
 	 */
@@ -61,7 +58,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * marge d'erreur
 	 */
 	Point eps;
-	
+
 	/**
 	 * 
 	 * @param Point_x
@@ -78,33 +75,31 @@ public class Plateforme extends BlocsDynamiques {
 
 	public Plateforme(float Point_x[], float Point_y[], Image box_image,
 			float width, float height) {
-		super(box_image, height, width, new Point(Point_x[0],Point_y[0]));
+		super(box_image, height, width, new Point(Point_x[0], Point_y[0]));
 		Trajectoire = new ArrayList<Point>();
 		setTrajectoire(Point_x, Point_y);
 		pointd = 0;
 		taille = Trajectoire.size();
 		vitesse = 1;
-		eps = new Point((float)1e-01,(float)1e-01);
+		eps = new Point((float) 1e-01, (float) 1e-01);
 		initialise(0, 1);
 	}
 
-	public Plateforme(Point org, Image box_image, float width,
-			float height) {
+	public Plateforme(Point org, Image box_image, float width, float height) {
 		super(box_image, height, width, org);
 		Trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
-		eps = new Point((float)1e-01,(float)1e-01);
-		}
+		eps = new Point((float) 1e-01, (float) 1e-01);
+	}
 
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
 		for (int i = 0; i < Point_x.length; i++)
 			Trajectoire.add(new Point(Point_x[i], Point_y[i]));
 	}
-	
-	public void addPoint(float x, float y)
-	{
-		Trajectoire.add(new Point(x,y));
+
+	public void addPoint(float x, float y) {
+		Trajectoire.add(new Point(x, y));
 	}
 
 	public float get_epsilon_x() {
@@ -123,10 +118,10 @@ public class Plateforme extends BlocsDynamiques {
 		this.vitesse = vitesse;
 	}
 
-	public void set_reverse(boolean reverse)
-	{
+	public void set_reverse(boolean reverse) {
 		on_reverse = reverse;
 	}
+
 	/**
 	 * Calcule le pas élémentaire de translation horizontal et vertical
 	 * 
@@ -144,7 +139,6 @@ public class Plateforme extends BlocsDynamiques {
 
 	}
 
-	
 	/**
 	 * Réalise le chemin aller de la plateforme
 	 */
@@ -152,8 +146,7 @@ public class Plateforme extends BlocsDynamiques {
 		/*
 		 * On s'est rendu compte que on devait utilise un epsilon pour tester
 		 */
-		if(signal)
-		{
+		if (signal) {
 			Point next = Trajectoire.get((pointd + 1) % taille);
 			if (center.near(next, eps)) {
 				pointd = (pointd + 1) % taille;
@@ -172,9 +165,8 @@ public class Plateforme extends BlocsDynamiques {
 	 * Réalise le chemin retour de la plateforme
 	 */
 	public void retour() {
-		
-		if(signal)
-		{
+
+		if (signal) {
 			Point previous = Trajectoire.get((pointd - 1) % taille);
 			if (center.near(previous, eps)) {
 				pointd = (pointd - 1) % taille;

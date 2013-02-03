@@ -27,18 +27,12 @@ import net.phys2d.raw.shapes.Box;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import blocs.Blocs;
-import blocs.BlocsBlessant;
-import blocs.BlocsTest;
-import blocs.Plateforme;
-import blocs.Point;
 
 import personnages.Boss;
 import personnages.ChauveSouris;
@@ -64,7 +58,7 @@ public class Monde implements SlickAdapter {
 	private PlateformeFactory f;
 
 	private SwitchFactory s;
-	
+
 	// Les Balles prï¿½sentes dans le niveau
 	protected ArrayList<Balle> balles;
 
@@ -85,9 +79,7 @@ public class Monde implements SlickAdapter {
 	// Le robot contrï¿½lï¿½ par le Joueur
 	Robot player;
 
-	// Tout les objets
-	private ArrayList<SlickAdapter> object;
-
+	
 	Animation courir;
 
 	//
@@ -106,8 +98,7 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		object = new ArrayList<SlickAdapter>();
-	}
+		}
 
 	public void setPlayer(Robot player) {
 		this.player = player;
@@ -133,19 +124,15 @@ public class Monde implements SlickAdapter {
 
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
-		s = new SwitchFactory(world,niveau);
-		f = new PlateformeFactory(world, niveau,s);
+		s = new SwitchFactory(world, niveau);
+		f = new PlateformeFactory(world, niveau, s);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
 		System.out.println("Init Monde");
 		// Ici tout a été construit il suffit de récupérer les objets crées
 		interaction.addAll(f.get_produit());
 		interaction.addAll(s.get_produit());
-		object.addAll(interaction);
-		object.addAll(personnages.values());
-		object.addAll(items);
-		object.addAll(balles);
-		object.addAll(itemsRamassable);
+
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -156,28 +143,29 @@ public class Monde implements SlickAdapter {
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
-		/*
-		 * Iterator<Blocs> it4 = interaction.iterator(); while (it4.hasNext())
-		 * it4.next().render(g); // affiche les personnages sur le niveau
-		 * Iterator<Personnage> it = personnages.values().iterator(); while
-		 * (it.hasNext()) it.next().render(gc, sbg, g);
-		 * 
-		 * // affiche les items non ramassable sur le niveau Iterator<Items> it2
-		 * = items.iterator(); while (it2.hasNext()) it2.next().render(gc, sbg,
-		 * g);
-		 * 
-		 * // affiche les items ramassables sur le niveau it2 =
-		 * itemsRamassable.iterator(); while (it2.hasNext())
-		 * it2.next().render(gc, sbg, g);
-		 * 
-		 * // affiche les balles tirees sur le niveau Iterator<Balle> it3 =
-		 * balles.iterator(); while (it3.hasNext()) it3.next().render(gc, sbg,
-		 * g);
-		 */
 
-		Iterator<SlickAdapter> it = object.iterator();
+		Iterator<Blocs> it4 = interaction.iterator();
+		while (it4.hasNext())
+			it4.next().render(g);
+		// affiche les personnages sur le niveau
+		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
 			it.next().render(gc, sbg, g);
+
+		// affiche les items non ramassable sur le niveau
+		Iterator<Items> it2 = items.iterator();
+		while (it2.hasNext())
+			it2.next().render(gc, sbg, g);
+
+		// affiche les items ramassables sur le niveau
+		it2 = itemsRamassable.iterator();
+		while (it2.hasNext())
+			it2.next().render(gc, sbg, g);
+
+		// affiche les balles tirees sur le niveau
+		Iterator<Balle> it3 = balles.iterator();
+		while (it3.hasNext())
+			it3.next().render(gc, sbg, g);
 
 	}
 
@@ -266,17 +254,21 @@ public class Monde implements SlickAdapter {
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-				/*
+				
 				if(map.getObjectType(i, j).equals("Switch"))
+				{
+					System.out.println("Switch = ["+i+"|"+j+"]");
 					s.CreateSwitch(i, j);
-				*/
+				}
+				 
 				if (map.getObjectType(i, j).equals("Plateforme_Base"))
+				{
+					System.out.println("Plateforme = ["+i+"|"+j+"]");	
 					f.CreatePlateforme(i, j);
+				}
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.AddPosition(i, j);
 
-				
-				
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(
@@ -431,23 +423,23 @@ public class Monde implements SlickAdapter {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		/*
-		 * Iterator<Personnage> it = personnages.values().iterator(); while
-		 * (it.hasNext()) it.next().init(container, game);
-		 * 
-		 * Iterator<Items> it2 = items.iterator(); while (it2.hasNext())
-		 * it2.next().init(container, game);
-		 * 
-		 * Iterator<Items> it3 = itemsRamassable.iterator(); while
-		 * (it3.hasNext()) it3.next().init(container, game);
-		 * 
-		 * Iterator<Blocs> it4 = interaction.iterator(); while(it4.hasNext())
-		 * it4.next().init(container, game);
-		 */
 
-		Iterator<SlickAdapter> it = object.iterator();
+		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
 			it.next().init(container, game);
+
+		Iterator<Items> it2 = items.iterator();
+		while (it2.hasNext())
+			it2.next().init(container, game);
+
+		Iterator<Items> it3 = itemsRamassable.iterator();
+		while (it3.hasNext())
+			it3.next().init(container, game);
+
+		Iterator<Blocs> it4 = interaction.iterator();
+		while (it4.hasNext())
+			it4.next().init(container, game);
+
 	}
 
 	/**

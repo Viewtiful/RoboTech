@@ -34,7 +34,8 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 * @param y
 	 *            Ordonnée du Bloc
 	 */
-	public BlocsDynamiques(Image box_image, float Width, float Height, Point center) {
+	public BlocsDynamiques(Image box_image, float Width, float Height,
+			Point center) {
 		super(box_image, Width, Height, center);
 	}
 

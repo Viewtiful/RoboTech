@@ -77,11 +77,10 @@ public class PotionMana extends Potion {
 	 */
 	@Override
 	public boolean effect(Robot player) {
-		if(player.getMana() < 5) {
+		if (player.getMana() < 5) {
 			player.ajouterMana(valeur);
-			return true;	
-		}
-		else
+			return true;
+		} else
 			return false;
 
 	}

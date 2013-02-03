@@ -77,11 +77,10 @@ public class PotionEnergie extends Potion {
 	 */
 	@Override
 	public boolean effect(Robot player) {
-		if(player.getEnergie() < 5) {
+		if (player.getEnergie() < 5) {
 			player.ajouterEnergie(valeur);
-			return true;	
-		}
-		else
+			return true;
+		} else
 			return false;
 	}
 
