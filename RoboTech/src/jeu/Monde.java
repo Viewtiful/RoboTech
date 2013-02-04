@@ -118,7 +118,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map.tmx");
+		niveau = new TiledMap("res/map2.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -129,8 +129,6 @@ public class Monde implements SlickAdapter {
 		f = new PlateformeFactory(world, niveau, s);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
-		System.out.println("Init Monde");
-		// Ici tout a �t� construit il suffit de r�cup�rer les objets cr�es
 		interaction.addAll(f.get_produit());
 		interaction.addAll(s.get_produit());
 
