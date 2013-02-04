@@ -28,23 +28,6 @@ public abstract class Ennemis extends Personnage {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);
-//		Balle balle;
-//		if (deplacementAuto < 230 && deplacementAutoDroite) {
-//			applyForce(100, getVelY());
-//			deplacementAuto++;
-//		} else {
-//			deplacementAutoDroite = false;
-//			applyForce(-100, getVelY());
-//			deplacementAuto--;
-//			if (deplacementAuto == 0) {
-//				deplacementAutoDroite = true;
-//				balle = new BalleEnnemiVert(getX(), getY(),
-//						getDirectionDroite(), 0.01f, 2);
-//				balle.applyForce(10000, 0);
-//				monde.addBalles(balle);
-//
-//			}
-//		}
 		
 		if (deplacementAutoDroite && monde.estSolPosition((int)(this.getX()), (int)(this.getY()+32), this)) {
 			applyForce(100, getVelY());

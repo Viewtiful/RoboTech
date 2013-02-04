@@ -27,6 +27,7 @@ import net.phys2d.raw.shapes.Box;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -37,6 +38,7 @@ import blocs.Blocs;
 import personnages.Boss;
 import personnages.ChauveSouris;
 import personnages.Ennemis;
+import personnages.Kamikaze;
 import personnages.Serpent;
 import personnages.Personnage;
 import personnages.Robot;
@@ -122,7 +124,18 @@ public class Monde implements SlickAdapter {
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
-
+		Image im = null;
+		try{
+		im = new Image("res/caisse2.png");
+		}
+		catch(SlickException e)
+		{
+			e.printStackTrace();
+			
+		}
+//		Kamikaze test = new Kamikaze(600, 600, 1, 32,
+//				this,64,im);
+//		personnages.put(test.getBody(), test);
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
@@ -254,6 +267,24 @@ public class Monde implements SlickAdapter {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 				
+				if(map.getObjectType(i, j).equals("Kamikaze"))
+				{
+
+					Image im = null;
+					try{
+						im = new Image("res/caisse2.png");
+					}
+					catch(SlickException e)
+					{
+						e.printStackTrace();
+					}
+					float taille = map.getObjectHeight(i, j);	
+					float x = map.getObjectX(i, j)+taille/2;
+					float y = map.getObjectY(i, j)+taille/2;
+					Kamikaze k = new Kamikaze(x, y, 1, taille,this,64,im);
+					personnages.put(k.getBody(), k);
+					world.add(k.getBody());
+				}
 				if(map.getObjectType(i, j).equals("Switch"))
 				{
 					System.out.println("Switch = ["+i+"|"+j+"]");
