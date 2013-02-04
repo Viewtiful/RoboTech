@@ -72,4 +72,6 @@ public class ChauveSouris extends Ennemis {
 
 	}
 
+	
+
 }

@@ -84,4 +84,5 @@ public class Boss extends Ennemis {
 		setVie(getVie() - value);
 	}
 
+
 }
