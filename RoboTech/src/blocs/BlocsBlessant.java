@@ -7,7 +7,8 @@ import personnages.Robot;
 /**
  * 
  * Blocs qui blessent un joueur, comme les Pics ou la lave
- * @author Equipe RoboTech 
+ * 
+ * @author Equipe RoboTech
  */
 public class BlocsBlessant extends BlocsStatiques {
 

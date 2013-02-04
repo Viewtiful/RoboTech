@@ -76,8 +76,7 @@ public class Menu extends BasicGameState {
 							+ itemMenu[i].getHeight())) {
 				itemMenu[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
-			}
-			else 
+			} else
 				itemMenu[i].setAlpha(1.f);
 		}
 

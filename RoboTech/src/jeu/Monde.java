@@ -82,7 +82,6 @@ public class Monde implements SlickAdapter {
 	// Le robot contr�l� par le Joueur
 	Robot player;
 
-	
 	Animation courir;
 
 	//
@@ -101,7 +100,7 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		}
+	}
 
 	public void setPlayer(Robot player) {
 		this.player = player;
@@ -125,17 +124,15 @@ public class Monde implements SlickAdapter {
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
 		Image im = null;
-		try{
-		im = new Image("res/caisse2.png");
-		}
-		catch(SlickException e)
-		{
+		try {
+			im = new Image("res/caisse2.png");
+		} catch (SlickException e) {
 			e.printStackTrace();
-			
+
 		}
-//		Kamikaze test = new Kamikaze(600, 600, 1, 32,
-//				this,64,im);
-//		personnages.put(test.getBody(), test);
+		// Kamikaze test = new Kamikaze(600, 600, 1, 32,
+		// this,64,im);
+		// personnages.put(test.getBody(), test);
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
@@ -266,34 +263,29 @@ public class Monde implements SlickAdapter {
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-				
-				if(map.getObjectType(i, j).equals("Kamikaze"))
-				{
+
+				if (map.getObjectType(i, j).equals("Kamikaze")) {
 
 					Image im = null;
-					try{
+					try {
 						im = new Image("res/caisse2.png");
-					}
-					catch(SlickException e)
-					{
+					} catch (SlickException e) {
 						e.printStackTrace();
 					}
-					float taille = map.getObjectHeight(i, j);	
-					float x = map.getObjectX(i, j)+taille/2;
-					float y = map.getObjectY(i, j)+taille/2;
-					Kamikaze k = new Kamikaze(x, y, 1, taille,this,64,im);
+					float taille = map.getObjectHeight(i, j);
+					float x = map.getObjectX(i, j) + taille / 2;
+					float y = map.getObjectY(i, j) + taille / 2;
+					Kamikaze k = new Kamikaze(x, y, 1, taille, this, 64, im);
 					personnages.put(k.getBody(), k);
 					world.add(k.getBody());
 				}
-				if(map.getObjectType(i, j).equals("Switch"))
-				{
-					System.out.println("Switch = ["+i+"|"+j+"]");
+				if (map.getObjectType(i, j).equals("Switch")) {
+					System.out.println("Switch = [" + i + "|" + j + "]");
 					s.CreateSwitch(i, j);
 				}
-				 
-				if (map.getObjectType(i, j).equals("Plateforme_Base"))
-				{
-					System.out.println("Plateforme = ["+i+"|"+j+"]");	
+
+				if (map.getObjectType(i, j).equals("Plateforme_Base")) {
+					System.out.println("Plateforme = [" + i + "|" + j + "]");
 					f.CreatePlateforme(i, j);
 				}
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
@@ -599,7 +591,7 @@ public class Monde implements SlickAdapter {
 		update_item(container, game, delta);
 		update_Blocs(container, game, delta);
 	}
-	
+
 	public boolean estSolPosition(int x, int y, Ennemis ennemis) {
 		boolean result = false;
 		try {
@@ -608,46 +600,47 @@ public class Monde implements SlickAdapter {
 			x = x / niveau.getTileWidth();
 			y = y / niveau.getTileHeight();
 
-
-			
-			if((niveau.getTileImage(x, y, niveau.getLayerIndex("BlocsStatiques")) == null) 
-					|| (niveau.getTileImage(x-1, y-1, niveau.getLayerIndex("BlocsStatiques")) != null)
-					|| (niveau.getTileImage(x+1, y-1, niveau.getLayerIndex("BlocsStatiques")) != null))
-			{
+			if ((niveau.getTileImage(x, y,
+					niveau.getLayerIndex("BlocsStatiques")) == null)
+					|| (niveau.getTileImage(x - 1, y - 1,
+							niveau.getLayerIndex("BlocsStatiques")) != null)
+					|| (niveau.getTileImage(x + 1, y - 1,
+							niveau.getLayerIndex("BlocsStatiques")) != null)) {
 				result = false;
-			}
-			else
+			} else
 				result = true;
-			
+
 			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
 				for (int j = 0; j < niveau.getObjectCount(i); j++) {
-					if(niveau.getObjectType(i,j).equals("ramassable"))
+					if (niveau.getObjectType(i, j).equals("ramassable"))
 
-						if(niveau.getObjectX(
-								i, j)+24== e && (niveau.getObjectY(
-										i, j)/ niveau.getTileWidth())+1 == y && !ennemis.getDirectionDroite()) {
+						if (niveau.getObjectX(i, j) + 24 == e
+								&& (niveau.getObjectY(i, j) / niveau
+										.getTileWidth()) + 1 == y
+								&& !ennemis.getDirectionDroite()) {
 							result = false;
-						}
-						else if(niveau.getObjectX(
-								i, j)-16 == e && (niveau.getObjectY(
-										i, j)/ niveau.getTileWidth())+1 == y && ennemis.getDirectionDroite()) {	
+						} else if (niveau.getObjectX(i, j) - 16 == e
+								&& (niveau.getObjectY(i, j) / niveau
+										.getTileWidth()) + 1 == y
+								&& ennemis.getDirectionDroite()) {
 							result = false;
 						}
 				}
 			}
-			
+
 			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
 				for (int j = 0; j < niveau.getObjectCount(i); j++) {
-					if(niveau.getObjectType(i,j).equals("objet")) {
-						if(niveau.getObjectX(
-								i, j)  +42== e && (niveau.getObjectY(
-										i, j)/ niveau.getTileWidth())+1 == y && !ennemis.getDirectionDroite()) {
+					if (niveau.getObjectType(i, j).equals("objet")) {
+						if (niveau.getObjectX(i, j) + 42 == e
+								&& (niveau.getObjectY(i, j) / niveau
+										.getTileWidth()) + 1 == y
+								&& !ennemis.getDirectionDroite()) {
 							result = false;
-						}
-						else if(niveau.getObjectX(
-								i, j)-15 ==  e && (niveau.getObjectY(
-										i, j)/ niveau.getTileWidth())+1 == y && ennemis.getDirectionDroite()) {	
-							
+						} else if (niveau.getObjectX(i, j) - 15 == e
+								&& (niveau.getObjectY(i, j) / niveau
+										.getTileWidth()) + 1 == y
+								&& ennemis.getDirectionDroite()) {
+
 							result = false;
 						}
 
@@ -661,4 +654,4 @@ public class Monde implements SlickAdapter {
 		return result;
 	}
 
-}///
+}// /

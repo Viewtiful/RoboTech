@@ -90,8 +90,7 @@ public class Options extends BasicGameState {
 							+ itemOption[i].getHeight())) {
 				itemOption[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
-			}
-			else {
+			} else {
 				itemOption[i].setAlpha(1.f);
 			}
 		}

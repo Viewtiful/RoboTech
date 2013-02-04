@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
- * @author Equipe RoboTech  Represente les Blocs Statiques, qui ne bouge pas
+ * @author Equipe RoboTech Represente les Blocs Statiques, qui ne bouge pas
  */
 public abstract class BlocsStatiques extends Blocs {
 

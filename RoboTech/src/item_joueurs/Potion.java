@@ -13,7 +13,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Toutes les potions de maniere generale
+ * @author Equipe RoboTech Toutes les potions de maniere generale
  */
 public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */

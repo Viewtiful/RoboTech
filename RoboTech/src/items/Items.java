@@ -8,7 +8,7 @@ import net.phys2d.raw.World;
 
 /**
  * 
- * @author Equipe RoboTech  Represente les Items(Objet) disponible dans le jeu
+ * @author Equipe RoboTech Represente les Items(Objet) disponible dans le jeu
  */
 public abstract class Items implements SlickAdapter, Drawable {
 

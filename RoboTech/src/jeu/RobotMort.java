@@ -62,8 +62,7 @@ public class RobotMort extends BasicGameState {
 							+ itemMort[i].getHeight())) {
 				itemMort[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
-			}
-			else 
+			} else
 				itemMort[i].setAlpha(1.f);
 		}
 

@@ -4,8 +4,8 @@ import org.newdawn.slick.Graphics;
 
 /**
  * 
- * @author Equipe RoboTech  <i> Permet de specifier avec un interface les objets pouvant
- *         etre dessiner </i>
+ * @author Equipe RoboTech <i> Permet de specifier avec un interface les objets
+ *         pouvant etre dessiner </i>
  */
 public interface Drawable {
 

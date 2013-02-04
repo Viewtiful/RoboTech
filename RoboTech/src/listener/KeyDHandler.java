@@ -6,7 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Permet de gerer la touche D
+ * @author Equipe RoboTech Permet de gerer la touche D
  */
 public class KeyDHandler extends KeyHandler {
 

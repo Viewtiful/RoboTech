@@ -14,7 +14,7 @@ import personnages.Robot;
 /**
  * <i>Represente une plateforme mouvante</i>
  * 
- * @author Equipe RoboTech 
+ * @author Equipe RoboTech
  * 
  */
 public class Plateforme extends BlocsDynamiques {
@@ -33,7 +33,8 @@ public class Plateforme extends BlocsDynamiques {
 	int taille;
 
 	/**
-	 * Le pas de translation horizontal �l�mentaire pour animer la plateforme
+	 * Le pas de translation horizontal �l�mentaire pour animer la
+	 * plateforme
 	 */
 	float epsilon_x;
 

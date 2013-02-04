@@ -10,7 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * <i>Elle caracterise les Blocs dynamique comme les plateforme</i>
- * @author Equipe RoboTech 
+ * 
+ * @author Equipe RoboTech
  */
 public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 
@@ -51,8 +52,8 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	}
 
 	/**
-	 * Permet la possibilit� au classe fille d'int�grer d'autre �lement �
-	 * dessiner
+	 * Permet la possibilit� au classe fille d'int�grer d'autre �lement
+	 * � dessiner
 	 * 
 	 * @param g
 	 *            Objet Graphique

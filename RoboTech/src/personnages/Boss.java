@@ -43,12 +43,12 @@ public class Boss extends Ennemis {
 			}
 			i = 0;
 		}
-		
-		if(toucherDmg) {
-			image.setAlpha( 0.001f);
-			if(i >= 8){
-				image.setAlpha( 1.f);
-					toucherDmg = false;
+
+		if (toucherDmg) {
+			image.setAlpha(0.001f);
+			if (i >= 8) {
+				image.setAlpha(1.f);
+				toucherDmg = false;
 			}
 		}
 
@@ -83,6 +83,5 @@ public class Boss extends Ennemis {
 		toucherDmg = true;
 		setVie(getVie() - value);
 	}
-
 
 }

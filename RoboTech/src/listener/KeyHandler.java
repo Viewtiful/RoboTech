@@ -5,7 +5,8 @@ import org.newdawn.slick.Input;
 import personnages.Robot;
 
 /**
- * Equipe RoboTech  Permet de gerer les commandes au clavier Un handler est affecte a une touche
+ * Equipe RoboTech Permet de gerer les commandes au clavier Un handler est
+ * affecte a une touche
  */
 abstract public class KeyHandler {
 

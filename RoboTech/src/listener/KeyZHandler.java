@@ -6,7 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Permet de gerer la touche Z
+ * @author Equipe RoboTech Permet de gerer la touche Z
  */
 public class KeyZHandler extends KeyHandler {
 

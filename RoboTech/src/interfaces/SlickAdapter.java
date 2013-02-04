@@ -6,8 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Equipe RoboTech  <i>Cette classe permet d'adapter le code du moteur du jeu, avec un moteur
- * graphique</i>
+ * Equipe RoboTech <i>Cette classe permet d'adapter le code du moteur du jeu,
+ * avec un moteur graphique</i>
  */
 public interface SlickAdapter {
 

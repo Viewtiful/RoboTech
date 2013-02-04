@@ -42,12 +42,12 @@ public class Serpent extends Ennemis {
 			}
 			i = 0;
 		}
-		
-		if(toucherDmg) {
-			image.setAlpha( 0.001f);
-			if(i >= 5){
-				image.setAlpha( 1.f);
-					toucherDmg = false;
+
+		if (toucherDmg) {
+			image.setAlpha(0.001f);
+			if (i >= 5) {
+				image.setAlpha(1.f);
+				toucherDmg = false;
 			}
 		}
 

@@ -42,11 +42,11 @@ public class ChauveSouris extends Ennemis {
 
 			i = 0;
 		}
-		if(toucherDmg) {
-			image.setAlpha( 0.001f);
-			if(i >= 5){
-				image.setAlpha( 1.f);
-					toucherDmg = false;
+		if (toucherDmg) {
+			image.setAlpha(0.001f);
+			if (i >= 5) {
+				image.setAlpha(1.f);
+				toucherDmg = false;
 			}
 		}
 
@@ -71,7 +71,5 @@ public class ChauveSouris extends Ennemis {
 		setVie(getVie() - value);
 
 	}
-
-	
 
 }

@@ -14,7 +14,7 @@ import blocs.Switch;
 
 /**
  * 
- * @author Equipe RoboTech  Createur de blocs
+ * @author Equipe RoboTech Createur de blocs
  */
 public class PlateformeFactory extends AbstractFactory {
 

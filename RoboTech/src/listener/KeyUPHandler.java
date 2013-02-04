@@ -6,7 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Permet de gerer la touche Fleche Haut
+ * @author Equipe RoboTech Permet de gerer la touche Fleche Haut
  */
 public class KeyUPHandler extends KeyHandler {
 	public KeyUPHandler() {

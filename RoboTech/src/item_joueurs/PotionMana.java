@@ -9,7 +9,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Potion restaurant de la Mana
+ * @author Equipe RoboTech Potion restaurant de la Mana
  */
 public class PotionMana extends Potion {
 

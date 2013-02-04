@@ -6,7 +6,7 @@ import personnages.Robot;
 
 /**
  * 
- * @author Equipe RoboTech  Permet de gerer la touche Fleche Droite
+ * @author Equipe RoboTech Permet de gerer la touche Fleche Droite
  */
 public class KeyRIGHTHandler extends KeyHandler {
 

@@ -14,7 +14,7 @@ import interfaces.SlickAdapter;
 /**
  * <i> Elle synthetise l'aspect visuel et physique d'un bloc</i>
  * 
- * @author Equipe RoboTech 
+ * @author Equipe RoboTech
  * 
  **/
 public abstract class Blocs implements Drawable, SlickAdapter {
