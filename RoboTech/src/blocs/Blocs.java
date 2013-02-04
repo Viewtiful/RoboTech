@@ -12,15 +12,15 @@ import interfaces.Drawable;
 import interfaces.SlickAdapter;
 
 /**
- * <i> Elle synthétise l'aspect visuel et physique d'un bloc</i>
+ * <i> Elle synthetise l'aspect visuel et physique d'un bloc</i>
  * 
- * 
+ * @author Equipe RoboTech 
  * 
  **/
 public abstract class Blocs implements Drawable, SlickAdapter {
 
 	/**
-	 * Signal émis par un Bouton
+	 * Signal ï¿½mis par un Bouton
 	 */
 	boolean signal = false;
 	/**
@@ -41,7 +41,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	Body Body;
 
 	/**
-	 * Coordonnée du centre du blocs
+	 * Coordonnï¿½e du centre du blocs
 	 */
 
 	Point center;
@@ -94,7 +94,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 * @param x
 	 *            Abscisse du Bloc
 	 * @param y
-	 *            Ordonnée du Bloc
+	 *            Ordonnï¿½e du Bloc
 	 */
 	public Blocs(Image box_image, float Width, float Height, Point org) {
 		this.box_image = box_image;
@@ -115,10 +115,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	}
 
 	/**
-	 * Permet de déterminer si il y a contact avec le robot et le blocs
+	 * Permet de dï¿½terminer si il y a contact avec le robot et le blocs
 	 * 
 	 * @param player
-	 *            le Robot contrôlé par le joueur
+	 *            le Robot contrï¿½lï¿½ par le joueur
 	 */
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
@@ -140,11 +140,11 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	}
 
 	/**
-	 * Permet que les classes filles ont un comportement différents lors d'une
+	 * Permet que les classes filles ont un comportement diffï¿½rents lors d'une
 	 * collision
 	 * 
 	 * @param player
-	 *            le Robot contrôlé par le joueur
+	 *            le Robot contrï¿½lï¿½ par le joueur
 	 */
 	public abstract void collision_action(Robot player);
 

@@ -16,6 +16,7 @@ public class Boss extends Ennemis {
 	private XMLPackedSheet sheet;
 	private int i;
 	private int animationStep;
+	private boolean toucherDmg;
 
 	public Boss(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) throws SlickException {
@@ -41,6 +42,14 @@ public class Boss extends Ennemis {
 				image = image.getFlippedCopy(true, false);
 			}
 			i = 0;
+		}
+		
+		if(toucherDmg) {
+			image.setAlpha( 0.001f);
+			if(i >= 8){
+				image.setAlpha( 1.f);
+					toucherDmg = false;
+			}
 		}
 
 		// dessine l'image de l'ennemi en le centrant
@@ -71,6 +80,7 @@ public class Boss extends Ennemis {
 
 	@Override
 	public void toucher(int value) {
+		toucherDmg = true;
 		setVie(getVie() - value);
 	}
 

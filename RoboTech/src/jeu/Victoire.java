@@ -42,9 +42,8 @@ public class Victoire extends BasicGameState {
 		// retour menu principal
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
-		itemVictoire[0]
-				.draw(positionItemOption[0][0], positionItemOption[0][1]);
-		itemVictoire[1].draw(300, 150);
+		itemVictoire[0].draw(positionItemOption[0][0], positionItemOption[0][1]);
+		itemVictoire[1].draw(270, 150);
 	}
 
 	@Override
@@ -63,8 +62,11 @@ public class Victoire extends BasicGameState {
 					+ itemVictoire[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
 							+ itemVictoire[i].getHeight())) {
+				itemVictoire[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			}
+			else
+				itemVictoire[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal

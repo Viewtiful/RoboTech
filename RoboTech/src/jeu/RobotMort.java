@@ -60,8 +60,11 @@ public class RobotMort extends BasicGameState {
 					+ itemMort[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
 							+ itemMort[i].getHeight())) {
+				itemMort[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			}
+			else 
+				itemMort[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal

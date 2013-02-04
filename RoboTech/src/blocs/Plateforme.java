@@ -14,7 +14,7 @@ import personnages.Robot;
 /**
  * <i>Represente une plateforme mouvante</i>
  * 
- * @author Antoine
+ * @author Equipe RoboTech 
  * 
  */
 public class Plateforme extends BlocsDynamiques {
@@ -24,7 +24,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	ArrayList<Point> Trajectoire;
 	/**
-	 * Le dernier point atteint (initialisé à 0 par le constructeur
+	 * Le dernier point atteint (initialisï¿½ ï¿½ 0 par le constructeur
 	 */
 	int pointd;
 	/**
@@ -33,24 +33,24 @@ public class Plateforme extends BlocsDynamiques {
 	int taille;
 
 	/**
-	 * Le pas de translation horizontal élémentaire pour animer la plateforme
+	 * Le pas de translation horizontal ï¿½lï¿½mentaire pour animer la plateforme
 	 */
 	float epsilon_x;
 
 	/**
-	 * Le pas de translation vertical élémentaire pour animer la plateforme
+	 * Le pas de translation vertical ï¿½lï¿½mentaire pour animer la plateforme
 	 */
 	float epsilon_y;
 	/**
-	 * La plateforme peut faire un déplacement aller-retour ou boucle
+	 * La plateforme peut faire un dï¿½placement aller-retour ou boucle
 	 */
 	boolean on_reverse = false;
 	/**
-	 * En marche arrière
+	 * En marche arriï¿½re
 	 */
 	boolean reverse = false;
 	/**
-	 * la vitesse de dépacement de la plateforme
+	 * la vitesse de dï¿½pacement de la plateforme
 	 */
 	private float vitesse;
 
@@ -62,9 +62,9 @@ public class Plateforme extends BlocsDynamiques {
 	/**
 	 * 
 	 * @param Point_x
-	 *            Abscisses des points à suivre
+	 *            Abscisses des points ï¿½ suivre
 	 * @param Point_y
-	 *            Ordonnée des points à suivre
+	 *            Ordonnï¿½e des points ï¿½ suivre
 	 * @param box_image
 	 *            Image du rendu de la plateforme
 	 * @param width
@@ -123,7 +123,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	/**
-	 * Calcule le pas élémentaire de translation horizontal et vertical
+	 * Calcule le pas ï¿½lï¿½mentaire de translation horizontal et vertical
 	 * 
 	 * @param point_current
 	 *            point origine
@@ -140,7 +140,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	/**
-	 * Réalise le chemin aller de la plateforme
+	 * Rï¿½alise le chemin aller de la plateforme
 	 */
 	public void aller() {
 		/*
@@ -162,7 +162,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	/**
-	 * Réalise le chemin retour de la plateforme
+	 * Rï¿½alise le chemin retour de la plateforme
 	 */
 	public void retour() {
 
@@ -180,7 +180,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	/**
-	 * Réalise le déplacement complet de la plateforme
+	 * Rï¿½alise le dï¿½placement complet de la plateforme
 	 */
 	public void deplacement() {
 

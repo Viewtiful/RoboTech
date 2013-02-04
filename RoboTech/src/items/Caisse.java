@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
- * @author Antoine Une caisse
+ * @author Equipe RoboTech  Une caisse
  */
 public class Caisse extends Items {
 	/** The image to display for the crate */

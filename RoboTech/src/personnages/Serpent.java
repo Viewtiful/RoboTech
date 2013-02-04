@@ -15,6 +15,7 @@ public class Serpent extends Ennemis {
 	private XMLPackedSheet sheet;
 	private int i;
 	private int animationStep;
+	private boolean toucherDmg;
 
 	public Serpent(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) throws SlickException {
@@ -41,6 +42,14 @@ public class Serpent extends Ennemis {
 			}
 			i = 0;
 		}
+		
+		if(toucherDmg) {
+			image.setAlpha( 0.001f);
+			if(i >= 5){
+				image.setAlpha( 1.f);
+					toucherDmg = false;
+			}
+		}
 
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
@@ -65,6 +74,7 @@ public class Serpent extends Ennemis {
 
 	@Override
 	public void toucher(int value) {
+		toucherDmg = true;
 		setVie(getVie() - value);
 
 	}

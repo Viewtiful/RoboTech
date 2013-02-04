@@ -10,7 +10,7 @@ import personnages.Robot;
 /**
  * 
  * 
- * @author Antoine Potion augmentant la vitesse du personnage
+ * @author Equipe RoboTech  Potion augmentant la vitesse du personnage
  */
 public class PotionVitesse extends Potion {
 
