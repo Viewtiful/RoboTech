@@ -28,12 +28,12 @@ public class Kamikaze extends Ennemis {
 	private XMLPackedSheet sheet;
 
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
-			Monde monde, float rayon_detection, Image im) throws SlickException {
+			Monde monde, float rayon_detection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde);
 		player = monde.getPlayer();
 		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
 		this.rayon_detection = rayon_detection;
-		image = im;
+		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
 		fin = new Point(x + rayon_detection, y);
 		// Initialisation de la vitesse n�gative

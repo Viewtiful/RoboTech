@@ -29,6 +29,11 @@
    H4sIAAAAAAAAA+3aSQ6EIBAFULd6/wN3emcMODNIvZeQ9M6S+gFCO00AwNvmjgff1HP/eq1rNNHWhJ5rG0m0eY72vq1Em+do79tKtHmO9r6t1J7nZTW2ddSoRa7qqDXPqSyluGcYw7z5fWbu9/JxJjtH9P77euxhjzVxTesepta31jXxXM1zSO7MnjrDM6aavZWrOP69XTLjjCfnd7kaV6veugsY25Xe3l3T1s9yvxRDrf7KUiz+U6EEuaKU0n2Xq5hKn6Xlim0Grt7P+7aAlNx3D0cZkR323M0V7Dmzz8FVckUJuT3PPsibZAkAAAAAAAAAAAAAAAAAIJYfDllOqOiAAAA=
   </data>
  </layer>
+ <layer name="decors" width="150" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3a2YqDMBgGUO8Ls9nO8v4vOslFQMQltUajngM/kRasoPmaxaYBAOAovkK1lbUc2z3Uo8KW7dSQI/32LdR7gXOzndSX073cO1Ni+xHqs8C52U7qy+lelsyh71A/Bc9vfFWPfp9+NOVyaOx3x65lqk3PqLyq01w/b2e+fyYn5Ml1DPXluT4/lUfGQEQ1zP/M2c4n5sSt06bjrdaTpsZgnE/JHOp/Lq+uY6/M4ppy1xOM2xmyxnpnTt06x5xff3+nbfLzZelaKef3yv6ONQXGvDIel1OMyc2c7v/kM3nFdeXk09A7LfKKHPFZWHt8BdFc1sgmljCHowTr4ZQw9d4fLNWd56V9GxnGmn5D/e19EQAAAAAAAAAAAAAAAAAAwKH9A4sDDtnogAAA
+  </data>
+ </layer>
  <objectgroup name="Personnages" width="150" height="55">
   <object name="poutre" type="objet" x="928" y="224" width="32" height="32">
    <properties>
@@ -101,9 +106,4 @@
    </properties>
   </object>
  </objectgroup>
- <layer name="decors" width="150" height="55">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3a2YqDMBgGUO8Ls9nO8v4vOslFQMQltUajngM/kRasoPmaxaYBAOAovkK1lbUc2z3Uo8KW7dSQI/32LdR7gXOzndSX073cO1Ni+xHqs8C52U7qy+lelsyh71A/Bc9vfFWPfp9+NOVyaOx3x65lqk3PqLyq01w/b2e+fyYn5Ml1DPXluT4/lUfGQEQ1zP/M2c4n5sSt06bjrdaTpsZgnE/JHOp/Lq+uY6/M4ppy1xOM2xmyxnpnTt06x5xff3+nbfLzZelaKef3yv6ONQXGvDIel1OMyc2c7v/kM3nFdeXk09A7LfKKHPFZWHt8BdFc1sgmljCHowTr4ZQw9d4fLNWd56V9GxnGmn5D/e19EQAAAAAAAAAAAAAAAAAAwKH9A4sDDtnogAAA
-  </data>
- </layer>
 </map>

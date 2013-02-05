@@ -130,9 +130,9 @@ public class Monde implements SlickAdapter {
 			e.printStackTrace();
 
 		}
-		// Kamikaze test = new Kamikaze(600, 600, 1, 32,
-		// this,64,im);
-		// personnages.put(test.getBody(), test);
+//		 Kamikaze test = new Kamikaze(600, 600, 1, 32,
+//		 this,15,im);
+//		 personnages.put(test.getBody(), test);
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
@@ -264,21 +264,7 @@ public class Monde implements SlickAdapter {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 
-				if (map.getObjectType(i, j).equals("Kamikaze")) {
 
-					Image im = null;
-					try {
-						im = new Image("res/caisse2.png");
-					} catch (SlickException e) {
-						e.printStackTrace();
-					}
-					float taille = map.getObjectHeight(i, j);
-					float x = map.getObjectX(i, j) + taille / 2;
-					float y = map.getObjectY(i, j) + taille / 2;
-					Kamikaze k = new Kamikaze(x, y, 1, taille, this, 64, im);
-					personnages.put(k.getBody(), k);
-					world.add(k.getBody());
-				}
 				if (map.getObjectType(i, j).equals("Switch")) {
 					System.out.println("Switch = [" + i + "|" + j + "]");
 					s.CreateSwitch(i, j);
@@ -297,6 +283,11 @@ public class Monde implements SlickAdapter {
 								map.getObjectX(i, j) + (49 / 2),
 								map.getObjectY(i, j), 2f, 49, this);
 						addPersonnages(chauveSouris);
+					}
+					if (map.getObjectName(i, j).equals("kamikaze")) {
+						Kamikaze k = new Kamikaze(map.getObjectX(i, j) + (24 / 2), map.getObjectY(i, j), 1.f, 24, this, 64);
+						personnages.put(k.getBody(), k);
+						world.add(k.getBody());
 					}
 
 					if (map.getObjectName(i, j).equals("serpent")) {
