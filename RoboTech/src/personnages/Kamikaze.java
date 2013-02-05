@@ -37,7 +37,7 @@ public class Kamikaze extends Ennemis {
 	 */
 	private Point org;
 	/**
-	 * Extrémité droite du mouvement du Kamikaze 
+	 * Extrémité droite du mouvement du Kamikaze
 	 */
 	private Point fin;
 
@@ -48,13 +48,19 @@ public class Kamikaze extends Ennemis {
 
 	/**
 	 * 
-	 * @param x Position Horizontale sur la Map
-	 * @param y Position Verticale sur la Map
-	 * @param masse Masse du Kamikaze
-	 * @param tailleBlockPerso Taille du Kamikaze
-	 * @param monde Environnement ou évolue le monde
-	 * @param rayon_detection Distance de détection
-	 * @throws SlickException 
+	 * @param x
+	 *            Position Horizontale sur la Map
+	 * @param y
+	 *            Position Verticale sur la Map
+	 * @param masse
+	 *            Masse du Kamikaze
+	 * @param tailleBlockPerso
+	 *            Taille du Kamikaze
+	 * @param monde
+	 *            Environnement ou évolue le monde
+	 * @param rayon_detection
+	 *            Distance de détection
+	 * @throws SlickException
 	 */
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde, float rayon_detection) throws SlickException {
@@ -151,12 +157,12 @@ public class Kamikaze extends Ennemis {
 				setDirectionDroite(true);
 			}
 			CollisionEvent t[] = monde.getWorld().getContacts(getBody());
-				for(int i =0;i<t.length;i++)
-					if(t[i].getBodyA()==player.getBody() || t[i].getBodyB()==player.getBody())
-					{
-						player.setVie(0);
-						setVie(0);
-					}
+			for (int i = 0; i < t.length; i++)
+				if (t[i].getBodyA() == player.getBody()
+						|| t[i].getBodyB() == player.getBody()) {
+					player.setVie(0);
+					setVie(0);
+				}
 		}
 
 		else if (!detected)

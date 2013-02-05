@@ -23,7 +23,6 @@ public class Robot extends Personnage {
 	private int animationStep;
 	private int i;
 	private int gestionPerteEnergie;
-	private int z;
 	private int gestionGainEnergie;
 	private boolean plusEnergie = false;
 	private int pertePointEnergie;

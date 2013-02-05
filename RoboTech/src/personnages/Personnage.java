@@ -256,7 +256,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	public void setDirectionDroite(boolean value) {
 		this.directionDroite = value;
 	}
-	
+
 	public boolean tomber() {
 		return tombe;
 	}

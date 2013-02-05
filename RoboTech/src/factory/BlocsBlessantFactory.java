@@ -24,4 +24,8 @@ public class BlocsBlessantFactory extends AbstractFactory {
 	public Collection<BlocsBlessant> get_produit() {
 		return chaine.values();
 	}
+
+	public void CreateBlocsBlessant(int i, int j) {
+
+	}
 }
