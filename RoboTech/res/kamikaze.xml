@@ -1,0 +1,5 @@
+<sheet>
+	<sprite name="kamikaze_00.png" x="0" y="0" width="24" height="24" />
+	<sprite name="kamikaze_01.png" x="24" y="0" width="24" height="24" />
+	<sprite name="kamikaze_02.png" x="48" y="0" width="24" height="24" />
+</sheet>
