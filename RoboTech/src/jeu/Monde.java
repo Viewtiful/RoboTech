@@ -285,7 +285,7 @@ public class Monde implements SlickAdapter {
 						addPersonnages(chauveSouris);
 					}
 					if (map.getObjectName(i, j).equals("kamikaze")) {
-						Kamikaze k = new Kamikaze(map.getObjectX(i, j) + (24 / 2), map.getObjectY(i, j), 1.f, 24, this, 64);
+						Kamikaze k = new Kamikaze(map.getObjectX(i, j) + (24 / 2), map.getObjectY(i, j), 1.f, 24, this, 100);
 						personnages.put(k.getBody(), k);
 						world.add(k.getBody());
 					}
