@@ -15,8 +15,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * 
- * @author Equipe RoboTech Les personnages du jeu
+ * Les personnages du jeu
+ * @author Equipe RoboTech 
  */
 public abstract class Personnage implements Drawable, SlickAdapter {
 
@@ -270,8 +270,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	}
 
 	public void preUpdate(int delta) {
-		// at the start of each frame kill the x velocity
-		// if the actor isn't being moved
+		//si le personne ne bouge pas, on supprime la vélocité sur l'axe des x
 		if (!enMouvement) {
 			setVelocity(0, getVelY());
 		}
@@ -287,10 +286,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		// update the flag for the actor being on the ground. The
-		// physics engine will cause constant tiny bounces as the
-		// the body tries to settle - so don't consider the body
-		// to have left the ground until it's done so for some time
+		//personnage sur le sol?
 		boolean vrai = surLeSol(body);
 		if (!vrai) {
 			tempsEnLair += delta;
@@ -334,24 +330,24 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		}
 
 		// collision avec le perso est apparu?
-		CollisionEvent[] events = world.getContacts(body);
+		CollisionEvent[] evenementCollision = world.getContacts(body);
 
-		for (int i = 0; i < events.length; i++) {
+		for (int i = 0; i < evenementCollision.length; i++) {
 			// si le point de la collision est proche des pieds
-			if (events[i].getPoint().getY() > getY() + (tailleBlockPerso / 4)) {
+			if (evenementCollision[i].getPoint().getY() > getY() + (tailleBlockPerso / 4)) {
 
 				// regarde qu'elle corps est rentre en collision avec quelque
 				// chose
-				if (events[i].getNormal().getY() < -0.5) {
+				if (evenementCollision[i].getNormal().getY() < -0.5) {
 					// corps B est rentre en collision, est ce notre perso? si
 					// oui, retourne on est au sol
-					if (events[i].getBodyB() == body)
+					if (evenementCollision[i].getBodyB() == body)
 						return true;
 				}
 				// corps B est rentre en collision, est ce notre perso? si oui,
 				// retourne on est au sol
-				if (events[i].getNormal().getY() > 0.5)
-					if (events[i].getBodyA() == body)
+				if (evenementCollision[i].getNormal().getY() > 0.5)
+					if (evenementCollision[i].getBodyA() == body)
 						return true;
 			}
 		}
