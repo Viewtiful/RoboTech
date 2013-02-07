@@ -19,38 +19,54 @@ import personnages.Personnage;
 import interfaces.Drawable;
 import interfaces.SlickAdapter;
 
+/**
+ * Classe abstraite gérant les balles
+ * @author EquipeRoboTech
+ *
+ */
 public abstract class Balle implements Drawable, SlickAdapter {
-
-	// position x et y de la balle
+	/**
+	 * Position x de la balle
+	 */
 	private float x;
+	/**
+	 * Position y de la balle
+	 */
 	private float y;
-
-	// represente le corps physique de la balle dans le monde physique
+	/**
+	 * Représente le corps physique de la balle dans le monde physique
+	 */
 	private Body body;
-
-	// represente la masse de la balle
+	/**
+	 * Représente la masse de la balle
+	 */
 	private float masse;
-
-	// represente le monde physique
+	/**
+	 * Représente le monde physiqye dans lequel la balle évolue
+	 */
 	private World world;
-
-	// valeur des d�g�ts
-	int value;
-
-	// image de la balle
+	/**
+	 * Valeur des dégats causé par la balle
+	 */
+	int valeurDmg;
+	/**
+	 * Image représentant la balle
+	 */
 	Image imageBalle;
-
-	// connaitre la direction dans laquelle la balle doit se déplacer, true =
-	// droite, false = gauche
+	/**
+	 * 	 connaitre la direction dans laquelle la balle doit se déplacer, true =
+	 *   droite, false = gauche
+	 */
 	private boolean directionDroite;
-
-	// la vélocité de la balle sur l'axe des X
+	/**
+	 * la vélocité de la balle sur l'axe des X
+	 */
 	private float velx;
 
 	/**
 	 * Constructeur de la classe Balle
 	 * 
-	 * @param x
+	 * @param x 
 	 * @param y
 	 * @param directionDroite
 	 * @param masse
@@ -58,12 +74,15 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	 */
 	public Balle(float x, float y, Boolean directionDroite, float masse,
 			int value) throws SlickException {
+		//la balle est tirée vers la droite ou la gauche?
 		this.directionDroite = directionDroite;
+		//en fonction de la direction dans laquelle elle est tirée, elle se déplace vers la droite ou la gauche
 		if (this.directionDroite)
-			this.x = x + 16;
+			this.x = x + 18;
 		else
-			this.x = x - 16;
+			this.x = x - 18;
 		this.y = y;
+		//charge l'image de la balle
 		imageBalle = new Image("res/bullet.png");
 		this.masse = masse;
 
@@ -75,7 +94,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 		this.body.setMaxVelocity(50, 50);
 		this.body.setRotatable(false);
 		this.setPosition(this.x, this.y);
-		this.value = value;
+		this.valeurDmg = value;
 	}
 
 	/**
@@ -172,32 +191,22 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	public boolean collision(HashMap<Body, Personnage> personnages) {
 		if (world == null)
 			return false;
-		Personnage current;
+		Personnage persCourant;
 		// collision avec l'environnement est apparu?
-		CollisionEvent[] events = world.getContacts(body);
+		CollisionEvent[] evenement = world.getContacts(body);
 		float Normal_x;
-		for (int i = 0; i < events.length; i++) {
-			Normal_x = events[i].getNormal().getX();
+		for (int i = 0; i < evenement.length; i++) {
+			Normal_x = evenement[i].getNormal().getX();
 			// regarde qu'elle corps est rentre en collision avec quelque chose
 			if (Normal_x < -0.5 || Normal_x > 0.5) {
 				// corps B est rentre en collision, est ce la balle ? si oui,
 				// collision, si touche un ennemi, appelle la fonction toucher
 				// de cet ennemi pour lui enlever 1 pt de vie
-				if (events[i].getBodyB() == body) {
-					current = personnages.get(events[i].getBodyA()); /*
-																	 * Current
-																	 * vaut null
-																	 * si le
-																	 * body mis
-																	 * en cause
-																	 * n'est pas
-																	 * un body
-																	 * de
-																	 * personnages
-																	 */
-					if (current != null && cible(current))
-						current.toucher(value);
-
+				if (evenement[i].getBodyB() == body) {
+					persCourant = personnages.get(evenement[i].getBodyA()); /*Current vaut nullsi lebody misen causen'est pasun body de personnages*/
+					if (persCourant != null && cible(persCourant))
+						persCourant.toucher(valeurDmg);
+					
 					return true;
 				}
 			}
