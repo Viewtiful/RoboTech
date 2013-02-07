@@ -3,6 +3,8 @@ package blocs;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import net.phys2d.math.ROVector2f;
+
 import org.newdawn.slick.Image;
 
 import personnages.Robot;
@@ -22,10 +24,13 @@ public class Switch extends BlocsStatiques {
 
 	@Override
 	public void collision_action(Robot player) {
-		Iterator<Blocs> it = receiver.iterator();
-		while (it.hasNext())
-			it.next().set_signal(true);
-		set_image(switch_off);
+		if(get_on_bloc())
+		{
+			Iterator<Blocs> it = receiver.iterator();
+			while (it.hasNext())
+				it.next().set_signal(true);
+			set_image(switch_off);
+		}
 	}
 
 	public void add(Blocs b) {

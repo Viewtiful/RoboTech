@@ -67,8 +67,6 @@ public class PlateformeFactory extends AbstractFactory {
 
 		if (!sender_name.equals("NOT_FOUND")) {
 			Switch sender = s.get_produit(sender_name);
-			if (sender == null)
-				assert (false);
 			sender.add(p);
 		}
 

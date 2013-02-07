@@ -35,6 +35,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import blocs.Blocs;
+import blocs.Switch;
 
 import personnages.Boss;
 import personnages.ChauveSouris;
@@ -122,7 +123,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map.tmx");
+		niveau = new TiledMap("res/niveau.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -270,12 +271,10 @@ public class Monde implements SlickAdapter {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 
 				if (map.getObjectType(i, j).equals("Switch")) {
-					System.out.println("Switch = [" + i + "|" + j + "]");
-					s.CreateSwitch(i, j);
+						s.CreateSwitch(i, j);
 				}
 
 				if (map.getObjectType(i, j).equals("Plateforme_Base")) {
-					System.out.println("Plateforme = [" + i + "|" + j + "]");
 					f.CreatePlateforme(i, j);
 				}
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
@@ -544,7 +543,12 @@ public class Monde implements SlickAdapter {
 		Blocs current;
 		while (it.hasNext()) {
 			current = it.next();
+//			if(current instanceof Switch)
+//				System.out.println("Switch{");
 			current.collision(player);
+//			if(current instanceof Switch)
+//				System.out.println("}Switch");
+	
 			try {
 				current.update(container, game, delta);
 			} catch (SlickException e) {

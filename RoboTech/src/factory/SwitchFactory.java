@@ -44,6 +44,7 @@ public class SwitchFactory extends AbstractFactory {
 		Switch s = new Switch(image_off, width, height, position, image_on);
 		world.add(s.getBody());
 		chaine.put(name, s);
+		System.out.println(position);
 	}
 
 }

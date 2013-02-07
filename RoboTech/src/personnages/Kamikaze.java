@@ -92,8 +92,8 @@ public class Kamikaze extends Ennemis {
 		}
 
 		image.drawCentered(getX(), getY());
-		g.setColor(Color.gray);
-		g.drawLine(org.get_x(), org.get_y(), fin.get_x(), fin.get_y());
+//		g.setColor(Color.gray);
+//		g.drawLine(org.get_x(), org.get_y(), fin.get_x(), fin.get_y());
 
 	}
 

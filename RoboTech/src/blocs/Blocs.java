@@ -104,6 +104,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 				+ org.get_y(), new Box(Width, Height));
 		center = org;
 		Body.setPosition(org.get_x(), org.get_y());
+		on_bloc = false;
 	}
 
 	public void set_on_bloc(boolean value) {
@@ -131,6 +132,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 			float p_gauche = center.get_x() - getWidth() / 2;
 			float p_droite = center.get_x() + getWidth() / 2;
 
+			System.out.println("x_droite = "+x_droite);
+			System.out.println("x_gauche = "+x_gauche);
+			System.out.println("p_droite = "+p_droite);
+			System.out.println("p_gauche = "+p_gauche);
 			if ((x_droite <= p_droite && x_droite >= p_gauche)
 					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
 				on_bloc = true;

@@ -8,7 +8,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2USwpAIQhFnbr/Db9pyEv8F3QPBA0sjyYRAfAOvCwt5gS82WtxJ9l5TPkx6e952s+Cx9sbs8Za5t6aq9ovi6wr4id71Ol/W/9k3u7589YWOTv9B0XO/d1TOX+ZOyb6l83R7Vjh170AAACAF/kAqMeGVMASAAA=
+   H4sIAAAAAAAAC+2UywpAIQhE3fr/P3y3ITfxmUFzQGgx5mgSEQDvwEtomgl4c9Z0k+x8nPLHpL/ntD8LHt9ezaq17L21VrW/LLKviD85o07/t81P1u3eP29vkdzTf1Ak7++eyv3L3FE1P62vbI2OGVX76w4AAADgRT6jLkPHwBIAAA==
   </data>
  </layer>
  <objectgroup name="Switch" width="40" height="30">
