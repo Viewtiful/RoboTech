@@ -72,6 +72,7 @@ public class PlateformeFactory extends AbstractFactory {
 			Switch sender = s.get_produit(sender_name);
 			sender.add(p);
 		}
+		System.out.println("taille = "+chaine.size());
 
 	}
 

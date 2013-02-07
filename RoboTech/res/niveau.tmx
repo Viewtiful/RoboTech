@@ -8,7 +8,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="100" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WQQ6DIBQFQLa9/4VNu1JjrYCUFzOTsNBAhP8UKQUASnnNngCfDFob92utqzzGkEcWeWSRR5aePLT/t195PMET1iGPLK15JK49cU61evNIznK/X59dp+wTtf+b9biz8Qlre7tzHi01qq3HUd9vte4x6js66nP13ig9z0p6l5l33p59/k9q+5oAAAAAsLUAHpP/3OAuAAA=
+   H4sIAAAAAAAAC+3W3QqEIBAGUG97/xcOutqidvNndFjOAaFC0uYrsxQAKGVbPQGODFob47XWVR4x5JGLPHKRRy49eWjz2688/kH0c2wPx6PHkEfdGJHjtN4/Y4byyJ3ldb3+dv6mDjPXq5p5fc6n5Z8108h5tNSoth53fZ9q3SPqO7rr8/ZalJ6xMr3LrNtvr9r3Z2zXmgAAAABwtgPxGnRU4C4AAA==
   </data>
  </layer>
  <objectgroup name="Switch" width="100" height="30">
@@ -26,45 +26,35 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="Switch3" type="Switch" x="2848" y="448" width="32" height="32">
+  <object name="Switch3" type="Switch" x="2784" y="448" width="32" height="32">
    <properties>
     <property name="Image_Off" value="res/switch_off.png"/>
     <property name="Image_On" value="res/switch_on.png"/>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
+  <object name="kamikaze" type="personnage" x="1344" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="kamikaze" type="personnage" x="1408" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="kamikaze" type="personnage" x="1440" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="kamikaze" type="personnage" x="1472" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Personnages" width="100" height="30">
-  <object name="potionVie" type="ramassable" x="768" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="chauveSouris" type="personnage" x="736" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="caisse" type="objet" x="800" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="potionMana" type="ramassable" x="672" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="potionSaut" type="ramassable" x="704" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="potionVitesse" type="ramassable" x="608" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
   <object name="robot" type="personnage" x="64" y="448" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
@@ -78,16 +68,6 @@
     <property name="Sender" value="Switch1"/>
     <property name="Signal" value="false"/>
     <property name="draw" value="false"/>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="kamikaze" type="personnage" x="864" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="Pics1" type="BlocsBlessant" x="640" y="288" width="32" height="32">
-   <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
@@ -173,16 +153,6 @@
    </properties>
   </object>
   <object name="kamikaze" type="personnage" x="576" y="416" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="kamikaze" type="personnage" x="928" y="288" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
-  <object name="kamikaze" type="personnage" x="896" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
