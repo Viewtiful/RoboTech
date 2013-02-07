@@ -40,7 +40,7 @@ public class RobotMort extends BasicGameState {
 	private int sourisY;
 
 	/**
-	 * Constructeur de Victoire
+	 * Constructeur de RobotMort
 	 * @param ID transmis
 	 */
 	public RobotMort(int ID) {
