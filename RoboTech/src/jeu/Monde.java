@@ -28,14 +28,12 @@ import net.phys2d.raw.shapes.Box;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import blocs.Blocs;
-import blocs.Switch;
 
 import personnages.Boss;
 import personnages.ChauveSouris;
@@ -127,16 +125,7 @@ public class Monde implements SlickAdapter {
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
-		Image im = null;
-		try {
-			im = new Image("res/caisse2.png");
-		} catch (SlickException e) {
-			e.printStackTrace();
 
-		}
-		// Kamikaze test = new Kamikaze(600, 600, 1, 32,
-		// this,15,im);
-		// personnages.put(test.getBody(), test);
 		// genere les plateformes (obstacles) du niveau
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
@@ -600,7 +589,6 @@ public class Monde implements SlickAdapter {
 		boolean result = false;
 		try {
 			int e = x;
-			int f = y;
 			x = x / niveau.getTileWidth();
 			y = y / niveau.getTileHeight();
 
