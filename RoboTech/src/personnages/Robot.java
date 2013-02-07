@@ -15,19 +15,59 @@ import org.newdawn.slick.state.StateBasedGame;
 import weapon.Balle;
 import weapon.BalleRobot;
 
+/**
+ * Classe gérant le robot
+ * @author Equipe RoboTech
+ *
+ */
 public class Robot extends Personnage {
-	// l'image qui contient le sprite du robot
-	private Image image;
+	/**
+	 * l'image qui contient le sprite du robot
+	 */
+	private Image imageCouranteRobot;
+	/**
+	 * Gestion touche robot
+	 */
 	RobotHandlers handlers;
+	/**
+	 * Sheet contenant l'animation du robot
+	 */
 	private XMLPackedSheet sheet;
-	private int animationStep;
+	/**
+	 * Gestion de l'enchainement des animations du robot
+	 */
+	private int EtapeAnimation;
+	/**
+	 * Sert de compteur ( compte les secondes)
+	 */
 	private int i;
+	/**
+	 * Toutes les 1s, le robot perd un point d'énergie
+	 */
 	private int gestionPerteEnergie;
+	/**
+	 * Lorsque le robot n'a plus d'énergie, il regagne 1 point d'énergie toutes les secondes
+	 */
 	private int gestionGainEnergie;
+	/**
+	 * Gére le cas ou le robot n'a plus d'énergie
+	 */
 	private boolean plusEnergie = false;
+	/**
+	 * Représente le point d'énergie perdu toutes les 10sec
+	 */
 	private int pertePointEnergie;
+	/**
+	 * Représente le point d'énergie gagné toutes les 3sec
+	 */
 	private int gainPointEnergie;
+	/**
+	 * Représente les secondes écoulés pour la perte de l'effet de la potion de saut ou vitesse
+	 */
 	private int gestionPotionVitesseSaut;
+	/**
+	 * Au bout de 10secondes, l'effet de la potion s'estompe
+	 */
 	private int estomperEffetPotion;
 
 	/**
@@ -47,35 +87,58 @@ public class Robot extends Personnage {
 	public Robot(float x, float y, float mass, float size, Monde monde)
 			throws SlickException {
 		super(x, y, mass, size, monde);
-
-		// image = new Image("res/robotBleu.png");
 		handlers = new RobotHandlers();
 		sheet = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
 	}
 
+	/**
+	 * Permet de choisir le skin du robot, notamment via le menu des options
+	 * @param robotCouleur
+	 * @throws SlickException
+	 */
 	public void setImage(String robotCouleur) throws SlickException {
 		sheet = new XMLPackedSheet("res/" + robotCouleur + ".png",
 				"res/robot.xml");
 	}
 
+	/**
+	 * Permet de récupérer l'image courante du robot utilisée
+	 * @return
+	 */
 	public Image getImage() {
-		return image;
+		return imageCouranteRobot;
 	}
 
+	/**
+	 * met le robot dans un monde
+	 * @param monde
+	 */
 	public void set_monde(Monde monde) {
 		this.monde = monde;
 	}
 
+	/**
+	 * Ajoute de l'énergie au robot
+	 * @param value valeur ajoutée à l'énergie du robot
+	 */
 	public void ajouterEnergie(int value) {
 		setEnergie(getEnergie() + value);
 
 	}
 
+	/**
+	 * Ajoute du mana au robot
+	 * @param value valeur ajoutée au mana du robot
+	 */
 	public void ajouterMana(int value) {
 		setMana(getMana() + value);
 
 	}
 
+	/**
+	 * Ajoute de la vie au robot
+	 * @param value valeur ajoutée à la vie du robot
+	 */
 	public void ajouterVie(int value) {
 		setVie(getVie() + value);
 	}
@@ -86,29 +149,39 @@ public class Robot extends Personnage {
 
 	}
 
+	/**
+	 * Gestion du rendu, animation etc...
+	 */
 	public void render(Graphics g) {
 		i++;
 		gestionPerteEnergie++;
 		gestionGainEnergie++;
 		gestionPotionVitesseSaut++;
+		
+		//gestion des animations du robot
 		if (getEnMouvement() && auSol() && i >= 4) {
-			animationStep++;
-			animationStep %= 15;
-			if (animationStep == 0) {
-				image = sheet.getSprite("robot_01.png");
+			EtapeAnimation++;
+			//modulo le nombre d'image de l'animation du robot
+			EtapeAnimation %= 15;
+			
+			//initialise a la premiere image du robot, sinon en fonction de animationStep, charge l'image correspondante
+			if (EtapeAnimation == 0) {
+				imageCouranteRobot = sheet.getSprite("robot_01.png");
 			} else {
-				image = sheet.getSprite("robot_0" + animationStep + ".png");
+				imageCouranteRobot = sheet.getSprite("robot_0" + EtapeAnimation + ".png");
 			}
+			//si le robot se déplace vers la gauche, on "retourne" l'image
 			if (!getDirectionDroite()) {
-				image = image.getFlippedCopy(true, false);
+				imageCouranteRobot = imageCouranteRobot.getFlippedCopy(true, false);
 			}
-
 			i = 0;
 		} else {
+			//si le robot n'est pas en mouvement, on laisse l'image par défaut du robot
 			if (!getEnMouvement()) {
-				image = sheet.getSprite("robot_00.png");
+				imageCouranteRobot = sheet.getSprite("robot_00.png");
+				//si le robot se déplace vers la gauche, on "retourne" l'image
 				if (!getDirectionDroite())
-					image = image.getFlippedCopy(true, false);
+					imageCouranteRobot = imageCouranteRobot.getFlippedCopy(true, false);
 			}
 		}
 
@@ -117,19 +190,22 @@ public class Robot extends Personnage {
 		if (gestionPerteEnergie >= 60) {
 			// toutes les 10s perds un point d'énergie
 			pertePointEnergie++;
+			//si le robot a encore de l'énergie, perd 1 point
 			if (getEnergie() > 0 && !plusEnergie) {
 				if (pertePointEnergie >= 10) {
 					setEnergie(getEnergie() - 1);
 					pertePointEnergie = 0;
 				}
 
+				//sinon, c'est que le robot n'a plus d'énergie
 			} else {
 				plusEnergie = true;
 			}
 			gestionPerteEnergie = 0;
 		}
 
-		// Si, une seconde viens de s'écouler
+		// Si, une seconde viens de s'écouler et que le robot n'a plus d'énergie, il regagne un point d'énergie toutes les ~2secs,
+		// l'énergie remonte à 5, le robot peut de nouveau bouger
 		if (gestionGainEnergie >= 60) {
 			gainPointEnergie++;
 			if (plusEnergie) {
@@ -144,9 +220,10 @@ public class Robot extends Personnage {
 			gestionGainEnergie = 0;
 		}
 
-		// Si, une seconde viens de s'écouler
+		// Si, une seconde viens de s'écouler, on enleve 1sec sur l'effet de la potion
 		if (gestionPotionVitesseSaut >= 60) {
 			estomperEffetPotion++;
+			//si on arrive au 10sec, on remet la vitesse et le saut du robot par défaut
 			if (estomperEffetPotion >= 10) {
 				modifierVitesseX(1);
 				modifierVitesseY(1);
@@ -156,7 +233,7 @@ public class Robot extends Personnage {
 		}
 
 		// dessine l'image du robot en le centrant
-		image.drawCentered(getX(), getY());
+		imageCouranteRobot.drawCentered(getX(), getY());
 
 		// texte de debug
 		g.drawString("sol?" + auSol() + "facingRight?" + getDirectionDroite()
@@ -205,6 +282,11 @@ public class Robot extends Personnage {
 
 	}
 
+	/**
+	 * Robot viens de tirer, on crée une balle et la tire
+	 * @return
+	 * @throws SlickException
+	 */
 	public Balle tirer() throws SlickException {
 		if (getMana() > 0) {
 			setMana(getMana() - 1);
