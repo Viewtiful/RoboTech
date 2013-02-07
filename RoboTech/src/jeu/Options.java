@@ -182,6 +182,9 @@ public class Options extends BasicGameState {
 		sbg.enterState(RoboTech.MENUETAT);
 	}
 
+	/**
+	 * Retourne l'ID de l'état
+	 */
 	@Override
 	public int getID() {
 		return ID;
