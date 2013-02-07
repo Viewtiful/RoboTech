@@ -8,11 +8,25 @@
  </tileset>
  <layer name="BlocsStatiques" width="100" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XMQrAIAwFUNfe/8IdXGrBxaYkynuQUYL5Q0hrAAAAQLarSNGZRS3yqGUlDxn+50sesoy3slufedjPsd6zm806skfUmxNzP/FPO8u4LbJvncoFAAAAwOgGWF3ZXeAuAAA=
+   H4sIAAAAAAAAC+3WQQ6DIBQFQLa9/4VNu1JjrYCUFzOTsNBAhP8UKQUASnnNngCfDFob92utqzzGkEcWeWSRR5aePLT/t195PMET1iGPLK15JK49cU61evNIznK/X59dp+wTtf+b9biz8Qlre7tzHi01qq3HUd9vte4x6js66nP13ig9z0p6l5l33p59/k9q+5oAAAAAsLUAHpP/3OAuAAA=
   </data>
  </layer>
  <objectgroup name="Switch" width="100" height="30">
   <object name="Switch1" type="Switch" x="288" y="480" width="32" height="32">
+   <properties>
+    <property name="Image_Off" value="res/switch_off.png"/>
+    <property name="Image_On" value="res/switch_on.png"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Switch2" type="Switch" x="2144" y="448" width="32" height="32">
+   <properties>
+    <property name="Image_Off" value="res/switch_off.png"/>
+    <property name="Image_On" value="res/switch_on.png"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Switch3" type="Switch" x="2848" y="448" width="32" height="32">
    <properties>
     <property name="Image_Off" value="res/switch_off.png"/>
     <property name="Image_On" value="res/switch_on.png"/>
@@ -211,6 +225,130 @@
    </properties>
   </object>
   <object name="kamikaze" type="personnage" x="1376" y="544" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics5" type="BlocsBlessant" x="1824" y="448" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme5" type="Plateforme_Base" x="2496" y="480" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="true"/>
+    <property name="Sender" value="Switch2"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Base" x="2336" y="544" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="true"/>
+    <property name="Sender" value="Switch2"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme5" type="Plateforme_Point" x="2496" y="544" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Point" x="2336" y="480" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme6" type="Plateforme_Base" x="1952" y="544" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch2"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme6" type="Plateforme_Point" x="1952" y="448" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="boss" type="personnage" x="2816" y="256" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme10" type="Plateforme_Base" x="2880" y="480" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="true"/>
+    <property name="Sender" value="Switch3"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="true"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme10" type="Plateforme_Point" x="3104" y="512" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="true"/>
+    <property name="Sender" value="Switch2"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme10" type="Plateforme_Point" x="3104" y="288" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="true"/>
+    <property name="Sender" value="Switch2"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="2880" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="2912" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="2944" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>

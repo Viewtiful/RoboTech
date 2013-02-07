@@ -31,6 +31,7 @@ public class PlateformeFactory extends AbstractFactory {
 	public void AddPosition(int i, int j) {
 		String name = map.getObjectName(i, j);
 		Plateforme p = get_produit(name);
+		System.out.println(name);
 		Point position = get_Position(i, j);
 		int width = map.getObjectWidth(i, j);
 		int height = map.getObjectHeight(i, j);
