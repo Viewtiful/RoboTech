@@ -61,6 +61,10 @@ public class Plateforme extends BlocsDynamiques {
 	Point eps;
 
 	/**
+	 * Affichage de la tajectoire des plateformes
+	 */
+	boolean trajectoire_draw = true;
+	/**
 	 * 
 	 * @param Point_x
 	 *            Abscisses des points � suivre
@@ -123,6 +127,10 @@ public class Plateforme extends BlocsDynamiques {
 		on_reverse = reverse;
 	}
 
+	public void set_trajectoire_draw(boolean draw)
+	{
+		this.trajectoire_draw = draw;
+	}
 	/**
 	 * Calcule le pas �l�mentaire de translation horizontal et vertical
 	 * 
@@ -229,18 +237,20 @@ public class Plateforme extends BlocsDynamiques {
 	 * suivre.
 	 */
 	public void render_spec(Graphics g) {
-		g.setColor(Color.gray);
-		Point current;
-		Point next;
-		for (int i = 0; i < taille - 1; i++) {
-			current = Trajectoire.get(i);
-			next = Trajectoire.get(i + 1);
-			g.drawLine(current.get_x(), current.get_y(), next.get_x(),
-					next.get_y());
+		if(trajectoire_draw)
+		{
+			g.setColor(Color.gray);
+			Point current;
+			Point next;
+			for (int i = 0; i < taille - 1; i++) {
+				current = Trajectoire.get(i);
+				next = Trajectoire.get(i + 1);
+				g.drawLine(current.get_x(), current.get_y(), next.get_x(),
+						next.get_y());
+			}
+			g.setColor(Color.white);
 		}
-		g.setColor(Color.white);
 	}
-
 	/**
 	 * {@inheritDoc} <br/>
 	 * <b>Comportement :</b><br />

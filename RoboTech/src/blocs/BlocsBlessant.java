@@ -55,7 +55,8 @@ public class BlocsBlessant extends BlocsStatiques {
 	 * ce Blocs
 	 */
 	public void collision_action(Robot player) {
-		player.setVie(player.getVie() - valeur);
+		if(get_on_bloc())
+			player.setVie(0);
 	}
 
 }
