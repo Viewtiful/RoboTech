@@ -26,12 +26,12 @@
  </tileset>
  <layer name="BlocsStatiques" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aSQ6EIBAFULd6/wN3emcMODNIvZeQ9M6S+gFCO00AwNvmjgff1HP/eq1rNNHWhJ5rG0m0eY72vq1Em+do79tKtHmO9r6t1J7nZTW2ddSoRa7qqDXPqSyluGcYw7z5fWbu9/JxJjtH9P77euxhjzVxTesepta31jXxXM1zSO7MnjrDM6aavZWrOP69XTLjjCfnd7kaV6veugsY25Xe3l3T1s9yvxRDrf7KUiz+U6EEuaKU0n2Xq5hKn6Xlim0Grt7P+7aAlNx3D0cZkR323M0V7Dmzz8FVckUJuT3PPsibZAkAAAAAAAAAAAAAAAAAIJYfDllOqOiAAAA=
+   H4sIAAAAAAAAC+3ayw6DIBAF0G71/z+46c4YVKjykDknIenOkbkBQv18AICnLQMP3mnk/o1a12yirQkj1zaTaPMc7X17iTbP0d63l2jzHO19e2k9z+tm7OtoUYtctdFqnlNZSnHPMIdl9ztn7s/ykZOdK3r/fiP2cMSaKNO7h6n1rXdN3NfyHHJ0Zk+d4ZlTy97KVRy/3q4HI8ed87tczatXb90FzK2kt/+uadtnuV+KoVV/ZSkW/6lQg1xRS+2+y1VMtc/ScsU+A6X3874tIOXou4erjMgOZ3JyZT2iVM4+B6XkihqO9jd7Hk+SJQAAAAAAAAAAAAAAAACAWL5/g7Tz6IAAAA==
   </data>
  </layer>
  <layer name="decors" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3a2YqDMBgGUO8Ls9nO8v4vOslFQMQltUajngM/kRasoPmaxaYBAOAovkK1lbUc2z3Uo8KW7dSQI/32LdR7gXOzndSX073cO1Ni+xHqs8C52U7qy+lelsyh71A/Bc9vfFWPfp9+NOVyaOx3x65lqk3PqLyq01w/b2e+fyYn5Ml1DPXluT4/lUfGQEQ1zP/M2c4n5sSt06bjrdaTpsZgnE/JHOp/Lq+uY6/M4ppy1xOM2xmyxnpnTt06x5xff3+nbfLzZelaKef3yv6ONQXGvDIel1OMyc2c7v/kM3nFdeXk09A7LfKKHPFZWHt8BdFc1sgmljCHowTr4ZQw9d4fLNWd56V9GxnGmn5D/e19EQAAAAAAAAAAAAAAAAAAwKH9A4sDDtnogAAA
+   H4sIAAAAAAAAC+3a2YqDMBgGUO8Ls9nO8v4vOslFQMQltUajngM/kRasoPmaxaYBAOAovkK1lbUc2z3Uo8KW7dSQI/32LdR7gXOzndSX073cO1Ni+xHqs8C52U7qy+lelsyh71A/Bc9vfFWPfp9+NOVyaOx3x65lqk3PqLyq01w/b2e+fyYn5Ml1DPXluT4/lUfGQEQ1zP/M2c4n5sSt06bjrdaTpsZgnE/JHOp/Lq+uY6/M4ppy1xOM2xmyxnpnTt06x5xff3+nbfLzZelaKef3yv6ONQXGvDIel1OMyc2c7v/kM3nFdeXk09A7LfKKHPFZWHt8BdFc1sgmljCHowTr4ZQw9d4fLNWd56V9GxnGmn5D/e19EQAAAAAAAAAAAAAAAAAAwKH9A4sDDtnogAAA
   </data>
  </layer>
  <objectgroup name="Personnages" width="150" height="55">
@@ -101,6 +101,31 @@
    </properties>
   </object>
   <object name="potionMana" type="ramassable" x="1248" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics1" type="BlocsBlessant" x="608" y="800" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics2" type="BlocsBlessant" x="640" y="800" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics3" type="BlocsBlessant" x="672" y="800" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics4" type="BlocsBlessant" x="704" y="800" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics5" type="BlocsBlessant" x="736" y="800" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>

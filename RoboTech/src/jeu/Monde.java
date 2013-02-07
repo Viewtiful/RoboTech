@@ -1,5 +1,6 @@
 package jeu;
 
+import factory.BlocsBlessantFactory;
 import factory.PlateformeFactory;
 import factory.SwitchFactory;
 import interfaces.SlickAdapter;
@@ -62,6 +63,8 @@ public class Monde implements SlickAdapter {
 
 	private SwitchFactory s;
 
+	private BlocsBlessantFactory b;
+	
 	// Les Balles pr�sentes dans le niveau
 	protected ArrayList<Balle> balles;
 
@@ -119,7 +122,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/map2.tmx");
+		niveau = new TiledMap("res/map.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -137,10 +140,12 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
 		f = new PlateformeFactory(world, niveau, s);
+		b = new BlocsBlessantFactory(world,niveau);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
 		interaction.addAll(f.get_produit());
 		interaction.addAll(s.get_produit());
+		interaction.addAll(b.get_produit());
 
 	}
 
@@ -276,6 +281,9 @@ public class Monde implements SlickAdapter {
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.AddPosition(i, j);
 
+				if(map.getObjectType(i, j).equals("BlocsBlessant")){
+					b.CreateBlocsBlessant(i, j);
+				}
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(

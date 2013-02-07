@@ -8,7 +8,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2USwpAIQhFnbr/Db9pyEv8F3QPBA0sjyYRAfAOvCwt5gS82WtxJ9l5TPkx6e952s+Cx9sbs8Za5t6aq9ovi6wr4id71Ol/W/9k3u7589YWOTv9B0XO/d1TOX+ZOyb6l83R7Vjh170AAACAF/kAqMeGVMASAAA=
+   H4sIAAAAAAAAC+2USwpAIQhFnbr/Db9pyEv8F3QPBA0sjyYRAfAOvCwt5gS82WtxJ9l5TPkx6e952s+Cx9sbs8Za5t6aq9ovi6wr4id71Ol/W/9k3u7589YWOTv9B0XO/d1TOX+ZOyb6l83R7Vjh170AAACAF/kAqMeGVMASAAA=
   </data>
  </layer>
  <objectgroup name="Switch" width="40" height="30">
@@ -112,6 +112,11 @@
    </properties>
   </object>
   <object name="kamikaze" type="personnage" x="834" y="541" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics1" type="BlocsBlessant" x="642" y="541" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>

@@ -38,6 +38,8 @@ public class BlocsBlessant extends BlocsStatiques {
 		this.valeur = valeur;
 	}
 
+	
+	
 	public int get_valeur() {
 		return valeur;
 	}
