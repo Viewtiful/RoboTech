@@ -235,12 +235,6 @@ public class Robot extends Personnage {
 		// dessine l'image du robot en le centrant
 		imageCouranteRobot.drawCentered(getX(), getY());
 
-		// texte de debug
-		g.drawString("sol?" + auSol() + "facingRight?" + getDirectionDroite()
-				+ " " + getX() + "," + getY() + " " + velx, getX(), getY() - 50);
-		g.drawString("Vie : " + getVie() + ", Mana : " + getMana()
-				+ ", Energie : " + getEnergie(), getX(), getY() - 70);
-
 	}
 
 	public void setEstomperEffetPotion(int valeur) {

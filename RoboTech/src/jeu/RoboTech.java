@@ -2,6 +2,7 @@ package jeu;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -53,6 +54,7 @@ public class RoboTech extends StateBasedGame {
 		addState(new RobotMort(MORTETAT));
 		//lance l'état victoire lorsque le robot tue le boss et finit le jeu
 		addState(new Victoire(VICTOIRETAT));
+		
 	}
 
 	/**
