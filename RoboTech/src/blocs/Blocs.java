@@ -82,6 +82,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		return signal;
 	}
 
+	public Body setBody() {
+		return Body;
+	}
+	
 	private boolean on_bloc = false;
 
 	/**
@@ -107,6 +111,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		on_bloc = false;
 	}
 
+	
 	public void set_on_bloc(boolean value) {
 		on_bloc = value;
 	}
@@ -115,6 +120,10 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		return on_bloc;
 	}
 
+	public void setBody(Body Body)
+	{
+		this.Body = Body;
+	}
 	/**
 	 * Permet de d�terminer si il y a contact avec le robot et le blocs
 	 * 

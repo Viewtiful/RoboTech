@@ -61,6 +61,10 @@ public class Plateforme extends BlocsDynamiques {
 	Point eps;
 
 	/**
+	 * Blocs contenus
+	 */
+	Blocs c = null;
+	/**
 	 * Affichage de la tajectoire des plateformes
 	 */
 	boolean trajectoire_draw = true;
@@ -98,6 +102,16 @@ public class Plateforme extends BlocsDynamiques {
 		eps = new Point((float) 1e-01, (float) 1e-01);
 	}
 
+	public Plateforme(Point org,Blocs c) {
+		super(c.get_image(), c.getHeight(), c.getWidth(), c.center);
+		Trajectoire = new ArrayList<Point>();
+		pointd = 0;
+		vitesse = 1;
+		eps = new Point((float) 1e-01, (float) 1e-01);
+		setBody(c.getBody());
+		this.c = c;
+	}
+	
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
 		for (int i = 0; i < Point_x.length; i++)
 			Trajectoire.add(new Point(Point_x[i], Point_y[i]));
@@ -228,6 +242,7 @@ public class Plateforme extends BlocsDynamiques {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		deplacement();
+		
 	}
 
 	/**
@@ -260,6 +275,11 @@ public class Plateforme extends BlocsDynamiques {
 		if (get_on_bloc() == true && player.getEnMouvement() == false && signal) {
 			player.set_coor(player.getX() + epsilon_x, player.getY()
 					+ epsilon_y);
+			if(c!=null)
+			{
+				c.set_on_bloc(true);
+				c.collision_action(player);
+			}
 		}
 	}
 }

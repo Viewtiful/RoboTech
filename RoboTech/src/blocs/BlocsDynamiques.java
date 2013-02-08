@@ -41,6 +41,7 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 		super(box_image, Width, Height, center);
 	}
 
+	
 	/**
 	 * {@inheritDoc}
 	 */

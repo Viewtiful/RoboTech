@@ -323,5 +323,28 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
+  <object name="Plateforme56" type="Plateforme_Base" x="1024" y="480" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/pics.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="Type" value="Pics"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme56" type="Plateforme_Point" x="1120" y="480" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -8,6 +8,7 @@ import net.phys2d.raw.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.TiledMap;
 
+import blocs.BlocsBlessant;
 import blocs.Plateforme;
 import blocs.Point;
 import blocs.Switch;
@@ -58,7 +59,12 @@ public class PlateformeFactory extends AbstractFactory {
 				"Reverse"));
 
 		String name = get_name(i, j);
+		String type = recuperer_Propriete(i,j,"Type");
+		System.out.println(type);
 		Plateforme p = new Plateforme(position, image_box, width, height);
+//		Plateforme p = new Plateforme(position,new BlocsBlessant(image_box, width, height, position,
+//				4));
+//		
 		p.addPoint(position.get_x(), position.get_y());
 		p.set_signal(signal);
 		p.set_reverse(reverse);
