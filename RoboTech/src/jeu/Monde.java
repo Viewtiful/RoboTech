@@ -14,8 +14,6 @@ import items.Baril;
 import items.Caisse;
 import items.Items;
 import items.Poutre;
-
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,12 +25,10 @@ import net.phys2d.raw.World;
 import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -107,12 +103,7 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		UnicodeFont font = new UnicodeFont(new java.awt.Font("Verdana",
-				Font.BOLD, 20));
-		font.getEffects().add(new ColorEffect(java.awt.Color.white));
-		font.addNeheGlyphs();
-		font.loadGlyphs();
-	}
+		}
 
 	public void setPlayer(Robot player) {
 		this.player = player;

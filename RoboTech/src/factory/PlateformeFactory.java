@@ -2,13 +2,9 @@ package factory;
 
 import java.util.Collection;
 import java.util.HashMap;
-
 import net.phys2d.raw.World;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.TiledMap;
-
-import blocs.BlocsBlessant;
 import blocs.Plateforme;
 import blocs.Point;
 import blocs.Switch;

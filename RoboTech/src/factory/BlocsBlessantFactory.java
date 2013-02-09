@@ -2,14 +2,10 @@ package factory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-
 import net.phys2d.raw.World;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
-
 import blocs.BlocsBlessant;
 import blocs.Point;
 
@@ -22,9 +18,6 @@ public class BlocsBlessantFactory extends AbstractFactory {
 		chaine = new ArrayList<BlocsBlessant>();
 	}
 
-	private BlocsBlessant getProduit(int i) {
-		return chaine.get(i);
-	}
 
 	public Collection<BlocsBlessant> getProduit() {
 		return chaine;

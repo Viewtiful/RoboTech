@@ -49,6 +49,19 @@ public class Point {
 		setY(getY() + y);
 	}
 
+	/**
+	 * Fonction permettant de calculer la longeuru d'un segment
+	 * @param b Extrémité du segment
+	 * @return Distance
+	 */
+	public float pythagore(Point b) {
+		float diff1 = b.getX() - getX();
+		float diff2 = b.getY() - getY();
+		diff1 = diff1 * diff1;
+		diff2 = diff2 * diff2;
+		return (float) Math.sqrt(diff1 + diff2);
+	}
+
 	@Override
 	public String toString() {
 		String res = "";

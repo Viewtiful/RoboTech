@@ -66,13 +66,11 @@ public class Poutre extends Items {
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
 		return width;
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
 		return height;
 	}
 

@@ -274,7 +274,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void collisionAction(Robot player) {
 		if (getOnBloc() == true && player.getEnMouvement() == false && signal) {
-			player.setCoor(player.getX() + epsilon_x, player.getY() + epsilon_y);
+			player.setPosition(player.getX() + epsilon_x, player.getY() + epsilon_y);
 			if (c != null) {
 				c.setOnBloc(true);
 				c.collisionAction(player);

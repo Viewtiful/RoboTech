@@ -2,11 +2,7 @@ package blocs;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import net.phys2d.math.ROVector2f;
-
 import org.newdawn.slick.Image;
-
 import personnages.Robot;
 
 public class Switch extends BlocsStatiques {
