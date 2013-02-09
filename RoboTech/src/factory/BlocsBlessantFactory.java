@@ -11,8 +11,18 @@ import blocs.Point;
 
 public class BlocsBlessantFactory extends AbstractFactory {
 
+	/**
+	 * BlocsBlessant en cours de création
+	 *
+	 */
 	private ArrayList<BlocsBlessant> chaine;
 
+	
+	/**
+	 * Crée une fabrique
+	 * @param world Monde Physique
+	 * @param map Carte du niveau
+	 */
 	public BlocsBlessantFactory(World world, TiledMap map) {
 		super(world, map);
 		chaine = new ArrayList<BlocsBlessant>();
@@ -23,6 +33,11 @@ public class BlocsBlessantFactory extends AbstractFactory {
 		return chaine;
 	}
 
+	/**
+	 * Crée un nouveau BlocBlessant et l'intègre dans l'environnement de jeu
+	 * @param i Abscisse de l'objet dans la carte
+	 * @param j Ordonnée de l'objet dans la carte
+	 */
 	public void createBlocsBlessant(int i, int j) throws SlickException {
 
 		Point p = getPosition(i, j);

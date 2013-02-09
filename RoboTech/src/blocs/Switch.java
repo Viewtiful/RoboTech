@@ -6,7 +6,7 @@ import org.newdawn.slick.Image;
 import personnages.Robot;
 /**
  * Cette classe représente un bouton
- * @author Antoine
+ * @author Equipe RoboTech
  *
  */
 public class Switch extends BlocsStatiques {

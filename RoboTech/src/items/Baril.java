@@ -17,6 +17,15 @@ public class Baril extends Items {
 	/** The height of the crate */
 	private float height;
 
+	/**
+	 * 
+	 * @param x Abscisse du Baril
+	 * @param y Ordonnée du Baril
+	 * @param width largeur
+	 * @param height hauteur
+	 * @param mass masse 
+	 * @throws SlickException
+	 */
 	public Baril(float x, float y, float width, float height, float mass)
 			throws SlickException {
 		this.width = width;
@@ -49,12 +58,19 @@ public class Baril extends Items {
 	}
 
 	@Override
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		image = new Image("res/baril.png");
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void render(Graphics g) {
 		g.translate(getX(), getY());
 		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
@@ -64,13 +80,17 @@ public class Baril extends Items {
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		render(g);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub

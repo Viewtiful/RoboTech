@@ -29,7 +29,7 @@ public class PlateformeFactory extends AbstractFactory {
 	private SwitchFactory s;
 
 	/**
-	 * 
+	 * Crée une fabrique
 	 * @param world Monde Physique
 	 * @param map Carte du niveau
 	 * @param s Fabrique de Bouton

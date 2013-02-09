@@ -44,45 +44,71 @@ import personnages.Personnage;
 import personnages.Robot;
 import weapon.Balle;
 
-/*
+/**
  * Equipe RoboTech  Reprï¿½sente le niveau oï¿½ le Robot ï¿½volue
  */
 public class Monde implements SlickAdapter {
 
-	// Reprï¿½sente le monde physique
+	/**
+	 *  Reprï¿½sente le monde physique
+	 */
 	private World world;
 
-	// Reprï¿½sente le niveau
+	/**
+	 *  Reprï¿½sente le niveau
+	 */
 	private TiledMap niveau;
 
-	// Les Obstacles
+	/**
+	 * Les Obstacles
+	 */
 	private ArrayList<Rectangle> obstacles;
 
+	/**
+	 * Fabrique de Plateforme
+	 */
 	private PlateformeFactory f;
 
+	/**
+	 * Fabrique de bouton
+	 */
 	private SwitchFactory s;
 
+	/**
+	 * Fabrique de BlocBlessant
+	 */
 	private BlocsBlessantFactory b;
 
 	private UnicodeFont font;
-	// Les Balles prï¿½sentes dans le niveau
+	/**
+	 *  Les Balles prï¿½sentes dans le niveau
+	 */
 	protected ArrayList<Balle> balles;
 
-	/*
+	/**
 	 * Les personnages ï¿½voluant dans le niveau La structure nous permet un
 	 * gain de performance dans la recherche de donnï¿½e
 	 */
 	protected HashMap<Body, Personnage> personnages;
 
-	// Les Items
+	/**
+	 *  Les Items
+	 */
 	protected ArrayList<Items> items;
 
-	// Les Items qui peuvent ï¿½tre rammaser
+	/**
+	 *  Les Items qui peuvent ï¿½tre rammasés
+	 */
 	protected ArrayList<Items> itemsRamassable;
 
+	/**
+	 * Les blocs qui rendent le niveau intéractif
+	 */
 	protected ArrayList<Blocs> interaction;
 
-	// Le robot contrï¿½lï¿½ par le Joueur
+	/**
+	 *  Le robot contrôlé par le Joueur
+	 */
 	Robot player;
 
 	Animation courir;
@@ -140,6 +166,9 @@ public class Monde implements SlickAdapter {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.setFont(font);
@@ -257,6 +286,11 @@ public class Monde implements SlickAdapter {
 
 	}
 
+	/**
+	 * Fonction qui place les objets
+	 * @param map Carte où les objets sont à placer
+	 * @throws SlickException
+	 */
 	public void initialiserObjets(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
@@ -356,6 +390,11 @@ public class Monde implements SlickAdapter {
 		}
 	}
 
+	/**
+	 * Initialise le robt
+	 * @param map Carte où est situé le robot
+	 * @throws SlickException
+	 */
 	public void initialiserRobot(TiledMap map) throws SlickException {
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
@@ -534,12 +573,8 @@ public class Monde implements SlickAdapter {
 		Blocs current;
 		while (it.hasNext()) {
 			current = it.next();
-			// if(current instanceof Switch)
-			// System.out.println("Switch{");
 			current.collision(player);
-			// if(current instanceof Switch)
-			// System.out.println("}Switch");
-
+		
 			try {
 				current.update(container, game, delta);
 			} catch (SlickException e) {
@@ -587,6 +622,13 @@ public class Monde implements SlickAdapter {
 		updateBlocs(container, game, delta);
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param ennemis
+	 * @return
+	 */
 	public boolean estSolPosition(int x, int y, Ennemis ennemis) {
 		boolean result = false;
 		try {

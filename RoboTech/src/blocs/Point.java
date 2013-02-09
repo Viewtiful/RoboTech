@@ -1,7 +1,7 @@
 package blocs;
 /**
  * 
- * @author Antoine
+ * @author Equipe RoboTech
  * Un point du Plan
  */
 public class Point {
