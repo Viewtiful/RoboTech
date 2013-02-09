@@ -6,7 +6,11 @@ import org.newdawn.slick.GameContainer;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
+/**
+ * 
+ * @author Antoine
+ *
+ */
 public abstract class Ennemis extends Personnage {
 	// l'image qui contient le sprite du robot
 	private int deplacementAuto;

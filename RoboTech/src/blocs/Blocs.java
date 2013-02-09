@@ -131,11 +131,11 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 * @param player
 	 *            le Robot contr�l� par le joueur
 	 */
+	
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
 		float n = player.getTaille();
-		if (Math.abs((player.getY() + n / 2)
-				- (center.getY() - getHeight() / 2)) < eps) {
+		if((Math.abs(player.getY() - center.getY()) - (getHeight()/2 + player.getTaille()/2)) <eps){
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 
@@ -149,7 +149,6 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 			collisionAction(player);
 		}
 	}
-
 	/**
 	 * Permet que les classes filles ont un comportement diff�rents lors d'une
 	 * collision

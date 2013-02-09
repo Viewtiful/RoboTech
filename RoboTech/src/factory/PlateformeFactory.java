@@ -5,6 +5,8 @@ import java.util.HashMap;
 import net.phys2d.raw.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.TiledMap;
+
+import blocs.BlocsBlessant;
 import blocs.Plateforme;
 import blocs.Point;
 import blocs.Switch;
@@ -51,6 +53,7 @@ public class PlateformeFactory extends AbstractFactory {
 		assert(!name.equals("NOT_FOUND"));
 		
 		Plateforme p = getProduit(name);
+		System.out.println("Name = "+name);
 		assert(p!=null);
 		int last_size = p.getTrajectoire().size();
 		
@@ -60,6 +63,8 @@ public class PlateformeFactory extends AbstractFactory {
 		assert(width != -1 && height!= -1);
 		p.addPoint(position.getX() + width / 2, position.getY() + height / 2);
 		assert(p.getTrajectoire().size()==last_size+1);
+		System.out.println("Name = "+name);
+		System.out.println(p);
 	}
 
 	private Plateforme getProduit(String name) {
@@ -93,13 +98,17 @@ public class PlateformeFactory extends AbstractFactory {
 
 		String name = getName(i, j);
 		String type = recupererPropriete(i, j, "Type");
-		Plateforme p = new Plateforme(position, image_box, width, height);
+		System.out.println("Name "+name+"Type = "+type);
+		Plateforme p;
+		if(type.equals("pics"))
+		p = new Plateforme(position,new BlocsBlessant(image_box,width, height, position,4));
+		else
+		p = new Plateforme(position, image_box, width, height);
+		
+				
 		// Objet bien alloué
 		assert(p!=null);
-		// Plateforme p = new Plateforme(position,new BlocsBlessant(image_box,
-		// width, height, position,
-		// 4));
-		//
+		
 		p.addPoint(position.getX(), position.getY());
 		p.setSignal(signal);
 		p.setReverse(reverse);

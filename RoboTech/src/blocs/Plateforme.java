@@ -308,9 +308,9 @@ public class Plateforme extends BlocsDynamiques {
 			res = res + "Bloc contenu{" + "\n" + c.toString() + "}" + "\n";
 		} else
 			res = res + "Aucun Bloc Contenu" + "\n";
-		res = res + "Nombre de point Trajectoire = " + taille + "\n";
+		res = res + "Nombre de point Trajectoire = " + trajectoire.size() + "\n";
 		res = res + "Trajectoire{" + "\n";
-		for (int i = 0; i < taille; i++)
+		for (int i = 0; i < trajectoire.size(); i++)
 			res = res + "[" + i + "]" + trajectoire.get(i).toString();
 		res = res + "}";
 

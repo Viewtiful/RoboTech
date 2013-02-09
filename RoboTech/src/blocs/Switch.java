@@ -48,7 +48,6 @@ public class Switch extends BlocsStatiques {
 	 */
 	public void collisionAction(Robot player) {
 		if (getOnBloc()) {
-			System.out.println("Collision Bouton");
 			Iterator<Blocs> it = receiver.iterator();
 			while (it.hasNext())
 				it.next().setSignal(true);
