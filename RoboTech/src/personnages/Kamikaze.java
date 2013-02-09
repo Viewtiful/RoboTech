@@ -92,15 +92,12 @@ public class Kamikaze extends Ennemis {
 		}
 
 		image.drawCentered(getX(), getY());
-		// g.setColor(Color.gray);
-		// g.drawLine(org.get_x(), org.get_y(), fin.get_x(), fin.get_y());
-
+	
 	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		// TODO Auto-generated method stub
 
 	}
 

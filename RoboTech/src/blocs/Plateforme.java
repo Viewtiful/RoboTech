@@ -23,6 +23,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Les points de sa trajectoire
 	 */
 	ArrayList<Point> trajectoire;
+	
 	/**
 	 * Le dernier point atteint (initialisï¿½ ï¿½ 0 par le constructeur
 	 */
@@ -114,12 +115,21 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
+		assert(Point_x.length==Point_y.length);
+		assert(Point_x.length>0);
+		
 		for (int i = 0; i < Point_x.length; i++)
 			trajectoire.add(new Point(Point_x[i], Point_y[i]));
 	}
 
+	public ArrayList<Point> getTrajectoire() {
+		return trajectoire;
+	}
+	
 	public void addPoint(float x, float y) {
+		int last_size = trajectoire.size();
 		trajectoire.add(new Point(x, y));
+		assert(last_size+1 == trajectoire.size());
 	}
 
 	public float getEpsilonX() {
@@ -156,6 +166,8 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void initialise(int point_current, int next_point) {
 		float n = vitesse;
+		assert(n > (float)1.0e-02); // n différént de 0
+		
 		Point current = trajectoire.get(point_current);
 		Point next = trajectoire.get(next_point);
 		epsilon_x = (next.getX() - current.getX()) * (n / 100);

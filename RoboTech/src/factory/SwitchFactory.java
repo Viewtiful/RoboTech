@@ -11,6 +11,11 @@ import org.newdawn.slick.tiled.TiledMap;
 import blocs.Point;
 import blocs.Switch;
 
+/**
+ * 
+ * @author Equipe RoboTech
+ * Createur de Bouton
+ */
 public class SwitchFactory extends AbstractFactory {
 
 	private HashMap<String, Switch> chaine;
