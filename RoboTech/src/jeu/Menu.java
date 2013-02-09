@@ -10,8 +10,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Etat du menu principal du jeu
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class Menu extends BasicGameState {
 	/**
@@ -41,27 +42,29 @@ public class Menu extends BasicGameState {
 
 	/**
 	 * Constructeur de Menu
-	 * @param ID transmis
+	 * 
+	 * @param ID
+	 *            transmis
 	 */
 	public Menu(int ID) {
 		this.ID = ID;
 	}
 
-	
 	/**
 	 * Initialisation les images ainsi que leurs positions
 	 */
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		//initialise les images de l'état
+		// initialise les images de l'état
 		imageFond = new Image("res/backgroundMenu.png");
 		itemMenu = new Image[3];
 		itemMenu[0] = new Image("res/jeuMenu.png");
 		itemMenu[1] = new Image("res/optionMenu.png");
 		itemMenu[2] = new Image("res/quitterMenu.png");
 
-		//initialise le tableau pour savoir si la souris se trouve sur un bouton à false
+		// initialise le tableau pour savoir si la souris se trouve sur un
+		// bouton à false
 		interieurBouton = new boolean[itemMenu.length];
 		// premier dimension nombre item du menu, deuxieme dimension position x
 		// et y de cet item du menu
@@ -94,13 +97,13 @@ public class Menu extends BasicGameState {
 	}
 
 	/**
-	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance de sa position et action à faire si celle-ci se trouve
-	 * sur un bouton
+	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance
+	 * de sa position et action à faire si celle-ci se trouve sur un bouton
 	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		//gestion de la souris
+		// gestion de la souris
 		Input input = gc.getInput();
 
 		sourisX = input.getMouseX();
@@ -139,6 +142,7 @@ public class Menu extends BasicGameState {
 
 	/**
 	 * lance le jeu
+	 * 
 	 * @param sbg
 	 */
 	public void lancerJeu(StateBasedGame sbg) {
@@ -147,6 +151,7 @@ public class Menu extends BasicGameState {
 
 	/**
 	 * lance le menu des options
+	 * 
 	 * @param sbg
 	 */
 	public void lancerOption(StateBasedGame sbg) {

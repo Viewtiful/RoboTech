@@ -10,8 +10,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Etat dans lequel rentre le joueur lorsqu'il a tué le boss et finit le jeu
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class Victoire extends BasicGameState {
 	/**
@@ -41,7 +42,9 @@ public class Victoire extends BasicGameState {
 
 	/**
 	 * Constructeur de Victoire
-	 * @param ID transmis
+	 * 
+	 * @param ID
+	 *            transmis
 	 */
 	public Victoire(int ID) {
 		this.ID = ID;
@@ -61,15 +64,16 @@ public class Victoire extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		//initialise les images de l'état
+		// initialise les images de l'état
 		itemVictoire = new Image[2];
 		itemVictoire[0] = new Image("res/retourOption.png");
 		itemVictoire[1] = new Image("res/victoire.png");
 
-		//initialise le tableau pour savoir si la souris se trouve sur un bouton à false
+		// initialise le tableau pour savoir si la souris se trouve sur un
+		// bouton à false
 		interieurBouton = new boolean[itemVictoire.length];
-		
-		//initialise le tableau des positions des images
+
+		// initialise le tableau des positions des images
 		positionItemOption = new int[itemVictoire.length][2];
 	}
 
@@ -79,8 +83,8 @@ public class Victoire extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
-		//position les images et les affiche
+
+		// position les images et les affiche
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
 		itemVictoire[0]
@@ -89,13 +93,13 @@ public class Victoire extends BasicGameState {
 	}
 
 	/**
-	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance de sa position et action à faire si celle-ci se trouve
-	 * sur un bouton
+	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance
+	 * de sa position et action à faire si celle-ci se trouve sur un bouton
 	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		//gestion de la souris
+		// gestion de la souris
 		Input input = gc.getInput();
 
 		sourisX = input.getMouseX();

@@ -21,8 +21,9 @@ import interfaces.SlickAdapter;
 
 /**
  * Classe abstraite gérant les balles
+ * 
  * @author EquipeRoboTech
- *
+ * 
  */
 public abstract class Balle implements Drawable, SlickAdapter {
 	/**
@@ -54,8 +55,8 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	 */
 	Image imageBalle;
 	/**
-	 * 	 connaitre la direction dans laquelle la balle doit se déplacer, true =
-	 *   droite, false = gauche
+	 * connaitre la direction dans laquelle la balle doit se déplacer, true =
+	 * droite, false = gauche
 	 */
 	private boolean directionDroite;
 	/**
@@ -66,7 +67,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	/**
 	 * Constructeur de la classe Balle
 	 * 
-	 * @param x 
+	 * @param x
 	 * @param y
 	 * @param directionDroite
 	 * @param masse
@@ -74,15 +75,16 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	 */
 	public Balle(float x, float y, Boolean directionDroite, float masse,
 			int value) throws SlickException {
-		//la balle est tirée vers la droite ou la gauche?
+		// la balle est tirée vers la droite ou la gauche?
 		this.directionDroite = directionDroite;
-		//en fonction de la direction dans laquelle elle est tirée, elle se déplace vers la droite ou la gauche
+		// en fonction de la direction dans laquelle elle est tirée, elle se
+		// déplace vers la droite ou la gauche
 		if (this.directionDroite)
 			this.x = x + 18;
 		else
 			this.x = x - 18;
 		this.y = y;
-		//charge l'image de la balle
+		// charge l'image de la balle
 		imageBalle = new Image("res/bullet.png");
 		this.masse = masse;
 
@@ -203,10 +205,22 @@ public abstract class Balle implements Drawable, SlickAdapter {
 				// collision, si touche un ennemi, appelle la fonction toucher
 				// de cet ennemi pour lui enlever 1 pt de vie
 				if (evenement[i].getBodyB() == body) {
-					persCourant = personnages.get(evenement[i].getBodyA()); /*Current vaut nullsi lebody misen causen'est pasun body de personnages*/
+					persCourant = personnages.get(evenement[i].getBodyA()); /*
+																			 * Current
+																			 * vaut
+																			 * nullsi
+																			 * lebody
+																			 * misen
+																			 * causen
+																			 * 'est
+																			 * pasun
+																			 * body
+																			 * de
+																			 * personnages
+																			 */
 					if (persCourant != null && cible(persCourant))
 						persCourant.toucher(valeurDmg);
-					
+
 					return true;
 				}
 			}

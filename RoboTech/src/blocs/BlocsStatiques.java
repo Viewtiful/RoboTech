@@ -33,7 +33,7 @@ public abstract class BlocsStatiques extends Blocs {
 	 * {@inheritDoc}
 	 */
 	public void render(Graphics g) {
-		get_image().drawCentered(center.get_x(), center.get_y());
+		getImage().drawCentered(center.getX(), center.getY());
 
 	}
 
@@ -62,4 +62,8 @@ public abstract class BlocsStatiques extends Blocs {
 
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

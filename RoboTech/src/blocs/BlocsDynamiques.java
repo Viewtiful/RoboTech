@@ -20,8 +20,8 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 * {@inheritDoc}
 	 */
 	public void render(Graphics g) {
-		render_spec(g);
-		get_image().drawCentered(center.get_x(), center.get_y());
+		renderSpec(g);
+		getImage().drawCentered(center.getX(), center.getY());
 	}
 
 	/**
@@ -41,7 +41,6 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 		super(box_image, Width, Height, center);
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -60,5 +59,10 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	 *            Objet Graphique
 	 * @see org.newdawn.slick.Graphics
 	 */
-	public abstract void render_spec(Graphics g);
+	public abstract void renderSpec(Graphics g);
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

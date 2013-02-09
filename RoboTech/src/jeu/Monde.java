@@ -67,7 +67,7 @@ public class Monde implements SlickAdapter {
 	private SwitchFactory s;
 
 	private BlocsBlessantFactory b;
-	
+
 	private UnicodeFont font;
 	// Les Balles pr�sentes dans le niveau
 	protected ArrayList<Balle> balles;
@@ -107,7 +107,8 @@ public class Monde implements SlickAdapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
-		UnicodeFont font = new UnicodeFont(new java.awt.Font ("Verdana", Font.BOLD, 20)); 
+		UnicodeFont font = new UnicodeFont(new java.awt.Font("Verdana",
+				Font.BOLD, 20));
 		font.getEffects().add(new ColorEffect(java.awt.Color.white));
 		font.addNeheGlyphs();
 		font.loadGlyphs();
@@ -139,12 +140,12 @@ public class Monde implements SlickAdapter {
 		generatePlateformes();
 		s = new SwitchFactory(world, niveau);
 		f = new PlateformeFactory(world, niveau, s);
-		b = new BlocsBlessantFactory(world,niveau);
+		b = new BlocsBlessantFactory(world, niveau);
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
-		interaction.addAll(f.get_produit());
-		interaction.addAll(s.get_produit());
-		interaction.addAll(b.get_produit());
+		interaction.addAll(f.getProduit());
+		interaction.addAll(s.getProduit());
+		interaction.addAll(b.getProduit());
 
 	}
 
@@ -153,7 +154,7 @@ public class Monde implements SlickAdapter {
 		g.setFont(font);
 		// affiche la map
 		niveau.render(0, 0);
-		//g.setFont(font);
+		// g.setFont(font);
 		// affiche les plateformes (obstacles) du niveau
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
@@ -180,8 +181,7 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
-		font.drawString(player.getX(), player.getY(), "Test");
-		
+
 	}
 
 	/**
@@ -271,17 +271,17 @@ public class Monde implements SlickAdapter {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 
 				if (map.getObjectType(i, j).equals("Switch")) {
-						s.CreateSwitch(i, j);
+					s.createSwitch(i, j);
 				}
 
 				if (map.getObjectType(i, j).equals("Plateforme_Base")) {
-					f.CreatePlateforme(i, j);
+					f.createPlateforme(i, j);
 				}
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
-					f.AddPosition(i, j);
+					f.addPosition(i, j);
 
-				if(map.getObjectType(i, j).equals("BlocsBlessant")){
-					b.CreateBlocsBlessant(i, j);
+				if (map.getObjectType(i, j).equals("BlocsBlessant")) {
+					b.createBlocsBlessant(i, j);
 				}
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
@@ -471,7 +471,7 @@ public class Monde implements SlickAdapter {
 	 * @param delta
 	 * @throws SlickException
 	 */
-	public void update_item(GameContainer container, StateBasedGame game,
+	public void updateItem(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
 		Items current;
 		Iterator<Items> it = itemsRamassable.iterator();
@@ -479,7 +479,7 @@ public class Monde implements SlickAdapter {
 		while (it.hasNext()) {
 			current = it.next();
 			current.update(container, game, delta);
-			if (current.get_used())
+			if (current.getUsed())
 				it.remove();
 		}
 
@@ -493,7 +493,7 @@ public class Monde implements SlickAdapter {
 	 * @param game
 	 * @param delta
 	 */
-	public void update_personnage(GameContainer container, StateBasedGame game,
+	public void updatePersonnage(GameContainer container, StateBasedGame game,
 			int delta) {
 		Personnage current;
 		Iterator<Personnage> it = personnages.values().iterator();
@@ -515,7 +515,7 @@ public class Monde implements SlickAdapter {
 	 * @param delta
 	 * @throws SlickException
 	 */
-	public void update_balle(GameContainer container, StateBasedGame game,
+	public void updateBalle(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
 		Balle current;
 		Iterator<Balle> it = balles.iterator();
@@ -537,18 +537,18 @@ public class Monde implements SlickAdapter {
 	 * @param game
 	 * @param delta
 	 */
-	public void update_Blocs(GameContainer container, StateBasedGame game,
+	public void updateBlocs(GameContainer container, StateBasedGame game,
 			int delta) {
 		Iterator<Blocs> it = interaction.iterator();
 		Blocs current;
 		while (it.hasNext()) {
 			current = it.next();
-//			if(current instanceof Switch)
-//				System.out.println("Switch{");
+			// if(current instanceof Switch)
+			// System.out.println("Switch{");
 			current.collision(player);
-//			if(current instanceof Switch)
-//				System.out.println("}Switch");
-	
+			// if(current instanceof Switch)
+			// System.out.println("}Switch");
+
 			try {
 				current.update(container, game, delta);
 			} catch (SlickException e) {
@@ -590,10 +590,10 @@ public class Monde implements SlickAdapter {
 
 		}
 
-		update_personnage(container, game, delta);
-		update_balle(container, game, delta);
-		update_item(container, game, delta);
-		update_Blocs(container, game, delta);
+		updatePersonnage(container, game, delta);
+		updateBalle(container, game, delta);
+		updateItem(container, game, delta);
+		updateBlocs(container, game, delta);
 	}
 
 	public boolean estSolPosition(int x, int y, Ennemis ennemis) {

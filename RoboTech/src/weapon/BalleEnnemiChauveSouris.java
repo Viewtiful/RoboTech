@@ -7,13 +7,15 @@ import personnages.Robot;
 
 /**
  * Classe gérant les balles pour les serpents
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class BalleEnnemiChauveSouris extends Balle {
 
 	/**
 	 * Constructeur de la classe BalleEnnemiChauveSouris
+	 * 
 	 * @param x
 	 * @param y
 	 * @param directionDroite

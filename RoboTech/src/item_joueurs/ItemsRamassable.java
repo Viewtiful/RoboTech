@@ -12,21 +12,21 @@ public abstract class ItemsRamassable extends Items {
 
 	/* Getters */
 
-	public boolean get_used() {
+	public boolean getUsed() {
 		return used;
 	}
 
-	public Personnage get_player() {
+	public Personnage getPlayer() {
 		return player;
 	}
 
 	/* Setters */
 
-	public void set_used(boolean used) {
+	public void setUsed(boolean used) {
 		this.used = used;
 	}
 
-	public void set_player(Robot player) {
+	public void setPlayer(Robot player) {
 		this.player = player;
 	}
 }

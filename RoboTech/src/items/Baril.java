@@ -36,20 +36,16 @@ public class Baril extends Items {
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
 		return width;
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
 		return height;
 	}
 
 	@Override
 	public void setPickedUp(boolean b) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -78,10 +74,6 @@ public class Baril extends Items {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
-
-	}
-
-	public void effect() {
 
 	}
 

@@ -35,16 +35,16 @@ public class BlocsTest extends BlocsDynamiques {
 
 	}
 
-	public void render_spec(Graphics g) {
+	public void renderSpec(Graphics g) {
 		if (showed == true) {
-			set_image(image_showed);
+			setImage(image_showed);
 			showed = false;
 		} else if (showed == false)
-			set_image(image_base);
+			setImage(image_base);
 	}
 
 	@Override
-	public void collision_action(Robot player) {
+	public void collisionAction(Robot player) {
 		showed = true;
 	}
 

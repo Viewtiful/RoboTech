@@ -24,27 +24,32 @@ public class SwitchFactory extends AbstractFactory {
 		return chaine.get(name);
 	}
 
-	public Collection<Switch> get_produit() {
+	public Collection<Switch> getProduit() {
 		return chaine.values();
 	}
 
-	public void CreateSwitch() {
-
-	}
-
-	public void CreateSwitch(int i, int j) {
-		Point position = get_Position(i, j);
+	public void createSwitch(int i, int j) {
+		Point position = getPosition(i, j);
 		int width = getWidth(i, j);
 		int height = getHeight(i, j);
 		position.add(width / 2, height / 2);
 		Image image_on = getImage(i, j, "Image_On");
 		Image image_off = getImage(i, j, "Image_Off");
 
-		String name = get_name(i, j);
+		String name = getName(i, j);
 		Switch s = new Switch(image_off, width, height, position, image_on);
 		world.add(s.getBody());
 		chaine.put(name, s);
 		System.out.println(position);
 	}
 
+	@Override
+	public String toString() {
+		String res = super.toString();
+		res = res + "Longueur = " + chaine.size() + "\n";
+		for (int i = 0; i < chaine.size(); i++)
+			res = res + "[" + i + "]" + chaine.get(i).toString();
+		res = res + "\n";
+		return res;
+	}
 }

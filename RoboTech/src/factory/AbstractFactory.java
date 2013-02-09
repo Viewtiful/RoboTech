@@ -18,16 +18,16 @@ public abstract class AbstractFactory {
 		this.map = map;
 	}
 
-	public String recuperer_Propriete(int i, int j, String Tag) {
+	public String recupererPropriete(int i, int j, String Tag) {
 		return map.getObjectProperty(i, j, Tag, "NOT_FOUND");
 	}
 
-	public Point get_Position(int i, int j) {
+	public Point getPosition(int i, int j) {
 		return new Point(map.getObjectX(i, j), map.getObjectY(i, j));
 	}
 
 	public Image getImage(int i, int j, String Tag) {
-		String Image = recuperer_Propriete(i, j, Tag);
+		String Image = recupererPropriete(i, j, Tag);
 		assert (!Image.equals("NOT_FOUND"));
 		Image image_box = null;
 		try {
@@ -50,8 +50,12 @@ public abstract class AbstractFactory {
 		return new Point(getWidth(i, j), getHeight(i, j));
 	}
 
-	public String get_name(int i, int j) {
+	public String getName(int i, int j) {
 		return map.getObjectName(i, j);
 	}
 
+	@Override
+	public String toString() {
+		return "Liste de Production" + "\n";
+	}
 }

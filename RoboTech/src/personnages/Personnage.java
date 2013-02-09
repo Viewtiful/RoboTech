@@ -16,7 +16,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Les personnages du jeu
- * @author Equipe RoboTech 
+ * 
+ * @author Equipe RoboTech
  */
 public abstract class Personnage implements Drawable, SlickAdapter {
 
@@ -96,8 +97,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 * la velocite sur l'axe des X
 	 */
 	protected float velx;
-	private float NouvelleMaxvelY;
-	private float NouvelleMaxvelX;
+	private float nouvelleMaxvelY;
+	private float nouvelleMaxvelX;
 
 	/**
 	 * 
@@ -193,7 +194,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		body.setPosition(getX(), y);
 	}
 
-	public void set_coor(float x, float y) {
+	public void setCoor(float x, float y) {
 		body.setPosition(x, y);
 	}
 
@@ -270,7 +271,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	}
 
 	public void preUpdate(int delta) {
-		//si le personne ne bouge pas, on supprime la vélocité sur l'axe des x
+		// si le personne ne bouge pas, on supprime la vélocité sur l'axe des
+		// x
 		if (!enMouvement) {
 			setVelocity(0, getVelY());
 		}
@@ -286,7 +288,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		//personnage sur le sol?
+		// personnage sur le sol?
 		boolean vrai = surLeSol(body);
 		if (!vrai) {
 			tempsEnLair += delta;
@@ -334,7 +336,8 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 		for (int i = 0; i < evenementCollision.length; i++) {
 			// si le point de la collision est proche des pieds
-			if (evenementCollision[i].getPoint().getY() > getY() + (tailleBlockPerso / 4)) {
+			if (evenementCollision[i].getPoint().getY() > getY()
+					+ (tailleBlockPerso / 4)) {
 
 				// regarde qu'elle corps est rentre en collision avec quelque
 				// chose
@@ -361,11 +364,11 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public void setVitesseX(float vitesseX) {
 		this.vitesseX = vitesseX;
-		this.NouvelleMaxvelX = maxVelX * this.vitesseX;
-		if (NouvelleMaxvelY == 0) {
-			body.setMaxVelocity(NouvelleMaxvelX, maxVelY);
+		this.nouvelleMaxvelX = maxVelX * this.vitesseX;
+		if (nouvelleMaxvelY == 0) {
+			body.setMaxVelocity(nouvelleMaxvelX, maxVelY);
 		} else {
-			body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);
+			body.setMaxVelocity(nouvelleMaxvelX, nouvelleMaxvelY);
 		}
 
 	}
@@ -376,11 +379,11 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public void setVitesseY(float vitesseY) {
 		this.vitesseY = vitesseY;
-		this.NouvelleMaxvelY = maxVelY * this.vitesseY;
-		if (NouvelleMaxvelX == 0) {
-			body.setMaxVelocity(maxVelX, NouvelleMaxvelY);
+		this.nouvelleMaxvelY = maxVelY * this.vitesseY;
+		if (nouvelleMaxvelX == 0) {
+			body.setMaxVelocity(maxVelX, nouvelleMaxvelY);
 		} else {
-			body.setMaxVelocity(NouvelleMaxvelX, NouvelleMaxvelY);
+			body.setMaxVelocity(nouvelleMaxvelX, nouvelleMaxvelY);
 		}
 	}
 
@@ -391,7 +394,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 */
 	public abstract void toucher(int value);
 
-	public float get_taille() {
+	public float getTaille() {
 		return tailleBlockPerso;
 	}
 }

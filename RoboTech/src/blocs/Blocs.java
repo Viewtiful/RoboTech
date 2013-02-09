@@ -26,67 +26,69 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	/**
 	 * Image du Blocs
 	 */
-	Image box_image;
+	Image boxImage;
 	/**
 	 * Largeur du Bloc
 	 */
-	private float Width;
+	private float width;
 	/**
 	 * Hauteur du Bloc
 	 */
-	private float Height;
+	private float height;
 	/**
 	 * Corps Physique du Bloc
 	 */
-	Body Body;
+	Body body;
 
 	/**
 	 * Coordonn�e du centre du blocs
 	 */
-
 	Point center;
 
+	/**
+	 * Personnage sur le blocs
+	 */
+	private boolean onBloc = false;
+
 	public void setWidth(float Width) {
-		this.Width = Width;
+		this.width = Width;
 	}
 
 	public void setHeight(float Height) {
-		this.Height = Height;
+		this.height = Height;
 	}
 
 	public float getWidth() {
-		return Width;
+		return width;
 	}
 
 	public float getHeight() {
-		return Height;
+		return height;
 	}
 
 	public Body getBody() {
-		return Body;
+		return body;
 	}
 
-	public Image get_image() {
-		return box_image;
+	public Image getImage() {
+		return boxImage;
 	}
 
-	public void set_image(Image box_image) {
-		this.box_image = box_image;
+	public void setImage(Image box_image) {
+		this.boxImage = box_image;
 	}
 
-	public void set_signal(boolean signal) {
+	public void setSignal(boolean signal) {
 		this.signal = signal;
 	}
 
-	public boolean get_signal() {
+	public boolean getSignal() {
 		return signal;
 	}
 
 	public Body setBody() {
-		return Body;
+		return body;
 	}
-	
-	private boolean on_bloc = false;
 
 	/**
 	 * @param box_image
@@ -101,29 +103,28 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 *            Ordonn�e du Bloc
 	 */
 	public Blocs(Image box_image, float Width, float Height, Point org) {
-		this.box_image = box_image;
-		this.Width = Width;
-		this.Height = Height;
-		this.Body = new StaticBody("StaticBody_" + org.get_x() + "_"
-				+ org.get_y(), new Box(Width, Height));
+		this.boxImage = box_image;
+		this.width = Width;
+		this.height = Height;
+		this.body = new StaticBody("StaticBody_" + org.getX() + "_"
+				+ org.getY(), new Box(Width, Height));
 		center = org;
-		Body.setPosition(org.get_x(), org.get_y());
-		on_bloc = false;
+		body.setPosition(org.getX(), org.getY());
+		onBloc = false;
 	}
 
-	
-	public void set_on_bloc(boolean value) {
-		on_bloc = value;
+	public void setOnBloc(boolean value) {
+		onBloc = value;
 	}
 
-	public boolean get_on_bloc() {
-		return on_bloc;
+	public boolean getOnBloc() {
+		return onBloc;
 	}
 
-	public void setBody(Body Body)
-	{
-		this.Body = Body;
+	public void setBody(Body Body) {
+		this.body = Body;
 	}
+
 	/**
 	 * Permet de d�terminer si il y a contact avec le robot et le blocs
 	 * 
@@ -132,20 +133,20 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 */
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
-		float n = player.get_taille();
+		float n = player.getTaille();
 		if (Math.abs((player.getY() + n / 2)
-				- (center.get_y() - getHeight() / 2)) < eps) {
+				- (center.getY() - getHeight() / 2)) < eps) {
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 
-			float p_gauche = center.get_x() - getWidth() / 2;
-			float p_droite = center.get_x() + getWidth() / 2;
+			float p_gauche = center.getX() - getWidth() / 2;
+			float p_droite = center.getX() + getWidth() / 2;
 
 			if ((x_droite <= p_droite && x_droite >= p_gauche)
 					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
-				on_bloc = true;
+				onBloc = true;
 			}
-			collision_action(player);
+			collisionAction(player);
 		}
 	}
 
@@ -156,6 +157,17 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 * @param player
 	 *            le Robot contr�l� par le joueur
 	 */
-	public abstract void collision_action(Robot player);
+	public abstract void collisionAction(Robot player);
+
+	@Override
+	public String toString() {
+		String res = "";
+		res = res + "Position = " + center.toString();
+		res = res + "Hauteur = " + getHeight() + "\n";
+		res = res + "Largeur = " + getWidth() + "\n";
+		res = res + "Signal = " + getSignal() + "\n";
+		res = res + "On_bloc = " + getOnBloc() + "\n";
+		return res;
+	}
 
 }

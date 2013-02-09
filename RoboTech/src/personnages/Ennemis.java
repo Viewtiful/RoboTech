@@ -2,7 +2,6 @@ package personnages;
 
 import jeu.Monde;
 
-
 import org.newdawn.slick.GameContainer;
 
 import org.newdawn.slick.SlickException;

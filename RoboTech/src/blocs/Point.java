@@ -9,50 +9,50 @@ public class Point {
 		this.y = y;
 	}
 
-	public void set_x(float x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
-	public void set_y(float y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
-	public float get_x() {
+	public float getX() {
 		return x;
 	}
 
-	public float get_y() {
+	public float getY() {
 		return y;
 	}
 
 	public Point distance(Point o1) {
-		float x1 = Math.abs(get_x() - o1.get_x());
-		float y1 = Math.abs(get_y() - o1.get_y());
+		float x1 = Math.abs(getX() - o1.getX());
+		float y1 = Math.abs(getY() - o1.getY());
 		return new Point(x1, y1);
 	}
 
 	public boolean near(Point o1, Point eps) {
 		Point distance = distance(o1);
 		assert (distance != eps);
-		boolean b1 = distance.get_x() < eps.get_x();
-		boolean b2 = distance.get_y() < eps.get_y();
+		boolean b1 = distance.getX() < eps.getX();
+		boolean b2 = distance.getY() < eps.getY();
 		return (b1 && b2);
 	}
 
 	public void add(Point o1) {
-		set_x(o1.get_x() + get_x());
-		set_y(o1.get_y() + get_y());
+		setX(o1.getX() + getX());
+		setY(o1.getY() + getY());
 	}
 
 	public void add(float x, float y) {
-		set_x(get_x() + x);
-		set_y(get_y() + y);
+		setX(getX() + x);
+		setY(getY() + y);
 	}
 
 	@Override
 	public String toString() {
 		String res = "";
-		res = "Abscisse = " + get_x() + "Ordonnée = " + get_y() + "\n";
+		res = "X = " + getX() + "Y = " + getY() + "\n";
 		return res;
 	}
 }

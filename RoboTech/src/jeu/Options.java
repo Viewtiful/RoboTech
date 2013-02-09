@@ -11,8 +11,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Etat des options du jeu
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class Options extends BasicGameState {
 	/**
@@ -58,7 +59,9 @@ public class Options extends BasicGameState {
 
 	/**
 	 * Constructeur de Options
-	 * @param ID transmis
+	 * 
+	 * @param ID
+	 *            transmis
 	 */
 	public Options(int ID) {
 		this.ID = ID;
@@ -70,7 +73,7 @@ public class Options extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		//initialise les images de l'état
+		// initialise les images de l'état
 		imageFond = new Image("res/backgroundOption.png");
 		sheetRouge = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
 		sheetJaune = new XMLPackedSheet("res/robotJaune.png", "res/robot.xml");
@@ -82,7 +85,8 @@ public class Options extends BasicGameState {
 		itemOption[2] = sheetVert.getSprite("robot_01.png");
 		itemOption[3] = new Image("res/retourOption.png");
 
-		//initialise le tableau pour savoir si la souris se trouve sur un bouton à false
+		// initialise le tableau pour savoir si la souris se trouve sur un
+		// bouton à false
 		interieurBouton = new boolean[itemOption.length];
 		// premier dimension nombre item des options, deuxieme dimension
 		// position x et y de cet item des options
@@ -96,7 +100,7 @@ public class Options extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		//dessine l'image de background
+		// dessine l'image de background
 		imageFond.draw(0, 0);
 
 		// personnage bleu
@@ -121,13 +125,13 @@ public class Options extends BasicGameState {
 	}
 
 	/**
-	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance de sa position et action à faire si celle-ci se trouve
-	 * sur un bouton
+	 * Gére la mise à jour de l'état, gestion de la souris avec connaissance
+	 * de sa position et action à faire si celle-ci se trouve sur un bouton
 	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		//gestion de la souris
+		// gestion de la souris
 		Input input = gc.getInput();
 
 		sourisX = input.getMouseX();
@@ -172,8 +176,10 @@ public class Options extends BasicGameState {
 
 	/**
 	 * change la couleur du personnage puis retourne au menu principal du jeu
+	 * 
 	 * @param sbg
-	 * @param string Personnage a affiché
+	 * @param string
+	 *            Personnage a affiché
 	 * @throws SlickException
 	 */
 	private void choixPersonnage(StateBasedGame sbg, String string)

@@ -22,22 +22,32 @@ public class BlocsBlessantFactory extends AbstractFactory {
 		chaine = new ArrayList<BlocsBlessant>();
 	}
 
-	private BlocsBlessant get_produit(int i) {
+	private BlocsBlessant getProduit(int i) {
 		return chaine.get(i);
 	}
 
-	public Collection<BlocsBlessant> get_produit() {
+	public Collection<BlocsBlessant> getProduit() {
 		return chaine;
 	}
 
-	public void CreateBlocsBlessant(int i, int j) throws SlickException {
+	public void createBlocsBlessant(int i, int j) throws SlickException {
 
-		Point p = get_Position(i,j);
+		Point p = getPosition(i, j);
 		Point dim = getDimension(i, j);
-		p.add(dim.get_x()/2, dim.get_y()/2);
+		p.add(dim.getX() / 2, dim.getY() / 2);
 		Image im = new Image("res/pics.png");
-		BlocsBlessant b = new BlocsBlessant(im, dim.get_x(), dim.get_y(), p,1);
+		BlocsBlessant b = new BlocsBlessant(im, dim.getX(), dim.getY(), p, 1);
 		chaine.add(b);
 		world.add(b.getBody());
+	}
+
+	@Override
+	public String toString() {
+		String res = super.toString();
+		res = res + "Longueur = " + chaine.size() + "\n";
+		for (int i = 0; i < chaine.size(); i++)
+			res = res + "[" + i + "]" + chaine.get(i).toString();
+		res = res + "\n";
+		return res;
 	}
 }

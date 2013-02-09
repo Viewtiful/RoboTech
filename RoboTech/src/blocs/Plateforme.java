@@ -22,13 +22,13 @@ public class Plateforme extends BlocsDynamiques {
 	/**
 	 * Les points de sa trajectoire
 	 */
-	ArrayList<Point> Trajectoire;
+	ArrayList<Point> trajectoire;
 	/**
 	 * Le dernier point atteint (initialis� � 0 par le constructeur
 	 */
 	int pointd;
 	/**
-	 * Taille de la plateforme
+	 * Nombre de point de la Trajectoire
 	 */
 	int taille;
 
@@ -45,7 +45,7 @@ public class Plateforme extends BlocsDynamiques {
 	/**
 	 * La plateforme peut faire un d�placement aller-retour ou boucle
 	 */
-	boolean on_reverse = false;
+	boolean onReverse = false;
 	/**
 	 * En marche arri�re
 	 */
@@ -67,7 +67,8 @@ public class Plateforme extends BlocsDynamiques {
 	/**
 	 * Affichage de la tajectoire des plateformes
 	 */
-	boolean trajectoire_draw = true;
+	boolean trajectoireDraw = true;
+
 	/**
 	 * 
 	 * @param Point_x
@@ -85,10 +86,10 @@ public class Plateforme extends BlocsDynamiques {
 	public Plateforme(float Point_x[], float Point_y[], Image box_image,
 			float width, float height) {
 		super(box_image, height, width, new Point(Point_x[0], Point_y[0]));
-		Trajectoire = new ArrayList<Point>();
+		trajectoire = new ArrayList<Point>();
 		setTrajectoire(Point_x, Point_y);
 		pointd = 0;
-		taille = Trajectoire.size();
+		taille = trajectoire.size();
 		vitesse = 1;
 		eps = new Point((float) 1e-01, (float) 1e-01);
 		initialise(0, 1);
@@ -96,55 +97,55 @@ public class Plateforme extends BlocsDynamiques {
 
 	public Plateforme(Point org, Image box_image, float width, float height) {
 		super(box_image, height, width, org);
-		Trajectoire = new ArrayList<Point>();
+		trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
 		eps = new Point((float) 1e-01, (float) 1e-01);
 	}
 
-	public Plateforme(Point org,Blocs c) {
-		super(c.get_image(), c.getHeight(), c.getWidth(), c.center);
-		Trajectoire = new ArrayList<Point>();
+	public Plateforme(Point org, Blocs c) {
+		super(c.getImage(), c.getHeight(), c.getWidth(), c.center);
+		trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
 		eps = new Point((float) 1e-01, (float) 1e-01);
 		setBody(c.getBody());
 		this.c = c;
 	}
-	
+
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
 		for (int i = 0; i < Point_x.length; i++)
-			Trajectoire.add(new Point(Point_x[i], Point_y[i]));
+			trajectoire.add(new Point(Point_x[i], Point_y[i]));
 	}
 
 	public void addPoint(float x, float y) {
-		Trajectoire.add(new Point(x, y));
+		trajectoire.add(new Point(x, y));
 	}
 
-	public float get_epsilon_x() {
+	public float getEpsilonX() {
 		return epsilon_x;
 	}
 
-	public float get_epsilon_y() {
+	public float getEpsilonY() {
 		return epsilon_y;
 	}
 
-	public float get_vitesse() {
+	public float getVitesse() {
 		return vitesse;
 	}
 
-	public void set_vitesse(float vitesse) {
+	public void setVitesse(float vitesse) {
 		this.vitesse = vitesse;
 	}
 
-	public void set_reverse(boolean reverse) {
-		on_reverse = reverse;
+	public void setReverse(boolean reverse) {
+		onReverse = reverse;
 	}
 
-	public void set_trajectoire_draw(boolean draw)
-	{
-		this.trajectoire_draw = draw;
+	public void setTrajectoireDraw(boolean draw) {
+		this.trajectoireDraw = draw;
 	}
+
 	/**
 	 * Calcule le pas �l�mentaire de translation horizontal et vertical
 	 * 
@@ -155,10 +156,10 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void initialise(int point_current, int next_point) {
 		float n = vitesse;
-		Point current = Trajectoire.get(point_current);
-		Point next = Trajectoire.get(next_point);
-		epsilon_x = (next.get_x() - current.get_x()) * (n / 100);
-		epsilon_y = (next.get_y() - current.get_y()) * (n / 100);
+		Point current = trajectoire.get(point_current);
+		Point next = trajectoire.get(next_point);
+		epsilon_x = (next.getX() - current.getX()) * (n / 100);
+		epsilon_y = (next.getY() - current.getY()) * (n / 100);
 
 	}
 
@@ -170,7 +171,7 @@ public class Plateforme extends BlocsDynamiques {
 		 * On s'est rendu compte que on devait utilise un epsilon pour tester
 		 */
 		if (signal) {
-			Point next = Trajectoire.get((pointd + 1) % taille);
+			Point next = trajectoire.get((pointd + 1) % taille);
 			if (center.near(next, eps)) {
 				pointd = (pointd + 1) % taille;
 				if (pointd == taille - 1)
@@ -179,7 +180,7 @@ public class Plateforme extends BlocsDynamiques {
 			}
 			if (pointd < taille - 1) {
 				center.add(epsilon_x, epsilon_y);
-				getBody().setPosition(center.get_x(), center.get_y());
+				getBody().setPosition(center.getX(), center.getY());
 			}
 		}
 	}
@@ -190,7 +191,7 @@ public class Plateforme extends BlocsDynamiques {
 	public void retour() {
 
 		if (signal) {
-			Point previous = Trajectoire.get((pointd - 1) % taille);
+			Point previous = trajectoire.get((pointd - 1) % taille);
 			if (center.near(previous, eps)) {
 				pointd = (pointd - 1) % taille;
 				if (pointd == 0)
@@ -198,7 +199,7 @@ public class Plateforme extends BlocsDynamiques {
 				initialise(pointd, (pointd - 1) % taille);
 			}
 			center.add(epsilon_x, epsilon_y);
-			getBody().setPosition(center.get_x(), center.get_y());
+			getBody().setPosition(center.getX(), center.getY());
 		}
 	}
 
@@ -208,12 +209,12 @@ public class Plateforme extends BlocsDynamiques {
 	public void deplacement() {
 
 		if (pointd == taille - 1) {
-			if (on_reverse) {
+			if (onReverse) {
 				reverse = true;
 				initialise(pointd, (pointd - 1) % taille);
 			}
 		} else if (pointd == 0) {
-			if (on_reverse) {
+			if (onReverse) {
 				reverse = false;
 				initialise(pointd, (pointd + 1) % taille);
 			}
@@ -230,7 +231,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		taille = Trajectoire.size();
+		taille = trajectoire.size();
 		initialise(0, 1);
 
 	}
@@ -242,7 +243,7 @@ public class Plateforme extends BlocsDynamiques {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		deplacement();
-		
+
 	}
 
 	/**
@@ -251,35 +252,56 @@ public class Plateforme extends BlocsDynamiques {
 	 * Ici on ne rajoute que le dessin de la trajectoire que la plateforme va
 	 * suivre.
 	 */
-	public void render_spec(Graphics g) {
-		if(trajectoire_draw)
-		{
+	public void renderSpec(Graphics g) {
+		if (trajectoireDraw) {
 			g.setColor(Color.gray);
 			Point current;
 			Point next;
 			for (int i = 0; i < taille - 1; i++) {
-				current = Trajectoire.get(i);
-				next = Trajectoire.get(i + 1);
-				g.drawLine(current.get_x(), current.get_y(), next.get_x(),
-						next.get_y());
+				current = trajectoire.get(i);
+				next = trajectoire.get(i + 1);
+				g.drawLine(current.getX(), current.getY(), next.getX(),
+						next.getY());
 			}
 			g.setColor(Color.white);
 		}
 	}
+
 	/**
 	 * {@inheritDoc} <br/>
 	 * <b>Comportement :</b><br />
 	 * Ici on ne rajoute que le personnage suit le mouvement du blocs
 	 */
-	public void collision_action(Robot player) {
-		if (get_on_bloc() == true && player.getEnMouvement() == false && signal) {
-			player.set_coor(player.getX() + epsilon_x, player.getY()
-					+ epsilon_y);
-			if(c!=null)
-			{
-				c.set_on_bloc(true);
-				c.collision_action(player);
+	public void collisionAction(Robot player) {
+		if (getOnBloc() == true && player.getEnMouvement() == false && signal) {
+			player.setCoor(player.getX() + epsilon_x, player.getY() + epsilon_y);
+			if (c != null) {
+				c.setOnBloc(true);
+				c.collisionAction(player);
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		String res = super.toString();
+		res = res + "Point courant = " + pointd + "\n";
+		res = res + "Epsilon_x = " + epsilon_x + "\n";
+		res = res + "Epsilon_y = " + epsilon_y + "\n";
+		res = res + "Vitesse = " + vitesse + "\n";
+		res = res + "Aller-Retour = " + onReverse + "\n";
+		res = res + "Retour = " + reverse + "\n";
+		res = res + "Marge d'erreur = " + eps.toString();
+		if (c != null) {
+			res = res + "Bloc contenu{" + "\n" + c.toString() + "}" + "\n";
+		} else
+			res = res + "Aucun Bloc Contenu" + "\n";
+		res = res + "Nombre de point Trajectoire = " + taille + "\n";
+		res = res + "Trajectoire{" + "\n";
+		for (int i = 0; i < taille; i++)
+			res = res + "[" + i + "]" + trajectoire.get(i).toString();
+		res = res + "}";
+
+		return res;
 	}
 }

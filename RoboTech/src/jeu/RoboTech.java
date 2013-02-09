@@ -7,9 +7,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Classe qui initialise le container du jeu ainsi que les différents états du jeu
+ * Classe qui initialise le container du jeu ainsi que les différents états du
+ * jeu
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class RoboTech extends StateBasedGame {
 	/**
@@ -50,11 +52,11 @@ public class RoboTech extends StateBasedGame {
 		addState(new Options(OPTIONETAT));
 		// lance le niveau du jeu
 		addState(new RoboTechJeu(JEUETAT));
-		//lance l'état lorsque le robot meurt
+		// lance l'état lorsque le robot meurt
 		addState(new RobotMort(MORTETAT));
-		//lance l'état victoire lorsque le robot tue le boss et finit le jeu
+		// lance l'état victoire lorsque le robot tue le boss et finit le jeu
 		addState(new Victoire(VICTOIRETAT));
-		
+
 	}
 
 	/**

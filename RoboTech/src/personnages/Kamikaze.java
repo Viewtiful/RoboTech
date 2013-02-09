@@ -23,7 +23,7 @@ public class Kamikaze extends Ennemis {
 	/**
 	 * Rayon de detection
 	 */
-	private float rayon_detection;
+	private float rayonDetection;
 	/**
 	 * Image de rendu
 	 */
@@ -67,7 +67,7 @@ public class Kamikaze extends Ennemis {
 		super(x, y, masse, tailleBlockPerso, monde);
 		player = monde.getPlayer();
 		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
-		this.rayon_detection = rayon_detection;
+		this.rayonDetection = rayon_detection;
 		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
 		fin = new Point(x + rayon_detection, y);
@@ -92,8 +92,8 @@ public class Kamikaze extends Ennemis {
 		}
 
 		image.drawCentered(getX(), getY());
-//		g.setColor(Color.gray);
-//		g.drawLine(org.get_x(), org.get_y(), fin.get_x(), fin.get_y());
+		// g.setColor(Color.gray);
+		// g.drawLine(org.get_x(), org.get_y(), fin.get_x(), fin.get_y());
 
 	}
 
@@ -118,8 +118,8 @@ public class Kamikaze extends Ennemis {
 	}
 
 	public void deplacement() {
-		if (Math.abs(getX() - fin.get_x()) < (float) 1.e-01
-				|| Math.abs(getX() - org.get_x()) < (float) 1.e-01) {
+		if (Math.abs(getX() - fin.getX()) < (float) 1.e-01
+				|| Math.abs(getX() - org.getX()) < (float) 1.e-01) {
 			vitesse = -vitesse;
 			setDirectionDroite(!getDirectionDroite());
 		}
@@ -127,7 +127,7 @@ public class Kamikaze extends Ennemis {
 		setX(getX() + vitesse);
 	}
 
-	float Phytagore(float xa, float ya, float xb, float yb) {
+	float pythagore(float xa, float ya, float xb, float yb) {
 		float diff1 = xb - xa;
 		float diff2 = yb - ya;
 		diff1 = diff1 * diff1;
@@ -142,7 +142,7 @@ public class Kamikaze extends Ennemis {
 		float ya = player.getY();
 		float xb = getX();
 		float yb = getY();
-		if (Phytagore(xa, ya, xb, yb) < rayon_detection && !detected) {
+		if (pythagore(xa, ya, xb, yb) < rayonDetection && !detected) {
 			detected = true;
 			sheet = new XMLPackedSheet("res/kamikaze_bombe.png",
 					"res/kamikaze.xml");

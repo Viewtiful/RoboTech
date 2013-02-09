@@ -89,7 +89,7 @@ public abstract class Items implements SlickAdapter, Drawable {
 
 	public abstract void setPickedUp(boolean b);
 
-	public boolean get_used() {
+	public boolean getUsed() {
 		return used;
 	}
 }

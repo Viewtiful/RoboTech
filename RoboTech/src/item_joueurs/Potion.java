@@ -58,8 +58,8 @@ public abstract class Potion extends ItemsRamassable {
 		body = new Body(new Box(width, height), mass);
 		body.setPosition(x, y);
 		body.setFriction(0.1f);
-		set_used(false);
-		set_player(player);
+		setUsed(false);
+		setPlayer(player);
 		this.valeur = valeur;
 	}
 
@@ -103,7 +103,7 @@ public abstract class Potion extends ItemsRamassable {
 	 * monde
 	 */
 
-	public void PickUpItem() {
+	public void pickUpItem() {
 		int tileX = (int) (getX() / 32);
 		int tileY = (int) (getY() / 32);
 		float pickupWidth = getWidth() / 32;
@@ -122,7 +122,7 @@ public abstract class Potion extends ItemsRamassable {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		PickUpItem();
+		pickUpItem();
 
 	}
 

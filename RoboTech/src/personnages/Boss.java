@@ -55,8 +55,6 @@ public class Boss extends Ennemis {
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 
-		
-
 	}
 
 	@Override

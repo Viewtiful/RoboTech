@@ -6,8 +6,9 @@ import personnages.Personnage;
 
 /**
  * Classe gérant les balles pour le robot
+ * 
  * @author Equipe RoboTech
- *
+ * 
  */
 public class BalleRobot extends Balle {
 

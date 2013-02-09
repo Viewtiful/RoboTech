@@ -29,57 +29,67 @@ public class PlateformeFactory extends AbstractFactory {
 		this.s = s;
 	}
 
-	public void AddPosition(int i, int j) {
+	public void addPosition(int i, int j) {
 		String name = map.getObjectName(i, j);
-		Plateforme p = get_produit(name);
+		Plateforme p = getProduit(name);
 		System.out.println(name);
-		Point position = get_Position(i, j);
+		Point position = getPosition(i, j);
 		int width = map.getObjectWidth(i, j);
 		int height = map.getObjectHeight(i, j);
-		p.addPoint(position.get_x() + width / 2, position.get_y() + height / 2);
+		p.addPoint(position.getX() + width / 2, position.getY() + height / 2);
 	}
 
-	private Plateforme get_produit(String name) {
+	private Plateforme getProduit(String name) {
 		return chaine.get(name);
 	}
 
-	public Collection<Plateforme> get_produit() {
+	public Collection<Plateforme> getProduit() {
 		return chaine.values();
 	}
 
-	public void CreatePlateforme(int i, int j) {
-		Point position = get_Position(i, j);
+	public void createPlateforme(int i, int j) {
+		Point position = getPosition(i, j);
 		int width = getWidth(i, j);
 		int height = getHeight(i, j);
 		position.add(width / 2, height / 2);
 		Image image_box = getImage(i, j, "Image");
-		boolean signal = Boolean.parseBoolean(recuperer_Propriete(i, j,
-				"Signal"));
-		boolean reverse = Boolean.parseBoolean(recuperer_Propriete(i, j,
+		boolean signal = Boolean
+				.parseBoolean(recupererPropriete(i, j, "Signal"));
+		boolean reverse = Boolean.parseBoolean(recupererPropriete(i, j,
 				"Reverse"));
 
-		String name = get_name(i, j);
-		String type = recuperer_Propriete(i,j,"Type");
+		String name = getName(i, j);
+		String type = recupererPropriete(i, j, "Type");
 		System.out.println(type);
 		Plateforme p = new Plateforme(position, image_box, width, height);
-//		Plateforme p = new Plateforme(position,new BlocsBlessant(image_box, width, height, position,
-//				4));
-//		
-		p.addPoint(position.get_x(), position.get_y());
-		p.set_signal(signal);
-		p.set_reverse(reverse);
+		// Plateforme p = new Plateforme(position,new BlocsBlessant(image_box,
+		// width, height, position,
+		// 4));
+		//
+		p.addPoint(position.getX(), position.getY());
+		p.setSignal(signal);
+		p.setReverse(reverse);
 		world.add(p.getBody());
 		chaine.put(name, p);
-		String sender_name = recuperer_Propriete(i, j, "Sender");
-		boolean draw = Boolean.parseBoolean(recuperer_Propriete(i, j,
-				"draw"));
-		p.set_trajectoire_draw(draw);
+		String sender_name = recupererPropriete(i, j, "Sender");
+		boolean draw = Boolean.parseBoolean(recupererPropriete(i, j, "draw"));
+		p.setTrajectoireDraw(draw);
 		if (!sender_name.equals("NOT_FOUND")) {
 			Switch sender = s.get_produit(sender_name);
 			sender.add(p);
 		}
-		System.out.println("taille = "+chaine.size());
+		System.out.println(p);
 
+	}
+
+	@Override
+	public String toString() {
+		String res = super.toString();
+		res = res + "Longueur = " + chaine.size() + "\n";
+		for (int i = 0; i < chaine.size(); i++)
+			res = res + "[" + i + "]" + chaine.get(i).toString();
+		res = res + "\n";
+		return res;
 	}
 
 }

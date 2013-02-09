@@ -38,13 +38,11 @@ public class BlocsBlessant extends BlocsStatiques {
 		this.valeur = valeur;
 	}
 
-	
-	
-	public int get_valeur() {
+	public int getValeur() {
 		return valeur;
 	}
 
-	public void set_valeur(int valeur) {
+	public void setValeur(int valeur) {
 		this.valeur = valeur;
 	}
 
@@ -54,10 +52,10 @@ public class BlocsBlessant extends BlocsStatiques {
 	 * Ici on ne rajoute que le Robot perd de la vie si il est en contact avec
 	 * ce Blocs
 	 */
-	public void collision_action(Robot player) {
-		if(get_on_bloc())
+	public void collisionAction(Robot player) {
+		if (getOnBloc())
 			player.setVie(0);
-		
+
 	}
 
 }
