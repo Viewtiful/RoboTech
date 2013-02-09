@@ -14,6 +14,8 @@ import items.Baril;
 import items.Caisse;
 import items.Items;
 import items.Poutre;
+
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +29,9 @@ import net.phys2d.raw.shapes.Box;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -79,7 +83,6 @@ public class Monde implements SlickAdapter {
 	 */
 	private BlocsBlessantFactory b;
 
-	private UnicodeFont font;
 	/**
 	 *  Les Balles pr�sentes dans le niveau
 	 */
@@ -171,7 +174,6 @@ public class Monde implements SlickAdapter {
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.setFont(font);
 		// affiche la map
 		niveau.render(0, 0);
 		// g.setFont(font);
@@ -201,7 +203,7 @@ public class Monde implements SlickAdapter {
 		Iterator<Balle> it3 = balles.iterator();
 		while (it3.hasNext())
 			it3.next().render(gc, sbg, g);
-
+	
 	}
 
 	/**
@@ -591,7 +593,6 @@ public class Monde implements SlickAdapter {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		boolean first = true;
-
 		// Temps total pour la mise a jour du monde physique
 		int tempsTotalMiseAjour = delta;
 		// Temps pour la mise a jour du monde physique

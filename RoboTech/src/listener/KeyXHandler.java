@@ -10,10 +10,10 @@ import weapon.Balle;
  * 
  * @author Equipe RoboTech Permet de gerer la touche Q
  */
-public class KeyQHandler extends KeyHandler {
+public class KeyXHandler extends KeyHandler {
 
-	public KeyQHandler() {
-		super(Input.KEY_Q);
+	public KeyXHandler() {
+		super(Input.KEY_X);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class KeyQHandler extends KeyHandler {
 	 * {@inheritDoc}
 	 */
 	public void handle(Input input, Robot robot) {
-		if (input.isKeyPressed(Input.KEY_Q)) {
+		if (input.isKeyPressed(Input.KEY_X)) {
 			Balle balle = null;
 			try {
 				balle = robot.tirer();

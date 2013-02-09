@@ -254,7 +254,7 @@ public class Robot extends Personnage {
 
 		// dessine l'image du robot en le centrant
 		imageCouranteRobot.drawCentered(getX(), getY());
-
+		
 	}
 
 	public void setEstomperEffetPotion(int valeur) {
