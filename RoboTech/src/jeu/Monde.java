@@ -151,7 +151,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/niveau2.tmx");
+		niveau = new TiledMap("res/niveau3.tmx");
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);

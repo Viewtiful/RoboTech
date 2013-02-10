@@ -121,7 +121,8 @@ public class PlateformeFactory extends AbstractFactory {
 		String sender_name = recupererPropriete(i, j, "Sender");
 		boolean draw = Boolean.parseBoolean(recupererPropriete(i, j, "draw"));
 		p.setTrajectoireDraw(draw);
-		if (!sender_name.equals("NOT_FOUND")) {
+		boolean receiver = Boolean.parseBoolean(recupererPropriete(i,j,"Receiver"));
+		if (!sender_name.equals("NOT_FOUND") && receiver) {
 			Switch sender = s.get_produit(sender_name);
 			last_size = sender.getReceiver().size();
 			sender.add(p);

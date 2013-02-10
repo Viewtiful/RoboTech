@@ -148,6 +148,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 			}
 			collisionAction(player);
 		}
+		onBloc = false;
 	}
 	/**
 	 * Permet que les classes filles ont un comportement diff�rents lors d'une
