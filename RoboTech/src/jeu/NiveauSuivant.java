@@ -1,5 +1,7 @@
 package jeu;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -14,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Equipe RoboTech
  * 
  */
-public class Victoire extends BasicGameState {
+public class NiveauSuivant extends BasicGameState {
 	/**
 	 * ID de l'état
 	 */
@@ -39,6 +41,10 @@ public class Victoire extends BasicGameState {
 	 * Position en y de la souris
 	 */
 	private int sourisY;
+	
+	private static int niveauSuivant = 0;
+	
+	private ArrayList<String> niveau;
 
 	/**
 	 * Constructeur de Victoire
@@ -46,8 +52,12 @@ public class Victoire extends BasicGameState {
 	 * @param ID
 	 *            transmis
 	 */
-	public Victoire(int ID) {
+	public NiveauSuivant(int ID) {
 		this.ID = ID;
+		
+		niveau = new ArrayList<String>();
+		niveau.add("niveau1.tmx");
+		niveau.add("niveau2.tmx");
 	}
 
 	/**
@@ -99,6 +109,10 @@ public class Victoire extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		if(niveauSuivant == niveau.size() - 1) {
+			sbg.enterState(RoboTech.VICTOIRETAT);
+		}
+		
 		// gestion de la souris
 		Input input = gc.getInput();
 
@@ -121,7 +135,8 @@ public class Victoire extends BasicGameState {
 
 		// Retour menu principal
 		if (interieurBouton[0] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			Monde.setNiveau("niveau1.tmx");
+			niveauSuivant++;
+			Monde.setNiveau(niveau.get(niveauSuivant));
 			gc.reinit();
 			sbg.enterState(RoboTech.MENUETAT);
 		}
