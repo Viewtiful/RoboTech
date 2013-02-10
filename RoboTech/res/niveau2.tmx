@@ -318,7 +318,7 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="robot" type="personnage" x="2912" y="224" width="32" height="32">
+  <object name="robot" type="personnage" x="64" y="448" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
