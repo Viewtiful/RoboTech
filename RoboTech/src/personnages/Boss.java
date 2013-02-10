@@ -64,8 +64,7 @@ public class Boss extends Ennemis {
 		render(g);
 
 		if (getVie() == 0) {
-			game.enterState(RoboTech.VICTOIRETAT);
-			container.reinit();
+			game.enterState(RoboTech.NIVSUIVANTETAT);
 		}
 	}
 

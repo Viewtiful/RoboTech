@@ -33,6 +33,10 @@ public class RoboTech extends StateBasedGame {
 	 * Etat accéder lorsque le robot tue le boss et fini le jeu
 	 */
 	public static final int VICTOIRETAT = 4;
+	/**
+	 * Etat accéder au niveau suivant
+	 */
+	public static final int NIVSUIVANTETAT = 5;
 
 	// Cree le jeu
 	public RoboTech() {
@@ -53,8 +57,10 @@ public class RoboTech extends StateBasedGame {
 		addState(new RoboTechJeu(JEUETAT));
 		// lance l'état lorsque le robot meurt
 		addState(new RobotMort(MORTETAT));
-		// lance l'état victoire lorsque le robot tue le boss et finit le jeu
+		// lance l'état victoire lorsque le robot a tué le boss final
 		addState(new Victoire(VICTOIRETAT));
+		// lance l'état niveau suivant lorsque le robot tue le boss
+		addState(new NiveauSuivant(NIVSUIVANTETAT));
 
 	}
 

@@ -100,21 +100,21 @@ public class Monde implements SlickAdapter {
 	protected ArrayList<Items> items;
 
 	/**
-	 *  Les Items qui peuvent ï¿½tre rammasés
+	 *  Les Items qui peuvent ï¿½tre rammasï¿½s
 	 */
 	protected ArrayList<Items> itemsRamassable;
 
 	/**
-	 * Les blocs qui rendent le niveau intéractif
+	 * Les blocs qui rendent le niveau intï¿½ractif
 	 */
 	protected ArrayList<Blocs> interaction;
 
 	/**
-	 *  Le robot contrôlé par le Joueur
+	 *  Le robot contrï¿½lï¿½ par le Joueur
 	 */
 	Robot player;
-
-	Animation courir;
+	
+	private static String nomNiveau = "niveau1.tmx";
 
 	//
 	/**
@@ -151,7 +151,7 @@ public class Monde implements SlickAdapter {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
 		// chargement de la map (TiledMap)
-		niveau = new TiledMap("res/niveau3.tmx");
+		niveau = new TiledMap("res/" + nomNiveau);
 
 		// initialise robot sur le niveau
 		initialiserRobot(niveau);
@@ -168,6 +168,10 @@ public class Monde implements SlickAdapter {
 		interaction.addAll(b.getProduit());
 
 	}
+	
+	public static void setNiveau(String niveau) {
+		nomNiveau = niveau;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -178,7 +182,9 @@ public class Monde implements SlickAdapter {
 		niveau.render(0, 0);
 		// g.setFont(font);
 		// affiche les plateformes (obstacles) du niveau
-		
+		for (Rectangle obstacle : obstacles)
+			g.draw(obstacle);
+
 		Iterator<Blocs> it4 = interaction.iterator();
 		while (it4.hasNext())
 			it4.next().render(g);
@@ -288,7 +294,7 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Fonction qui place les objets
-	 * @param map Carte où les objets sont à placer
+	 * @param map Carte oï¿½ les objets sont ï¿½ placer
 	 * @throws SlickException
 	 */
 	public void initialiserObjets(TiledMap map) throws SlickException {
@@ -392,7 +398,7 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Initialise le robot
-	 * @param map Carte où est situé le robot
+	 * @param map Carte oï¿½ est situï¿½ le robot
 	 * @throws SlickException
 	 */
 	public void initialiserRobot(TiledMap map) throws SlickException {
