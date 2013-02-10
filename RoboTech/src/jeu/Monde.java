@@ -393,7 +393,7 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Initialise le robt
+	 * Initialise le robot
 	 * @param map Carte où est situé le robot
 	 * @throws SlickException
 	 */

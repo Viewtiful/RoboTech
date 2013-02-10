@@ -70,6 +70,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	boolean trajectoireDraw = true;
 
+	boolean inited = false;
 	/**
 	 * 
 	 * @param Point_x
@@ -114,6 +115,13 @@ public class Plateforme extends BlocsDynamiques {
 		this.c = c;
 	}
 
+	private void invariant()
+	{
+		assert(pointd >=0);
+		assert(inited);
+		assert(trajectoire.size()>=0);
+		
+	}
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
 		assert(Point_x.length==Point_y.length);
 		assert(Point_x.length>0);
@@ -179,9 +187,6 @@ public class Plateforme extends BlocsDynamiques {
 	 * R�alise le chemin aller de la plateforme
 	 */
 	public void aller() {
-		/*
-		 * On s'est rendu compte que on devait utilise un epsilon pour tester
-		 */
 		if (signal) {
 			Point next = trajectoire.get((pointd + 1) % taille);
 			if (center.near(next, eps)) {
@@ -219,7 +224,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * R�alise le d�placement complet de la plateforme
 	 */
 	public void deplacement() {
-
+		assert(inited);
 		if (pointd == taille - 1) {
 			if (onReverse) {
 				reverse = true;
@@ -245,6 +250,8 @@ public class Plateforme extends BlocsDynamiques {
 			throws SlickException {
 		taille = trajectoire.size();
 		initialise(0, 1);
+		inited = true;
+		
 
 	}
 
@@ -254,6 +261,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		assert(inited);
 		deplacement();
 
 	}
