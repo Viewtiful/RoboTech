@@ -138,7 +138,7 @@ public class NiveauSuivant extends BasicGameState {
 			niveauSuivant++;
 			Monde.setNiveau(niveau.get(niveauSuivant));
 			gc.reinit();
-			sbg.enterState(RoboTech.MENUETAT);
+			sbg.enterState(RoboTech.JEUETAT);
 		}
 	}
 }
