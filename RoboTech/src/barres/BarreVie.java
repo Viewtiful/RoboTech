@@ -1,4 +1,4 @@
-package jeu;
+package barres;
 
 import org.newdawn.slick.Color;
 

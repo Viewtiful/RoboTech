@@ -77,6 +77,7 @@ public class PotionSaut extends Potion {
 	 */
 	@Override
 	public boolean effect(Robot player) {
+		player.setPotionVitesse(true);
 		player.modifierVitesseY(valeur);
 		player.setEstomperEffetPotion(0);
 		return true;

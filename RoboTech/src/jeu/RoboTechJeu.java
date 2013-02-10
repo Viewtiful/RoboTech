@@ -11,6 +11,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import barres.Barre;
+import barres.BarreEnergie;
+import barres.BarreMana;
+import barres.BarrePotion;
+import barres.BarreVie;
+
 import personnages.Robot;
 
 public class RoboTechJeu extends BasicGameState {
@@ -49,6 +55,9 @@ public class RoboTechJeu extends BasicGameState {
 				Color.blue,"Mana"));
 		barres.add(new BarreEnergie(cameraX, cameraY + 2 * decalage, width,
 				height, Color.yellow,"Energie"));
+
+		barres.add(new BarrePotion(cameraX, cameraY + 3 * decalage, width,
+				height, Color.gray,"Potion"));
 	}
 
 	public void init(GameContainer container, StateBasedGame game)

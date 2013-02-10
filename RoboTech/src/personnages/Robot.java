@@ -75,6 +75,10 @@ public class Robot extends Personnage {
 	 * Au bout de 10secondes, l'effet de la potion s'estompe
 	 */
 	private int estomperEffetPotion;
+	/**
+	 * Consomation d'une Potion de Vitesse et ou de saut
+	 */
+	private boolean potionVitesse = false;
 
 	/**
 	 * Create a new Alien actor read to add to the world
@@ -244,21 +248,39 @@ public class Robot extends Personnage {
 
 		// Si, une seconde viens de s'écouler, on enleve 1sec sur l'effet de la
 		// potion
-		if (gestionPotionVitesseSaut >= 60) {
-			estomperEffetPotion++;
-			// si on arrive au 10sec, on remet la vitesse et le saut du robot
-			// par défaut
-			if (estomperEffetPotion >= 10) {
-				modifierVitesseX(1);
-				modifierVitesseY(1);
-				estomperEffetPotion = 0;
+		if(potionVitesse)
+		{
+			if (gestionPotionVitesseSaut >= 60) {
+				estomperEffetPotion++;
+				// si on arrive au 10sec, on remet la vitesse et le saut du robot
+				// par défaut
+				if (estomperEffetPotion >= 10) {
+					modifierVitesseX(1);
+					modifierVitesseY(1);
+					estomperEffetPotion = 0;
+					potionVitesse = !potionVitesse;
+				}
+				gestionPotionVitesseSaut = 0;
 			}
-			gestionPotionVitesseSaut = 0;
 		}
-
 		// dessine l'image du robot en le centrant
 		imageCouranteRobot.drawCentered(getX(), getY());
 
+	}
+
+	public void setPotionVitesse(boolean potionVitesse) {
+		this.potionVitesse = potionVitesse;
+	}
+
+	public boolean getPotionVitesse() {
+		return potionVitesse;
+	}
+	public int getEstomperEffetPotion() {
+		return estomperEffetPotion;
+	}
+
+	public void setPlusEnergie(boolean plusEnergie) {
+		this.plusEnergie = plusEnergie;
 	}
 
 	public void setEstomperEffetPotion(int valeur) {
