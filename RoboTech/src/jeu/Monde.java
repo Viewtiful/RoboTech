@@ -114,7 +114,7 @@ public class Monde implements SlickAdapter {
 	 */
 	Robot player;
 	
-	private static String nomNiveau = "niveau1.tmx";
+	private static String nomNiveau = "niveau2.tmx";
 
 	//
 	/**
@@ -180,11 +180,11 @@ public class Monde implements SlickAdapter {
 			throws SlickException {
 		// affiche la map
 		niveau.render(0, 0);
-		// g.setFont(font);
 		// affiche les plateformes (obstacles) du niveau
+		/*
 		for (Rectangle obstacle : obstacles)
 			g.draw(obstacle);
-
+		*/
 		Iterator<Blocs> it4 = interaction.iterator();
 		while (it4.hasNext())
 			it4.next().render(g);

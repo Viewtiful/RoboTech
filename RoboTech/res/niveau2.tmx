@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="100" height="30" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tile.png" width="128" height="64"/>
@@ -8,7 +9,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="100" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3W3QqEIBAGUG97/xcOutqidvNndFjOAaFC0uYrsxQAKGVbPQGODFob47XWVR4x5JGLPHKRRy49eWjz2688/kH0c2wPx6PHkEfdGJHjtN4/Y4byyJ3ldb3+dv6mDjPXq5p5fc6n5Z8108h5tNSoth53fZ9q3SPqO7rr8/ZalJ6xMr3LrNtvr9r3Z2zXmgAAAABwtgPxGnRU4C4AAA==
+   H4sIAAAAAAAAC+3W0QqAIAyF4d36/i8cdFWipXObK/4PhApptkOlCAAAImX3AnBmoB2wp+0refggj1zIIxfyyGUlD0b8eMvjD7yfo3SOrWuQx1wNzzra+2fMkDxyZ1l/r5/OR/oQ+b2aWdd1PZp/ViTLdWh6NNuP1txer1d4vUetOaPXvPRqWey/EGvXfjuq7hdG3RMAAAAAAADcHQCgxKDgLgAA
   </data>
  </layer>
  <objectgroup name="Switch" width="100" height="30">
@@ -57,7 +58,7 @@
  <objectgroup name="Personnages" width="100" height="30">
   <object name="Plateforme1" type="Plateforme_Base" x="160" y="544" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="false"/>
     <property name="Sender" value="Switch1"/>
@@ -93,7 +94,7 @@
   </object>
   <object name="Plateforme2" type="Plateforme_Base" x="448" y="544" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="false"/>
     <property name="Sender" value="Switch1"/>
@@ -114,6 +115,7 @@
   </object>
   <object name="Pics1" type="BlocsBlessant" x="800" y="576" width="32" height="32">
    <properties>
+    <property name="Image" value="res/pics.png"/>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
@@ -154,7 +156,7 @@
   </object>
   <object name="Plateforme3" type="Plateforme_Base" x="1472" y="480" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/wall.jpg"/>
     <property name="Receiver" value="false"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch1"/>
@@ -201,7 +203,7 @@
   </object>
   <object name="Plateforme5" type="Plateforme_Base" x="2496" y="480" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch2"/>
@@ -212,7 +214,7 @@
   </object>
   <object name="Plateforme4" type="Plateforme_Base" x="2336" y="544" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch2"/>
@@ -245,7 +247,7 @@
   </object>
   <object name="Plateforme6" type="Plateforme_Base" x="1952" y="544" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="false"/>
     <property name="Sender" value="Switch2"/>
@@ -272,7 +274,7 @@
   </object>
   <object name="Plateforme10" type="Plateforme_Base" x="2880" y="480" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/wall.jpg"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch3"/>
@@ -281,7 +283,7 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="Plateforme10" type="Plateforme_Point" x="3104" y="512" width="32" height="32">
+  <object name="Plateforme10" type="Plateforme_Point" x="3104" y="480" width="32" height="32">
    <properties>
     <property name="Image" value="res/caisse2.png"/>
     <property name="Receiver" value="true"/>
@@ -318,7 +320,7 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="robot" type="personnage" x="2912" y="224" width="32" height="32">
+  <object name="robot" type="personnage" x="64" y="448" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>

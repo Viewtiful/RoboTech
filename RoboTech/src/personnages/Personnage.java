@@ -100,6 +100,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	private float nouvelleMaxvelY;
 	private float nouvelleMaxvelX;
 
+	private final int max = 5;
 	/**
 	 * 
 	 * @param x
@@ -122,9 +123,9 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		this.tombe = false;
 		this.tempsEnLair = 0;
 		this.saut = false;
-		this.vie = 5;
-		this.mana = 5;
-		this.energie = 5;
+		this.vie = max;
+		this.mana = max;
+		this.energie = max;
 		this.vitesseX = 1;
 		this.vitesseY = 1;
 		this.maxVelX = 20;
@@ -268,6 +269,10 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public boolean getSaut() {
 		return saut;
+	}
+
+	public int getMax() {
+		return max;
 	}
 
 	public void preUpdate(int delta) {

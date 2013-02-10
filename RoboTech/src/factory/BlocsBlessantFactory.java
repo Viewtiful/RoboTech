@@ -43,7 +43,12 @@ public class BlocsBlessantFactory extends AbstractFactory {
 		Point p = getPosition(i, j);
 		Point dim = getDimension(i, j);
 		p.add(dim.getX() / 2, dim.getY() / 2);
-		Image im = new Image("res/pics.png");
+		String image = recupererPropriete(i,j,"Image");
+		Image im;
+		if(!image.equals("NOT_FOUND"))
+			im = new Image(image);
+		else
+			im = new Image("res/pics.png");
 		BlocsBlessant b = new BlocsBlessant(im, dim.getX(), dim.getY(), p, 1);
 		chaine.add(b);
 		world.add(b.getBody());

@@ -4,12 +4,15 @@ import jeu.Monde;
 
 import listener.RobotHandlers;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Line;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import weapon.Balle;
@@ -190,7 +193,8 @@ public class Robot extends Personnage {
 						false);
 			}
 			i = 0;
-		} else {
+		} 
+		else {
 			// si le robot n'est pas en mouvement, on laisse l'image par défaut
 			// du robot
 			if (!getEnMouvement()) {
@@ -254,7 +258,7 @@ public class Robot extends Personnage {
 
 		// dessine l'image du robot en le centrant
 		imageCouranteRobot.drawCentered(getX(), getY());
-		
+
 	}
 
 	public void setEstomperEffetPotion(int valeur) {

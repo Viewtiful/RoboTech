@@ -1,5 +1,9 @@
 package jeu;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -12,6 +16,8 @@ import personnages.Robot;
 public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private int ID = -1;
+
+	private ArrayList<Barre> barres;
 
 	// liste des items ramassable
 	// private ArrayList<Items> itemsRamassable;
@@ -26,12 +32,23 @@ public class RoboTechJeu extends BasicGameState {
 
 	private static Robot player;
 
+	private boolean paused = false;
+
+	private float decalage = 10;
 	public int getID() {
 		return ID;
 	}
 
 	public RoboTechJeu(int ID) {
 		this.ID = ID;
+		barres = new ArrayList<Barre>();
+		float width = 64;
+		float height = 10;
+		barres.add(new BarreVie(cameraX, cameraY, width, height, Color.red,"Vie"));
+		barres.add(new BarreMana(cameraX, cameraY + decalage, width, height,
+				Color.blue,"Mana"));
+		barres.add(new BarreEnergie(cameraX, cameraY + 2 * decalage, width,
+				height, Color.yellow,"Energie"));
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
@@ -40,6 +57,7 @@ public class RoboTechJeu extends BasicGameState {
 		// redemarrer le niveau
 		restart(game);
 		monde.init(container, game);
+		container.setShowFPS(false);
 	}
 
 	public static void setImageRobot(String robot) throws SlickException {
@@ -62,7 +80,12 @@ public class RoboTechJeu extends BasicGameState {
 
 		g.translate(-(int) cameraX, -(int) cameraY); // gere le rendu de la
 		// camera
-		monde.render(container, game, g); // gere le rendu du monde complet
+		InfoRobot(g);
+		if (!paused) {
+			monde.render(container, game, g); // gere le rendu du monde complet
+
+		}
+
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -75,8 +98,12 @@ public class RoboTechJeu extends BasicGameState {
 			return;
 		}
 
+		if (input.isKeyPressed(Input.KEY_P))
+			paused = !paused;
+
 		// met a jour le monde
-		monde.update(container, game, delta);
+		if (!paused)
+			monde.update(container, game, delta);
 
 		if (player.getVie() <= 0) {
 			game.enterState(RoboTech.MORTETAT);
@@ -87,4 +114,12 @@ public class RoboTechJeu extends BasicGameState {
 		cameraY = player.getY() - 300;
 	}
 
+	public void InfoRobot(Graphics g) {
+		for(int i = 0;i<barres.size();i++)
+		{
+			barres.get(i).update(cameraX, cameraY + i*(decalage+barres.get(i).getHeight()));
+			barres.get(i).render(g, player);
+		}
+
+	}
 }
