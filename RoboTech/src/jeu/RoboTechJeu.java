@@ -53,10 +53,8 @@ public class RoboTechJeu extends BasicGameState {
 	 */
 	private void restart(StateBasedGame game) throws SlickException {
 		monde = new Monde();
-		// monde.setPlayer(player);
 		monde.initialisationMonde();
 		player = monde.getPlayer();
-		// monde.addPersonnages(player);
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -81,8 +79,6 @@ public class RoboTechJeu extends BasicGameState {
 		monde.update(container, game, delta);
 
 		if (player.getVie() <= 0) {
-			// System.out.println("Fin du jeu");
-
 			game.enterState(RoboTech.MORTETAT);
 			init(container, game);
 		}

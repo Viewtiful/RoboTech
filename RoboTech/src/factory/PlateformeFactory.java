@@ -63,8 +63,7 @@ public class PlateformeFactory extends AbstractFactory {
 		assert(width != -1 && height!= -1);
 		p.addPoint(position.getX() + width / 2, position.getY() + height / 2);
 		assert(p.getTrajectoire().size()==last_size+1);
-		System.out.println("Name = "+name);
-		System.out.println(p);
+
 	}
 
 	private Plateforme getProduit(String name) {

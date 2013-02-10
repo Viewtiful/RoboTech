@@ -178,9 +178,7 @@ public class Monde implements SlickAdapter {
 		niveau.render(0, 0);
 		// g.setFont(font);
 		// affiche les plateformes (obstacles) du niveau
-		for (Rectangle obstacle : obstacles)
-			g.draw(obstacle);
-
+		
 		Iterator<Blocs> it4 = interaction.iterator();
 		while (it4.hasNext())
 			it4.next().render(g);
