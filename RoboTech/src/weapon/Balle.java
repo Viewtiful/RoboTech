@@ -54,6 +54,10 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	 * Image représentant la balle
 	 */
 	Image imageBalle;
+	public void setImageBalle(Image imageBalle) {
+		this.imageBalle = imageBalle;
+	}
+
 	/**
 	 * connaitre la direction dans laquelle la balle doit se déplacer, true =
 	 * droite, false = gauche

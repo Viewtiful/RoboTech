@@ -17,7 +17,6 @@ public class Boss extends Ennemis {
 	private int i;
 	private int animationStep;
 	private boolean toucherDmg;
-
 	public Boss(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde,float rayonDetection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,3);

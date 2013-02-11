@@ -26,6 +26,7 @@ public abstract class Ennemis extends Personnage {
 	private Rectangle jauge;
 	private int degatBalle = 0;
 	private final int timeout = 2;
+	
 	/**
 	 * Robot détecté
 	 */
