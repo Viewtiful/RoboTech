@@ -52,7 +52,7 @@ public class Kamikaze extends Ennemis {
 	 */
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde, float rayonDetection) throws SlickException {
-		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,0);
+		super(x, y, masse, tailleBlockPerso, monde, rayonDetection, 0);
 		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
 		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
@@ -111,16 +111,23 @@ public class Kamikaze extends Ennemis {
 		setX(getX() + vitesse);
 	}
 
-	
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 
-		detected();
+		
+
 
 		float xa = getPlayer().getX();
-		if (getDetected()) {
+		float ya = getPlayer().getY();
+		float xb = getX();
+		float yb = getY();
+		if(	pythagore(xa, ya, xb, yb) < getRayonDetection() && !getDetected())
+		{
+			setDetected(true);
 			sheet = new XMLPackedSheet("res/kamikaze_bombe.png",
 					"res/kamikaze.xml");
+		}
+		if (getDetected()) {
 
 			if (xa < getX()) {
 				setX(getX() - 1);
@@ -136,10 +143,8 @@ public class Kamikaze extends Ennemis {
 					getPlayer().setVie(0);
 					setVie(0);
 				}
-		}
-		else if (!getDetected())
+		} else if (!getDetected())
 			deplacement();
-	
 
 	}
 }

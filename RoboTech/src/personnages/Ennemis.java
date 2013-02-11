@@ -86,27 +86,27 @@ public abstract class Ennemis extends Personnage {
 		return (float) Math.sqrt(diff1 + diff2);
 	}
 
-	public void detected() {
-		float xa = player.getX();
-		float ya = player.getY();
-		float xb = getX();
-		float yb = getY();
-		detected = (pythagore(xa, ya, xb, yb) < rayonDetection) && !detected;
-	}
+	
 
 	// gere le deplacement automatique des ennemies (a revoir, juste un test)
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);
 
+		float xa = player.getX();
+		float ya = player.getY();
+		float xb = getX();
+		float yb = getY();
+	
 		cpt++;
 		if(cpt==60)
 		{
 			sec++;
 			cpt=0;
 		}
-		detected();
-		if(sec>=timeout && detected)
+		if(	pythagore(xa, ya, xb, yb) < rayonDetection && !getDetected())
+			setDetected(true);
+		if(sec>=timeout && getDetected())
 		{
 			monde.addBalles(tirer());
 			sec=0;
