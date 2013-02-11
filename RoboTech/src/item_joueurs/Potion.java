@@ -97,27 +97,7 @@ public abstract class Potion extends ItemsRamassable {
 		return height;
 	}
 
-	/**
-	 * Intervale régulière, on vérifie que la potion n'a pas été ramassé,
-	 * si c'est le cas, on la donne au joueur et on l'a fait disparaître du
-	 * monde
-	 */
 
-	public void pickUpItem() {
-		int tileX = (int) (getX() / 32);
-		int tileY = (int) (getY() / 32);
-		float pickupWidth = getWidth() / 32;
-		float pickupHeight = getHeight() / 32;
-		int playerPosX = (int) (player.getX() / 32);
-		int playerPosY = (int) (player.getY() / 32);
-
-		if (playerPosX >= tileX && playerPosX < (tileX + pickupWidth)
-				&& playerPosY >= tileY && playerPosY < (tileY + pickupHeight)) {
-			used = effect(player);
-			if (used)
-				world.remove(getBody());
-		}
-	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -142,10 +122,4 @@ public abstract class Potion extends ItemsRamassable {
 		render(g);
 	}
 
-	/**
-	 * Effet de la potion sur le robot
-	 * 
-	 * @param player
-	 */
-	public abstract boolean effect(Robot player);
 }
