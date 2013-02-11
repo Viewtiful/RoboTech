@@ -24,7 +24,7 @@ public class NiveauSuivant extends BasicGameState {
 	/**
 	 * Contient les images de l'état
 	 */
-	private Image[] itemVictoire;
+	private Image[] itemNiveauSuivant;
 	/**
 	 * Permet de savoir si la souris se trouve dans un bouton
 	 */
@@ -75,16 +75,16 @@ public class NiveauSuivant extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// initialise les images de l'état
-		itemVictoire = new Image[2];
-		itemVictoire[0] = new Image("res/suivant.png");
-		itemVictoire[1] = new Image("res/niveauSuivant.png");
+		itemNiveauSuivant = new Image[2];
+		itemNiveauSuivant[0] = new Image("res/suivant.png");
+		itemNiveauSuivant[1] = new Image("res/niveauSuivant.png");
 
 		// initialise le tableau pour savoir si la souris se trouve sur un
 		// bouton à false
-		interieurBouton = new boolean[itemVictoire.length];
+		interieurBouton = new boolean[itemNiveauSuivant.length];
 
 		// initialise le tableau des positions des images
-		positionItemOption = new int[itemVictoire.length][2];
+		positionItemOption = new int[itemNiveauSuivant.length][2];
 	}
 
 	/**
@@ -95,11 +95,10 @@ public class NiveauSuivant extends BasicGameState {
 			throws SlickException {
 
 		// position les images et les affiche
-		positionItemOption[0][0] = 300;
+		positionItemOption[0][0] = 270;
 		positionItemOption[0][1] = 280;
-		itemVictoire[0]
-				.draw(positionItemOption[0][0], positionItemOption[0][1]);
-		itemVictoire[1].draw(270, 150);
+		itemNiveauSuivant[0].draw(positionItemOption[0][0], positionItemOption[0][1]);
+		itemNiveauSuivant[1].draw(200, 150);
 	}
 
 	/**
@@ -120,17 +119,17 @@ public class NiveauSuivant extends BasicGameState {
 		sourisY = input.getMouseY();
 
 		// parcours les items des options, pour voir si on est dessus
-		for (int i = 0; i < itemVictoire.length; i++) {
+		for (int i = 0; i < itemNiveauSuivant.length; i++) {
 			interieurBouton[i] = false;
 
 			if ((sourisX >= positionItemOption[i][0] && sourisX <= positionItemOption[i][0]
-					+ itemVictoire[i].getWidth())
+					+ itemNiveauSuivant[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
-							+ itemVictoire[i].getHeight())) {
-				itemVictoire[i].setAlpha(0.65f);
+							+ itemNiveauSuivant[i].getHeight())) {
+				itemNiveauSuivant[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			} else
-				itemVictoire[i].setAlpha(1.f);
+				itemNiveauSuivant[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal
