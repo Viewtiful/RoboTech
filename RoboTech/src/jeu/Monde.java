@@ -318,7 +318,7 @@ public class Monde implements SlickAdapter {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(
 								map.getObjectX(i, j) + (49 / 2),
-								map.getObjectY(i, j), 2f, 49, this);
+								map.getObjectY(i, j), 2f, 49, this,100);
 						addPersonnages(chauveSouris);
 					}
 					if (map.getObjectName(i, j).equals("kamikaze")) {
@@ -332,12 +332,12 @@ public class Monde implements SlickAdapter {
 					if (map.getObjectName(i, j).equals("serpent")) {
 						Personnage chauveSouris = new Serpent(map.getObjectX(i,
 								j) + (49 / 2), map.getObjectY(i, j), 2f, 49,
-								this);
+								this,100);
 						addPersonnages(chauveSouris);
 					}
 					if (map.getObjectName(i, j).equals("boss")) {
 						Personnage boss = new Boss(map.getObjectX(i, j)
-								+ (64 / 2), map.getObjectY(i, j), 2f, 64, this);
+								+ (64 / 2), map.getObjectY(i, j), 2f, 64, this,100);
 						addPersonnages(boss);
 					}
 

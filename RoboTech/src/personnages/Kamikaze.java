@@ -17,21 +17,9 @@ import blocs.Point;
 public class Kamikaze extends Ennemis {
 
 	/**
-	 * Le robot à suivre
-	 */
-	private Robot player;
-	/**
-	 * Rayon de detection
-	 */
-	private float rayonDetection;
-	/**
 	 * Image de rendu
 	 */
 	private Image image;
-	/**
-	 * Robot détecté
-	 */
-	private boolean detected = false;
 	/**
 	 * Extrémité gauche du mouvement du Kamikaze
 	 */
@@ -63,14 +51,12 @@ public class Kamikaze extends Ennemis {
 	 * @throws SlickException
 	 */
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
-			Monde monde, float rayon_detection) throws SlickException {
-		super(x, y, masse, tailleBlockPerso, monde);
-		player = monde.getPlayer();
+			Monde monde, float rayonDetection) throws SlickException {
+		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,0);
 		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
-		this.rayonDetection = rayon_detection;
 		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
-		fin = new Point(x + rayon_detection, y);
+		fin = new Point(x + getRayonDetection(), y);
 		// Initialisation de la vitesse nï¿½gative
 		vitesse = -vitesse;
 		setDirectionDroite(false);
@@ -93,7 +79,7 @@ public class Kamikaze extends Ennemis {
 
 		image.drawCentered(getX(), getY());
 		renderVie(g);
-	
+
 	}
 
 	@Override
@@ -125,28 +111,17 @@ public class Kamikaze extends Ennemis {
 		setX(getX() + vitesse);
 	}
 
-	float pythagore(float xa, float ya, float xb, float yb) {
-		float diff1 = xb - xa;
-		float diff2 = yb - ya;
-		diff1 = diff1 * diff1;
-		diff2 = diff2 * diff2;
-		return (float) Math.sqrt(diff1 + diff2);
-	}
-
+	
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 
-		float xa = player.getX();
-		float ya = player.getY();
-		float xb = getX();
-		float yb = getY();
-		if (pythagore(xa, ya, xb, yb) < rayonDetection && !detected) {
-			detected = true;
+		detected();
+
+		float xa = getPlayer().getX();
+		if (getDetected()) {
 			sheet = new XMLPackedSheet("res/kamikaze_bombe.png",
 					"res/kamikaze.xml");
-		}
 
-		if (detected) {
 			if (xa < getX()) {
 				setX(getX() - 1);
 				setDirectionDroite(false);
@@ -156,15 +131,15 @@ public class Kamikaze extends Ennemis {
 			}
 			CollisionEvent t[] = monde.getWorld().getContacts(getBody());
 			for (int i = 0; i < t.length; i++)
-				if (t[i].getBodyA() == player.getBody()
-						|| t[i].getBodyB() == player.getBody()) {
-					player.setVie(0);
+				if (t[i].getBodyA() == getPlayer().getBody()
+						|| t[i].getBodyB() == getPlayer().getBody()) {
+					getPlayer().setVie(0);
 					setVie(0);
 				}
 		}
-
-		else if (!detected)
+		else if (!getDetected())
 			deplacement();
-	}
+	
 
+	}
 }

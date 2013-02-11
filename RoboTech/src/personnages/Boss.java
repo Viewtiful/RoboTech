@@ -19,8 +19,8 @@ public class Boss extends Ennemis {
 	private boolean toucherDmg;
 
 	public Boss(float x, float y, float masse, float tailleBlockPerso,
-			Monde monde) throws SlickException {
-		super(x, y, masse, tailleBlockPerso, monde);
+			Monde monde,float rayonDetection) throws SlickException {
+		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,3);
 
 		sheet = new XMLPackedSheet("res/Boss.png", "res/boss.xml");
 		setVie(5);
@@ -67,10 +67,6 @@ public class Boss extends Ennemis {
 		if (getVie() == 0) {
 			game.enterState(RoboTech.NIVSUIVANTETAT);
 		}
-	}
-
-	public void update(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
 	}
 
 	@Override

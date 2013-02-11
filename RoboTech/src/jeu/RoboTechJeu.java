@@ -23,6 +23,7 @@ public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private int ID = -1;
 
+	private boolean show = false;
 	private ArrayList<Barre> barres;
 
 	// liste des items ramassable
@@ -67,7 +68,7 @@ public class RoboTechJeu extends BasicGameState {
 		// redemarrer le niveau
 		restart(game);
 		monde.init(container, game);
-		container.setShowFPS(false);
+		container.setShowFPS(show);
 	}
 
 	public static void setImageRobot(String robot) throws SlickException {
@@ -111,6 +112,11 @@ public class RoboTechJeu extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_P))
 			paused = !paused;
 
+		if(input.isKeyPressed(Input.KEY_F))
+		{
+			show = !show;
+			container.setShowFPS(show);
+		}
 		// met a jour le monde
 		if (!paused)
 			monde.update(container, game, delta);

@@ -11,10 +11,10 @@ import personnages.Robot;
  * @author Equipe RoboTech
  * 
  */
-public class BalleEnnemiChauveSouris extends Balle {
+public class BalleEnnemi extends Balle {
 
 	/**
-	 * Constructeur de la classe BalleEnnemiChauveSouris
+	 * Constructeur de la classe BalleEnnemiSerpent
 	 * 
 	 * @param x
 	 * @param y
@@ -23,7 +23,7 @@ public class BalleEnnemiChauveSouris extends Balle {
 	 * @param value
 	 * @throws SlickException
 	 */
-	public BalleEnnemiChauveSouris(float x, float y, Boolean directionDroite,
+	public BalleEnnemi(float x, float y, Boolean directionDroite,
 			float masse, int value) throws SlickException {
 		super(x, y, directionDroite, masse, value);
 
@@ -36,6 +36,7 @@ public class BalleEnnemiChauveSouris extends Balle {
 	public boolean cible(Personnage p) {
 		if (p instanceof Robot)
 			return true;
+
 		return false;
 	}
 

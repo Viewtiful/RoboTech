@@ -18,8 +18,8 @@ public class ChauveSouris extends Ennemis {
 	private boolean toucherDmg;
 
 	public ChauveSouris(float x, float y, float masse, float tailleBlockPerso,
-			Monde monde) throws SlickException {
-		super(x, y, masse, tailleBlockPerso, monde);
+			Monde monde,float rayonDetection) throws SlickException {
+		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,1);
 		sheet = new XMLPackedSheet("res/bat.png", "res/bat.xml");
 		setVie(2);
 	}

@@ -18,8 +18,8 @@ public class Serpent extends Ennemis {
 	private boolean toucherDmg;
 
 	public Serpent(float x, float y, float masse, float tailleBlockPerso,
-			Monde monde) throws SlickException {
-		super(x, y, masse, tailleBlockPerso, monde);
+			Monde monde,float rayonDetection) throws SlickException {
+		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,2);
 
 		sheet = new XMLPackedSheet("res/monster.png", "res/monster.xml");
 		setVie(2);
@@ -62,10 +62,6 @@ public class Serpent extends Ennemis {
 			throws SlickException {
 
 		render(g);
-	}
-
-	public void update(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
 	}
 
 	@Override
