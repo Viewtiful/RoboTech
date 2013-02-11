@@ -135,5 +135,30 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
+  <object name="chauveSouris" type="personnage" x="864" y="416" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="864" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1888" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1856" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1824" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
