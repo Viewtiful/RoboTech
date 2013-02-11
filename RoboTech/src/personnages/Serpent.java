@@ -22,7 +22,6 @@ public class Serpent extends Ennemis {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,2);
 
 		sheet = new XMLPackedSheet("res/monster.png", "res/monster.xml");
-		setVie(2);
 	}
 
 	@Override

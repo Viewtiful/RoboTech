@@ -111,7 +111,6 @@ public abstract class Ennemis extends Personnage {
 			monde.addBalles(tirer());
 			sec=0;
 		}
-		System.out.println("sec = "+sec+"cpt = "+cpt+"detected"+detected);
 		if (deplacementAutoDroite
 				&& monde.estSolPosition((int) (this.getX()),
 						(int) (this.getY() + 32), this)) {
@@ -141,6 +140,7 @@ public abstract class Ennemis extends Personnage {
 		float height= 3;
 		float pourcentage = (float)getVie()/(float)getMax();
 		jauge.setBounds(x, y, width*pourcentage, height);
+		System.out.println("Pourcentage = "+pourcentage);
 		if(pourcentage>0.50)
 			g.setColor(Color.green);
 		else if(pourcentage<0.25)
