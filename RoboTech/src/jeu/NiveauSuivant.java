@@ -76,8 +76,8 @@ public class NiveauSuivant extends BasicGameState {
 			throws SlickException {
 		// initialise les images de l'état
 		itemVictoire = new Image[2];
-		itemVictoire[0] = new Image("res/retourOption.png");
-		itemVictoire[1] = new Image("res/victoire.png");
+		itemVictoire[0] = new Image("res/suivant.png");
+		itemVictoire[1] = new Image("res/niveauSuivant.png");
 
 		// initialise le tableau pour savoir si la souris se trouve sur un
 		// bouton à false

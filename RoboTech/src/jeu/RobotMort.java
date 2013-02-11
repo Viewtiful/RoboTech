@@ -39,6 +39,10 @@ public class RobotMort extends BasicGameState {
 	 * Position en y de la souris
 	 */
 	private int sourisY;
+	/**
+	 * Image en background de l'état
+	 */
+	private Image imageFond;
 
 	/**
 	 * Constructeur de RobotMort
@@ -65,8 +69,10 @@ public class RobotMort extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// initialise les images de l'état
-		itemMort = new Image[1];
+		imageFond = new Image("res/backgroundMort.png");
+		itemMort = new Image[2];
 		itemMort[0] = new Image("res/retourOption.png");
+		itemMort[1] = new Image("res/mortPerso.png");
 
 		// initialise le tableau pour savoir si la souris se trouve sur un
 		// bouton à false
@@ -83,9 +89,11 @@ public class RobotMort extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// position les images et les affiche
+		imageFond.draw(0,0);
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
 		itemMort[0].draw(positionItemOption[0][0], positionItemOption[0][1]);
+		itemMort[1].draw(200, 100);
 	}
 
 	/**

@@ -39,6 +39,10 @@ public class Victoire extends BasicGameState {
 	 * Position en y de la souris
 	 */
 	private int sourisY;
+	/**
+	 * Image en background de l'état
+	 */
+	private Image imageFond;
 
 	/**
 	 * Constructeur de Victoire
@@ -65,6 +69,7 @@ public class Victoire extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// initialise les images de l'état
+		imageFond = new Image("res/backgroundVictoire.png");
 		itemVictoire = new Image[2];
 		itemVictoire[0] = new Image("res/retourOption.png");
 		itemVictoire[1] = new Image("res/victoire.png");
@@ -85,6 +90,7 @@ public class Victoire extends BasicGameState {
 			throws SlickException {
 
 		// position les images et les affiche
+		imageFond.draw(0,0);
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
 		itemVictoire[0]
