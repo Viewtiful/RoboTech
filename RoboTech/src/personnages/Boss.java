@@ -22,6 +22,7 @@ public class Boss extends Ennemis {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,3);
 
 		sheet = new XMLPackedSheet("res/Boss.png", "res/boss.xml");
+		setMax(5);
 		setVie(5);
 	}
 

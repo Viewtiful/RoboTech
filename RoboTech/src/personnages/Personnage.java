@@ -108,7 +108,11 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	private float nouvelleMaxvelY;
 	private float nouvelleMaxvelX;
 
-	private final int max = 5;
+	private int max = 5;
+	public void setMax(int max) {
+		this.max = max;
+	}
+
 	/**
 	 * 
 	 * @param x

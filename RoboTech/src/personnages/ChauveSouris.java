@@ -21,6 +21,7 @@ public class ChauveSouris extends Ennemis {
 			Monde monde,float rayonDetection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,1);
 		sheet = new XMLPackedSheet("res/bat.png", "res/bat.xml");
+		setMax(2);
 		setVie(2);
 	}
 

@@ -140,7 +140,6 @@ public abstract class Ennemis extends Personnage {
 		float height= 3;
 		float pourcentage = (float)getVie()/(float)getMax();
 		jauge.setBounds(x, y, width*pourcentage, height);
-		System.out.println("Pourcentage = "+pourcentage);
 		if(pourcentage>0.50)
 			g.setColor(Color.green);
 		else if(pourcentage<0.25)
