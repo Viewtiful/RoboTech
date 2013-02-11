@@ -41,6 +41,7 @@ public class RoboTechJeu extends BasicGameState {
 	private boolean paused = false;
 
 	private float decalage = 10;
+
 	public int getID() {
 		return ID;
 	}
@@ -50,14 +51,14 @@ public class RoboTechJeu extends BasicGameState {
 		barres = new ArrayList<Barre>();
 		float width = 64;
 		float height = 10;
-		barres.add(new BarreVie(cameraX, cameraY, width, height, Color.red,"Vie"));
+		barres.add(new BarreVie(cameraX, cameraY, width, height, "Vie"));
 		barres.add(new BarreMana(cameraX, cameraY + decalage, width, height,
-				Color.blue,"Mana"));
+				"Mana"));
 		barres.add(new BarreEnergie(cameraX, cameraY + 2 * decalage, width,
-				height, Color.yellow,"Energie"));
+				height, "Energie"));
 
 		barres.add(new BarrePotion(cameraX, cameraY + 3 * decalage, width,
-				height, Color.gray,"Potion"));
+				height, "Potion"));
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
@@ -124,9 +125,9 @@ public class RoboTechJeu extends BasicGameState {
 	}
 
 	public void InfoRobot(Graphics g) {
-		for(int i = 0;i<barres.size();i++)
-		{
-			barres.get(i).update(cameraX, cameraY + i*(decalage+barres.get(i).getHeight()));
+		for (int i = 0; i < barres.size(); i++) {
+			barres.get(i).update(cameraX,
+					cameraY + i * (decalage + barres.get(i).getHeight()));
 			barres.get(i).render(g, player);
 		}
 

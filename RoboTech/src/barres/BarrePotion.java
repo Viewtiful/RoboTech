@@ -8,8 +8,8 @@ import personnages.Robot;
 public class BarrePotion extends Barre{
 
 	public BarrePotion(float x, float y, float width, float height,
-			Color couleur, String barName) {
-		super(x, y, width, height, couleur, barName);
+			 String barName) {
+		super(x, y, width, height, Color.magenta, barName);
 	
 	}
 

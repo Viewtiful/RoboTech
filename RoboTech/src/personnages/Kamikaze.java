@@ -92,6 +92,7 @@ public class Kamikaze extends Ennemis {
 		}
 
 		image.drawCentered(getX(), getY());
+		renderVie(g);
 	
 	}
 

@@ -31,6 +31,14 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 * Le monde
 	 */
 	public Monde monde;
+	public float getTailleBlockPerso() {
+		return tailleBlockPerso;
+	}
+
+	public void setTailleBlockPerso(float tailleBlockPerso) {
+		this.tailleBlockPerso = tailleBlockPerso;
+	}
+
 	/**
 	 * �Permet de savoir la direction du personnage
 	 */
