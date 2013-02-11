@@ -63,8 +63,8 @@ public abstract class Barre {
 	}
 
 	public void render(Graphics g, Robot player) {
-		barre.setWidth((float) length(player) * (float)getWidth()
-				/ (float) player.getMax());
+		float pourcentage =(float) length(player)/(float) player.getMax();  
+		barre.setWidth(pourcentage * (float)getWidth());
 		g.setColor(couleur);
 		g.fill(barre);
 		g.drawString(getBarName(), barre.getX(), barre.getY()-15);

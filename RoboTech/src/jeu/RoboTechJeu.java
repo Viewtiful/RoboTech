@@ -90,12 +90,12 @@ public class RoboTechJeu extends BasicGameState {
 
 		g.translate(-(int) cameraX, -(int) cameraY); // gere le rendu de la
 		// camera
-		InfoRobot(g);
 		if (!paused) {
 			monde.render(container, game, g); // gere le rendu du monde complet
 
 		}
-
+		InfoRobot(g);
+		
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)

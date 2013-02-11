@@ -60,8 +60,14 @@ public abstract class Ennemis extends Personnage {
 		float y = getY()-getTailleBlockPerso()/2;
 		float width = 25;
 		float height= 3;
-		jauge.setBounds(x, y, width*(getVie()/getMax()), height);
-		g.setColor(Color.green);
+		float pourcentage = (float)getVie()/(float)getMax();
+		jauge.setBounds(x, y, width*pourcentage, height);
+		if(pourcentage>0.50)
+			g.setColor(Color.green);
+		else if(pourcentage<0.25)
+			g.setColor(Color.red);
+		else
+			g.setColor(Color.orange);
 		g.fill(jauge);
 	}
 }
