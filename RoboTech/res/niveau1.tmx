@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="150" height="55" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tile.png" width="128" height="64"/>
@@ -26,12 +27,12 @@
  </tileset>
  <layer name="BlocsStatiques" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aywqDMBAFULf2/z+4dFGQoDWp5mHmHAgt3TTJXHSILgsAcLd14MEzjVy/Uec1m2jXhJHnNpNo+xxtvb1E2+do6+0l2j5HW28vrff5tRk9+jK5aqPVPn+zdMY5wxzW5HvO3v/KR052zqj9841YwxHnRJneNdy7vvWeE9e17EO2PXv6ezon5tSytnIVx6e2r4OR40r/Llfz6lVbZwFzK6ntv9e07X85X4qhVX1lKRbPVKhBrqildt3lKqbavbRckWag9HzeuwXsOXrv4Swja/IJW1dzBXty7nNQSq6o4eiepwfnTrIEAAAAAAAAAAAAAAAAABDLG4z92WvogAAA
+   H4sIAAAAAAAAC+3aywqDMBAFULf2/z+4dFGQoDWp5mHmHAgt3TTJXHSILgsAcLd14MEzjVy/Uec1m2jXhJHnNpNo+xxtvb1E2+do6+0l2j5HW28vrff5tRk9+jK5aqPVPn+zdMY5wxzW5HvO3v/KR052zqj9841YwxHnRJneNdy7vvWeE9e17EO2PXv6ezon5tSytnIVx6e2r4OR40r/Llfz6lVbZwFzK6ntv9e07X85X4qhVX1lKRbPVKhBrqildt3lKqbavbRckWag9HzeuwXsOXrv4Swja/IJW1dzBXty7nNQSq6o4eiepwfnTrIEAAAAAAAAAAAAAAAAABDLG4z92WvogAAA
   </data>
  </layer>
  <layer name="decors" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3a0WqDMBQGYO8LWzfbdXv/F128CIhYE1ujUb8PDpEWRND8TY5tGgAA9uI7VFvZyL7dQt0rHFlPDTkyHD9CfRY4N+uJczney60zpRuvob4KnJv1xLkc72XJHPoJ9Sh4fuuregzn9L0pl0Nzr2VqjM+ovKpTap63ie/n5IQ8OY+xuZya81N5ZA1Ep4b9nz3b8XQ5cemN8XitftLcNRj7VjKHhp/Lq/PYKrM4p9x+gnU7Y5bod+bUpXfM8Q3f77RNfr4s2SvlWN55v6OnwDPvrMflFM/kZk7/d3JOXnFeOfk09p8WeUWO7llYen0FnVTWyCZekdrDjfWmIEU/nBKm/vcHr+rv8+J7GxnGkn5D/W19EQAAAAAAAAAAAAAAAAAAwK79A3kAELfogAAA
+   H4sIAAAAAAAAC+3a0WqDMBQGYO8LWzfbdXv/F128CIhYE1ujUb8PDpEWRND8TY5tGgAA9uI7VFvZyL7dQt0rHFlPDTkyHD9CfRY4N+uJczney60zpRuvob4KnJv1xLkc72XJHPoJ9Sh4fuuregzn9L0pl0Nzr2VqjM+ovKpTap63ie/n5IQ8OY+xuZya81N5ZA1Ep4b9nz3b8XQ5cemN8XitftLcNRj7VjKHhp/Lq/PYKrM4p9x+gnU7Y5bod+bUpXfM8Q3f77RNfr4s2SvlWN55v6OnwDPvrMflFM/kZk7/d3JOXnFeOfk09p8WeUWO7llYen0FnVTWyCZekdrDjfWmIEU/nBKm/vcHr+rv8+J7GxnGkn5D/W19EQAAAAAAAAAAAAAAAAAAwK79A3kAELfogAAA
   </data>
  </layer>
  <objectgroup name="Personnages" width="150" height="55">
@@ -131,6 +132,31 @@
    </properties>
   </object>
   <object name="Pics6" type="BlocsBlessant" x="800" y="800" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="chauveSouris" type="personnage" x="896" y="416" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="832" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1856" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1888" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionMana" type="ramassable" x="1824" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>

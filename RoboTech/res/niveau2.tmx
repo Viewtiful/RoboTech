@@ -9,7 +9,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="100" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3W0QqAIAyF4d36/i8cdFWipXObK/4PhApptkOlCAAAImX3AnBmoB2wp+0refggj1zIIxfyyGUlD0b8eMvjD7yfo3SOrWuQx1wNzzra+2fMkDxyZ1l/r5/OR/oQ+b2aWdd1PZp/ViTLdWh6NNuP1txer1d4vUetOaPXvPRqWey/EGvXfjuq7hdG3RMAAAAAAADcHQCgxKDgLgAA
+   H4sIAAAAAAAAC+3W0QqAIAyF4d36/i8cdFXiKOc2V/wfCBHSdIdEEQAARNruBeDMwDrgz9pX8ohBHrWQRy3kUctKHoz88ZTHH0TvoynP3jXIY65GZB3r9ytmSB61s+zP65VzXST3vJpZ13U91r1l8VyHpUez/RjN1Xq9Iuo/Gs15+y6KVsvj/oVcu+7bWXW/MPqeAAAAAAAA4O4AWqgaa+AuAAA=
   </data>
  </layer>
  <objectgroup name="Switch" width="100" height="30">
@@ -214,7 +214,7 @@
   </object>
   <object name="Plateforme4" type="Plateforme_Base" x="2336" y="544" width="32" height="32">
    <properties>
-    <property name="Image" value="res/picsb.png"/>
+    <property name="Image" value="res/porte.png"/>
     <property name="Receiver" value="true"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch2"/>
@@ -323,6 +323,12 @@
   </object>
   <object name="robot" type="personnage" x="64" y="448" width="32" height="32">
    <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Pics1" type="BlocsBlessant" x="800" y="576" width="32" height="32">
+   <properties>
+    <property name="Image" value="res/pics.png"/>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>

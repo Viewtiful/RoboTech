@@ -23,7 +23,7 @@ public class RoboTechJeu extends BasicGameState {
 	/** The unique ID given to the state */
 	private int ID = -1;
 
-	private boolean show = true;
+	private boolean show = false;
 	private ArrayList<Barre> barres;
 
 	// liste des items ramassable

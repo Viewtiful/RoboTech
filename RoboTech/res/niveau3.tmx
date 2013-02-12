@@ -9,7 +9,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="100" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XoQoAMAhFUev+/4fXlzQID3YO2ExeFlYFAAAA/OYsDzObN9NjTo8semTRI4seWbo36+y9O3rMeR9Z/D8AAAAAmLgP8LAj4C4AAA==
+   H4sIAAAAAAAAC+3XIQrAMBREwdjc/8IVFbVpIPRBZyDui2VXZQwA+K956JY99mixR4s9WuzRYo898+B7k4FboYtChopCF4UMFYUuChkqCl0UMlQUuihkqFjtYuVut1d7PApdFDJUnPx/nPirAAAAAPCtC6Pf2s7gLgAA
   </data>
  </layer>
  <objectgroup name="Switch" width="100" height="30"/>
@@ -19,18 +19,58 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="Plateforme3" type="Plateforme_Base" x="1472" y="480" width="32" height="32">
+  <object name="Pics1" type="BlocsBlessant" x="1504" y="384" width="32" height="32">
    <properties>
-    <property name="Image" value="res/caisse2.png"/>
+    <property name="Image" value="res/magma.png"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Base" x="1632" y="608" width="320" height="64">
+   <properties>
+    <property name="Image" value="res/MagmaMonte.png"/>
     <property name="Receiver" value="false"/>
     <property name="Reverse" value="true"/>
     <property name="Sender" value="Switch1"/>
     <property name="Signal" value="true"/>
-    <property name="draw" value="true"/>
+    <property name="Type" value="pics"/>
+    <property name="draw" value="false"/>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="Plateforme3" type="Plateforme_Point" x="1248" y="480" width="32" height="32">
+  <object name="Plateforme4" type="Plateforme_Point" x="1632" y="416" width="320" height="64">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Point" x="1632" y="320" width="320" height="64">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Point" x="1632" y="224" width="320" height="64">
+   <properties>
+    <property name="Image" value="res/caisse2.png"/>
+    <property name="Receiver" value="true"/>
+    <property name="Reverse" value="false"/>
+    <property name="Sender" value="Switch1"/>
+    <property name="Signal" value="false"/>
+    <property name="draw" value="false"/>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="Plateforme4" type="Plateforme_Point" x="1632" y="128" width="320" height="64">
    <properties>
     <property name="Image" value="res/caisse2.png"/>
     <property name="Receiver" value="true"/>

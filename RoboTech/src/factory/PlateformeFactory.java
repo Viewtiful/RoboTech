@@ -53,7 +53,7 @@ public class PlateformeFactory extends AbstractFactory {
 		assert(!name.equals("NOT_FOUND"));
 		
 		Plateforme p = getProduit(name);
-		System.out.println("Name = "+name);
+		System.out.println("Name  ="+name);
 		assert(p!=null);
 		int last_size = p.getTrajectoire().size();
 		
@@ -97,14 +97,16 @@ public class PlateformeFactory extends AbstractFactory {
 
 		String name = getName(i, j);
 		String type = recupererPropriete(i, j, "Type");
-		System.out.println("Name "+name+"Type = "+type);
 		Plateforme p;
+
+		System.out.println("height = "+height);
+		System.out.println("Width = "+width);
 		if(type.equals("pics"))
 		p = new Plateforme(position,new BlocsBlessant(image_box,width, height, position,4));
 		else
 		p = new Plateforme(position, image_box, width, height);
 		
-				
+		System.out.println("Name cra = "+name);		
 		// Objet bien alloué
 		assert(p!=null);
 		

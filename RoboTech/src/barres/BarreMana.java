@@ -8,7 +8,7 @@ public class BarreMana extends Barre {
 
 	public BarreMana(float x, float y, float height, float width,
 			String barre_name) {
-		super(x, y, height, width, Color.blue, barre_name);
+		super(x, y, height, width, Color.cyan, barre_name);
 	}
 
 	@Override
