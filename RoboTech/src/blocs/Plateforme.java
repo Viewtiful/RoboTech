@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Robot;
@@ -23,7 +24,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Les points de sa trajectoire
 	 */
 	ArrayList<Point> trajectoire;
-	
+
 	/**
 	 * Le dernier point atteint (initialisï¿½ ï¿½ 0 par le constructeur
 	 */
@@ -71,6 +72,7 @@ public class Plateforme extends BlocsDynamiques {
 	boolean trajectoireDraw = true;
 
 	boolean inited = false;
+
 	/**
 	 * 
 	 * @param Point_x
@@ -98,7 +100,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	public Plateforme(Point org, Image box_image, float width, float height) {
-		super(box_image, height, width, org);
+		super(box_image, width, height, org);
 		trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
@@ -106,7 +108,7 @@ public class Plateforme extends BlocsDynamiques {
 	}
 
 	public Plateforme(Point org, Blocs c) {
-		super(c.getImage(), c.getHeight(), c.getWidth(), c.center);
+		super(c.getImage(), c.getWidth(), c.getHeight(),org);
 		trajectoire = new ArrayList<Point>();
 		pointd = 0;
 		vitesse = 1;
@@ -115,17 +117,17 @@ public class Plateforme extends BlocsDynamiques {
 		this.c = c;
 	}
 
-	private void invariant()
-	{
-		assert(pointd >=0);
-		assert(inited);
-		assert(trajectoire.size()>=0);
-		
+	private void invariant() {
+		assert (pointd >= 0);
+		assert (inited);
+		assert (trajectoire.size() >= 0);
+
 	}
+
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
-		assert(Point_x.length==Point_y.length);
-		assert(Point_x.length>0);
-		
+		assert (Point_x.length == Point_y.length);
+		assert (Point_x.length > 0);
+
 		for (int i = 0; i < Point_x.length; i++)
 			trajectoire.add(new Point(Point_x[i], Point_y[i]));
 	}
@@ -133,11 +135,11 @@ public class Plateforme extends BlocsDynamiques {
 	public ArrayList<Point> getTrajectoire() {
 		return trajectoire;
 	}
-	
+
 	public void addPoint(float x, float y) {
 		int last_size = trajectoire.size();
 		trajectoire.add(new Point(x, y));
-		assert(last_size+1 == trajectoire.size());
+		assert (last_size + 1 == trajectoire.size());
 	}
 
 	public float getEpsilonX() {
@@ -174,8 +176,8 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void initialise(int point_current, int next_point) {
 		float n = vitesse;
-		assert(n > (float)1.0e-02); // n différént de 0
-		
+		assert (n > (float) 1.0e-02); // n différént de 0
+
 		Point current = trajectoire.get(point_current);
 		Point next = trajectoire.get(next_point);
 		epsilon_x = (next.getX() - current.getX()) * (n / 100);
@@ -224,7 +226,7 @@ public class Plateforme extends BlocsDynamiques {
 	 * Rï¿½alise le dï¿½placement complet de la plateforme
 	 */
 	public void deplacement() {
-		assert(inited);
+		assert (inited);
 		if (pointd == taille - 1) {
 			if (onReverse) {
 				reverse = true;
@@ -251,7 +253,6 @@ public class Plateforme extends BlocsDynamiques {
 		taille = trajectoire.size();
 		initialise(0, 1);
 		inited = true;
-		
 
 	}
 
@@ -261,7 +262,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		assert(inited);
+		assert (inited);
 		deplacement();
 
 	}
@@ -285,6 +286,10 @@ public class Plateforme extends BlocsDynamiques {
 			}
 			g.setColor(Color.white);
 		}
+		g.setColor(Color.gray);
+		Rectangle contour = new Rectangle(center.getX()-getWidth()/2, center.getY()-getHeight()/2,
+				getWidth(), getHeight());
+		g.draw(contour);
 	}
 
 	/**
@@ -294,8 +299,10 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void collisionAction(Robot player) {
 		if (getOnBloc() == true && player.getEnMouvement() == false && signal) {
-			player.setPosition(player.getX() + epsilon_x, player.getY() + epsilon_y);
+			player.setPosition(player.getX() + epsilon_x, player.getY()
+					+ epsilon_y);
 			if (c != null) {
+				System.out.println("Collisionaction");
 				c.setOnBloc(true);
 				c.collisionAction(player);
 			}
@@ -316,7 +323,8 @@ public class Plateforme extends BlocsDynamiques {
 			res = res + "Bloc contenu{" + "\n" + c.toString() + "}" + "\n";
 		} else
 			res = res + "Aucun Bloc Contenu" + "\n";
-		res = res + "Nombre de point Trajectoire = " + trajectoire.size() + "\n";
+		res = res + "Nombre de point Trajectoire = " + trajectoire.size()
+				+ "\n";
 		res = res + "Trajectoire{" + "\n";
 		for (int i = 0; i < trajectoire.size(); i++)
 			res = res + "[" + i + "]" + trajectoire.get(i).toString();

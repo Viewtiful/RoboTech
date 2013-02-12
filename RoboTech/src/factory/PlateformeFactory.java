@@ -105,7 +105,7 @@ public class PlateformeFactory extends AbstractFactory {
 		p = new Plateforme(position,new BlocsBlessant(image_box,width, height, position,4));
 		else
 		p = new Plateforme(position, image_box, width, height);
-		
+		p.setVitesse((float) 0.10);
 		System.out.println("Name cra = "+name);		
 		// Objet bien alloué
 		assert(p!=null);

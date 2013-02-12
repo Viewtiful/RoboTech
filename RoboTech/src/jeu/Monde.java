@@ -114,10 +114,10 @@ public class Monde implements SlickAdapter {
 	 */
 	Robot player;
 	
-	private static String nomNiveau = "niveau1.tmx";
+	private static String nomNiveau = "niveau3.tmx";
 
 	//
-	/**
+	/*
 	 * Constructeur de la classe Monde
 	 * 
 	 * @throws SlickException

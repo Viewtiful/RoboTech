@@ -50,6 +50,7 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 	 */
 	private boolean onBloc = false;
 
+	private int cpt = 0;
 	public void setWidth(float Width) {
 		this.width = Width;
 	}
@@ -138,12 +139,12 @@ public abstract class Blocs implements Drawable, SlickAdapter {
 		if((Math.abs(player.getY() - center.getY()) - (getHeight()/2 + player.getTaille()/2)) <eps){
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
-
 			float p_gauche = center.getX() - getWidth() / 2;
 			float p_droite = center.getX() + getWidth() / 2;
 
 			if ((x_droite <= p_droite && x_droite >= p_gauche)
 					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
+				System.out.println("Detected  = "+cpt);
 				onBloc = true;
 			}
 			collisionAction(player);

@@ -103,6 +103,7 @@ public class RoboTechJeu extends BasicGameState {
 			throws SlickException {
 		Input input = container.getInput();
 
+			
 		// redemarrer le jeu
 		if (input.isKeyPressed(Input.KEY_R)) {
 			init(container, game);
@@ -118,7 +119,7 @@ public class RoboTechJeu extends BasicGameState {
 			container.setShowFPS(show);
 		}
 		// met a jour le monde
-		if (!paused)
+		if (!paused && container.hasFocus()==true)
 			monde.update(container, game, delta);
 
 		if (player.getVie() <= 0) {
@@ -132,7 +133,7 @@ public class RoboTechJeu extends BasicGameState {
 
 	public void InfoRobot(Graphics g) {
 		for (int i = 0; i < barres.size(); i++) {
-			barres.get(i).update(cameraX,
+			barres.get(i).update(cameraX-1,
 					cameraY + i * (decalage + barres.get(i).getHeight()));
 			barres.get(i).render(g, player);
 		}
