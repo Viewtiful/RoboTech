@@ -1,6 +1,7 @@
-package jeu;
+package menu;
 
-import java.util.ArrayList;
+import jeu.Monde;
+import jeu.RoboTech;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,7 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Equipe RoboTech
  * 
  */
-public class NiveauSuivant extends BasicGameState {
+public class Victoire extends BasicGameState {
 	/**
 	 * ID de l'état
 	 */
@@ -24,7 +25,7 @@ public class NiveauSuivant extends BasicGameState {
 	/**
 	 * Contient les images de l'état
 	 */
-	private Image[] itemNiveauSuivant;
+	private Image[] itemVictoire;
 	/**
 	 * Permet de savoir si la souris se trouve dans un bouton
 	 */
@@ -41,10 +42,10 @@ public class NiveauSuivant extends BasicGameState {
 	 * Position en y de la souris
 	 */
 	private int sourisY;
-	
-	private static int niveauSuivant = 0;
-	
-	private ArrayList<String> niveau;
+	/**
+	 * Image en background de l'état
+	 */
+	private Image imageFond;
 
 	/**
 	 * Constructeur de Victoire
@@ -52,12 +53,8 @@ public class NiveauSuivant extends BasicGameState {
 	 * @param ID
 	 *            transmis
 	 */
-	public NiveauSuivant(int ID) {
+	public Victoire(int ID) {
 		this.ID = ID;
-		
-		niveau = new ArrayList<String>();
-		niveau.add("niveau1.tmx");
-		niveau.add("niveau2.tmx");
 	}
 
 	/**
@@ -75,16 +72,17 @@ public class NiveauSuivant extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// initialise les images de l'état
-		itemNiveauSuivant = new Image[2];
-		itemNiveauSuivant[0] = new Image("res/suivant.png");
-		itemNiveauSuivant[1] = new Image("res/niveauSuivant.png");
+		imageFond = new Image("res/backgroundVictoire.png");
+		itemVictoire = new Image[2];
+		itemVictoire[0] = new Image("res/retourOption.png");
+		itemVictoire[1] = new Image("res/victoire.png");
 
 		// initialise le tableau pour savoir si la souris se trouve sur un
 		// bouton à false
-		interieurBouton = new boolean[itemNiveauSuivant.length];
+		interieurBouton = new boolean[itemVictoire.length];
 
 		// initialise le tableau des positions des images
-		positionItemOption = new int[itemNiveauSuivant.length][2];
+		positionItemOption = new int[itemVictoire.length][2];
 	}
 
 	/**
@@ -95,10 +93,12 @@ public class NiveauSuivant extends BasicGameState {
 			throws SlickException {
 
 		// position les images et les affiche
-		positionItemOption[0][0] = 270;
+		imageFond.draw(0,0);
+		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
-		itemNiveauSuivant[0].draw(positionItemOption[0][0], positionItemOption[0][1]);
-		itemNiveauSuivant[1].draw(200, 150);
+		itemVictoire[0]
+				.draw(positionItemOption[0][0], positionItemOption[0][1]);
+		itemVictoire[1].draw(270, 150);
 	}
 
 	/**
@@ -108,10 +108,6 @@ public class NiveauSuivant extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		if(niveauSuivant == niveau.size() - 1) {
-			sbg.enterState(RoboTech.VICTOIRETAT);
-		}
-		
 		// gestion de la souris
 		Input input = gc.getInput();
 
@@ -119,25 +115,24 @@ public class NiveauSuivant extends BasicGameState {
 		sourisY = input.getMouseY();
 
 		// parcours les items des options, pour voir si on est dessus
-		for (int i = 0; i < itemNiveauSuivant.length; i++) {
+		for (int i = 0; i < itemVictoire.length; i++) {
 			interieurBouton[i] = false;
 
 			if ((sourisX >= positionItemOption[i][0] && sourisX <= positionItemOption[i][0]
-					+ itemNiveauSuivant[i].getWidth())
+					+ itemVictoire[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
-							+ itemNiveauSuivant[i].getHeight())) {
-				itemNiveauSuivant[i].setAlpha(0.65f);
+							+ itemVictoire[i].getHeight())) {
+				itemVictoire[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			} else
-				itemNiveauSuivant[i].setAlpha(1.f);
+				itemVictoire[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal
 		if (interieurBouton[0] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			niveauSuivant++;
-			Monde.setNiveau(niveau.get(niveauSuivant));
+			Monde.setNiveau("niveau1.tmx");
 			gc.reinit();
-			sbg.enterState(RoboTech.JEUETAT);
+			sbg.enterState(RoboTech.MENUETAT);
 		}
 	}
 }

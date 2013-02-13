@@ -1,4 +1,6 @@
-package jeu;
+package menu;
+
+import jeu.RoboTech;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

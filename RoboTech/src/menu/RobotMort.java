@@ -1,4 +1,6 @@
-package jeu;
+package menu;
+
+import jeu.RoboTech;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -9,12 +11,12 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Etat dans lequel rentre le joueur lorsqu'il a tué le boss et finit le jeu
+ * Etat dans lequel rentre le joueur lorsque celui-ci meurt
  * 
  * @author Equipe RoboTech
  * 
  */
-public class Victoire extends BasicGameState {
+public class RobotMort extends BasicGameState {
 	/**
 	 * ID de l'état
 	 */
@@ -22,7 +24,7 @@ public class Victoire extends BasicGameState {
 	/**
 	 * Contient les images de l'état
 	 */
-	private Image[] itemVictoire;
+	private Image[] itemMort;
 	/**
 	 * Permet de savoir si la souris se trouve dans un bouton
 	 */
@@ -45,12 +47,12 @@ public class Victoire extends BasicGameState {
 	private Image imageFond;
 
 	/**
-	 * Constructeur de Victoire
+	 * Constructeur de RobotMort
 	 * 
 	 * @param ID
 	 *            transmis
 	 */
-	public Victoire(int ID) {
+	public RobotMort(int ID) {
 		this.ID = ID;
 	}
 
@@ -69,17 +71,17 @@ public class Victoire extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		// initialise les images de l'état
-		imageFond = new Image("res/backgroundVictoire.png");
-		itemVictoire = new Image[2];
-		itemVictoire[0] = new Image("res/retourOption.png");
-		itemVictoire[1] = new Image("res/victoire.png");
+		imageFond = new Image("res/backgroundMort.png");
+		itemMort = new Image[2];
+		itemMort[0] = new Image("res/retourOption.png");
+		itemMort[1] = new Image("res/mortPerso.png");
 
 		// initialise le tableau pour savoir si la souris se trouve sur un
 		// bouton à false
-		interieurBouton = new boolean[itemVictoire.length];
+		interieurBouton = new boolean[itemMort.length];
 
 		// initialise le tableau des positions des images
-		positionItemOption = new int[itemVictoire.length][2];
+		positionItemOption = new int[itemMort.length][2];
 	}
 
 	/**
@@ -88,14 +90,12 @@ public class Victoire extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-
 		// position les images et les affiche
 		imageFond.draw(0,0);
 		positionItemOption[0][0] = 300;
 		positionItemOption[0][1] = 280;
-		itemVictoire[0]
-				.draw(positionItemOption[0][0], positionItemOption[0][1]);
-		itemVictoire[1].draw(270, 150);
+		itemMort[0].draw(positionItemOption[0][0], positionItemOption[0][1]);
+		itemMort[1].draw(200, 100);
 	}
 
 	/**
@@ -112,23 +112,21 @@ public class Victoire extends BasicGameState {
 		sourisY = input.getMouseY();
 
 		// parcours les items des options, pour voir si on est dessus
-		for (int i = 0; i < itemVictoire.length; i++) {
+		for (int i = 0; i < itemMort.length; i++) {
 			interieurBouton[i] = false;
 
 			if ((sourisX >= positionItemOption[i][0] && sourisX <= positionItemOption[i][0]
-					+ itemVictoire[i].getWidth())
+					+ itemMort[i].getWidth())
 					&& (sourisY >= positionItemOption[i][1] && sourisY <= positionItemOption[i][1]
-							+ itemVictoire[i].getHeight())) {
-				itemVictoire[i].setAlpha(0.65f);
+							+ itemMort[i].getHeight())) {
+				itemMort[i].setAlpha(0.65f);
 				interieurBouton[i] = true;
 			} else
-				itemVictoire[i].setAlpha(1.f);
+				itemMort[i].setAlpha(1.f);
 		}
 
 		// Retour menu principal
 		if (interieurBouton[0] && input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			Monde.setNiveau("niveau1.tmx");
-			gc.reinit();
 			sbg.enterState(RoboTech.MENUETAT);
 		}
 	}

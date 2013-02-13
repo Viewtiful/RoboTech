@@ -1,5 +1,11 @@
 package jeu;
 
+import gui.Barre;
+import gui.BarreEnergie;
+import gui.BarreMana;
+import gui.BarrePotion;
+import gui.BarreVie;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -11,11 +17,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import barres.Barre;
-import barres.BarreEnergie;
-import barres.BarreMana;
-import barres.BarrePotion;
-import barres.BarreVie;
 
 import personnages.Robot;
 

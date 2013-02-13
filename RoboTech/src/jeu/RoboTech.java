@@ -1,5 +1,11 @@
 package jeu;
 
+import menu.Menu;
+import menu.NiveauSuivant;
+import menu.Options;
+import menu.RobotMort;
+import menu.Victoire;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

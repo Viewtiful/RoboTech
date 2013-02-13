@@ -1,4 +1,4 @@
-package barres;
+package gui;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
