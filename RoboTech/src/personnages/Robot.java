@@ -3,16 +3,12 @@ package personnages;
 import jeu.Monde;
 
 import listener.RobotHandlers;
-
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
-import org.newdawn.slick.geom.Line;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import weapon.Balle;
@@ -78,7 +74,7 @@ public class Robot extends Personnage {
 	/**
 	 * Consomation d'une Potion de Vitesse et ou de saut
 	 */
-	private boolean potionVitesse = false;
+	private boolean potionVitesseSaut = false;
 
 	/**
 	 * Create a new Alien actor read to add to the world
@@ -215,7 +211,7 @@ public class Robot extends Personnage {
 		if (gestionPerteEnergie >= 60) {
 			// toutes les 10s perds un point d'énergie
 			pertePointEnergie++;
-			// si le robot a encore de l'énergie, perd 1 point
+			// au bout de 10sec, si le robot a encore de l'énergie, perd 1 point
 			if (getEnergie() > 0 && !plusEnergie) {
 				if (pertePointEnergie >= 10) {
 					setEnergie(getEnergie() - 1);
@@ -247,8 +243,8 @@ public class Robot extends Personnage {
 		}
 
 		// Si, une seconde viens de s'écouler, on enleve 1sec sur l'effet de la
-		// potion
-		if(potionVitesse)
+		// potion de vitesse ou saut
+		if(potionVitesseSaut)
 		{
 			if (gestionPotionVitesseSaut >= 60) {
 				estomperEffetPotion++;
@@ -258,7 +254,7 @@ public class Robot extends Personnage {
 					modifierVitesseX(1);
 					modifierVitesseY(1);
 					estomperEffetPotion = 0;
-					potionVitesse = !potionVitesse;
+					potionVitesseSaut = !potionVitesseSaut;
 				}
 				gestionPotionVitesseSaut = 0;
 			}
@@ -269,11 +265,11 @@ public class Robot extends Personnage {
 	}
 
 	public void setPotionVitesse(boolean potionVitesse) {
-		this.potionVitesse = potionVitesse;
+		this.potionVitesseSaut = potionVitesse;
 	}
 
 	public boolean getPotionVitesse() {
-		return potionVitesse;
+		return potionVitesseSaut;
 	}
 	public int getEstomperEffetPotion() {
 		return estomperEffetPotion;
@@ -291,12 +287,18 @@ public class Robot extends Personnage {
 		return plusEnergie;
 	}
 
+	/**
+	 * Gere l'affichage du robot
+	 */
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		render(g);
 	}
 
+	/**
+	 * Gere la mise a jour du robot
+	 */
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
@@ -306,17 +308,28 @@ public class Robot extends Personnage {
 
 	}
 
+	/**
+	 * Si le robot est touché, il perd autant de point de vie qu'il a subit
+	 */
 	@Override
 	public void toucher(int value) {
 		setVie(getVie() - value);
 
 	}
 
+	/**
+	 * Modification de sa vitesse lorsqu'il a pris notamment une potion de vitesse
+	 * @param valeurModVitesseX
+	 */
 	public void modifierVitesseX(int valeurModVitesseX) {
 		setVitesseX(valeurModVitesseX);
 
 	}
 
+	/**
+	 * Modification de hauteur de saut en y, notamment lorsqu'il a pris une potion de saut
+	 * @param valeurModVitesseY
+	 */
 	public void modifierVitesseY(int valeurModVitesseY) {
 		setVitesseY(valeurModVitesseY);
 
