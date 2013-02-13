@@ -1,19 +1,20 @@
 package personnages;
 
 import jeu.Monde;
-
 import net.phys2d.raw.CollisionEvent;
-
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.state.StateBasedGame;
-
 import blocs.Point;
 
+/**
+ * Gere du kamikaze
+ * @author Equipe RoboTech
+ *
+ */
 public class Kamikaze extends Ennemis {
 
 	/**
@@ -21,33 +22,37 @@ public class Kamikaze extends Ennemis {
 	 */
 	private Image image;
 	/**
-	 * Extrémité gauche du mouvement du Kamikaze
+	 * Extremite gauche du mouvement du Kamikaze
 	 */
 	private Point org;
 	/**
-	 * Extrémité droite du mouvement du Kamikaze
+	 * Extremite droite du mouvement du Kamikaze
 	 */
 	private Point fin;
 
 	private float vitesse = (float) 0.50;
+	
+	/**
+	 * Permet de compter les secondes
+	 */
 	private int i;
+	/**
+	 * Gestion de l'animation courante
+	 */
 	private int animationStep;
+	/**
+	 * Permet de savoir si le serpent a ete touche
+	 */
 	private XMLPackedSheet sheet;
 
 	/**
-	 * 
-	 * @param x
-	 *            Position Horizontale sur la Map
-	 * @param y
-	 *            Position Verticale sur la Map
-	 * @param masse
-	 *            Masse du Kamikaze
-	 * @param tailleBlockPerso
-	 *            Taille du Kamikaze
-	 * @param monde
-	 *            Environnement ou évolue le monde
-	 * @param rayon_detection
-	 *            Distance de détection
+	 * Constructeur du kamikaze
+	 * @param x sa position en x
+	 * @param y sa potision en y 
+	 * @param masse sa masse dans le monde physique
+	 * @param tailleBlockPerso sa taille dans le monde physique, notamment pour sa hitbox
+	 * @param monde le monde dans lequel il evolue
+	 * @param rayonDetection le rayon de detection autour de lui dans lequel il detecte le robot
 	 * @throws SlickException
 	 */
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
@@ -57,15 +62,19 @@ public class Kamikaze extends Ennemis {
 		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
 		fin = new Point(x + getRayonDetection(), y);
-		// Initialisation de la vitesse nï¿½gative
+		// Initialisation de la vitesse negative
 		vitesse = -vitesse;
 		setDirectionDroite(false);
 	}
 
+	/**
+	 * Gestion de l'affichage du kamikaze
+	 */
 	@Override
 	public void render(Graphics g) {
 
 		i++;
+		//gestion des animations du kamikaze
 		if (i >= 6) {
 			animationStep++;
 			animationStep %= 3;
@@ -77,6 +86,7 @@ public class Kamikaze extends Ennemis {
 			i = 0;
 		}
 
+		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 		renderVie(g);
 
@@ -95,6 +105,9 @@ public class Kamikaze extends Ennemis {
 
 	}
 
+	/**
+	 * Gestion des degats subient lorsqu'il est touche
+	 */
 	@Override
 	public void toucher(int value) {
 		setVie(0);

@@ -20,7 +20,7 @@ public class Serpent extends Ennemis {
 	 */
 	private Image image;
 	/**
-	 * Sprite contenant les images de l'animation du robot
+	 * Sprite contenant les images de l'animation du serpent
 	 */
 	private XMLPackedSheet sheet;
 	/**
