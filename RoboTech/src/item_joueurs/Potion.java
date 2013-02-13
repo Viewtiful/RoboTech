@@ -12,8 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import personnages.Robot;
 
 /**
- * 
- * @author Equipe RoboTech Toutes les potions de maniere generale
+ * Toutes les potions de maniere generale
+ * @author Equipe RoboTech 
  */
 public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */
@@ -55,7 +55,7 @@ public abstract class Potion extends ItemsRamassable {
 		this.masse = mass;
 
 		// Le corps physique de la potion
-		body = new Body(new Box(width, height), mass);
+		body = new Body(new Box(width, height), masse);
 		body.setPosition(x, y);
 		body.setFriction(0.1f);
 		setUsed(false);

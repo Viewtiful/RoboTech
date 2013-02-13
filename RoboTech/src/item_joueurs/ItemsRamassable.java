@@ -4,8 +4,16 @@ import personnages.Personnage;
 import personnages.Robot;
 import items.Items;
 
+/**
+ * Les items rammassables
+ * @author Equipe RoboTech
+ *
+ */
 public abstract class ItemsRamassable extends Items {
 
+	/**
+	 * Le robot
+	 */
 	protected Robot player;
 
 	public abstract void setPickedUp(boolean b);
@@ -30,6 +38,9 @@ public abstract class ItemsRamassable extends Items {
 		this.player = player;
 	}
 	
+	/**
+	 * Quand on considere que le robot a rammasse un item, et ensuite le detruire du niveau s'il a ete ramasse par le robot
+	 */
 	public void pickUpItem() {
 		float eps = (float) 1e-01;
 		float n = player.getTaille();

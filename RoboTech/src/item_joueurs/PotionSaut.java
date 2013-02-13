@@ -8,8 +8,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import personnages.Robot;
 
 /**
- * 
- * @author Equipe RoboTech Potion augmentant la hauteur du Saut
+ * Potion augmentant la hauteur du Saut
+ * @author Equipe RoboTech 
  */
 public class PotionSaut extends Potion {
 
@@ -35,29 +35,6 @@ public class PotionSaut extends Potion {
 	public PotionSaut(float x, float y, float width, float height, float mass,
 			Robot player, int valeur) {
 		super(x, y, width, height, mass, player, valeur);
-	}
-
-	/**
-	 * Constructeur de la classe PotionSaut avec valeur de regen à 1 par
-	 * défaut
-	 * 
-	 * @param x
-	 *            : position en x de la potion
-	 * @param y
-	 *            : position en y de la potion
-	 * @param width
-	 *            : largeur de la potion
-	 * @param height
-	 *            : hauteur de la potion
-	 * @param mass
-	 *            : masse de la potion
-	 * @param player
-	 *            : passe en parametre le joueur pour savoir quand il a ramasser
-	 *            la potion ....
-	 */
-	public PotionSaut(float x, float y, float width, float height, float mass,
-			Robot player) {
-		super(x, y, width, height, mass, player, 1);
 	}
 
 	/**
