@@ -209,19 +209,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 				// collision, si touche un ennemi, appelle la fonction toucher
 				// de cet ennemi pour lui enlever 1 pt de vie
 				if (evenement[i].getBodyB() == body) {
-					persCourant = personnages.get(evenement[i].getBodyA()); /*
-																			 * Current
-																			 * vaut
-																			 * nullsi
-																			 * lebody
-																			 * misen
-																			 * causen
-																			 * 'est
-																			 * pasun
-																			 * body
-																			 * de
-																			 * personnages
-																			 */
+					persCourant = personnages.get(evenement[i].getBodyA()); // Current vaut null si le body mise en cause n'est pas un body de personnage
 					if (persCourant != null && cible(persCourant))
 						persCourant.toucher(valeurDmg);
 
@@ -302,11 +290,19 @@ public abstract class Balle implements Drawable, SlickAdapter {
 		body.setPosition(x, y);
 	}
 
+	/**
+	 * Affichage les balles tirés sur le niveau
+	 */
 	@Override
 	public void render(Graphics g) {
 		imageBalle.drawCentered(getX(), getY());
 
 	}
 
+	/**
+	 * Faire pour chaque personnage ce qui doit etre fait en fonction de la cible de la balle
+	 * @param p
+	 * @return
+	 */
 	public abstract boolean cible(Personnage p);
 }
