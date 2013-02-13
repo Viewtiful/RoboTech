@@ -7,8 +7,8 @@ import personnages.Robot;
 import weapon.Balle;
 
 /**
- * 
- * @author Equipe RoboTech Permet de gerer la touche Q
+ * Permet de gerer la touche Q
+ * @author Equipe RoboTech 
  */
 public class KeyQHandler extends KeyHandler {
 

@@ -5,8 +5,8 @@ import org.newdawn.slick.Input;
 import personnages.Robot;
 
 /**
- * 
- * @author Equipe RoboTech Permet de gerer la touche Fleche Haut
+ * Permet de gerer la touche Fleche Haut
+ * @author Equipe RoboTech 
  */
 public class KeyUPHandler extends KeyHandler {
 	public KeyUPHandler() {

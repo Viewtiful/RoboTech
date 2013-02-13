@@ -5,8 +5,8 @@ import org.newdawn.slick.Input;
 import personnages.Robot;
 
 /**
- * 
- * @author Equipe RoboTech Permet de gerer la touche Fleche Droite
+ * Permet de gerer la touche Fleche Droite
+ * @author Equipe RoboTech 
  */
 public class KeyRIGHTHandler extends KeyHandler {
 
