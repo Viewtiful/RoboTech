@@ -10,17 +10,23 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Baril extends Items {
-	/** The image to display for the crate */
+	/**
+	 * image du baril
+	 */
 	private Image image;
-	/** The width of the crate */
+	/**
+	 * La largeur du baril
+	 */
 	private float width;
-	/** The height of the crate */
+	/**
+	 * La hauteur du baril
+	 */
 	private float height;
 
 	/**
 	 * 
 	 * @param x Abscisse du Baril
-	 * @param y Ordonnée du Baril
+	 * @param y Ordonnee du Baril
 	 * @param width largeur
 	 * @param height hauteur
 	 * @param mass masse 
@@ -59,7 +65,7 @@ public class Baril extends Items {
 
 	@Override
 	/**
-	 * 
+	 * Initialisation
 	 * {@inheritDoc}
 	 */
 	public void init(GameContainer container, StateBasedGame game)
@@ -69,6 +75,7 @@ public class Baril extends Items {
 	}
 
 	/**
+	 * Affichage
 	 * {@inheritDoc}
 	 */
 	public void render(Graphics g) {
