@@ -68,7 +68,7 @@ public class ChauveSouris extends Ennemis {
 	 */
 	public void render(Graphics g) {
 		i++;
-		//gestion des animations du serpent
+		//gestion des animations de la chauve souris
 		if (i >= 6) {
 			animationStep++;
 			animationStep %= 3;
