@@ -64,7 +64,7 @@ public class SwitchFactory extends AbstractFactory {
 		else
 		{
 			Capteur c = new Capteur(image_off, width, height, position, image_on);;
-			c.setVertical(true);
+			c.setVertical(false);
 			s = c;
 			s.getBody().setEnabled(false);
 			
