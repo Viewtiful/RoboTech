@@ -7,8 +7,8 @@ import net.phys2d.raw.Body;
 import net.phys2d.raw.World;
 
 /**
- * 
- * @author Equipe RoboTech Represente les Items(Objet) disponible dans le jeu
+ * Represente les Items(Objet) disponible dans le jeu
+ * @author Equipe RoboTech 
  */
 public abstract class Items implements SlickAdapter, Drawable {
 
@@ -24,19 +24,19 @@ public abstract class Items implements SlickAdapter, Drawable {
 	 */
 	protected Body body;
 	/**
-	 * Monde physique o� est rattach� l'item
+	 * Monde physique ou est rattache l'item
 	 * 
 	 * @see net.phys2d.raw.World
 	 */
 	protected World world;
 
 	/**
-	 * Permet d'affecter une vitesse � un corps Physique
+	 * Permet d'affecter une vitesse a un corps Physique
 	 * 
 	 * @param x
-	 *            coordonn�e horizontale de la vitesse
+	 *            coordonnee horizontale de la vitesse
 	 * @param y
-	 *            coordonn�e verticale tale de la vitesse
+	 *            coordonnee verticale tale de la vitesse
 	 * @see net.phys2d.raw.Body
 	 */
 	public void setVelocity(float x, float y) {

@@ -10,15 +10,21 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * 
- * @author Equipe RoboTech Une caisse
+ *  Une caisse
+ * @author Equipe RoboTech
  */
 public class Caisse extends Items {
-	/** The image to display for the crate */
+	/**
+	 * Image de la caisse
+	 */
 	private Image image;
-	/** The width of the crate */
+	/**
+	 * Largeur de la caisse
+	 */
 	private float width;
-	/** The height of the crate */
+	/**
+	 * Hauteur de la caisse
+	 */
 	private float height;
 
 	/**

@@ -9,6 +9,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Un baril
+ * @author Equipe RoboTech
+ *
+ */
 public class Baril extends Items {
 	/**
 	 * image du baril

@@ -10,29 +10,35 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * 
- * @author Equipe RoboTech Represente une poutre
+ * Represente une poutre
+ * @author Equipe RoboTech 
  */
 public class Poutre extends Items {
-	/** The image to display for the crate */
+	/**
+	 * Image de la poutre
+	 */
 	private Image image;
-	/** The width of the crate */
+	/**
+	 * Largeur de la poutre
+	 */
 	private float width;
-	/** The height of the crate */
+	/**
+	 * Hauteur de la poutre
+	 */
 	private float height;
 
 	/**
 	 * 
 	 * @param x
-	 *            Position horizontale de la caisse
+	 *            Position horizontale de la poutre
 	 * @param y
-	 *            Position verictale de la caisse
+	 *            Position verictale de la poutre
 	 * @param width
-	 *            Largeur de la caisse
+	 *            Largeur de la poutre
 	 * @param height
-	 *            Hauteur de la caisse
+	 *            Hauteur de la poutre
 	 * @param mass
-	 *            Masse de la caisse
+	 *            Masse de la poutre
 	 * @throws SlickException
 	 * @see org.newdawn.slick.SlickException
 	 */
