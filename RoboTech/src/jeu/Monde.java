@@ -49,17 +49,18 @@ import personnages.Robot;
 import weapon.Balle;
 
 /**
- * Equipe RoboTech  Repr�sente le niveau o� le Robot �volue
+ * Represente le niveau ou le Robot evolue
+ * Equipe RoboTech  
  */
 public class Monde implements SlickAdapter {
 
 	/**
-	 *  Repr�sente le monde physique
+	 *  Represente le monde physique
 	 */
 	private World world;
 
 	/**
-	 *  Repr�sente le niveau
+	 *  Represente le niveau
 	 */
 	private TiledMap niveau;
 
@@ -84,13 +85,13 @@ public class Monde implements SlickAdapter {
 	private BlocsBlessantFactory b;
 
 	/**
-	 *  Les Balles pr�sentes dans le niveau
+	 *  Les Balles presentes dans le niveau
 	 */
 	protected ArrayList<Balle> balles;
 
 	/**
-	 * Les personnages �voluant dans le niveau La structure nous permet un
-	 * gain de performance dans la recherche de donn�e
+	 * Les personnages evoluant dans le niveau La structure nous permet un
+	 * gain de performance dans la recherche de donnee
 	 */
 	protected HashMap<Body, Personnage> personnages;
 
@@ -100,24 +101,23 @@ public class Monde implements SlickAdapter {
 	protected ArrayList<Items> items;
 
 	/**
-	 *  Les Items qui peuvent �tre rammas�s
+	 *  Les Items qui peuvent etre rammases
 	 */
 	protected ArrayList<Items> itemsRamassable;
 
 	/**
-	 * Les blocs qui rendent le niveau int�ractif
+	 * Les blocs qui rendent le niveau interactif
 	 */
 	protected ArrayList<Blocs> interaction;
 
 	/**
-	 *  Le robot contr�l� par le Joueur
+	 *  Le robot controle par le Joueur
 	 */
 	Robot player;
 	
-	private static String nomNiveau = "niveau3.tmx";
-
-	//
-	/*
+	private static String nomNiveau = "niveau1.tmx";
+	
+	/**
 	 * Constructeur de la classe Monde
 	 * 
 	 * @throws SlickException
@@ -150,7 +150,7 @@ public class Monde implements SlickAdapter {
 	public void initialisationMonde() throws SlickException {
 		// monde soumis a la physique
 		world = new World(new Vector2f(0, 20), 20);
-		// chargement de la map (TiledMap)
+		// chargement du niveau (TiledMap)
 		niveau = new TiledMap("res/" + nomNiveau);
 
 		// initialise robot sur le niveau
@@ -161,8 +161,11 @@ public class Monde implements SlickAdapter {
 		s = new SwitchFactory(world, niveau);
 		f = new PlateformeFactory(world, niveau, s);
 		b = new BlocsBlessantFactory(world, niveau);
+		
 		// genere les objets/personnages du niveau
 		initialiserObjets(niveau);
+		
+		
 		interaction.addAll(f.getProduit());
 		interaction.addAll(s.getProduit());
 		interaction.addAll(b.getProduit());
@@ -174,20 +177,19 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
+	 * slick2D gere le rendu
 	 * {@inheritDoc}
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// affiche la map
 		niveau.render(0, 0);
-		// affiche les plateformes (obstacles) du niveau
-		/*
-		for (Rectangle obstacle : obstacles)
-			g.draw(obstacle);
-		*/
+		
+		//affiche les blocs interatifs
 		Iterator<Blocs> it4 = interaction.iterator();
 		while (it4.hasNext())
 			it4.next().render(g);
+		
 		// affiche les personnages sur le niveau
 		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
@@ -226,29 +228,22 @@ public class Monde implements SlickAdapter {
 
 		int largeurMap = niveau.getWidth(); // recupere la largeur de la map
 		int hauteurMap = niveau.getHeight(); // recupere la hauteur de la map
-		int largeurTile = niveau.getTileWidth(); // recupere la largeur d'un
-													// tile
-													// (block de la map)
-		int hauteurTile = niveau.getTileHeight(); // recupere la hauteur d'un
-													// tile
-													// (block de la map)
+		int largeurTile = niveau.getTileWidth(); // recupere la largeur d'un tile (block de la map)
+		int hauteurTile = niveau.getTileHeight(); // recupere la hauteur d'un tile (block de la map)
 
 		// on parcours ligne par ligne
 		for (int y = 0; y < hauteurMap; y++) {
 
 			for (int x = 0; x < largeurMap; x++) {
 
-				int largeurPlateformeDessine = 0; // contient la largeur de la
-													// plateforme sur la ligne a
-													// dessiner
-				int XdepartPlateformeDessine = 0; // contient le debut de la
-													// plateforme sur la ligne
+				int largeurPlateformeDessine = 0; // contient la largeur de la plateforme sur la ligne a dessiner
+				int XdepartPlateformeDessine = 0; // contient le debut de la plateforme sur la ligne
 
 				// si c'est un bloc qui represente une plateforme
 				if (niveau.getTileImage(x, y,
 						niveau.getLayerIndex("BlocsStatiques")) != null) {
-					XdepartPlateformeDessine = x; // conserve la coordonnee X du
-													// debut de la plateforme
+					XdepartPlateformeDessine = x; // conserve la coordonnee X du  debut de la plateforme
+					
 					// rajoute la taille du tile, a la longueur de la plateforme
 					largeurPlateformeDessine += largeurTile;
 
@@ -258,34 +253,26 @@ public class Monde implements SlickAdapter {
 							&& niveau.getTileImage(x + 1, y,
 									niveau.getLayerIndex("BlocsStatiques")) != null) {
 						// a chaque tile rajouter pour construire la plateforme,
-						// on rajoute sa taille a la longueur de la plateforme
-						// totale
+						// on rajoute sa taille a la longueur de la plateforme totale
 						largeurPlateformeDessine += largeurTile;
 						x++;
 					}
 
 					// une fois qu'on a construit notre plateforme, on cree un
-					// corps statique sur la map qui represente physiquement la
-					// plateforme
+					// corps statique sur la map qui represente physiquement la plateforme
 					Body body = new StaticBody("StaticBody_" + x + "_" + y,
 							new Box(largeurPlateformeDessine, hauteurTile));
 					body.setFriction(1f);
 					body.setRestitution(1f);
+					
 					// positionne la plateforme a sa place sur le niveau
 					body.setPosition(
 							(XdepartPlateformeDessine * largeurTile + (largeurPlateformeDessine / 2)),
 							(y * hauteurTile + (hauteurTile / 2)));
+					
 					// rajoute la plateforme au monded physique
 					world.add(body);
 
-					// dessine les contours de la plateforme sur le niveau, pour
-					// vérifier les collisions
-					Rectangle obstacle = new Rectangle(XdepartPlateformeDessine
-							* largeurTile, y * hauteurTile,
-							largeurPlateformeDessine, hauteurTile);
-					// ajoute le contour de la plateforme a la liste des
-					// obstacles
-					obstacles.add(obstacle);
 				}
 			}
 		}
@@ -294,26 +281,31 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Fonction qui place les objets
-	 * @param map Carte o� les objets sont � placer
+	 * @param map Carte ou les objets sont a placer
 	 * @throws SlickException
 	 */
 	public void initialiserObjets(TiledMap map) throws SlickException {
+		//parcours tous les groupes d'objets et pour chaque groupe, on parcours les items qu'il contient
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
 
+				//si c'est un objet de type switch, on le cree
 				if (map.getObjectType(i, j).equals("Switch")) {
 					s.createSwitch(i, j);
 				}
-
+				//si c'est un objet de type plateforme de base, on le cree
 				if (map.getObjectType(i, j).equals("Plateforme_Base")) {
 					f.createPlateforme(i, j);
 				}
+				//si c'est un objet d'un point de passage de la plateforme, on le cree
 				if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.addPosition(i, j);
 
+				//si c'est un objet de type bloc blessant, on le cree
 				if (map.getObjectType(i, j).equals("BlocsBlessant")) {
 					b.createBlocsBlessant(i, j);
 				}
+				//si c'est un objet de type personnage, on le cree en fonction de son nom et on l'ajoute au monde physique
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(
@@ -341,7 +333,9 @@ public class Monde implements SlickAdapter {
 						addPersonnages(boss);
 					}
 
-				} else if (map.getObjectType(i, j).equals("ramassable")) {
+				} 
+				//si c'est un objet de type ramassable, on le cree en fonction de son nom
+				else if (map.getObjectType(i, j).equals("ramassable")) {
 					if (map.getObjectName(i, j).equals("potionVie")) {
 
 						ItemsRamassable potionV = new PotionVie(map.getObjectX(
@@ -373,7 +367,9 @@ public class Monde implements SlickAdapter {
 								map.getObjectY(i, j), 10, 14, 0.8f, player, 2);
 						addItemsRamassable(potionS);
 					}
-				} else if (map.getObjectType(i, j).equals("objet")) {
+				}
+				//si c'est un objet de type objet , on le cree en fonction de son nom
+				else if (map.getObjectType(i, j).equals("objet")) {
 					if (map.getObjectName(i, j).equals("poutre")) {
 
 						Items poutre = new Poutre(map.getObjectX(i, j)
@@ -398,13 +394,14 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * Initialise le robot
-	 * @param map Carte o� est situ� le robot
+	 * @param map Carte ou est situe le robot
 	 * @throws SlickException
 	 */
 	public void initialiserRobot(TiledMap map) throws SlickException {
+		//parcours tous les groupes d'objets et pour chaque groupe, on parcours les items qu'il contient
 		for (int i = 0; i < map.getObjectGroupCount(); i++) {
 			for (int j = 0; j < map.getObjectCount(i); j++) {
-
+				//si c'est un objet de type personnage et que celui-ci est le robot, on l'ajoute au monde physique
 				if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("robot")) {
 						Robot robot = new Robot(
@@ -421,8 +418,7 @@ public class Monde implements SlickAdapter {
 	/**
 	 * Fonction qui permet d'ajouter de nouveau personnage au niveau physique
 	 * 
-	 * @param pers
-	 *            à ajouter au niveau physique
+	 * @param pers à ajouter au niveau physique
 	 */
 	public void addPersonnages(Personnage pers) {
 		world.add(pers.getBody());
@@ -434,8 +430,7 @@ public class Monde implements SlickAdapter {
 	 * Fonction qui permet d'ajouter de nouveau items ramassable au niveau
 	 * physique
 	 * 
-	 * @param item
-	 *            ramassable à ajouter au niveau
+	 * @param item ramassable à ajouter au niveau
 	 */
 	public void addItemsRamassable(Items item) {
 		world.add(item.getBody());
@@ -446,8 +441,7 @@ public class Monde implements SlickAdapter {
 	/**
 	 * Fonction qui permet d'ajouter de nouvelle balles au niveau physique
 	 * 
-	 * @param balle
-	 *            à ajouter au niveau
+	 * @param balle à ajouter au niveau
 	 */
 	public void addBalles(Balle balle) {
 		world.add(balle.getBody());
@@ -459,8 +453,7 @@ public class Monde implements SlickAdapter {
 	 * Fonction qui permet d'ajouter de nouveau items non ramassable au niveau
 	 * physique
 	 * 
-	 * @param item
-	 *            à ajouter au niveau
+	 * @param item  à ajouter au niveau
 	 */
 	public void addItems(Items item) {
 		world.add(item.getBody());
@@ -470,7 +463,7 @@ public class Monde implements SlickAdapter {
 
 	/**
 	 * 
-	 * Initialise les différents élements du niveau
+	 * Initialise les différents elements du niveau
 	 * 
 	 * @param container
 	 * @param game
@@ -481,6 +474,7 @@ public class Monde implements SlickAdapter {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 
+		//Appelle la fonction init de tous les elements du niveau
 		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext())
 			it.next().init(container, game);
@@ -500,7 +494,8 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les items ramassés du niveau, vérification à chaque tour
+	 * Met a jour les items ramassables du niveau, verification à chaque tour
+	 * Si l'item a ete ramasse, on le supprime du niveau
 	 * 
 	 * @param container
 	 * @param game
@@ -522,7 +517,7 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les personnages du niveau qui sont mort, vérification à
+	 * Met a jour les personnages du niveau qui sont mort, verification a
 	 * chaque tour
 	 * 
 	 * @param container
@@ -543,8 +538,8 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met à jour les balles du niveau qui ont touchés un element du niveau
-	 * pour les détruires, vérification à chaque tour
+	 * Met a jour les balles du niveau qui ont touches un element du niveau
+	 * pour les detruires, verification a chaque tour
 	 * 
 	 * @param container
 	 * @param game
@@ -567,7 +562,7 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * Met � jour les blocs interagissant avec le player
+	 * Met a jour les blocs interagissant avec le player
 	 * 
 	 * @param container
 	 * @param game
@@ -596,7 +591,7 @@ public class Monde implements SlickAdapter {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		boolean first = true;
+		boolean premierPassage = true;
 		// Temps total pour la mise a jour du monde physique
 		int tempsTotalMiseAjour = delta;
 		// Temps pour la mise a jour du monde physique
@@ -610,8 +605,10 @@ public class Monde implements SlickAdapter {
 		while (tempsTotalMiseAjour > tempsMiseAjour) {
 			world.step(tempsMiseAjour * 0.01f); // mise a jour du monde physique
 			tempsTotalMiseAjour -= tempsMiseAjour;
-			if (first) {
-				first = false;
+			
+			//pre-update des personnages
+			if (premierPassage) {
+				premierPassage = false;
 				while (it.hasNext())
 					it.next().preUpdate(delta);
 			}
@@ -628,61 +625,79 @@ public class Monde implements SlickAdapter {
 	}
 
 	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @param ennemis
+	 * Permet de savoir si l'ennemi est toujours sur une plateforme s'il regarde la prochaine position dans 
+	 * laquelle il se trouvera
+	 * Methode n'utilisant pas les collisions, mais utilise la position des items/blocs de la map.
+	 * @param x prochaine position en x sur laquelle l'ennemi se trouvera
+	 * @param y prochaine position en u sur laquelle l'ennemi se trouvera
+	 * @param ennemi ennemi qui teste sa prochaine position
 	 * @return
 	 */
-	public boolean estSolPosition(int x, int y, Ennemis ennemis) {
-		boolean result = false;
+	public boolean estSolPosition(int x, int y, Ennemis ennemi) {
+		boolean resultat = false;
 		try {
+			//conserve la prochaine position de l'ennemi en terme de pixel
 			int e = x;
+			//recupere la prochaine position de l'ennemi en terme de tile et non de pixel
 			x = x / niveau.getTileWidth();
 			y = y / niveau.getTileHeight();
 
+			//Si la prochaine position n'est pas un bloc statique (une plateforme) ou que le bloc en face sur sa droite
+			//ou sa gauche est un mur représenter par un bloc statique, il doit faire demi tour
 			if ((niveau.getTileImage(x, y,
 					niveau.getLayerIndex("BlocsStatiques")) == null)
 					|| (niveau.getTileImage(x - 1, y - 1,
 							niveau.getLayerIndex("BlocsStatiques")) != null)
 					|| (niveau.getTileImage(x + 1, y - 1,
 							niveau.getLayerIndex("BlocsStatiques")) != null)) {
-				result = false;
+				resultat = false;
 			} else
-				result = true;
+				resultat = true;
 
+			//pour la position de tous les objets rammassables  du niveau, si l'ennemi va rentré en collision avec, il faire demi-tour
 			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
 				for (int j = 0; j < niveau.getObjectCount(i); j++) {
 					if (niveau.getObjectType(i, j).equals("ramassable"))
 
+						// si l'ennemi se déplace vers la gauche, regarde en avance (valeur 24) si c'est un item sur son axe des x et y,
+						//fait demi-tour
 						if (niveau.getObjectX(i, j) + 24 == e
 								&& (niveau.getObjectY(i, j) / niveau
 										.getTileWidth()) + 1 == y
-								&& !ennemis.getDirectionDroite()) {
-							result = false;
-						} else if (niveau.getObjectX(i, j) - 16 == e
+								&& !ennemi.getDirectionDroite()) {
+							resultat = false;
+						}
+						// si l'ennemi se déplace vers la droite, regarde en avance (valeur 16) si c'est un item sur son axe des x et y,
+						//fait demi-tour
+						else if (niveau.getObjectX(i, j) - 16 == e
 								&& (niveau.getObjectY(i, j) / niveau
 										.getTileWidth()) + 1 == y
-								&& ennemis.getDirectionDroite()) {
-							result = false;
+								&& ennemi.getDirectionDroite()) {
+							resultat = false;
 						}
 				}
 			}
 
+			//pour la position de tous les objets  du niveau, si l'ennemi va rentré en collision avec, il faire demi-tour
 			for (int i = 0; i < niveau.getObjectGroupCount(); i++) {
 				for (int j = 0; j < niveau.getObjectCount(i); j++) {
 					if (niveau.getObjectType(i, j).equals("objet")) {
+						// si l'ennemi se déplace vers la gauche, regarde en avance (valeur 42) si c'est un item sur son axe des x et y,
+						//fait demi-tour
 						if (niveau.getObjectX(i, j) + 42 == e
 								&& (niveau.getObjectY(i, j) / niveau
 										.getTileWidth()) + 1 == y
-								&& !ennemis.getDirectionDroite()) {
-							result = false;
-						} else if (niveau.getObjectX(i, j) - 15 == e
+								&& !ennemi.getDirectionDroite()) {
+							resultat = false;
+						}
+						// si l'ennemi se déplace vers la droite, regarde en avance (valeur 15) si c'est un item sur son axe des x et y,
+						//fait demi-tour
+						else if (niveau.getObjectX(i, j) - 15 == e
 								&& (niveau.getObjectY(i, j) / niveau
 										.getTileWidth()) + 1 == y
-								&& ennemis.getDirectionDroite()) {
+								&& ennemi.getDirectionDroite()) {
 
-							result = false;
+							resultat = false;
 						}
 
 					}
@@ -692,7 +707,7 @@ public class Monde implements SlickAdapter {
 		} catch (Exception e) {
 
 		}
-		return result;
+		return resultat;
 	}
 
-}// /
+}
