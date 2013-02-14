@@ -20,13 +20,13 @@ import blocs.Switch;
 public class SwitchFactory extends AbstractFactory {
 
 	/**
-	 * Bouton en cours de création
+	 * Bouton en cours de creation
 	 *
 	 */
 	private HashMap<String, Switch> chaine;
 
 	/**
-	 * Crée une fabrique
+	 * Cree une fabrique
 	 * @param world Monde Physique
 	 * @param map Carte du niveau
 	 */
@@ -44,9 +44,9 @@ public class SwitchFactory extends AbstractFactory {
 	}
 
 	/**
-	 * Crée une nouveau bouton et l'intègre dans l'environnement de jeu
+	 * Cree une nouveau bouton et l'integre dans l'environnement de jeu
 	 * @param i Abscisse de l'objet dans la carte
-	 * @param j Ordonnée de l'objet dans la carte
+	 * @param j Ordonnee de l'objet dans la carte
 	 */
 	public void createSwitch(int i, int j) {
 		Point position = getPosition(i, j);

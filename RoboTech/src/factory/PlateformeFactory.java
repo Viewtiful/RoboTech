@@ -14,13 +14,13 @@ import blocs.Switch;
 /**
  * 
  * @author Equipe RoboTech 
- * Créateur de Plateforme
+ * Createur de Plateforme
  */
 public class PlateformeFactory extends AbstractFactory {
 
 	
 	/**
-	 * Plateformes en cours de création
+	 * Plateformes en cours de creation
 	 *
 	 */
 	private HashMap<String, Plateforme> chaine;
@@ -31,7 +31,7 @@ public class PlateformeFactory extends AbstractFactory {
 	private SwitchFactory s;
 
 	/**
-	 * Crée une fabrique
+	 * Cree une fabrique
 	 * @param world Monde Physique
 	 * @param map Carte du niveau
 	 * @param s Fabrique de Bouton
@@ -45,7 +45,7 @@ public class PlateformeFactory extends AbstractFactory {
 	/**
 	 * Ajoute un point dans la trajectoire de la plateforme
 	 * @param i Abscisse en Tile
-	 * @param j Ordonnée en Tile
+	 * @param j Ordonnee en Tile
 	 */
 	public void addPosition(int i, int j) {
 		
@@ -75,9 +75,9 @@ public class PlateformeFactory extends AbstractFactory {
 	}
 
 	/**
-	 * Crée une nouvelle plateforme et l'intègre dans l'environnement de jeu
+	 * Cree une nouvelle plateforme et l'integre dans l'environnement de jeu
 	 * @param i Abscisse de l'objet dans la carte
-	 * @param j Ordonnée de l'objet dans la carte
+	 * @param j Ordonnee de l'objet dans la carte
 	 */
 	public void createPlateforme(int i, int j) {
 		
@@ -107,7 +107,7 @@ public class PlateformeFactory extends AbstractFactory {
 		p = new Plateforme(position, image_box, width, height);
 		p.setVitesse((float) 0.10);
 		System.out.println("Name cra = "+name);		
-		// Objet bien alloué
+		// Objet bien allouï¿½
 		assert(p!=null);
 		
 		p.addPoint(position.getX(), position.getY());
@@ -117,7 +117,7 @@ public class PlateformeFactory extends AbstractFactory {
 		chaine.put(name, p);
 		// Ajout d'un point dans la trajectoire
 		assert(p.getTrajectoire().size()==1);
-		// Une nouvelle plateforme a été ajouté
+		// Une nouvelle plateforme a ete ajoute
 		assert(last_size+1 == chaine.values().size());
 		
 		String sender_name = recupererPropriete(i, j, "Sender");
@@ -128,7 +128,7 @@ public class PlateformeFactory extends AbstractFactory {
 			Switch sender = s.get_produit(sender_name);
 			last_size = sender.getReceiver().size();
 			sender.add(p);
-			// Un receveur de signal a été ajouté
+			// Un receveur de signal a ete ajoute
 			assert(last_size+1 == sender.getReceiver().size());
 		}
 		
