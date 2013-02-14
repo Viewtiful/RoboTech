@@ -117,12 +117,7 @@ public class Plateforme extends BlocsDynamiques {
 		this.c = c;
 	}
 
-	private void invariant() {
-		assert (pointd >= 0);
-		assert (inited);
-		assert (trajectoire.size() >= 0);
-
-	}
+	
 
 	public void setTrajectoire(float Point_x[], float Point_y[]) {
 		assert (Point_x.length == Point_y.length);
