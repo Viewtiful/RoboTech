@@ -540,6 +540,7 @@ public class Monde implements SlickAdapter {
 		while (it.hasNext()) {
 			current = it.next();
 			current.update(container, game, delta);
+			//si collision, on supprime la balle du niveau
 			if (current.collision(personnages)) {
 				world.remove(current.getBody());
 				it.remove();
