@@ -282,40 +282,39 @@ public class Monde implements SlickAdapter {
 					s.createSwitch(i, j);
 				}
 				//si c'est un objet de type plateforme de base, on le cree
-				if (map.getObjectType(i, j).equals("Plateforme_Base")) {
+				else if (map.getObjectType(i, j).equals("Plateforme_Base")) {
 					f.createPlateforme(i, j);
 				}
 				//si c'est un objet d'un point de passage de la plateforme, on le cree
-				if (map.getObjectType(i, j).equals("Plateforme_Point"))
+				else if (map.getObjectType(i, j).equals("Plateforme_Point"))
 					f.addPosition(i, j);
 
 				//si c'est un objet de type bloc blessant, on le cree
-				if (map.getObjectType(i, j).equals("BlocsBlessant")) {
+				else if (map.getObjectType(i, j).equals("BlocsBlessant")) {
 					b.createBlocsBlessant(i, j);
 				}
 				//si c'est un objet de type personnage, on le cree en fonction de son nom et on l'ajoute au monde physique
-				if (map.getObjectType(i, j).equals("personnage")) {
+				else if (map.getObjectType(i, j).equals("personnage")) {
 					if (map.getObjectName(i, j).equals("chauveSouris")) {
 						Personnage chauveSouris = new ChauveSouris(
 								map.getObjectX(i, j) + (49 / 2),
 								map.getObjectY(i, j), 2f, 49, this,200);
 						addPersonnages(chauveSouris);
 					}
-					if (map.getObjectName(i, j).equals("kamikaze")) {
+					else if (map.getObjectName(i, j).equals("kamikaze")) {
 						Kamikaze k = new Kamikaze(map.getObjectX(i, j)
 								+ (24 / 2), map.getObjectY(i, j), 1.f, 24,
 								this, 100);
 						personnages.put(k.getBody(), k);
 						world.add(k.getBody());
 					}
-
-					if (map.getObjectName(i, j).equals("serpent")) {
+					else if (map.getObjectName(i, j).equals("serpent")) {
 						Personnage chauveSouris = new Serpent(map.getObjectX(i,
 								j) + (49 / 2), map.getObjectY(i, j), 2f, 49,
 								this,200);
 						addPersonnages(chauveSouris);
 					}
-					if (map.getObjectName(i, j).equals("boss")) {
+					else if (map.getObjectName(i, j).equals("boss")) {
 						Personnage boss = new Boss(map.getObjectX(i, j)
 								+ (64 / 2), map.getObjectY(i, j), 2f, 64, this,350);
 						addPersonnages(boss);
