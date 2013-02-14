@@ -34,6 +34,8 @@ public class BalleEnnemi extends Balle {
 	 */
 	@Override
 	public boolean cible(Personnage p) {
+		assert(p != null);
+		
 		if (p instanceof Robot)
 			return true;
 

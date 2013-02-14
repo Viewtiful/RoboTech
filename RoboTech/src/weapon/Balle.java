@@ -88,10 +88,10 @@ public abstract class Balle implements Drawable, SlickAdapter {
 		else
 			this.x = x - 18;
 		this.y = y;
+		this.masse = masse;
 		// charge l'image de la balle
 		imageBalle = new Image("res/bullet.png");
-		this.masse = masse;
-
+		
 		// cree la balle pour le monde physique
 		this.body = new Body(new Box(10, 10), this.masse);
 		this.body.setUserData(this);
@@ -110,7 +110,6 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		imageBalle = new Image("res/bullet.png");
-
 	}
 
 	/**
