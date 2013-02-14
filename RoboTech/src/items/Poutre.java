@@ -44,6 +44,12 @@ public class Poutre extends Items {
 	 */
 	public Poutre(float x, float y, float width, float height, float mass)
 			throws SlickException {
+		assert(x >= 0);
+		assert(y >= 0);
+		assert(width > 0);
+		assert(height > 0);
+		assert(mass > 0);
+		
 		this.width = width;
 		this.height = height;
 

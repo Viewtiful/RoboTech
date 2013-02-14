@@ -41,6 +41,12 @@ public class Caisse extends Items {
 	 *            Masse de la caisse
 	 */
 	public Caisse(float x, float y, float width, float height, float mass) {
+		assert(x >= 0);
+		assert(y >= 0);
+		assert(width > 0);
+		assert(height > 0);
+		assert(mass > 0);
+		
 		this.width = width;
 		this.height = height;
 
