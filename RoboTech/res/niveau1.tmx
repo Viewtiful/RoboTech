@@ -26,7 +26,7 @@
  </tileset>
  <layer name="BlocsStatiques" width="150" height="55">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aywqDMBAFULf2/z+4dFGQoDWp5mHmHAgt3TTJXHSILgsAcLd14MEzjVy/Uec1m2jXhJHnNpNo+xxtvb1E2+do6+0l2j5HW28vrff5tRk9+jK5aqPVPn+zdMY5wxzW5HvO3v/KR052zqj9841YwxHnRJneNdy7vvWeE9e17EO2PXv6ezon5tSytnIVx6e2r4OR40r/Llfz6lVbZwFzK6ntv9e07X85X4qhVX1lKRbPVKhBrqildt3lKqbavbRckWag9HzeuwXsOXrv4Swja/IJW1dzBXty7nNQSq6o4eiepwfnTrIEAAAAAAAAAAAAAAAAABDLG4z92WvogAAA
+   H4sIAAAAAAAAA+3aywqDMBAFULf6/x9cuihIMD6qeZg5BwKlmyYzlxhSpwkAeNrc8eCdeu5fr/MaTbQ9oee5jSRanaOtt5VodY623lai1TnaelupXedlNVqcy+Sqjlp1/mXpiHuGMczJ5zO138vHmewc0fv367GHPc6Ja1r3cGt/az0n7qt5Dlmf2dPv0zkxppq9las4vr1dMuOMO+d3uRpXq966Cxjbld7+u6etf8v9Ugy1+itLsfhPhRLkilJK912uYip9lpYr0gxcvZ/3bgFbcu89HGVEhthzJ1eQc+Y5B1fJFSXknnnOTzxJlgAAAAAAAAAAAAAAAAAAYvkAy3TE2eiAAAA=
   </data>
  </layer>
  <layer name="decors" width="150" height="55">
@@ -130,11 +130,6 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="Pics6" type="BlocsBlessant" x="800" y="800" width="32" height="32">
-   <properties>
-    <property name="restoreLevel" value="1"/>
-   </properties>
-  </object>
   <object name="chauveSouris" type="personnage" x="864" y="416" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
@@ -145,17 +140,22 @@
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="1888" y="288" width="32" height="32">
+  <object name="potionVie" type="ramassable" x="1888" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
-  <object name="potionMana" type="ramassable" x="1856" y="288" width="32" height="32">
+  <object name="potionEnergie" type="ramassable" x="1856" y="288" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
   </object>
   <object name="potionMana" type="ramassable" x="1824" y="288" width="32" height="32">
+   <properties>
+    <property name="restoreLevel" value="1"/>
+   </properties>
+  </object>
+  <object name="potionEnergie" type="ramassable" x="544" y="544" width="32" height="32">
    <properties>
     <property name="restoreLevel" value="1"/>
    </properties>
