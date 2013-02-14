@@ -442,10 +442,4 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	public float getTaille() {
 		return tailleBlockPerso;
 	}
-	
-	
-	//test unitaire
-	public static void main(String[] args) {
-		
-	}
 }
