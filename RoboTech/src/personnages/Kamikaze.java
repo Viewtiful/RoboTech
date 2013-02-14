@@ -58,10 +58,9 @@ public class Kamikaze extends Ennemis {
 	public Kamikaze(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde, float rayonDetection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde, rayonDetection, 0);
-		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
-		image = sheet.getSprite("kamikaze_00.png");
 		org = new Point(x, y);
 		fin = new Point(x + getRayonDetection(), y);
+		
 		// Initialisation de la vitesse negative
 		vitesse = -vitesse;
 		setDirectionDroite(false);
@@ -95,7 +94,8 @@ public class Kamikaze extends Ennemis {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-
+		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
+		image = sheet.getSprite("kamikaze_00.png");
 	}
 
 	@Override

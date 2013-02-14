@@ -49,8 +49,6 @@ public class Serpent extends Ennemis {
 	public Serpent(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde,float rayonDetection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,2);
-
-		sheet = new XMLPackedSheet("res/monster.png", "res/monster.xml");
 		setMax(3);
 		setVie(3);
 	}
@@ -61,6 +59,7 @@ public class Serpent extends Ennemis {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		sheet = new XMLPackedSheet("res/monster.png", "res/monster.xml");
 		image = sheet.getSprite("monster_00.png");
 	}
 
