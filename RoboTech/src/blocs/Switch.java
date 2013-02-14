@@ -55,12 +55,20 @@ public class Switch extends BlocsStatiques {
 		}
 	}
 
+	private void invariant()
+	{
+		assert(receiver!=null);
+		assert(receiver.size()>=0);
+	}
+	
 	/**
 	 * Ajoute des recepteurs
 	 * @param b un recepteur
 	 */
 	public void add(Blocs b) {
+		int last_size = receiver.size();
 		receiver.add(b);
+		assert(receiver.size()==last_size+1);
 	}
 
 	@Override

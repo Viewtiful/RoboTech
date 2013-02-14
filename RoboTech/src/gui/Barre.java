@@ -90,6 +90,7 @@ public abstract class Barre {
 		setWidth(width);
 		setHeight(height);
 		setBarName(barName);
+		assert(width!=-1 && height!=-1);
 	}
 
 	/**

@@ -2,12 +2,14 @@ package factory;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import net.phys2d.raw.World;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.TiledMap;
 
+import blocs.Blocs;
 import blocs.Point;
 import blocs.Switch;
 
@@ -57,17 +59,25 @@ public class SwitchFactory extends AbstractFactory {
 	 * @param j Ordonnee de l'objet dans la carte
 	 */
 	public void createSwitch(int i, int j) {
+		int last_size = chaine.size();
+		
 		Point position = getPosition(i, j);
 		int width = getWidth(i, j);
 		int height = getHeight(i, j);
+		
+		assert(position!=null && width!=-1 && height!=-1); 
+		
 		position.add(width / 2, height / 2);
 		Image image_on = getImage(i, j, "Image_On");
 		Image image_off = getImage(i, j, "Image_Off");
-
+		 
+		assert(image_on!=null && image_off!=null);
+		
 		String name = getName(i, j);
 		Switch s = new Switch(image_off, width, height, position, image_on);
 		world.add(s.getBody());
 		chaine.put(name, s);
+		assert(last_size+1==chaine.size());
 	}
 
 	@Override

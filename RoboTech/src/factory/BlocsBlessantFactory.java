@@ -49,8 +49,14 @@ public class BlocsBlessantFactory extends AbstractFactory {
 	 */
 	public void createBlocsBlessant(int i, int j) throws SlickException {
 
+		int last_size = chaine.size();
+
 		Point p = getPosition(i, j);
+		assert(p!=null);
+		
 		Point dim = getDimension(i, j);
+		assert(dim!=null);
+		
 		p.add(dim.getX() / 2, dim.getY() / 2);
 		String image = recupererPropriete(i,j,"Image");
 		Image im;
@@ -58,8 +64,10 @@ public class BlocsBlessantFactory extends AbstractFactory {
 			im = new Image(image);
 		else
 			im = new Image("res/pics.png");
+		
 		BlocsBlessant b = new BlocsBlessant(im, dim.getX(), dim.getY(), p, 1);
 		chaine.add(b);
+		assert(chaine.size()==last_size+1);
 		world.add(b.getBody());
 	}
 

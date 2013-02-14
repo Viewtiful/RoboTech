@@ -106,7 +106,7 @@ public class Monde implements Adapter {
 	Robot player;
 	
 	private Image kamikaze;
-	private static String nomNiveau = "niveau1.tmx";
+	private static String nomNiveau = "niveau2.tmx";
 	
 	/**
 	 * Constructeur de la classe Monde
@@ -122,6 +122,12 @@ public class Monde implements Adapter {
 		balles = new ArrayList<Balle>();
 		items = new ArrayList<Items>();
 		interaction = new ArrayList<Blocs>();
+		// V�rifcation de l'allocation des ArrayList
+		assert(personnages!=null && personnages.size()==0);
+		assert(itemsRamassable!=null && itemsRamassable.size()==0);
+		assert(balles!=null && balles.size()==0);
+		assert(items!=null && items.size()==0);
+		assert(interaction!=null && interaction.size()==0);
 		}
 
 	public void setPlayer(Robot player) {
@@ -410,9 +416,11 @@ public class Monde implements Adapter {
 	 * @param pers à ajouter au niveau physique
 	 */
 	public void addPersonnages(Personnage pers) {
+		int last_size = personnages.size();
 		world.add(pers.getBody());
 		pers.setWorld(world);
 		personnages.put(pers.getBody(), pers);
+		assert(last_size+1==personnages.size());
 	}
 
 	/**
@@ -422,9 +430,11 @@ public class Monde implements Adapter {
 	 * @param item ramassable à ajouter au niveau
 	 */
 	public void addItemsRamassable(Items item) {
+		int last_size = itemsRamassable.size();
 		world.add(item.getBody());
 		item.setWorld(world);
 		itemsRamassable.add(item);
+		assert(last_size+1==itemsRamassable.size());
 	}
 
 	/**
@@ -433,9 +443,11 @@ public class Monde implements Adapter {
 	 * @param balle à ajouter au niveau
 	 */
 	public void addBalles(Balle balle) {
+		int last_size = balles.size();
 		world.add(balle.getBody());
 		balle.setWorld(world);
 		balles.add(balle);
+		assert(balles.size()==last_size+1);
 	}
 
 	/**
@@ -445,9 +457,11 @@ public class Monde implements Adapter {
 	 * @param item  à ajouter au niveau
 	 */
 	public void addItems(Items item) {
+		int last_size = items.size();
 		world.add(item.getBody());
 		item.setWorld(world);
 		items.add(item);
+		assert(last_size==items.size());
 	}
 
 	/**
@@ -493,6 +507,8 @@ public class Monde implements Adapter {
 	 */
 	public void updateItem(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
+		int last_size = itemsRamassable.size();
+		int deleted = 0;
 		Items current;
 		Iterator<Items> it = itemsRamassable.iterator();
 
@@ -500,8 +516,12 @@ public class Monde implements Adapter {
 			current = it.next();
 			current.update(container, game, delta);
 			if (current.getUsed())
+			{
 				it.remove();
+				deleted++;
+			}
 		}
+		assert(itemsRamassable.size()==(last_size-deleted));
 
 	}
 
@@ -516,14 +536,18 @@ public class Monde implements Adapter {
 	public void updatePersonnage(GameContainer container, StateBasedGame game,
 			int delta) {
 		Personnage current;
+		int last_size = personnages.size();
+		int deleted = 0;
 		Iterator<Personnage> it = personnages.values().iterator();
 		while (it.hasNext()) {
 			current = it.next();
 			if (current.getVie() == 0) {
 				world.remove(current.getBody());
 				it.remove();
+				deleted++;
 			}
 		}
+		assert(last_size-deleted==personnages.size());
 	}
 
 	/**
@@ -538,6 +562,8 @@ public class Monde implements Adapter {
 	public void updateBalle(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
 		Balle current;
+		int last_size = balles.size();
+		int deleted = 0;
 		Iterator<Balle> it = balles.iterator();
 		while (it.hasNext()) {
 			current = it.next();
@@ -546,7 +572,9 @@ public class Monde implements Adapter {
 			if (current.collision(personnages)) {
 				world.remove(current.getBody());
 				it.remove();
+				deleted++;
 			}
+			assert((last_size-deleted)==balles.size());
 		}
 
 	}
@@ -559,18 +587,14 @@ public class Monde implements Adapter {
 	 * @param delta
 	 */
 	public void updateBlocs(GameContainer container, StateBasedGame game,
-			int delta) {
+			int delta) throws SlickException{
 		Iterator<Blocs> it = interaction.iterator();
 		Blocs current;
 		while (it.hasNext()) {
 			current = it.next();
 			current.collision(player);
+			current.update(container, game, delta);
 		
-			try {
-				current.update(container, game, delta);
-			} catch (SlickException e) {
-				System.out.println("SlickException");
-			}
 		}
 
 	}

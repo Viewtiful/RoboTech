@@ -9,14 +9,13 @@ import org.newdawn.slick.Image;
 import personnages.Robot;
 import slick.Adapter;
 
-
 /**
  * Elle synthetise l'aspect visuel et physique d'un bloc
  * 
  * @author Equipe RoboTech
  * 
  **/
-public abstract class Blocs implements  Adapter {
+public abstract class Blocs implements Adapter {
 
 	/**
 	 * Signal �mis par un Bouton
@@ -49,7 +48,6 @@ public abstract class Blocs implements  Adapter {
 	 */
 	private boolean onBloc = false;
 
-	private int cpt = 0;
 	public void setWidth(float Width) {
 		this.width = Width;
 	}
@@ -131,11 +129,12 @@ public abstract class Blocs implements  Adapter {
 	 * @param player
 	 *            le Robot contr�l� par le joueur
 	 */
-	
+
 	public void collision(Robot player) {
 		float eps = (float) 1e-01;
 		float n = player.getTaille();
-		if((Math.abs(player.getY() - center.getY()) - (getHeight()/2 + player.getTaille()/2)) <eps){
+		if ((Math.abs(player.getY() - center.getY()) - (getHeight() / 2 + player
+				.getTaille() / 2)) < eps) {
 			float x_gauche = player.getX() - n / 2;
 			float x_droite = player.getX() + n / 2;
 			float p_gauche = center.getX() - getWidth() / 2;
@@ -143,13 +142,13 @@ public abstract class Blocs implements  Adapter {
 
 			if ((x_droite <= p_droite && x_droite >= p_gauche)
 					|| (x_gauche <= p_droite && x_gauche >= p_gauche)) {
-				System.out.println("Detected  = "+cpt);
 				onBloc = true;
 			}
 			collisionAction(player);
 		}
 		onBloc = false;
 	}
+
 	/**
 	 * Permet que les classes filles ont un comportement diff�rents lors d'une
 	 * collision
