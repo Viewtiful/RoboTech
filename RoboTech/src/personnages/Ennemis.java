@@ -99,6 +99,10 @@ public abstract class Ennemis extends Personnage {
 			Monde monde, float rayonDetection,int degatBalle) {
 		//initialise les variables
 		super(x, y, masse, tailleBlockPerso, monde);
+		
+		assert(rayonDetection >= 0);
+		assert(degatBalle >= 0);
+		
 		deplacementAutoDroite = true;
 		jauge = new Rectangle(getX()+1,getY()-getTailleBlockPerso()/2+2,18,3);
 		player = monde.getPlayer();
