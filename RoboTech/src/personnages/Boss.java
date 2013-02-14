@@ -50,8 +50,6 @@ public class Boss extends Ennemis {
 	public Boss(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde,float rayonDetection) throws SlickException {
 		super(x, y, masse, tailleBlockPerso, monde,rayonDetection,3);
-
-		sheet = new XMLPackedSheet("res/Boss.png", "res/boss.xml");
 		setMax(5);
 		setVie(5);
 	}
@@ -62,6 +60,7 @@ public class Boss extends Ennemis {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		sheet = new XMLPackedSheet("res/Boss.png", "res/boss.xml");
 		image = sheet.getSprite("boss_00.png");
 	}
 

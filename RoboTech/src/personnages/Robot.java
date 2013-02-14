@@ -350,6 +350,7 @@ public class Robot extends Personnage {
 	public Balle tirer() throws SlickException {
 		if (getMana() > 0) {
 			setMana(getMana() - 1);
+			//cree une nouvelle balle, qui part dans la direction dans laquelle le robot pointe
 			Balle balle = new BalleRobot(getX(), getY(), getDirectionDroite(),
 					0.01f, 1);
 			balle.applyForce(10000, 0);
