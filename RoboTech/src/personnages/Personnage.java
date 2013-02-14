@@ -31,13 +31,6 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	 * Le monde
 	 */
 	public Monde monde;
-	public float getTailleBlockPerso() {
-		return tailleBlockPerso;
-	}
-
-	public void setTailleBlockPerso(float tailleBlockPerso) {
-		this.tailleBlockPerso = tailleBlockPerso;
-	}
 
 	/**
 	 * �Permet de savoir la direction du personnage
@@ -114,20 +107,27 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	}
 
 	/**
-	 * 
+	 * Constructeur de personnage
 	 * @param x
-	 *            Position horizontale
+	 *            Position en x du personnage
 	 * @param y
-	 *            Position Verticale
+	 *            Position en y du personnage
 	 * @param masse
-	 *            masse
+	 *            masse masse du personnage dans le monde physique
 	 * @param tailleBlockPerso
-	 *            taille du bloc
+	 *            taille de la hitbox du personnage dans le monde physique
 	 * @param monde
-	 *            le monde
+	 *            le niveau dans lequel le personnage évolue
 	 */
 	public Personnage(float x, float y, float masse, float tailleBlockPerso,
 			Monde monde) {
+		//test des variables venant des paramètres
+		assert(x >= 0);
+		assert(y >= 0);
+		assert(masse > 0);
+		assert(tailleBlockPerso > 0);
+		assert(monde != null);
+		
 		this.tailleBlockPerso = tailleBlockPerso;
 		this.auSol = false;
 		this.directionDroite = true;
@@ -153,9 +153,21 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		this.setPosition(x, y);
 		this.monde = monde;
 	}
-
+	
+	
 	public void setWorld(World world) {
+		assert(world != null);
 		this.world = world;
+	}
+	
+	
+	public float getTailleBlockPerso() {
+		return tailleBlockPerso;
+	}
+
+	public void setTailleBlockPerso(float tailleBlockPerso) {
+		assert(tailleBlockPerso > 0);
+		this.tailleBlockPerso = tailleBlockPerso;
 	}
 
 	/**
@@ -340,7 +352,7 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 	/**
 	 * Determine si le personnage est sur le sol
 	 * 
-	 * @param body
+	 * @param body le corps du personnage
 	 * @return true si le personnage est sur le sol, false sinon
 	 */
 	public boolean surLeSol(Body body) {
@@ -379,12 +391,20 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		return vitesseX;
 	}
 
+	/**
+	 * Modifie la vitesse de deplacement du personnage sur l'axe des x
+	 * @param vitesseX nouvelle vitesse de deplacement
+	 */
 	public void setVitesseX(float vitesseX) {
 		this.vitesseX = vitesseX;
 		this.nouvelleMaxvelX = maxVelX * this.vitesseX;
+		
+		//si la hauteur du saut du personnage n'a pas été modifié, on conserve la valeur courant de la hauteur du saut
 		if (nouvelleMaxvelY == 0) {
 			body.setMaxVelocity(nouvelleMaxvelX, maxVelY);
-		} else {
+		} 
+		//si la hauteur du saut du personnage a été modifié, on prend en compte sa nouvelle valeur
+		else {
 			body.setMaxVelocity(nouvelleMaxvelX, nouvelleMaxvelY);
 		}
 
@@ -394,18 +414,26 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 		return vitesseY;
 	}
 
+	/**
+	 * Modifie la hauteur du saut
+	 * @param vitesseY nouvelle hauteur du saut
+	 */
 	public void setVitesseY(float vitesseY) {
 		this.vitesseY = vitesseY;
 		this.nouvelleMaxvelY = maxVelY * this.vitesseY;
+		
+		//si la vitesse de deplacement du personnage n'a pas été modifié, on conserve la valeur courant de celle-ci
 		if (nouvelleMaxvelX == 0) {
 			body.setMaxVelocity(maxVelX, nouvelleMaxvelY);
-		} else {
+		} 
+		//si la vitesse de deplacement du personnage a été modifié, on prend en compte sa nouvelle valeur
+		else {
 			body.setMaxVelocity(nouvelleMaxvelX, nouvelleMaxvelY);
 		}
 	}
 
 	/**
-	 * D�termine l'effet d'un impact de balle sur un personnages
+	 * Determine l'effet d'un impact de balle sur un personnages
 	 * 
 	 * @param value
 	 */
@@ -413,5 +441,11 @@ public abstract class Personnage implements Drawable, SlickAdapter {
 
 	public float getTaille() {
 		return tailleBlockPerso;
+	}
+	
+	
+	//test unitaire
+	public static void main(String[] args) {
+		
 	}
 }
