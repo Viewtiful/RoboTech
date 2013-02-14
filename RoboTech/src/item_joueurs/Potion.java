@@ -50,6 +50,14 @@ public abstract class Potion extends ItemsRamassable {
 	 */
 	public Potion(float x, float y, float width, float height, float mass,
 			Robot player, int valeur) {
+		assert(x >= 0);
+		assert(y >= 0);
+		assert(width > 0);
+		assert(height > 0);
+		assert(mass > 0);
+		assert(player != null);
+		assert(valeur > 0);
+		
 		this.width = width;
 		this.height = height;
 		this.masse = mass;

@@ -54,6 +54,8 @@ public class PotionVitesse extends Potion {
 	 * Ici on restaure la vitesse du Robot
 	 */
 	public boolean effect(Robot player) {
+		assert(player != null);
+		
 		player.setPotionVitesse(true);
 		player.modifierVitesseX(valeur);
 		player.setEstomperEffetPotion(0);
