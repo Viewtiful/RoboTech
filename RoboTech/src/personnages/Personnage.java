@@ -2,8 +2,6 @@ package personnages;
 
 import jeu.Monde;
 
-import interfaces.Drawable;
-import interfaces.SlickAdapter;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.CollisionEvent;
@@ -14,12 +12,14 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import slick.Adapter;
+
 /**
  * Les personnages du jeu
  * 
  * @author Equipe RoboTech
  */
-public abstract class Personnage implements Drawable, SlickAdapter {
+public abstract class Personnage implements Adapter {
 
 	/**
 	 * le monde dans lequels le personnage est present

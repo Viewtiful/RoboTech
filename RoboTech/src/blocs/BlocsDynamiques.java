@@ -1,6 +1,5 @@
 package blocs;
 
-import interfaces.SlickAdapter;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,21 +7,16 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import slick.Adapter;
+
 /**
  * <i>Elle caracterise les Blocs dynamique comme les plateforme</i>
  * 
  * @author Equipe RoboTech
  */
-public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
+public abstract class BlocsDynamiques extends Blocs implements Adapter {
 
-	@Override
-	/**
-	 * {@inheritDoc}
-	 */
-	public void render(Graphics g) {
-		renderSpec(g);
-		getImage().drawCentered(center.getX(), center.getY());
-	}
+	
 
 	/**
 	 * @param box_image
@@ -47,8 +41,9 @@ public abstract class BlocsDynamiques extends Blocs implements SlickAdapter {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		render(g);
-
+		renderSpec(g);
+		getImage().drawCentered(center.getX(), center.getY());
+	
 	}
 
 	/**

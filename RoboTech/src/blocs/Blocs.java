@@ -7,17 +7,16 @@ import net.phys2d.raw.shapes.Box;
 import org.newdawn.slick.Image;
 
 import personnages.Robot;
+import slick.Adapter;
 
-import interfaces.Drawable;
-import interfaces.SlickAdapter;
 
 /**
- * <i> Elle synthetise l'aspect visuel et physique d'un bloc</i>
+ * Elle synthetise l'aspect visuel et physique d'un bloc
  * 
  * @author Equipe RoboTech
  * 
  **/
-public abstract class Blocs implements Drawable, SlickAdapter {
+public abstract class Blocs implements  Adapter {
 
 	/**
 	 * Signal �mis par un Bouton

@@ -1,7 +1,7 @@
 package items;
 
-import interfaces.Drawable;
-import interfaces.SlickAdapter;
+
+import slick.Adapter;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.Body;
 import net.phys2d.raw.World;
@@ -10,7 +10,7 @@ import net.phys2d.raw.World;
  * Represente les Items(Objet) disponible dans le jeu
  * @author Equipe RoboTech 
  */
-public abstract class Items implements SlickAdapter, Drawable {
+public abstract class Items implements Adapter{
 
 	/**
 	 * Etat d'utilisation de l'objet

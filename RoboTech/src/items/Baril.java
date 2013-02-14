@@ -85,25 +85,18 @@ public class Baril extends Items {
 
 	}
 
-	/**
-	 * Affichage
-	 * {@inheritDoc}
-	 */
-	public void render(Graphics g) {
-		g.translate(getX(), getY());
-		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
-		image.draw(-width / 2, -height / 2, width, height);
-		g.rotate(0, 0, (float) -Math.toDegrees(body.getRotation()));
-		g.translate(-getX(), -getY());
-
-	}
+	
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		render(g);
+		g.translate(getX(), getY());
+		g.rotate(0, 0, (float) Math.toDegrees(body.getRotation()));
+		image.draw(-width / 2, -height / 2, width, height);
+		g.rotate(0, 0, (float) -Math.toDegrees(body.getRotation()));
+		g.translate(-getX(), -getY());
 	}
 
 	/**

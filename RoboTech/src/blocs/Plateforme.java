@@ -286,10 +286,7 @@ public class Plateforme extends BlocsDynamiques {
 			}
 			g.setColor(Color.white);
 		}
-		g.setColor(Color.gray);
-		Rectangle contour = new Rectangle(center.getX()-getWidth()/2, center.getY()-getHeight()/2,
-				getWidth(), getHeight());
-		g.draw(contour);
+		
 	}
 
 	/**

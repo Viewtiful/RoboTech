@@ -15,9 +15,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import personnages.Personnage;
+import slick.Adapter;
 
-import interfaces.Drawable;
-import interfaces.SlickAdapter;
 
 /**
  * Classe abstraite gérant les balles
@@ -25,7 +24,7 @@ import interfaces.SlickAdapter;
  * @author EquipeRoboTech
  * 
  */
-public abstract class Balle implements Drawable, SlickAdapter {
+public abstract class Balle implements Adapter {
 	/**
 	 * Position x de la balle
 	 */
@@ -118,7 +117,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		render(g);
+		imageBalle.drawCentered(getX(), getY());
 	}
 
 	/**
@@ -289,14 +288,7 @@ public abstract class Balle implements Drawable, SlickAdapter {
 		body.setPosition(x, y);
 	}
 
-	/**
-	 * Affichage les balles tirés sur le niveau
-	 */
-	@Override
-	public void render(Graphics g) {
-		imageBalle.drawCentered(getX(), getY());
 
-	}
 
 	/**
 	 * Faire pour chaque personnage ce qui doit etre fait en fonction de la cible de la balle

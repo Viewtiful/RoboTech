@@ -13,7 +13,8 @@ import personnages.Robot;
 
 /**
  * Toutes les potions de maniere generale
- * @author Equipe RoboTech 
+ * 
+ * @author Equipe RoboTech
  */
 public abstract class Potion extends ItemsRamassable {
 	/** L'image de la potion */
@@ -50,14 +51,14 @@ public abstract class Potion extends ItemsRamassable {
 	 */
 	public Potion(float x, float y, float width, float height, float mass,
 			Robot player, int valeur) {
-		assert(x >= 0);
-		assert(y >= 0);
-		assert(width > 0);
-		assert(height > 0);
-		assert(mass > 0);
-		assert(player != null);
-		assert(valeur > 0);
-		
+		assert (x >= 0);
+		assert (y >= 0);
+		assert (width > 0);
+		assert (height > 0);
+		assert (mass > 0);
+		assert (player != null);
+		assert (valeur > 0);
+
 		this.width = width;
 		this.height = height;
 		this.masse = mass;
@@ -105,8 +106,6 @@ public abstract class Potion extends ItemsRamassable {
 		return height;
 	}
 
-
-
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
@@ -115,19 +114,11 @@ public abstract class Potion extends ItemsRamassable {
 	}
 
 	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void render(Graphics g) {
-		image.draw(getX() - 5, getY() - 7);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		render(g);
+		image.draw(getX() - 5, getY() - 7);
 	}
 
 }

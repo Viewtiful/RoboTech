@@ -66,10 +66,19 @@ public class PlateformeFactory extends AbstractFactory {
 
 	}
 
+	/**
+	 * Récupère la plateforme avec son nom
+	 * @param name nom de la plateforme
+	 * @return la platefome dont le nom est celui demandé
+	 */
 	private Plateforme getProduit(String name) {
 		return chaine.get(name);
 	}
 
+	/**
+	 * Retour la totalité des plateformes produit
+	 * @return l'ensemble des plateformes produit
+	 */
 	public Collection<Plateforme> getProduit() {
 		return chaine.values();
 	}
@@ -105,8 +114,6 @@ public class PlateformeFactory extends AbstractFactory {
 		p = new Plateforme(position,new BlocsBlessant(image_box,width, height, position,4));
 		else
 		p = new Plateforme(position, image_box, width, height);
-		p.setVitesse((float) 0.10);
-		System.out.println("Name cra = "+name);		
 		// Objet bien allouï¿½
 		assert(p!=null);
 		

@@ -8,7 +8,6 @@ import net.phys2d.raw.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.TiledMap;
 
-import blocs.Capteur;
 import blocs.Point;
 import blocs.Switch;
 
@@ -35,10 +34,19 @@ public class SwitchFactory extends AbstractFactory {
 		chaine = new HashMap<String, Switch>();
 	}
 
+	/**
+	 * Récupère la plateforme avec son nom
+	 * @param name nom de la plateforme
+	 * @return la platefome dont le nom est celui demandé
+	 */
 	public Switch get_produit(String name) {
 		return chaine.get(name);
 	}
 
+	/**
+	 * Retour la totalité des boutons produit
+	 * @return l'ensemble des boutons produit
+	 */
 	public Collection<Switch> getProduit() {
 		return chaine.values();
 	}
@@ -57,21 +65,9 @@ public class SwitchFactory extends AbstractFactory {
 		Image image_off = getImage(i, j, "Image_Off");
 
 		String name = getName(i, j);
-		String type = recupererPropriete(i,j,"Type");
-		Switch s;
-		if(!type.equals("Capteur"))
-			s = new Switch(image_off, width, height, position, image_on);
-		else
-		{
-			Capteur c = new Capteur(image_off, width, height, position, image_on);;
-			c.setVertical(false);
-			s = c;
-			s.getBody().setEnabled(false);
-			
-		}
+		Switch s = new Switch(image_off, width, height, position, image_on);
 		world.add(s.getBody());
 		chaine.put(name, s);
-		System.out.println(position);
 	}
 
 	@Override

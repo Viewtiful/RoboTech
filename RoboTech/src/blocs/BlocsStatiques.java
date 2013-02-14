@@ -29,14 +29,7 @@ public abstract class BlocsStatiques extends Blocs {
 		super(box_image, width, height, org);
 	}
 
-	@Override
-	/**
-	 * {@inheritDoc}
-	 */
-	public void render(Graphics g) {
-		getImage().drawCentered(center.getX(), center.getY());
-
-	}
+	
 
 	/**
 	 * {@inheritDoc}
@@ -52,7 +45,7 @@ public abstract class BlocsStatiques extends Blocs {
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		render(g);
+		getImage().drawCentered(center.getX(), center.getY());
 
 	}
 

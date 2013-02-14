@@ -9,6 +9,11 @@ import org.newdawn.slick.tiled.TiledMap;
 import blocs.BlocsBlessant;
 import blocs.Point;
 
+/**
+ * Fabrique de blocBlessant, blocs qui blessent le joueur
+ * @author Equipe RoboTech
+ *
+ */
 public class BlocsBlessantFactory extends AbstractFactory {
 
 	/**
@@ -29,6 +34,10 @@ public class BlocsBlessantFactory extends AbstractFactory {
 	}
 
 
+	/**
+	 * Retour la totalité des blocBlessant produit
+	 * @return l'ensemble des blocsBlessant produit
+	 */
 	public Collection<BlocsBlessant> getProduit() {
 		return chaine;
 	}

@@ -8,6 +8,14 @@ import personnages.Robot;
 
 public class BarrePotion extends Barre {
 
+	/**
+	 * 
+	 * @param x abscisse de la barre
+	 * @param y ordonnée de la barre
+	 * @param height hauteur de la barre
+	 * @param width largeur de la barre
+	 * @param barre_name nom de la barre à afficher
+	 */
 	public BarrePotion(float x, float y, float width, float height,
 			String barName) {
 		super(x, y, width, height, Color.magenta, barName);
@@ -27,6 +35,9 @@ public class BarrePotion extends Barre {
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public int length(Robot player) {
 		return 10 - player.getEstomperEffetPotion();
 	}

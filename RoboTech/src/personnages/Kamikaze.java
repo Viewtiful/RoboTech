@@ -66,12 +66,18 @@ public class Kamikaze extends Ennemis {
 		setDirectionDroite(false);
 	}
 
-	/**
-	 * Gestion de l'affichage du kamikaze
-	 */
-	@Override
-	public void render(Graphics g) {
+	
 
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
+		image = sheet.getSprite("kamikaze_00.png");
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
 		i++;
 		//gestion des animations du kamikaze
 		if (i >= 6) {
@@ -88,20 +94,6 @@ public class Kamikaze extends Ennemis {
 		// dessine l'image de l'ennemi en le centrant
 		image.drawCentered(getX(), getY());
 		renderVie(g);
-
-	}
-
-	@Override
-	public void init(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		sheet = new XMLPackedSheet("res/kamikaze.png", "res/kamikaze.xml");
-		image = sheet.getSprite("kamikaze_00.png");
-	}
-
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		render(g);
 
 	}
 

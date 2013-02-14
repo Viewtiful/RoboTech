@@ -3,7 +3,6 @@ package jeu;
 import factory.BlocsBlessantFactory;
 import factory.PlateformeFactory;
 import factory.SwitchFactory;
-import interfaces.SlickAdapter;
 import item_joueurs.ItemsRamassable;
 import item_joueurs.PotionEnergie;
 import item_joueurs.PotionMana;
@@ -27,6 +26,7 @@ import net.phys2d.raw.shapes.Box;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -40,13 +40,14 @@ import personnages.Kamikaze;
 import personnages.Serpent;
 import personnages.Personnage;
 import personnages.Robot;
+import slick.Adapter;
 import weapon.Balle;
 
 /**
  * Represente le niveau ou le Robot evolue
  * Equipe RoboTech  
  */
-public class Monde implements SlickAdapter {
+public class Monde implements Adapter {
 
 	/**
 	 *  Represente le monde physique
@@ -104,6 +105,7 @@ public class Monde implements SlickAdapter {
 	 */
 	Robot player;
 	
+	private Image kamikaze;
 	private static String nomNiveau = "niveau1.tmx";
 	
 	/**
@@ -176,7 +178,7 @@ public class Monde implements SlickAdapter {
 		//affiche les blocs interatifs
 		Iterator<Blocs> it4 = interaction.iterator();
 		while (it4.hasNext())
-			it4.next().render(g);
+			it4.next().render(gc, sbg, g);
 		
 		// affiche les personnages sur le niveau
 		Iterator<Personnage> it = personnages.values().iterator();

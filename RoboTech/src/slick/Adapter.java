@@ -1,4 +1,4 @@
-package interfaces;
+package slick;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * avec un moteur graphique</i>
  * Equipe RoboTech 
  */
-public interface SlickAdapter {
+public interface Adapter {
 
 	/**
 	 * Permet d'initialiser un composant graphique

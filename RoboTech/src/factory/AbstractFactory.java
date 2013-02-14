@@ -114,8 +114,5 @@ public abstract class AbstractFactory {
 		return map.getObjectName(i, j);
 	}
 
-	@Override
-	public String toString() {
-		return "Liste de Production" + "\n";
-	}
+
 }
