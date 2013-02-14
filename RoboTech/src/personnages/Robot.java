@@ -94,22 +94,23 @@ public class Robot extends Personnage {
 			throws SlickException {
 		super(x, y, mass, size, monde);
 		handlers = new RobotHandlers();
-		sheet = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
 	}
 
 	/**
 	 * Permet de choisir le skin du robot, notamment via le menu des options
 	 * 
-	 * @param robotCouleur
+	 * @param robotCouleur chaine de caractere representant la nouvelle image du robot
 	 * @throws SlickException
 	 */
 	public void setImage(String robotCouleur) throws SlickException {
+		assert(!robotCouleur.equals(""));
+		
 		sheet = new XMLPackedSheet("res/" + robotCouleur + ".png",
 				"res/robot.xml");
 	}
 
 	/**
-	 * Permet de récupérer l'image courante du robot utilisée
+	 * Permet de recuperer l'image courante du robot utilisee
 	 * 
 	 * @return
 	 */
@@ -123,6 +124,7 @@ public class Robot extends Personnage {
 	 * @param monde
 	 */
 	public void setMonde(Monde monde) {
+		assert(monde != null);
 		this.monde = monde;
 	}
 
@@ -133,6 +135,7 @@ public class Robot extends Personnage {
 	 *            valeur ajoutée à l'énergie du robot
 	 */
 	public void ajouterEnergie(int value) {
+		assert(value >= 0);
 		setEnergie(getEnergie() + value);
 
 	}
@@ -144,6 +147,7 @@ public class Robot extends Personnage {
 	 *            valeur ajoutée au mana du robot
 	 */
 	public void ajouterMana(int value) {
+		assert(value >= 0);
 		setMana(getMana() + value);
 
 	}
@@ -155,13 +159,14 @@ public class Robot extends Personnage {
 	 *            valeur ajoutée à la vie du robot
 	 */
 	public void ajouterVie(int value) {
+		assert(value >= 0);
 		setVie(getVie() + value);
 	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-
+		sheet = new XMLPackedSheet("res/robotRouge.png", "res/robot.xml");
 	}
 
 	/**
@@ -313,6 +318,7 @@ public class Robot extends Personnage {
 	 */
 	@Override
 	public void toucher(int value) {
+		assert(value >= 0);
 		setVie(getVie() - value);
 
 	}
