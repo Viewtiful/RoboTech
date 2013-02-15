@@ -171,7 +171,7 @@ public class Plateforme extends BlocsDynamiques {
 	 */
 	public void initialise(int point_current, int next_point) {
 		float n = vitesse;
-		assert (n > (float) 1.0e-02); // n différént de 0
+		assert (n > (float) 1.0e-02); // n diffï¿½rï¿½nt de 0
 
 		Point current = trajectoire.get(point_current);
 		Point next = trajectoire.get(next_point);
@@ -223,14 +223,17 @@ public class Plateforme extends BlocsDynamiques {
 	public void deplacement() {
 		assert (inited);
 		if (pointd == taille - 1) {
+			// si on a atteint la fin de la trajectoire
 			if (onReverse) {
 				reverse = true;
 				initialise(pointd, (pointd - 1) % taille);
+				// on rebrousse chemin
 			}
 		} else if (pointd == 0) {
 			if (onReverse) {
 				reverse = false;
 				initialise(pointd, (pointd + 1) % taille);
+				// on active le cycle 
 			}
 		}
 		if (!reverse)
