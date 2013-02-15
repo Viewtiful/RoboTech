@@ -107,9 +107,11 @@ public class Kamikaze extends Ennemis {
 	}
 
 	public void deplacement() {
+		// Si on arrive aux extrémité de la trajectoire
 		if (Math.abs(getX() - fin.getX()) < (float) 1.e-01
 				|| Math.abs(getX() - org.getX()) < (float) 1.e-01) {
 			vitesse = -vitesse;
+			// on change la direction du déplacement du Kamikaze
 			setDirectionDroite(!getDirectionDroite());
 		}
 
@@ -126,8 +128,9 @@ public class Kamikaze extends Ennemis {
 		float ya = getPlayer().getY();
 		float xb = getX();
 		float yb = getY();
-		if(	pythagore(xa, ya, xb, yb) < getRayonDetection() && !getDetected())
+		if(pythagore(xa, ya, xb, yb) < getRayonDetection() && !getDetected())
 		{
+			// Le joueur est detecté
 			setDetected(true);
 			sheet = new XMLPackedSheet("res/kamikaze_bombe.png",
 					"res/kamikaze.xml");
@@ -135,16 +138,20 @@ public class Kamikaze extends Ennemis {
 		if (getDetected()) {
 
 			if (xa < getX()) {
+				// l'ennemi est à gauche
 				setX(getX() - 1);
 				setDirectionDroite(false);
 			} else if (xa > getX()) {
+				// l'ennemmis est à droite
 				setX(getX() + 1);
 				setDirectionDroite(true);
 			}
+			// je recherche si il y a une collision avec le robot
 			CollisionEvent t[] = monde.getWorld().getContacts(getBody());
 			for (int i = 0; i < t.length; i++)
 				if (t[i].getBodyA() == getPlayer().getBody()
 						|| t[i].getBodyB() == getPlayer().getBody()) {
+						//Collision avec le robot et mort
 					getPlayer().setVie(0);
 					setVie(0);
 				}
